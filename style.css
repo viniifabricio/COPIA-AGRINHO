@@ -21,7 +21,7 @@ body {
     background-color: var(--cor-fundo);
     color: var(--cor-textos);
     line-height: 1.6;
-    padding-top: 80px; /* Evita que o menu fixo sobreponha o conteúdo */
+    padding-top: 80px;
 }
 
 /* ==========================================================================
@@ -135,7 +135,7 @@ p {
     margin-bottom: 20px;
 }
 
-/* Bloco de Identificação Escolar */
+/* Bloco de Identificação */
 .creditos-bloco {
     background-color: #f8fafc;
     border-radius: 8px;
@@ -466,7 +466,7 @@ p {
 }
 
 /* ==========================================================================
-   9. NOVA SECÇÃO: INDICADORES ESTATÍSTICOS REAIS
+   9. ESTILIZAÇÃO DA NOVA SEÇÃO DE INDICADORES REAIS
    ========================================================================== */
 .indicadores-container {
     display: flex;
@@ -563,8 +563,6 @@ body.alto-contraste .calc-container {
 }
 
 /* --- FORÇANDO TEXTO PRETO EM BLOCOS DE DESTAQUE CLAROS --- */
-
-/* 1. Bloco de Identificação e Cards da Calculadora */
 body.alto-contraste .creditos-bloco,
 body.alto-contraste .metric-box {
     background-color: #ffffff !important;
@@ -578,7 +576,6 @@ body.alto-contraste .metric-data p {
     color: #000000 !important;
 }
 
-/* 2. Bloco de Destaque da Conclusão Final */
 body.alto-contraste .final-highlight {
     background-color: #ffffff !important;
     border: 2px solid #ffff00 !important;
@@ -590,7 +587,6 @@ body.alto-contraste .final-highlight p {
     color: #000000 !important;
 }
 
-/* 3. Nova Secção de Indicadores Reais no Alto Contraste */
 body.alto-contraste .indicador-linha {
     background-color: #000000 !important;
     border: 2px solid #ffffff !important;
@@ -609,7 +605,6 @@ body.alto-contraste .fonte-dado {
     color: #ffff00 !important;
 }
 
-/* 4. Verso dos Flash Cards */
 body.alto-contraste .flash-card-back {
     background-color: #ffff00 !important;
     color: #000000 !important;
