@@ -639,7 +639,7 @@ footer {
 }
 
 /* ==========================================================================
-   9. CLASSE DE ALTO CONTRASTE REFORMULADA (CORREÇÃO DE LEGIBILIDADE)
+   9. CLASSE DE ALTO CONTRASTE REFORMULADA (CORREÇÃO DE LEGIBILIDADE GERAL)
    ========================================================================== */
 body.alto-contraste {
     background-color: #000000 !important;
@@ -661,23 +661,15 @@ body.alto-contraste h2,
 body.alto-contraste h3,
 body.alto-contraste strong,
 body.alto-contraste #pergunta-quiz,
-body.alto-contraste .creditos-titulo,
-body.alto-contraste .metric-data h4 {
+body.alto-contraste .creditos-titulo {
     color: #ffff00 !important;
 }
 
 body.alto-contraste p,
 body.alto-contraste .sub-painel,
 body.alto-contraste .instrucao-virar,
-body.alto-contraste .metric-data p,
 body.alto-contraste .calc-inputs label {
     color: #ffffff !important;
-}
-
-/* Força os textos da identificação do projeto a ficarem pretos sobre o fundo branco */
-body.alto-contraste .creditos-item,
-body.alto-contraste .creditos-item span {
-    color: #000000 !important;
 }
 
 body.alto-contraste .site-section,
@@ -697,14 +689,37 @@ body.alto-contraste .calc-container {
     border: 2px solid #ffffff !important;
 }
 
-/* Mantém blocos de destaque com fundo claro e texto totalmente preto para leitura perfeita */
+/* --- FORÇANDO TEXTO PRETO EM BLOCOS DE DESTAQUE CLAROS --- */
+
+/* 1. Bloco de Identificação e Cards da Calculadora */
 body.alto-contraste .creditos-bloco,
 body.alto-contraste .metric-box {
     background-color: #ffffff !important;
-    color: #000000 !important;
     border: 2px solid #ffff00 !important;
 }
 
+/* Garante que os números e descrições da calculadora e créditos fiquem pretos */
+body.alto-contraste .creditos-item,
+body.alto-contraste .creditos-item span,
+body.alto-contraste .metric-data h4,
+body.alto-contraste .metric-data p {
+    color: #000000 !important;
+}
+
+/* 2. Bloco de Destaque da Conclusão Final */
+body.alto-contraste .final-highlight {
+    background-color: #ffffff !important; /* Muda de verde-claro para branco puro no contraste */
+    border: 2px solid #ffff00 !important;
+    border-left: 5px solid #ffff00 !important;
+}
+
+/* Força o título "CONCLUSÃO" e o texto do parágrafo a ficarem pretos */
+body.alto-contraste .final-highlight h3,
+body.alto-contraste .final-highlight p {
+    color: #000000 !important;
+}
+
+/* 3. Verso dos Flash Cards */
 body.alto-contraste .flash-card-back {
     background-color: #ffff00 !important;
     color: #000000 !important;
@@ -715,6 +730,7 @@ body.alto-contraste .flash-card-back p {
     color: #000000 !important;
 }
 
+/* 4. Tabelas */
 body.alto-contraste .tabela-impactos th {
     background-color: #ffff00 !important;
     color: #000000 !important;
