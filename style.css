@@ -1,0 +1,548 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================================================== */
+:root {
+    --cor-principal: #1b4332;   
+    --cor-secundaria: #52b788;  
+    --cor-background: #f4f9f4;  
+    --cor-textos: #2d3748;      
+    --cor-cards: #ffffff;       
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-background);
+    color: var(--cor-textos);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   2. NAVBAR RESPONSIVA E CORREÇÃO DO LAYOUT (NÃO QUEBRA LINHA)
+   ========================================================================== */
+.navbar {
+    background-color: var(--cor-principal);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 3%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: nowrap; 
+}
+
+.navbar .logo {
+    font-size: 1.3rem;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-right: 15px;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+}
+
+.navbar nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    white-space: nowrap;
+}
+
+.navbar nav a:hover {
+    color: var(--cor-secundaria);
+}
+
+.acessibilidade-botoes {
+    display: flex;
+    gap: 6px;
+    margin-left: 15px;
+}
+
+.nav-btn-acessivel {
+    background-color: transparent;
+    color: white;
+    border: 1.5px solid white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-btn-acessivel:hover {
+    background-color: white;
+    color: var(--cor-principal);
+}
+
+.btn-ativo {
+    background-color: #f1c40f !important;
+    color: #000 !important;
+    border-color: #f1c40f !important;
+}
+
+/* ==========================================================================
+   3. HERO SECTION
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    background: url('Agrinho.png') no-repeat center center/cover;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.badge {
+    background-color: var(--cor-secundaria);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   4. SEÇÕES E COMPONENTES GERAIS
+   ========================================================================== */
+.site-section, .radar-section, .informativo-section, .ferramentas-section, .conclusao-section {
+    background: var(--cor-cards);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    margin-top: 30px;
+    transition: background-color 0.3s;
+}
+
+h2 {
+    color: var(--cor-principal);
+    border-bottom: 3px solid var(--cor-secundaria);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.sub-painel {
+    color: #718096;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* REFINAMENTO DESIGN DO BLOCO DE CRÉDITOS (MELHORIA N° 3) */
+.creditos-bloco {
+    margin-top: 20px;
+    padding: 16px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 5px solid var(--cor-principal);
+    border-radius: 8px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.creditos-titulo {
+    font-weight: bold;
+    color: var(--cor-principal);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.creditos-item {
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+    color: var(--cor-textos);
+}
+
+.creditos-item:last-child {
+    margin-bottom: 0;
+}
+
+.creditos-item span {
+    font-weight: 600;
+}
+
+.radar-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #e2e8f0;
+}
+
+.radar-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.radar-legendas {
+    margin-top: 20px;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.legenda-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.cor-bloco {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.c-verde { background-color: #27ae60; }
+.c-amarelo { background-color: #f1c40f; }
+.c-vermelho { background-color: #e74c3c; }
+
+/* ==========================================================================
+   5. FLASH CARDS
+   ========================================================================== */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.flash-card {
+    background-color: transparent;
+    height: 320px;
+    cursor: pointer;
+}
+
+.flash-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flash-card-front, .flash-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+
+.flash-card-front {
+    background-color: #f8fafc;
+}
+
+.flash-card-front h3 {
+    color: var(--cor-principal);
+    font-size: 1.25rem;
+}
+
+.flash-card-back {
+    background-color: var(--cor-principal);
+    color: white;
+    transform: rotateY(180deg);
+    justify-content: center;
+}
+
+.flash-card-back h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 12px;
+}
+
+.info-tag {
+    display: inline-block;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   6. TABELA E QUIZ
+   ========================================================================== */
+.tabela-impactos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-impactos th, .tabela-impactos td {
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+}
+
+.tabela-impactos th {
+    background-color: var(--cor-principal);
+    color: white;
+}
+
+.tabela-impactos tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.quiz-container {
+    background-color: #f8fafc;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid var(--cor-secundaria);
+    text-align: center;
+}
+
+.botoes-quiz button {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* ==========================================================================
+   7. PAINEL DE TOMADA DE DECISÃO
+   ========================================================================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image-sim {
+    background: #e2e8f0;
+    font-size: 3rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.status-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.status-luz {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.cinza { background-color: #a0aec0; }
+.verde-ativo { background-color: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
+.vermelho-ativo { background-color: #e74c3c; box-shadow: 0 0 8px #e74c3c; }
+
+.simulador-controle {
+    margin-top: 25px;
+    background: #edf2f7;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.botoes-simulador {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.botoes-simulador button {
+    background: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.final-highlight {
+    background-color: #e8f5e9;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid var(--cor-principal);
+}
+
+footer {
+    background-color: var(--cor-principal);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+.vw-plugin-wrapper {
+    z-index: 999999 !important;
+}
+
+/* ==========================================================================
+   8. CLASSE EXCLUSIVA PARA ALTO CONTRASTE
+   ========================================================================== */
+body.alto-contraste {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.alto-contraste .navbar,
+body.alto-contraste footer,
+body.alto-contraste .botoes-quiz button,
+body.alto-contraste .botoes-simulador button {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste strong,
+body.alto-contraste #pergunta-quiz,
+body.alto-contraste .creditos-titulo {
+    color: #ffff00 !important;
+}
+
+body.alto-contraste p,
+body.alto-contraste .sub-painel,
+body.alto-contraste .instrucao-virar,
+body.alto-contraste .creditos-item {
+    color: #ffffff !important;
+}
+
+body.alto-contraste .site-section,
+body.alto-contraste .radar-section,
+body.alto-contraste .informativo-section,
+body.alto-contraste .ferramentas-section,
+body.alto-contraste .conclusao-section,
+body.alto-contraste .card,
+body.alto-contraste .radar-legendas,
+body.alto-contraste .quiz-container,
+body.alto-contraste .simulador-controle,
+body.alto-contraste .flash-card-front,
+body.alto-contraste .status-box {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
+/* Correção do Bloco de Créditos no Alto Contraste */
+body.alto-contraste .creditos-bloco {
+    background-color: #000000 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+body.alto-contraste .flash-card-back {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+body.alto-contraste .flash-card-back h3,
+body.alto-contraste .flash-card-back p {
+    color: #000000 !important;
+}
+
+body.alto-contraste .tabela-impactos th {
+    background-color: #ffff00 !important;
+    color: #000000 !important;
+}
+
+body.alto-contraste .tabela-impactos td,
+body.alto-contraste .tabela-impactos tr {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.alto-contraste .final-highlight {
+    background-color: #000000 !important;
+    border: 3px dashed #ffff00 !important;
+}
