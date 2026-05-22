@@ -240,3 +240,6 @@ function calcularImpactoEcologico() {
     
     resultadoDiv.style.display = "flex";
 }
+
+// Executa automaticamente as configurações iniciais assim que o arquivo é lido pelo navegador
+inicializarQuizEPainel();
