@@ -34,7 +34,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR RESPONSIVA E CORREÇÃO DO LAYOUT (NÃO QUEBRA LINHA)
+   2. NAVBAR RESPONSIVA (COM TRANSIÇÕES SUAVES)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-principal);
@@ -46,7 +46,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     flex-wrap: nowrap; 
 }
 
@@ -74,7 +74,7 @@ body {
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: color 0.3s ease;
     white-space: nowrap;
 }
 
@@ -97,13 +97,14 @@ body {
     cursor: pointer;
     font-size: 0.8rem;
     font-weight: bold;
-    transition: background-color 0.2s, color 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
 }
 
 .nav-btn-acessivel:hover {
     background-color: white;
     color: var(--cor-principal);
+    transform: scale(1.05);
 }
 
 .btn-ativo {
@@ -163,7 +164,7 @@ body {
 }
 
 /* ==========================================================================
-   4. SEÇÕES E COMPONENTES GERAIS
+   4. SEÇÕES COM ANIMAÇÕES MODERNAS E SOMBRAS CONTEXTUAIS
    ========================================================================== */
 .site-section, .radar-section, .informativo-section, .ferramentas-section, .conclusao-section {
     background: var(--cor-cards);
@@ -171,7 +172,13 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     margin-top: 30px;
-    transition: background-color 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito sutil de elevação ao interagir com as seções */
+.site-section:hover, .radar-section:hover, .ferramentas-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(27, 67, 50, 0.08);
 }
 
 h2 {
@@ -195,7 +202,6 @@ h2 {
     border: 1px solid #e2e8f0;
     border-left: 5px solid var(--cor-principal);
     border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .creditos-titulo {
@@ -211,10 +217,6 @@ h2 {
     font-size: 0.92rem;
     margin-bottom: 4px;
     color: var(--cor-textos);
-}
-
-.creditos-item:last-child {
-    margin-bottom: 0;
 }
 
 .creditos-item span {
@@ -267,7 +269,7 @@ h2 {
 .c-vermelho { background-color: #e74c3c; }
 
 /* ==========================================================================
-   5. FLASH CARDS
+   5. FLASH CARDS ANIMADOS
    ========================================================================== */
 .info-grid {
     display: grid;
@@ -312,6 +314,7 @@ h2 {
 
 .flash-card-front {
     background-color: #f8fafc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
 }
 
 .flash-card-front h3 {
@@ -347,7 +350,98 @@ h2 {
 }
 
 /* ==========================================================================
-   6. TABELA E QUIZ
+   6. DESIGN DA NOVA CALCULADORA ECOLÓGICA
+   ========================================================================== */
+.calc-container {
+    background: #f8fafc;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 5px solid var(--cor-principal);
+}
+
+.calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.calc-inputs label {
+    font-weight: 600;
+    color: var(--cor-principal);
+}
+
+.calc-inputs input {
+    padding: 10px;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.calc-inputs input:focus {
+    border-color: var(--cor-secundaria);
+}
+
+.btn-calculadora {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-calculadora:hover {
+    background-color: #2d6a4f;
+    transform: translateY(-2px);
+}
+
+.calc-resultado {
+    margin-top: 25px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+.metric-box {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 250px;
+    flex: 1;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.metric-icon {
+    font-size: 2.2rem;
+}
+
+.metric-data h4 {
+    font-size: 1.4rem;
+    color: var(--cor-principal);
+}
+
+.metric-data p {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   7. TABELA E QUIZ (BOTÕES INTERATIVOS E ACESSIBILIDADE)
    ========================================================================== */
 .tabela-impactos {
     width: 100%;
@@ -389,12 +483,13 @@ h2 {
     font-size: 0.95rem;
     font-weight: 500;
     text-align: left;
-    transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .botoes-quiz button:hover:not(:disabled) {
     background-color: #2d6a4f;
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
 }
 
 .botoes-quiz button:disabled {
@@ -417,7 +512,7 @@ h2 {
 }
 
 /* ==========================================================================
-   7. PAINEL DE TOMADA DE DECISÃO
+   8. PAINEL DE TOMADA DE DECISÃO
    ========================================================================== */
 .cards-grid {
     display: grid;
@@ -431,6 +526,12 @@ h2 {
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
 .card-image-sim {
@@ -508,11 +609,12 @@ h2 {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 .botoes-simulador button:hover {
     background-color: #2d6a4f;
+    transform: scale(1.03);
 }
 
 .conclusao-conteudo {
@@ -536,12 +638,8 @@ footer {
     margin-top: 40px;
 }
 
-.vw-plugin-wrapper {
-    z-index: 999999 !important;
-}
-
 /* ==========================================================================
-   8. CLASSE EXCLUSIVA PARA ALTO CONTRASTE
+   9. CLASSE DE ALTO CONTRASTE REFORMULADA
    ========================================================================== */
 body.alto-contraste {
     background-color: #000000 !important;
@@ -552,6 +650,7 @@ body.alto-contraste .navbar,
 body.alto-contraste footer,
 body.alto-contraste .botoes-quiz button,
 body.alto-contraste .botoes-simulador button,
+body.alto-contraste .btn-calculadora,
 body.alto-contraste #btn-proxima {
     background-color: #000000 !important;
     color: #ffff00 !important;
@@ -562,14 +661,17 @@ body.alto-contraste h2,
 body.alto-contraste h3,
 body.alto-contraste strong,
 body.alto-contraste #pergunta-quiz,
-body.alto-contraste .creditos-titulo {
+body.alto-contraste .creditos-titulo,
+body.alto-contraste .metric-data h4 {
     color: #ffff00 !important;
 }
 
 body.alto-contraste p,
 body.alto-contraste .sub-painel,
 body.alto-contraste .instrucao-virar,
-body.alto-contraste .creditos-item {
+body.alto-contraste .creditos-item,
+body.alto-contraste .metric-data p,
+body.alto-contraste .calc-inputs label {
     color: #ffffff !important;
 }
 
@@ -583,21 +685,17 @@ body.alto-contraste .radar-legendas,
 body.alto-contraste .quiz-container,
 body.alto-contraste .simulador-controle,
 body.alto-contraste .flash-card-front,
-body.alto-contraste .status-box {
+body.alto-contraste .status-box,
+body.alto-contraste .calc-container,
+body.alto-contraste .metric-box {
     background-color: #000000 !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
 }
 
-body.alto-contraste .creditos-bloco {
-    background-color: #000000 !important;
-    border: 2px solid #ffff00 !important;
-}
-
 body.alto-contraste .flash-card-back {
     background-color: #ffff00 !important;
     color: #000000 !important;
-    border: 2px solid #ffff00 !important;
 }
 
 body.alto-contraste .flash-card-back h3,
@@ -610,33 +708,36 @@ body.alto-contraste .tabela-impactos th {
     color: #000000 !important;
 }
 
-body.alto-contraste .tabela-impactos td,
-body.alto-contraste .tabela-impactos tr {
+body.alto-contraste .tabela-impactos td {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
 
-body.alto-contraste .final-highlight {
-    background-color: #000000 !important;
-    border: 3px dashed #ffff00 !important;
-}
-
 /* ==========================================================================
-   9. MEDIA QUERIES (RESPONSIVIDADE EXTRA DE SEGURANÇA)
+   10. MEDIA QUERIES (MELHORIA EXTREMA DE RESPONSIVIDADE)
    ========================================================================== */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         gap: 10px;
         text-align: center;
+        padding: 15px;
     }
     .navbar nav {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 10px;
+    }
+    .acessibilidade-botoes {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .hero-section {
+        height: 280px;
     }
     .hero-content h1 {
         font-size: 2rem;
@@ -647,5 +748,9 @@ body.alto-contraste .final-highlight {
     .tabela-impactos {
         display: block;
         overflow-x: auto;
+        white-space: nowrap;
+    }
+    .calc-resultado {
+        flex-direction: column;
     }
 }

@@ -59,7 +59,7 @@ function inicializarQuizEPainel() {
 }
 
 /* ==========================================================================
-   2. ACESSIBILIDADE - LEITURA DE VOZ (VERSÃO CORRIGIDA E RETESTADA)
+   2. ACESSIBILIDADE - LEITURA DE VOZ (MANTIDA EXATAMENTE IGUAL)
    ========================================================================= */
 function toggleLeituraVoz() {
     const btnVoz = document.getElementById("btn-voz");
@@ -216,4 +216,27 @@ function simularClima(velocidadeVento, umidadeAr) {
         luzIrrigacao.className = "status-luz verde-ativo";
         textoIrrigacao.innerHTML = `<strong>Modo Econômico:</strong> Umidade estável em ${umidadeAr}%. Monitorando as próximas nuvens.`;
     }
+}
+
+/* ==========================================================================
+   6. NOVO: LÓGICA DA CALCULADORA ECOLÓGICA (INTERATIVIDADE EXIGIDA)
+   ========================================================================= */
+function calcularImpactoEcologico() {
+    const hectares = parseFloat(document.getElementById("input-hectares").value);
+    const resultadoDiv = document.getElementById("resultado-calculadora");
+    
+    if (isNaN(hectares) || hectares <= 0) {
+        alert("Por favor, insira um número válido de hectares.");
+        return;
+    }
+    
+    // Cálculo fictício baseado em médias técnicas (Economia aproximada de 1500L de água por hectare/mês com sensores)
+    const aguaPoupada = hectares * 1500;
+    const derivasEvitadas = Math.ceil(hectares * 0.4);
+    
+    // Atualiza o DOM dinamicamente com animação de aparecimento suave
+    document.getElementById("calc-agua").innerText = aguaPoupada.toLocaleString('pt-BR') + " Litros";
+    document.getElementById("calc-deriva").innerText = derivasEvitadas + " Vezes";
+    
+    resultadoDiv.style.display = "flex";
 }

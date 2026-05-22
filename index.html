@@ -18,7 +18,7 @@
                 <a href="#intro">Sobre</a>
                 <a href="#radar-secao">Radar</a>
                 <a href="#informativo">Informativo</a>
-                <a href="#impactos">Impactos</a>
+                <a href="#calculadora">Simulador</a>
                 <a href="#quiz">Quiz</a>
                 <a href="#painel">Decisão</a>
                 <a href="#conclusao">Conclusão</a>
@@ -73,53 +73,83 @@
         </section>
 
         <section id="informativo" class="informativo-section">
-            <h2>📚 Espaço Informativo: Agro Sustentável</h2>
-            <p class="sub-painel">Passe o mouse ou pressione Tab para descobrir as respostas e boas práticas no campo!</p>
+            <h2>📚 Espaço Informativo: Dados e Estatísticas Reais</h2>
+            <p class="sub-painel">Passe o mouse ou pressione Tab para descobrir dados reais da agricultura sustentável no Brasil!</p>
             
             <div class="info-grid">
                 
+                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Recursos Hídricos. De acordo com a ANA, qual a média de consumo de água na agricultura irrigada? Resposta: Cerca de 50 por cento a 70 por cento da água captada. O uso de sensores de umidade reduz esse consumo em até 30 por cento, gerando grande economia.">
+                    <div class="flash-card-inner">
+                        <div class="flash-card-front">
+                            <div class="info-tag">Água Doce</div>
+                            <h3>Qual o consumo de água na irrigação brasileira?</h3>
+                            <p class="instrucao-virar">✨ Interaja para ver os dados da ANA</p>
+                        </div>
+                        <div class="flash-card-back">
+                            <h3>Preservação Hídrica</h3>
+                            <p>Dados da Agência Nacional de Águas (ANA) indicam que a irrigação responde por grande parte do consumo de água doce. O uso de sensores inteligentes e radares meteorológicos pode reduzir esse consumo em até 30%, evitando o desperdício dos mananciais e preservando os rios do Paraná.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Preservação. Quanto do território das propriedades rurais é preservado no Brasil? Resposta: Cerca de 33 por cento do território nacional é conservado por produtores rurais dentro de suas terras, segundo dados da Embrapa Territorial, destacando o papel do agro na biodiversidade.">
+                    <div class="flash-card-inner">
+                        <div class="flash-card-front">
+                            <div class="info-tag">Preservação</div>
+                            <h3>Quanto da vegetação é protegida pelo agro?</h3>
+                            <p class="instrucao-virar">✨ Interaja para ver os dados da Embrapa</p>
+                        </div>
+                        <div class="flash-card-back">
+                            <h3>Embrapa Territorial</h3>
+                            <p>Segundo a Embrapa, a vegetação nativa preservada pelos produtores rurais dentro das propriedades privadas representa cerca de 33% do território brasileiro. A tecnologia ajuda o produtor a manter essas áreas intactas ao aumentar a produtividade sem abrir novas áreas de mata.</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Tecnologia. Qual o foco do Programa Agrinho 2026? Resposta: Agro Forte, Futuro Sustentável. O tema destaca a importância de unir produção agrícola, tecnologia e preservação ambiental.">
                     <div class="flash-card-inner">
                         <div class="flash-card-front">
-                            <div class="info-tag">Tecnologia</div>
-                            <h3>Qual o foco do Programa Agrinho 2026?</h3>
+                            <div class="info-tag">Agrinho 2026</div>
+                            <h3>Qual o foco central do Programa Agrinho?</h3>
                             <p class="instrucao-virar">✨ Interaja para descobrir a resposta</p>
                         </div>
                         <div class="flash-card-back">
                             <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O tema destaca a importância de unir produção agrícola, tecnologia e preservação ambiental para garantir qualidade de vida às futuras gerações. O projeto busca mostrar que o agronegócio moderno não depende apenas de produtividade, mas também de responsabilidade social, inovação e sustentabilidade.</p>
+                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço do campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerações sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Sustentabilidade. O que caracteriza o verdadeiro Agro Sustentável? Resposta: Equilíbrio de Recursos. É o modelo que atende às necessidades atuais sem comprometer o futuro, utilizando práticas que preservam o solo e economizam água.">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <div class="info-tag">Sustentabilidade</div>
-                            <h3>O que caracteriza o verdadeiro Agro Sustentável?</h3>
-                            <p class="instrucao-virar">✨ Interaja para descobrir a resposta</p>
+            </div>
+        </section>
+
+        <section id="calculadora" class="site-section">
+            <h2>🧮 Calculadora Ecológica de Economia de Água</h2>
+            <p class="sub-painel">Simule o impacto positivo do monitoramento climático inteligente na sua propriedade agrícola!</p>
+            
+            <div class="calc-container">
+                <div class="calc-inputs">
+                    <label for="input-hectares">Tamanho da Plantação (em Hectares):</label>
+                    <input type="number" id="input-hectares" value="10" min="1" max="1000">
+                    <button onclick="calcularImpactoEcologico()" class="btn-calculadora">📊 Calcular Impacto Sustentável</button>
+                </div>
+                
+                <div id="resultado-calculadora" class="calc-resultado" style="display: none;">
+                    <div class="metric-box">
+                        <span class="metric-icon">💧</span>
+                        <div class="metric-data">
+                            <h4 id="calc-agua">0 Litros</h4>
+                            <p>De água doce poupados por mês</p>
                         </div>
-                        <div class="flash-card-back">
-                            <h3>Equilíbrio de Recursos</h3>
-                            <p>É o modelo que atende às necessidades atuais sem comprometer o futuro. Utiliza práticas que preservam o solo, economizam água e reduzem desperdícios com o auxílio da agricultura digital, drones, sensores inteligentes e automação para monitorar plantações e poupar a natureza.</p>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-icon">🐝</span>
+                        <div class="metric-data">
+                            <h4 id="calc-deriva">0 Vezes</h4>
+                            <p>Menos exposição a derivas químicas nocivas</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Inovação. Qual o papel e o desafio do Agronegócio no Brasil? Resposta: Segurança Alimentar. O desafio crucial do agro moderno é aumentar a produtividade e a eficiência no campo, preservando rigorosamente as florestas, os recursos hídricos e a biodiversidade local.">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <div class="info-tag">Inovação</div>
-                            <h3>Qual o papel e o desafio do Agronegócio no Brasil?</h3>
-                            <p class="instrucao-virar">✨ Interaja para descobrir a resposta</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h3>Segurança Alimentar</h3>
-                            <p>O setor é vital para a economia e para garantir a segurança alimentar da população. Com o crescimento demográfico mundial, o desafio crucial do agro moderno é aumentar a produtividade e a eficiência no campo, preservando rigorosamente as florestas, os recursos hídricos e a biodiversidade local através da tecnologia.</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -176,7 +206,7 @@
                     <div class="card-image-sim" role="img" aria-label="Ícone de trator">🚜</div>
                     <div class="card-body">
                         <h3>Pulverização Consciente</h3>
-                        <p>Evite o fenômeno da deriva. Quando o vento está muito forte, os defensores agrícolas evaporam ou são levados pelo vento antes de tocar a planta, contaminando rios, matas nativas e polinizadores essenciais como as abelhas.</p>
+                        <p>Evite o fenômeno da deriva. Quando o vento está muito forte, os defensores agrícolas evaporam ou são levados pelo vento antes de tocar na planta, contaminando rios, matas nativas e polinizadores essenciais como as abelhas.</p>
                         <div class="status-box">
                             <div id="luz-pulverizacao" class="status-luz cinza"></div>
                             <p id="texto-pulverizacao" class="status-texto">Aguardando leitura do vento...</p>
