@@ -2,6 +2,11 @@
    PROJETO DESENVOLVIDO PARA O CONCURSO AGRINHO 2026 - LOGICA DO FRONT-END
    ========================================================================= */
 
+// --- VARIÁVEIS GLOBAIS DO SISTEMA DE VOZ (OBRIGATÓRIO NO TOPO) ---
+let vozAtiva = false;
+const sinteseVoz = window.speechSynthesis;
+let utteranceAtual = null;
+
 // --- BANCO DE DADOS LOCAL DO QUIZ ---
 const perguntasQuiz = [
     {
@@ -11,7 +16,7 @@ const perguntasQuiz = [
             "B) Porque as gotas d'água congelam antes de tocar nas folhas da lavoura."
         ],
         correta: 0,
-        explicacao: "Correto! O vento forte causa deriva, desperdiçando o product e poluindo o meio ambiente."
+        explicacao: "Correto! O vento forte causa deriva, desperdiçando o produto e poluindo o meio ambiente."
     },
     {
         pergunta: "Qual o impacto ecológico de ligar sistemas de irrigação momentos antes de uma chuva forte?",
@@ -44,48 +49,38 @@ const perguntasQuiz = [
 
 let indicePerguntaAtual = 0;
 let acertosQuiz = 0; 
-let vozAtiva = false;
-let sinteseVoz = window.speechSynthesis;
-let utteranceAtual = null;
 
 /* ==========================================================================
    1. INICIALIZAÇÃO DO SISTEMA
    ========================================================================= */
 function inicializarQuizEPainel() {
     renderizarPerguntaQuiz();
-    simularClima(12, 15); // Configuração neutra inicial
+    simularClima(12, 15); 
 }
 
 /* ==========================================================================
-   2. ACESSIBILIDADE - LEITURA DE VOZ (VERSÃO CORRIGIDA ANTI-TRAVAMENTO)
+   2. ACESSIBILIDADE - LEITURA DE VOZ (VERSÃO CORRIGIDA E RETESTADA)
    ========================================================================= */
 function toggleLeituraVoz() {
     const btnVoz = document.getElementById("btn-voz");
     
-    // Força a limpeza de qualquer fila presa no navegador antes de agir
+    // Cancela qualquer áudio pendente no sistema operacional imediatamente
     sinteseVoz.cancel();
     
     if (!vozAtiva) {
-        vozAtiva = true;
-        btnVoz.innerText = "🛑 Parar Leitura";
-        btnVoz.classList.add("btn-ativo");
-        
-        let textoParaLer = "Bem-vindo ao EcoRadar Agro. Categoria Front-End, Agrinho 2026. ";
-        textoParaLer += "Desenvolvedor: Vinicius Montagna Fabricio. Escola: Colégio Estadual Cívico-Militar Stella Maris, Andirá Paraná. ";
-        textoParaLer += "Sobre o Projeto: O EcoRadar Agro é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo.";
+        // Texto dinâmico bem estruturado
+        let textoParaLer = "Plataforma EcoRadar Agro. Desenvolvedor Vinicius Montagna Fabricio. Sobre o Projeto: O EcoRadar Agro é uma plataforma digital desenvolvida para auxiliar produtores rurais a tomarem decisões inteligentes e ecológicas no campo, unindo monitoramento climático com sustentabilidade.";
         
         utteranceAtual = new SpeechSynthesisUtterance(textoParaLer);
         utteranceAtual.lang = 'pt-BR';
-        utteranceAtual.rate = 1.1;
+        utteranceAtual.rate = 1.0; 
         
-        // Quando a fala terminar naturalmente
         utteranceAtual.onend = function() {
             vozAtiva = false;
             btnVoz.innerText = "🔊 Ouvir Site";
             btnVoz.classList.remove("btn-ativo");
         };
 
-        // Segurança caso ocorra um erro de bloqueio de áudio do sistema
         utteranceAtual.onerror = function() {
             vozAtiva = false;
             btnVoz.innerText = "🔊 Ouvir Site";
@@ -93,10 +88,13 @@ function toggleLeituraVoz() {
             sinteseVoz.cancel();
         };
         
+        vozAtiva = true;
+        btnVoz.innerText = "🛑 Parar Leitura";
+        btnVoz.classList.add("btn-ativo");
+        
         sinteseVoz.speak(utteranceAtual);
+        
     } else {
-        // Se já estava ativa, o cancel() executado no início desliga o som,
-        // nos restando redefinir o layout do botão.
         vozAtiva = false;
         btnVoz.innerText = "🔊 Ouvir Site";
         btnVoz.classList.remove("btn-ativo");
@@ -128,7 +126,6 @@ function renderizarPerguntaQuiz() {
     const btnProxima = document.getElementById("btn-proxima");
 
     resultadoTxt.innerText = "";
-    resultadoTxt.style.color = "initial";
     btnProxima.style.display = "none";
     
     btnA.style.display = "inline-block";
@@ -156,7 +153,6 @@ function renderizarPerguntaQuiz() {
         }
         
         resultadoTxt.innerHTML = `<span style="font-size:1.2rem; display:block; margin-bottom:8px;">Você acertou <strong>${acertosQuiz} de ${perguntasQuiz.length}</strong> perguntas.</span> ${feedbackAcertos}`;
-        resultadoTxt.style.color = "#2e7d32";
         
         btnA.style.display = "none";
         btnB.style.display = "none";
@@ -199,7 +195,6 @@ function simularClima(velocidadeVento, umidadeAr) {
     const luzIrrigacao = document.getElementById("luz-irrigacao");
     const textoIrrigacao = document.getElementById("texto-irrigacao");
 
-    // Lógica para Pulverização
     if (velocidadeVento > 20) {
         luzPulverizacao.className = "status-luz vermelho-ativo";
         textoPulverizacao.innerHTML = `<strong>Bloqueado:</strong> Vento a ${velocidadeVento} km/h. Risco extremo de deriva química!`;
@@ -211,10 +206,9 @@ function simularClima(velocidadeVento, umidadeAr) {
         textoPulverizacao.innerHTML = `<strong>Liberado:</strong> Vento a ${velocidadeVento} km/h. Condição ideal para aplicação segura.`;
     }
 
-    // Lógica para Irrigação Inteligente
     if (umidadeAr > 80) {
         luzIrrigacao.className = "status-luz vermelho-ativo";
-        textoIrrigacao.innerHTML = `<strong>Desligar:</strong> Umidade em ${umidadeAr}%. Chuva iminente detetada via satélite. Economize água!`;
+        textoIrrigacao.innerHTML = `<strong>Desligar:</strong> Umidade em ${umidadeAr}%. Chuva iminente detectada via satélite. Economize água!`;
     } else if (umidadeAr < 30) {
         luzIrrigacao.className = "status-luz verde-ativo";
         textoIrrigacao.innerHTML = `<strong>Ativar Urgente:</strong> Solo seco (${umidadeAr}%). Irrigação necessária para o crescimento.`;

@@ -16,7 +16,7 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Melhora a transição ao clicar nos links da Navbar */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -188,7 +188,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* REFINAMENTO DESIGN DO BLOCO DE CRÉDITOS */
 .creditos-bloco {
     margin-top: 20px;
     padding: 16px;
@@ -348,7 +347,7 @@ h2 {
 }
 
 /* ==========================================================================
-   6. TABELA E QUIZ (COMPORTAMENTO DOS BOTÕES MELHORADO)
+   6. TABELA E QUIZ
    ========================================================================== */
 .tabela-impactos {
     width: 100%;
@@ -412,6 +411,7 @@ h2 {
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 #btn-proxima:hover {
     filter: brightness(1.1);
 }
@@ -646,6 +646,6 @@ body.alto-contraste .final-highlight {
     }
     .tabela-impactos {
         display: block;
-        overflow-x: auto; /* Cria barra de rolagem apenas na tabela se a tela for menor que ela */
+        overflow-x: auto;
     }
 }
