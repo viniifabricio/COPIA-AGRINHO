@@ -124,7 +124,7 @@
         </section>
 
         <section id="impactos" class="site-section" tabindex="0">
-            <h2>4. Impactos Positivos do Agro Digital</h2>
+            <h2>4. Impactos Positives do Agro Digital</h2>
             <p class="sub-painel">Como a tecnologia integrada à ecologia transforma positivamente a sociedade.</p>
             <table class="tabela-impactos">
                 <thead>
@@ -240,11 +240,16 @@
         </div>
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    
     <script>
-        window.onload = function() {
+        window.addEventListener('load', function() {
+            // Inicializa VLibras
             new window.VLibras.Widget('https://vlibras.gov.br/app');
-            inicializarQuizEPainel();
-        };
+            // Inicializa as funções do seu projeto
+            if (typeof inicializarQuizEPainel === "function") {
+                inicializarQuizEPainel();
+            }
+        });
     </script>
 
     <script src="./main.js"></script>

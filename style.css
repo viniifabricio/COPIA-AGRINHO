@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth; /* Melhora a transição ao clicar nos links da Navbar */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--cor-background);
@@ -184,7 +188,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* REFINAMENTO DESIGN DO BLOCO DE CRÉDITOS (MELHORIA N° 3) */
+/* REFINAMENTO DESIGN DO BLOCO DE CRÉDITOS */
 .creditos-bloco {
     margin-top: 20px;
     padding: 16px;
@@ -338,17 +342,24 @@ h2 {
     border-radius: 4px;
 }
 
+.instrucao-virar {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
 /* ==========================================================================
-   6. TABELA E QUIZ
+   6. TABELA E QUIZ (COMPORTAMENTO DOS BOTÕES MELHORADO)
    ========================================================================== */
 .tabela-impactos {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 15px;
 }
 
 .tabela-impactos th, .tabela-impactos td {
     border: 1px solid #e2e8f0;
     padding: 12px;
+    text-align: left;
 }
 
 .tabela-impactos th {
@@ -376,6 +387,33 @@ h2 {
     border-radius: 8px;
     cursor: pointer;
     width: 100%;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    transition: background-color 0.2s, transform 0.1s, opacity 0.2s;
+}
+
+.botoes-quiz button:hover:not(:disabled) {
+    background-color: #2d6a4f;
+    transform: translateY(-2px);
+}
+
+.botoes-quiz button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+#btn-proxima {
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#btn-proxima:hover {
+    filter: brightness(1.1);
 }
 
 /* ==========================================================================
@@ -404,6 +442,14 @@ h2 {
 
 .card-body {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.card-body p {
+    margin-bottom: 15px;
 }
 
 .status-box {
@@ -412,6 +458,7 @@ h2 {
     background: white;
     padding: 10px;
     border-radius: 6px;
+    border: 1px solid #edf2f7;
 }
 
 .status-luz {
@@ -419,17 +466,32 @@ h2 {
     height: 15px;
     border-radius: 50%;
     margin-right: 10px;
+    flex-shrink: 0;
 }
 
 .cinza { background-color: #a0aec0; }
 .verde-ativo { background-color: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
 .vermelho-ativo { background-color: #e74c3c; box-shadow: 0 0 8px #e74c3c; }
 
+.status-texto {
+    font-size: 0.9rem;
+}
+
 .simulador-controle {
     margin-top: 25px;
     background: #edf2f7;
     padding: 20px;
     border-radius: 8px;
+}
+
+.simulador-controle h3 {
+    margin-bottom: 8px;
+    color: var(--cor-principal);
+}
+
+.simulador-controle p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
 .botoes-simulador {
@@ -445,6 +507,18 @@ h2 {
     padding: 10px 15px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.botoes-simulador button:hover {
+    background-color: #2d6a4f;
+}
+
+.conclusao-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .final-highlight {
@@ -477,7 +551,8 @@ body.alto-contraste {
 body.alto-contraste .navbar,
 body.alto-contraste footer,
 body.alto-contraste .botoes-quiz button,
-body.alto-contraste .botoes-simulador button {
+body.alto-contraste .botoes-simulador button,
+body.alto-contraste #btn-proxima {
     background-color: #000000 !important;
     color: #ffff00 !important;
     border: 2px solid #ffff00 !important;
@@ -514,7 +589,6 @@ body.alto-contraste .status-box {
     border: 2px solid #ffffff !important;
 }
 
-/* Correção do Bloco de Créditos no Alto Contraste */
 body.alto-contraste .creditos-bloco {
     background-color: #000000 !important;
     border: 2px solid #ffff00 !important;
@@ -545,4 +619,33 @@ body.alto-contraste .tabela-impactos tr {
 body.alto-contraste .final-highlight {
     background-color: #000000 !important;
     border: 3px dashed #ffff00 !important;
+}
+
+/* ==========================================================================
+   9. MEDIA QUERIES (RESPONSIVIDADE EXTRA DE SEGURANÇA)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    .navbar nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .tabela-impactos {
+        display: block;
+        overflow-x: auto; /* Cria barra de rolagem apenas na tabela se a tela for menor que ela */
+    }
 }
