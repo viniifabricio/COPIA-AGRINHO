@@ -68,7 +68,6 @@ function toggleLeituraVoz() {
     sinteseVoz.cancel();
     
     if (!vozAtiva) {
-        // Texto dinâmico perfeitamente estruturado com base no seu HTML original
         let textoParaLer = "Plataforma EcoRadar Agro. Desenvolvedor Vinicius Montagna Fabrício. O EcoRadar Agro é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O sistema une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.";
         
         utteranceAtual = new SpeechSynthesisUtterance(textoParaLer);
@@ -171,11 +170,9 @@ function verificarResposta(opcaoSelecionada) {
 
     if (opcaoSelecionada === dados.correta) {
         acertosQuiz++; 
-        resultadoTxt.innerText = "✅ " + dados.explicacao;
-        resultadoTxt.style.color = "#27ae60";
+        resultadoTxt.innerHTML = `<span style="font-weight: bold; color: #27ae60;">✅ Excelente!</span><br>${dados.explicacao}`;
     } else {
-        resultadoTxt.innerText = "❌ Resposta incorreta. O correto seria a alternativa que evita danos ecológicos.";
-        resultadoTxt.style.color = "#e74c3c";
+        resultadoTxt.innerHTML = `<span style="font-weight: bold; color: #e74c3c;">❌ Estude essa prática ecológica!</span><br>A alternativa correta é a que reduz os danos à natureza. Pense sempre na conservação do bioma!`;
     }
     
     btnProxima.style.display = "inline-block";
@@ -230,11 +227,9 @@ function calcularImpactoEcologico() {
         return;
     }
     
-    // Cálculo fictício baseado em médias técnicas (Economia aproximada de 1500L de água por hectare/mês com sensores)
     const aguaPoupada = hectares * 1500;
     const derivasEvitadas = Math.ceil(hectares * 0.4);
     
-    // Atualiza o DOM dinamicamente com animação de aparecimento suave
     document.getElementById("calc-agua").innerText = aguaPoupada.toLocaleString('pt-BR') + " Litros";
     document.getElementById("calc-deriva").innerText = derivasEvitadas + " Vezes";
     

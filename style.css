@@ -24,6 +24,8 @@ body {
     background-color: var(--cor-background);
     color: var(--cor-textos);
     line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -172,7 +174,22 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revelaSecao 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-section { animation-delay: 0.1s; }
+.radar-section { animation-delay: 0.2s; }
+.informativo-section { animation-delay: 0.3s; }
+.ferramentas-section { animation-delay: 0.4s; }
+
+@keyframes revelaSecao {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .site-section:hover, .radar-section:hover, .ferramentas-section:hover {
@@ -289,7 +306,7 @@ h2 {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     transform-style: preserve-3d;
 }
 
@@ -391,7 +408,7 @@ h2 {
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-calculadora:hover {
@@ -474,7 +491,7 @@ h2 {
 .botoes-quiz button {
     background-color: var(--cor-principal);
     color: white;
-    border: none;
+    border: 2px solid transparent;
     padding: 14px 20px;
     border-radius: 8px;
     cursor: pointer;
@@ -482,13 +499,18 @@ h2 {
     font-size: 0.95rem;
     font-weight: 500;
     text-align: left;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .botoes-quiz button:hover:not(:disabled) {
     background-color: #2d6a4f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
+    border-color: var(--cor-secundaria);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(27, 67, 50, 0.15);
+}
+
+.botoes-quiz button:active:not(:disabled) {
+    transform: translateY(-1px);
 }
 
 .botoes-quiz button:disabled {
@@ -503,7 +525,7 @@ h2 {
     border-radius: 6px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 #btn-proxima:hover {
@@ -650,7 +672,7 @@ h2 {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .botoes-simulador button:hover {
@@ -732,8 +754,6 @@ body.alto-contraste .calc-container {
 }
 
 /* --- FORÇANDO TEXTO PRETO EM BLOCOS DE DESTAQUE CLAROS --- */
-
-/* 1. Bloco de Identificação, Cards da Calculadora e Seção de Indicadores */
 body.alto-contraste .creditos-bloco,
 body.alto-contraste .metric-box,
 body.alto-contraste .indicador-linha {
@@ -741,7 +761,6 @@ body.alto-contraste .indicador-linha {
     border: 2px solid #ffff00 !important;
 }
 
-/* Garante que os números e descrições fiquem pretos para contraste perfeito */
 body.alto-contraste .creditos-item,
 body.alto-contraste .creditos-item span,
 body.alto-contraste .metric-data h4,
@@ -752,7 +771,6 @@ body.alto-contraste .fonte-dado {
     color: #000000 !important;
 }
 
-/* 2. Bloco de Destaque da Conclusão Final */
 body.alto-contraste .final-highlight {
     background-color: #ffffff !important; 
     border: 2px solid #ffff00 !important;
@@ -764,7 +782,6 @@ body.alto-contraste .final-highlight p {
     color: #000000 !important;
 }
 
-/* 3. Verso dos Flash Cards */
 body.alto-contraste .flash-card-back {
     background-color: #ffff00 !important;
     color: #000000 !important;
@@ -775,7 +792,6 @@ body.alto-contraste .flash-card-back p {
     color: #000000 !important;
 }
 
-/* 4. Tabelas */
 body.alto-contraste .tabela-impactos th {
     background-color: #ffff00 !important;
     color: #000000 !important;
@@ -790,45 +806,97 @@ body.alto-contraste .tabela-impactos td {
    10. MEDIA QUERIES (MELHORIA EXTREMA DE RESPONSIVIDADE)
    ========================================================================== */
 @media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+        padding-bottom: 6px;
+    }
+
     .navbar {
         flex-direction: column;
         gap: 10px;
         text-align: center;
         padding: 15px;
     }
+
     .navbar nav {
         flex-direction: column;
         gap: 12px;
     }
+
     .nav-links {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
     }
+
     .acessibilidade-botoes {
         margin-left: 0;
         margin-top: 5px;
     }
+
     .hero-section {
         height: 280px;
     }
+
     .hero-content h1 {
         font-size: 2rem;
     }
+
     .hero-content p {
         font-size: 1rem;
     }
-    .tabela-impactos {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+
+    .botoes-quiz button, .btn-calculadora, .botoes-simulador button {
+        padding: 16px 20px;
+        font-size: 1rem;
     }
+
     .calc-resultado {
         flex-direction: column;
     }
+
     .indicador-linha {
         flex-direction: column;
         text-align: center;
         gap: 10px;
+    }
+
+    /* Transformação adaptativa de tabelas para mobile */
+    .tabela-impactos, .tabela-impactos thead, .tabela-impactos tbody, .tabela-impactos th, .tabela-impactos td, .tabela-impactos tr {
+        display: block;
+    }
+    
+    .tabela-impactos thead {
+        display: none;
+    }
+    
+    .tabela-impactos tr {
+        margin-bottom: 15px;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 10px;
+    }
+    
+    .tabela-impactos td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .tabela-impactos td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+        color: var(--cor-principal);
     }
 }

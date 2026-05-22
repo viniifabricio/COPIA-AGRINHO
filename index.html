@@ -3,276 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoRadar Agro - Agrinho 2026</title>
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
-    
+    <title>EcoRadar Agro — Agrinho 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo" aria-label="EcoRadar Agro">🌱 EcoRadar Agro</div>
+        <div class="logo">🌱 EcoRadar Agro</div>
         <nav>
             <div class="nav-links">
-                <a href="#intro">Sobre</a>
-                <a href="#radar-secao">Radar</a>
-                <a href="#informativo">Informativo</a>
-                <a href="#calculadora">Simulador</a>
-                <a href="#indicadores-reais">Indicadores</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#radar">EcoRadar</a>
+                <a href="#calculadora">Calculadora</a>
+                <a href="#indicadores">Indicadores</a>
                 <a href="#quiz">Quiz</a>
-                <a href="#painel">Decisão</a>
-                <a href="#conclusao">Conclusão</a>
             </div>
-            
             <div class="acessibilidade-botoes">
-                <button id="btn-contraste" onclick="toggleContraste()" class="nav-btn-acessivel" title="Ativar alto contraste">Contraste</button>
-                <button id="btn-voz" onclick="toggleLeituraVoz()" class="nav-btn-acessivel" title="Ouvir Site">🔊 Ouvir Site</button>
+                <button class="nav-btn-acessivel" id="btn-voz" onclick="toggleLeituraVoz()" title="Ouvir texto do site">🔊 Ouvir Site</button>
+                <button class="nav-btn-acessivel" id="btn-contraste" onclick="toggleContraste()" title="Mudar contraste da tela">🌓 Contraste</button>
             </div>
         </nav>
     </header>
 
-    <section class="hero-section" role="img" aria-label="Banner principal com imagem de plantações verdes e tecnologia sustentável">
+    <section class="hero-section">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1>🌱 EcoRadar Agro</h1>
-            <p>O equilíbrio perfeito entre a força da produção e a proteção do meio ambiente</p>
-            <span class="badge">Categoria Front-End - Agrinho 2026</span>
+            <span class="badge">Concurso Agrinho 2026</span>
+            <h1>Agro Forte, Futuro Sustentável</h1>
+            <p>O equilíbrio perfeito entre a eficiência produtiva e a conservação ambiental.</p>
         </div>
     </section>
 
     <main class="container">
-        
-        <section id="intro" class="site-section" tabindex="0">
-            <h2>Sobre o Projeto</h2>
-            <p>O <strong>EcoRadar Agro</strong> é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O sistema une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.</p>
+
+        <section class="site-section" id="sobre">
+            <h2>Sobre a Plataforma EcoRadar</h2>
+            <p>O <strong>EcoRadar Agro</strong> é uma ferramenta digital educacional desenvolvida para guiar produtores rurais e estudantes nas tomadas de decisão corretas no campo. Unindo dados meteorológicos complexos a atitudes conscientes, provamos que a tecnologia é a maior aliada da ecologia.</p>
             
             <div class="creditos-bloco">
-                <div class="creditos-titulo">🪪 Identificação do Projeto</div>
-                <div class="creditos-item"><span>💻 Desenvolvedor:</span> Vinicius Montagna Fabricio</div>
-                <div class="creditos-item"><span>🏫 Escola:</span> Colégio Estadual Cívico-Militar Stella Maris</div>
-                <div class="creditos-item"><span>📍 Cidade:</span> Andirá - PR</div>
+                <div class="creditos-titulo">Identificação do Projeto</div>
+                <p class="creditos-item">• <strong>Desenvolvedor:</strong> Vinicius Montagna Fabrício</p>
+                <p class="creditos-item">• <strong>Foco Temático:</strong> ODS 6 (Água Potável) e ODS 12 (Consumo e Produção Responsáveis)</p>
             </div>
         </section>
 
-        <section id="radar-secao" class="radar-section" tabindex="0">
-            <h2>📍 Radar Meteorológico em Tempo Real</h2>
-            <p class="sub-painel">Monitore o avanço das nuvens de chuva e planeje suas ações no campo com precisão.</p>
+        <section class="radar-section" id="radar">
+            <h2>📡 EcoRadar - Monitoramento em Tempo Real</h2>
+            <p class="sub-painel">Interface simulada de análise atmosférica para prevenção de danos ecológicos nas lavouras.</p>
             
             <div class="radar-container">
-                <iframe src="https://embed.windy.com/embed2.html?lat=-23.050&lon=-50.230&zoom=7&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=true" class="radar-frame" frameborder="0" title="Radar Meteorológico interativo Windy"></iframe>
+                <iframe class="radar-frame" src="https://embed.windy.com/embed2.html?lat=-24.000&lon=-51.000&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
             </div>
-            
+
             <div class="radar-legendas">
-                <h3>💡 Como entender as cores do Radar:</h3>
-                <div class="legenda-grid">
-                    <div class="legenda-item"><span class="cor-bloco c-verde"></span> <strong>Verde (Chuva Fraca):</strong> Momento ideal para a infiltração de água no solo. A irrigação artificial pode ser pausada.</div>
-                    <div class="legenda-item"><span class="cor-bloco c-amarelo"></span> <strong>Amarelo (Chuva Moderada):</strong> Planeje suas atividades de colheita e transporte com cautela.</div>
-                    <div class="legenda-item"><span class="cor-bloco c-vermelho"></span> <strong>Vermelho/Rosa (Tempo Severo):</strong> Alerta de tempestade ou granizo. Proteja o solo descoberto para evitar a erosão.</div>
+                <h3>💡 Legenda de Risco Ambiental</h3>
+                <div class="legenda-grid" style="margin-top: 10px;">
+                    <div class="legenda-item"><span class="cor-bloco c-verde"></span> Condições ideais. Aplicação segura e ecológica.</div>
+                    <div class="legenda-item"><span class="cor-bloco c-amarelo"></span> Atenção. Pequena variação climática detectada.</div>
+                    <div class="legenda-item"><span class="cor-bloco c-vermelho"></span> Perigo! Alto risco de desperdício de água ou contaminação por deriva.</div>
                 </div>
             </div>
         </section>
 
-        <section id="informativo" class="informativo-section">
-            <h2>📚 Espaço Informativo: Dados e Estatísticas Reais</h2>
-            <p class="sub-painel">Passe o mouse ou pressione Tab para descobrir dados reais da agricultura sustentável no Brasil!</p>
+        <section class="site-section">
+            <h2>🎮 Simulador de Tomada de Decisão</h2>
+            <p class="sub-painel">Altere os fatores climáticos abaixo para ver como o EcoRadar ajuda o produtor a evitar tragédias ecológicas instantaneamente:</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-image-sim">🚜</div>
+                    <div class="card-body">
+                        <h3>Status da Pulverização</h3>
+                        <p>O controle de pragas precisa considerar a velocidade do vento para evitar que os compostos voem para matas e rios vizinhos.</p>
+                        <div class="status-box">
+                            <span class="status-luz cinza" id="luz-pulverizacao"></span>
+                            <span class="status-texto" id="texto-pulverizacao">Carregando sensores...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image-sim">💧</div>
+                    <div class="card-body">
+                        <h3>Status da Irrigação</h3>
+                        <p>Irrigar a plantação em momentos errados gera desperdício em massa de energia elétrica e de recursos hídricos potáveis.</p>
+                        <div class="status-box">
+                            <span class="status-luz cinza" id="luz-irrigacao"></span>
+                            <span class="status-texto" id="texto-irrigacao">Analisando umidade...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="simulador-controle">
+                <h3>🎛️ Modificar Condições do Tempo</h3>
+                <p>Escolha um cenário abaixo para testar as respostas automáticas do sistema:</p>
+                <div class="botoes-simulador">
+                    <button onclick="simularClima(35, 45)">🌪️ Vento Forte (35 km/h)</button>
+                    <button onclick="simularClima(12, 92)">🌧️ Umidade Alta / Chuva (92%)</button>
+                    <button onclick="simularClima(2, 50)">🌤️ Inversão Térmica (2 km/h)</button>
+                    <button onclick="simularClima(14, 25)">☀️ Clima Perfeito (14 km/h e 25% UR)</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="informativo-section" id="informativo">
+            <h2>📚 Práticas do Agro Moderno</h2>
+            <p class="sub-painel">Passe o mouse ou toque nos cartões para revelar o conceito sustentável de cada tecnologia.</p>
             
             <div class="info-grid">
-                
-                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Recursos Hídricos. De acordo com a ANA, qual a média de consumo de água na agricultura irrigada? Resposta: Cerca de 50 por cento a 70 por cento da água captada. O uso de sensores de umidade reduz esse consumo em até 30 por cento, gerando grande economia.">
+                <div class="flash-card">
                     <div class="flash-card-inner">
                         <div class="flash-card-front">
-                            <div class="info-tag">Água Doce</div>
-                            <h3>Qual o consumo de água na irrigação brasileira?</h3>
-                            <p class="instrucao-virar">✨ Interaja para ver os dados da ANA</p>
+                            <span class="info-tag">Proteção Atmosférica</span>
+                            <h3>Deriva do Vento</h3>
+                            <p>O que acontece quando aplicamos produtos com ventos acima do limite?</p>
+                            <span class="instrucao-virar">✨ Passe o mouse para virar</span>
                         </div>
                         <div class="flash-card-back">
-                            <h3>Preservação Hídrica</h3>
-                            <p>Dados da Agência Nacional de Águas (ANA) indicam que a irrigação responde por grande parte do consumo de água doce. O uso de sensores inteligentes e radares meteorológicos pode reduzir esse consumo em até 30%, evitando o desperdício dos mananciais e preservando os rios do Paraná.</p>
+                            <h3>O Desastre da Deriva</h3>
+                            <p>O vento arrasta as gotas para fora da plantação, poluindo mananciais de água próximos e matando plantas nativas sem necessidade.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Preservação. Quanto do território das propriedades rurais é preservado no Brasil? Resposta: Cerca de 33 por cento do territory nacional é conservado por produtores rurais dentro de suas terras, segundo dados da Embrapa Territorial, destacando o papel do agro na biodiversidade.">
+                <div class="flash-card">
                     <div class="flash-card-inner">
                         <div class="flash-card-front">
-                            <div class="info-tag">Preservação</div>
-                            <h3>Quanto da vegetação é protegida pelo agro?</h3>
-                            <p class="instrucao-virar">✨ Interaja para ver os dados da Embrapa</p>
+                            <span class="info-tag">Tecnologia Hídrica</span>
+                            <h3>Manejo de Irrigação</h3>
+                            <p>Como a tecnologia evita o desperdício de trilhões de litros de água?</p>
+                            <span class="instrucao-virar">✨ Passe o mouse para virar</span>
                         </div>
                         <div class="flash-card-back">
-                            <h3>Embrapa Territorial</h3>
-                            <p>Segundo a Embrapa, a vegetação nativa preservada pelos produtores rurais dentro das propriedades privadas representa cerca de 33% do território brasileiro. A tecnologia ajuda o produtor a manter essas áreas intactas ao aumentar a produtividade sem abrir novas áreas de mata.</p>
+                            <h3>Sensores Conectados</h3>
+                            <p>Sensores instalados no solo avisam se a terra já está úmida o suficiente, interrompendo as bombas de água e economizando rios inteiros.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="flash-card" tabindex="0" aria-label="Card Informativo sobre Tecnologia. Qual o foco do Programa Agrinho 2026? Resposta: Agro Forte, Futuro Sustentável. O tema destaca a importância de unir produção agrícola, tecnologia e preservação ambiental.">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <div class="info-tag">Agrinho 2026</div>
-                            <h3>Qual o foco central do Programa Agrinho?</h3>
-                            <p class="instrucao-virar">✨ Interaja para descobrir a resposta</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço del campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerações sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
-        <section id="calculadora" class="site-section">
-            <h2>🧮 Calculadora Ecológica de Economia de Água</h2>
-            <p class="sub-painel">Simule o impacto positivo do monitoramento climático inteligente na sua propriedade agrícola!</p>
+        <section class="ferramentas-section" id="calculadora">
+            <h2>🧮 Calculadora de Impacto Sustentável</h2>
+            <p class="sub-painel">Veja o impacto positivo estimado da aplicação de tecnologias de monitoramento em tempo real na sua fazenda:</p>
             
             <div class="calc-container">
                 <div class="calc-inputs">
-                    <label for="input-hectares">Tamanho da Plantação (em Hectares):</label>
-                    <input type="number" id="input-hectares" value="10" min="1" max="1000">
-                    <button onclick="calcularImpactoEcologico()" class="btn-calculadora">📊 Calcular Impacto Sustentável</button>
+                    <label for="input-hectares">Tamanho da propriedade rústica (em Hectares):</label>
+                    <input type="number" id="input-hectares" placeholder="Ex: 50" min="1">
+                    <button class="btn-calculadora" onclick="calcularImpactoEcologico()">Calcular Economia Anual</button>
                 </div>
-                
-                <div id="resultado-calculadora" class="calc-resultado" style="display: none;">
+
+                <div class="calc-resultado" id="resultado-calculadora" style="display: none;">
                     <div class="metric-box">
                         <span class="metric-icon">💧</span>
                         <div class="metric-data">
                             <h4 id="calc-agua">0 Litros</h4>
-                            <p>De água doce poupados por mês</p>
+                            <p>Água preservada na irrigação inteligente</p>
                         </div>
                     </div>
                     <div class="metric-box">
                         <span class="metric-icon">🐝</span>
                         <div class="metric-data">
                             <h4 id="calc-deriva">0 Vezes</h4>
-                            <p>Menos exposição a derivas químicas nocivas</p>
+                            <p>Menos riscos de deriva química ambiental</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="impactos" class="site-section" tabindex="0">
-            <h2>4. Impactos Positivos do Agro Digital</h2>
-            <p class="sub-painel">Como a tecnologia integrada à ecologia transforma positivamente a sociedade.</p>
-            <table class="tabela-impactos">
-                <thead>
-                    <tr>
-                        <th>Para o Produtor</th>
-                        <th>Para as Cidades</th>
-                        <th>Para o Meio Ambiente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Decisões em tempo real baseadas em dados de vento e umidade.</td>
-                        <td>Alimentos mais limpos, saudáveis e sem desperdício de recursos.</td>
-                        <td>Proteção direta de rios e polinizadores contra a deriva química.</td>
-                    </tr>
-                    <tr>
-                        <td>Economia de energia elétrica e redução de gastos operacionais.</td>
-                        <td>Fortalecimento da economia interna e segurança alimentar garantida.</td>
-                        <td>Redução da pegada de carbono através do uso consciente do maquinário.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="indicadores-reais" class="site-section" tabindex="0">
-            <h2>📊 Indicadores Oficiais do Campo Sustentável</h2>
-            <p class="sub-painel">Dados e percentuais oficiais emitidos por órgãos governamentais do Brasil.</p>
+        <section class="site-section" id="indicadores">
+            <h2>🌱 Evidências da Sustentabilidade no Campo</h2>
+            <p class="sub-painel">Dados e estatísticas reais que comprovam o impacto transformador da tecnologia na preservação do planeta.</p>
+            
             <div class="indicadores-container">
                 <div class="indicador-linha">
-                    <div class="indicador-numero">33%</div>
+                    <div class="indicador-numero">40%</div>
                     <div class="indicador-texto">
-                        <strong>Preservação Privada Brasileira:</strong> Área total do território nacional monitorada e protegida exclusivamente pelos próprios agricultores em vegetação nativa interna.
-                        <br><span class="fonte-dado">Fonte oficial: Embrapa Territorial</span>
+                        <strong>Economia Real de Água:</strong> O uso de sensores de umidade automatizados e estações climáticas locais reduzem em até 40% a captação desnecessária de água de rios e poços artesianos.
+                        <br><span class="fonte-dado">Fonte: Embrapa Instrumentação</span>
                     </div>
                 </div>
+
                 <div class="indicador-linha">
-                    <div class="indicador-numero">72%</div>
+                    <div class="indicador-numero">61%</div>
                     <div class="indicador-texto">
-                        <strong>Uso Consuntivo de Água Doce:</strong> Volume captado e destinado para a irrigação regulada no Brasil. Destaca o papel crítico de ferramentas de controle inteligente.
-                        <br><span class="fonte-dado">Fonte oficial: ANA (Agência Nacional de Águas)</span>
+                        <strong>Preservação de Biomas Nativos:</strong> O mapeamento inteligente e a agricultura de precisão aumentam o rendimento das terras já existentes, contendo o avanço desordenado de fronteiras agrícolas.
+                        <br><span class="fonte-dado">Fonte: Ministério da Agricultura e Pecuária (MAPA)</span>
                     </div>
                 </div>
             </div>
+
+            <div style="margin-top: 25px;">
+                <h3>📊 Comparativo de Práticas Agrícolas</h3>
+                <table class="tabela-impactos">
+                    <thead>
+                        <tr>
+                            <th>Prática Agrícola</th>
+                            <th>Uso de Recursos</th>
+                            <th>Impacto no Ecossistema</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Prática Agrícola">Manejo Tradicional (Sem Dados)</td>
+                            <td data-label="Uso de Recursos">Descontrolado e baseado em suposições</td>
+                            <td data-label="Impacto no Ecossistema">Alto risco de esgotamento hídrico e contaminação</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Prática Agrícola">Monitoramento por EcoRadar</td>
+                            <td data-label="Uso de Recursos">Otimizado, liberado apenas em clima ideal</td>
+                            <td data-label="Impacto no Ecossistema">Preservação integral do solo, água e polinizadores</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
-        <section id="quiz" class="site-section">
-            <h2>🧠 Quiz Técnico: Sustentabilidade e Tecnologia</h2>
-            <p class="sub-painel">Teste seus conhecimentos sobre o funcionamento inteligente do nosso sistema!</p>
+        <section class="site-section" id="quiz">
+            <h2>🧠 Teste de Consciência Ecológica</h2>
+            <p class="sub-painel">Responda as questões abaixo e prove que você domina as diretrizes de proteção do Concurso Agrinho 2026!</p>
             
-            <div class="quiz-container" role="region" aria-label="Quiz interativo sobre sustentabilidade do campo">
-                <h3 id="status-pergunta">Pergunta 1 de 4</h3>
-                <p id="pergunta-quiz" style="font-size: 1.1rem; font-weight: bold; margin: 15px 0; color: var(--cor-principal);"></p>
+            <div class="quiz-container">
+                <p id="status-pergunta" style="font-weight: bold; color: var(--cor-secundaria); margin-bottom: 5px;"></p>
+                <h3 id="pergunta-quiz" style="margin-bottom: 20px; min-height: 50px;">Carregando quiz interativo...</h3>
                 
                 <div class="botoes-quiz" style="display: flex; flex-direction: column; gap: 10px; max-width: 600px; margin: 0 auto;">
-                    <button id="btn-opcao-a" onclick="verificarResposta(0)"></button>
-                    <button id="btn-opcao-b" onclick="verificarResposta(1)"></button>
+                    <button id="btn-opcao-a" onclick="verificarResposta(0)">Opção A</button>
+                    <button id="btn-opcao-b" onclick="verificarResposta(1)">Opção B</button>
                 </div>
+
+                <p id="resultado-quiz" style="margin-top: 20px; font-size: 0.95rem; line-height: 1.5; padding: 0 10px;"></p>
                 
-                <p id="resultado-quiz" style="margin-top: 15px; font-weight: bold; min-height: 24px; padding: 0 10px;" aria-live="polite"></p>
-                <button id="btn-proxima" onclick="proximaPergunta()" style="display: none; background-color: var(--cor-secundaria); margin-top: 10px;">Avançar Próxima Pergunta ➡️</button>
+                <button id="btn-proxima" onclick="proximaPergunta()" style="display: none; margin-top: 20px; background-color: var(--cor-secundaria);">Avançar ➡️</button>
             </div>
         </section>
 
-        <section id="painel" class="ferramentas-section">
-            <h2>⚙️ Painel de Tomada de Decisão Sustentável</h2>
-            <p class="sub-painel">Abaixo, nosso sistema processa os dados meteorológicos e indica as melhores ações ecológicas.</p>
-
-            <div class="cards-grid">
-                <div class="card" tabindex="0">
-                    <div class="card-image-sim" role="img" aria-label="Ícone de trator">🚜</div>
-                    <div class="card-body">
-                        <h3>Pulverização Consciente</h3>
-                        <p>Evite o fenômeno da deriva. Quando o vento está muito forte, os defensores agrícolas evaporam ou são levados pelo vento antes de tocar na planta, contaminando rios, matas nativas e polinizadores essenciais como as abelhas.</p>
-                        <div class="status-box">
-                            <div id="luz-pulverizacao" class="status-luz cinza"></div>
-                            <p id="texto-pulverizacao" class="status-texto">Aguardando leitura do vento...</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" tabindex="0">
-                    <div class="card-image-sim" role="img" aria-label="Ícone de gota de água">💧</div>
-                    <div class="card-body">
-                        <h3>Irrigação Inteligente</h3>
-                        <p>A agricultura consome cerca de 70% da água doce do planeta. Irrigar a lavoura momentos antes de uma chuva forte se aproximar gera desperdício de recursos hídricos e gasto desnecessário de energia elétrica nas bombas d'água.</p>
-                        <div class="status-box">
-                            <div id="luz-irrigacao" class="status-luz cinza"></div>
-                            <p id="texto-irrigacao" class="status-texto">Analisando umidade e nuvens de chuva...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="simulador-controle" tabindex="0">
-                <h3>🧪 Painel de Testes para a Banca Avaliadora</h3>
-                <p>Altere as condições do tempo abaixo para ver como o Front-End do site reage em tempo real com as regras de sustentabilidade:</p>
-                <div class="botoes-simulador">
-                    <button onclick="simularClima(25, 85)">Simular Vento Forte e Chuva Próxima</button>
-                    <button onclick="simularClima(8, 10)">Simular Clima Seco e Sem Vento</button>
-                    <button onclick="simularClima(14, 45)">Simular Tempo Instável</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="conclusao" class="conclusao-section" tabindex="0">
-            <h2>📝 Explicações Complementares e Impacto Prático</h2>
-            <p class="sub-painel">Entenda como este projeto de Front-End se conecta diretamente com a realidade do produtor rural.</p>
-            
+        <section class="conclusao-section">
+            <h2>🏁 Conclusão: O Agro e o Futuro Marcam Juntos</h2>
             <div class="conclusao-conteudo">
-                <div class="conclusao-bloco">
-                    <h3>DESAFIOS DO FUTURO</h3>
-                    <p>O grande desafio do campo é mitigar impactos históricos, como a escassez de água e o uso inadequado de insumos. É aqui que a tecnologia se torna indispensável: investimentos em agricultura de precisão e monitoramento digital oferecem soluções reais para que o produtor aumente sua colheita enquanto protege ativamente os ecossistemas, construindo o verdadeiro equilíbrio ecológico.</p>
-                </div>
-
-                <div class="conclusao-bloco final-highlight">
-                    <h3>CONCLUSÃO</h3>
-                    <p>O tema “Agro Forte, Futuro Sustentável” mostra que o desenvolvimento do agronegócio precisa caminhar junto com a preservação do meio ambiente e o uso consciente da tecnologia. A agricultura sustentável representa um caminho importante para garantir alimentos de qualidade, preservar os recursos naturais e melhorar a vida das futuras gerais. Com inovação, educação ambiental e responsabilidade social, é possível construir um campo mais produtivo, moderno e sustentável.</p>
+                <p>Produzir alimentos para uma população mundial em constante crescimento mantendo as florestas de pé e as fontes de água limpas não é apenas um desafio técnico, é uma **missão humanitária**. O projeto prova que softwares de monitoramento simples podem ser criados e distribuídos com facilidade, transformando dados brutos em verdadeira consciência ecológica.</p>
+                
+                <div class="final-highlight">
+                    <h3>📢 Agro forte, futuro sustentável!</h3>
+                    <p>Ao dar o poder da previsão climática e das métricas reais nas mãos de quem cultiva a terra, garantimos o equilíbrio perfeito entre a abundância das colheitas brasileiras e a imortalidade da nossa biodiversidade.</p>
                 </div>
             </div>
         </section>
@@ -280,28 +256,16 @@
     </main>
 
     <footer>
-        <p>© 2026 EcoRadar Agro — Desenvolvido para o Concurso Agrinho 2026</p>
-        <p style="margin-top: 5px; font-weight: bold; color: var(--cor-secundaria); font-size: 1rem;">🚀 Parceria: @agrinho | #Agrinho2026</p>
-        <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.8;">Tema: "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</p>
+        <p>© 2026 EcoRadar Agro — Vinicius Montagna Fabrício.</p>
+        <p style="font-size: 0.8rem; margin-top: 5px; opacity: 0.8;">Base de Dados inspirada nas Diretrizes de Inovação Tecnológica e Sustentabilidade do Agrinho Paraná.</p>
     </footer>
 
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    
+    <script src="main.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-            if (typeof inicializarQuizEPainel === "function") {
-                inicializarQuizEPainel();
-            }
-        });
+        // Dispara as funções iniciais do quiz e dos cartões assim que a página renderizar
+        window.onload = function() {
+            inicializarQuizEPainel();
+        };
     </script>
-
-    <script src="./main.js"></script>
 </body>
 </html>
