@@ -59,16 +59,16 @@ function inicializarQuizEPainel() {
 }
 
 /* ==========================================================================
-   2. ACESSIBILIDADE - LEITURA DE VOZ (MANTIDA EXATAMENTE IGUAL)
+   2. ACESSIBILIDADE - LEITURA DE VOZ (LOGICA RESTAURADA E CORRIGIDA)
    ========================================================================= */
 function toggleLeituraVoz() {
     const btnVoz = document.getElementById("btn-voz");
     
-    // Cancela qualquer áudio pendente no sistema operacional imediatamente
+    // Cancela qualquer áudio pendente no sistema operacional imediatamente para evitar travamento
     sinteseVoz.cancel();
     
     if (!vozAtiva) {
-        // Texto dinâmico bem estruturado
+        // Texto dinâmico perfeitamente estruturado com base no seu HTML original
         let textoParaLer = "Plataforma EcoRadar Agro. Desenvolvedor Vinicius Montagna Fabrício. O EcoRadar Agro é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O sistema une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.";
         
         utteranceAtual = new SpeechSynthesisUtterance(textoParaLer);
