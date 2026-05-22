@@ -639,7 +639,7 @@ footer {
 }
 
 /* ==========================================================================
-   9. CLASSE DE ALTO CONTRASTE REFORMULADA
+   9. CLASSE DE ALTO CONTRASTE REFORMULADA (CORREÇÃO DE LEGIBILIDADE)
    ========================================================================== */
 body.alto-contraste {
     background-color: #000000 !important;
@@ -669,10 +669,15 @@ body.alto-contraste .metric-data h4 {
 body.alto-contraste p,
 body.alto-contraste .sub-painel,
 body.alto-contraste .instrucao-virar,
-body.alto-contraste .creditos-item,
 body.alto-contraste .metric-data p,
 body.alto-contraste .calc-inputs label {
     color: #ffffff !important;
+}
+
+/* Força os textos da identificação do projeto a ficarem pretos sobre o fundo branco */
+body.alto-contraste .creditos-item,
+body.alto-contraste .creditos-item span {
+    color: #000000 !important;
 }
 
 body.alto-contraste .site-section,
@@ -686,11 +691,18 @@ body.alto-contraste .quiz-container,
 body.alto-contraste .simulador-controle,
 body.alto-contraste .flash-card-front,
 body.alto-contraste .status-box,
-body.alto-contraste .calc-container,
-body.alto-contraste .metric-box {
+body.alto-contraste .calc-container {
     background-color: #000000 !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
+}
+
+/* Mantém blocos de destaque com fundo claro e texto totalmente preto para leitura perfeita */
+body.alto-contraste .creditos-bloco,
+body.alto-contraste .metric-box {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #ffff00 !important;
 }
 
 body.alto-contraste .flash-card-back {
@@ -712,7 +724,6 @@ body.alto-contraste .tabela-impactos td {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
-
 /* ==========================================================================
    10. MEDIA QUERIES (MELHORIA EXTREMA DE RESPONSIVIDADE)
    ========================================================================== */
