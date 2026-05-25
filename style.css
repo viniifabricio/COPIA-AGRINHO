@@ -84,10 +84,14 @@ body {
 }
 
 /* ==========================================================================
-   BANNER PRINCIPAL (HERO)
+   BANNER PRINCIPAL (HERO) - AQUI ESTÁ SEU ARQUIVO AGRINHO.PNG
    ========================================================================== */
 .hero-section {
     position: relative;
+    background-image: url('Agrinho.png'); /* Caminho corrigido para sua foto */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 320px;
     display: flex;
     align-items: center;
