@@ -53,7 +53,7 @@ body {
    MENU DE NAVEGAÇÃO (NAVBAR)
    ========================================================================== */
 .navbar {
-    background-color: var(--cor-principal);
+    background-color: var(--cor-escura);
     color: white;
     padding: 15px 30px;
     display: flex;
@@ -84,15 +84,15 @@ body {
 }
 
 /* ==========================================================================
-   BANNER PRINCIPAL (HERO) - AQUI ESTÁ SEU ARQUIVO AGRINHO.PNG
+   BANNER PRINCIPAL (HERO) - COM AGRINHO.PNG
    ========================================================================== */
 .hero-section {
     position: relative;
-    background-image: url('Agrinho.png'); /* Caminho corrigido para sua foto */
+    background-image: url('Agrinho.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 320px;
+    height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +105,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(8, 28, 21, 0.7);
+    background-color: rgba(8, 28, 21, 0.65);
     z-index: 1;
 }
 
@@ -117,17 +117,20 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .badge {
     display: inline-block;
-    background-color: var(--cor-secundaria);
-    padding: 5px 15px;
+    background-color: #52b788;
+    color: var(--cor-escura);
+    padding: 6px 18px;
     border-radius: 20px;
-    font-size: 0.9rem;
-    margin-top: 15px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 /* ==========================================================================
@@ -139,6 +142,7 @@ body {
     margin: 30px 0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e0e2e0;
 }
 
 .impacto-box {
@@ -305,6 +309,7 @@ body {
     padding: 30px;
     border-radius: 8px;
     margin: 30px 0;
+    border: 1px solid #e0e2e0;
 }
 
 .radar-container {
@@ -330,6 +335,7 @@ body {
     padding: 30px;
     border-radius: 8px;
     margin: 30px 0;
+    border: 1px solid #e0e2e0;
 }
 
 .info-grid {
@@ -513,51 +519,20 @@ body {
     font-weight: 500;
 }
 
-.op-btn-acessivel:hover, .op-btn-acessivel:focus {
-    background: var(--cor-secundaria);
-    color: white;
-}
-
-/* MODIFICADORES DE ACESSIBILIDADE VIA JAVASCRIPT */
+/* CLASSES DE MODIFICAÇÃO CONTROLADAS (Sem quebrar o padrão caso ativem sem querer) */
 body.alto-contraste {
-    background-color: #000 !important;
-    color: #fff !important;
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
-body.alto-contraste .site-section, 
-body.alto-contraste .medidor-card,
-body.alto-contraste .menu-acessibilidade-box,
-body.alto-contraste .quiz-container {
-    background-color: #000 !important;
-    color: #fff !important;
-    border: 2px solid #fff !important;
+body.alto-contraste .site-section {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 2px solid white !important;
 }
-body.alto-contraste .navbar, 
-body.alto-contraste .rodape-oficial {
-    background-color: #000 !important;
-    border-bottom: 2px solid #fff;
-}
-body.alto-contraste button, 
-body.alto-contraste .btn-sim {
-    background-color: #fff !important;
-    color: #000 !important;
-    border: 2px solid #000 !important;
-}
-
-body.fonte-grande {
-    --tamanho-base: 20px;
-}
-
-body.espacado {
-    --espacamento-base: 2px;
-}
-
-body.fonte-dislexia {
-    font-family: 'Comic Sans MS', sans-serif !important;
-}
-
-body.preto-branco {
-    filter: grayscale(100%);
-}
+body.fonte-grande { --tamanho-base: 20px; }
+body.espacado { --espacamento-base: 2px; }
+body.fonte-dislexia { font-family: 'Comic Sans MS', sans-serif !important; }
+body.preto-branco { filter: grayscale(100%); }
 
 /* ==========================================================================
    RODAPÉ OFICIAL MANDATÓRIO

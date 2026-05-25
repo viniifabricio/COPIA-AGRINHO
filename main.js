@@ -1,3 +1,7 @@
+// FORÇAR LIMPEZA DE BUGS DE ACESSIBILIDADE ANTERIORES
+localStorage.clear();
+document.body.className = "";
+
 // ==========================================================================
 // 1. LÓGICA DO SIMULADOR CLIMÁTICO DO PRODUTOR
 // ==========================================================================
@@ -64,7 +68,7 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ DE CONHECIMENTOS (3 QUESTÕES ORIGINAIS)
+// 3. LÓGICA DO QUIZ DE CONHECIMENTOS (3 QUESTÕES ORIGINAIS RESTAURADAS)
 // ==========================================================================
 const questoes = [
     {
@@ -76,7 +80,7 @@ const questoes = [
     },
     {
         pergunta: "Por que não devemos passar defensivos agrícolas com ventos acima de 28 km/h?",
-        a: "Because o vento forte causa a 'deriva', levando o produto para fora da lavoura",
+        a: "Porque o vento forte causa a 'deriva', levando o produto para fora da lavoura",
         b: "Porque o produto perde o efeito na hora com o calor do vento",
         resposta: "a",
         explicacao: "Muito bem! O vento forte espalha o produto para longe, poluindo o ambiente e gerando desperdício."
@@ -144,7 +148,7 @@ btnProx.addEventListener('click', () => {
 carregarQuestao();
 
 // ==========================================================================
-// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE (PERSISTENTE COM LOCALSTORAGE)
+// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE
 // ==========================================================================
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
@@ -154,26 +158,19 @@ btnAbrirMenu.addEventListener('click', () => {
     btnAbrirMenu.setAttribute('aria-expanded', !expandido);
 });
 
-function gerenciarAcessibilidade(idBotao, classeCSS, chaveStorage) {
+function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
-    
-    if (localStorage.getItem(chaveStorage) === 'true') {
-        document.body.classList.add(classeCSS);
-        botao.setAttribute('aria-pressed', 'true');
-    }
-
     botao.addEventListener('click', () => {
         const ativo = document.body.classList.toggle(classeCSS);
         botao.setAttribute('aria-pressed', ativo);
-        localStorage.setItem(chaveStorage, ativo);
     });
 }
 
-gerenciarAcessibilidade('btn-contraste', 'alto-contraste', 'cfgContraste');
-gerenciarAcessibilidade('btn-fonte', 'fonte-grande', 'cfgFonte');
-gerenciarAcessibilidade('btn-espacamento', 'espacado', 'cfgEspaço');
-gerenciarAcessibilidade('btn-dislexia', 'fonte-dislexia', 'cfgDislexia');
-gerenciarAcessibilidade('btn-saturacao', 'preto-branco', 'cfgSaturacao');
+gerenciarAcessibilidade('btn-contraste', 'alto-contraste');
+gerenciarAcessibilidade('btn-fonte', 'fonte-grande');
+gerenciarAcessibilidade('btn-espacamento', 'espacado');
+gerenciarAcessibilidade('btn-dislexia', 'fonte-dislexia');
+gerenciarAcessibilidade('btn-saturacao', 'preto-branco');
 
 let lendoConteudo = null;
 document.getElementById('btn-ouvir-site').addEventListener('click', () => {
@@ -190,10 +187,3 @@ document.getElementById('btn-ouvir-site').addEventListener('click', () => {
         alert('Desculpe, o seu navegador atual não suporta a leitura de tela por voz.');
     }
 });
-
-if (typeof window.VW === 'object') {
-    new window.VW({
-        path: 'https://vlibras.gov.br/app',
-        opacity: 0.95
-    });
-}
