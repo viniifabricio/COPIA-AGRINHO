@@ -1,10 +1,9 @@
 /**
- * EcoRadar Agro - Módulo Core Javascript Puro (Vanilla)
- * Arquitetura Event-Driven sem dependências externas ou injeções inline.
+ * EcoRadar Agro - Módulo Core JavaScript Puro (Vanilla)
+ * Arquitetura de Eventos isolada sem elementos inline no HTML.
  */
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Inicialização de Handlers Globais
     inicializarAcessibilidade();
     inicializarCalculadora();
     inicializarGraficosEDados();
@@ -13,20 +12,44 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /* ==========================================================================
-   MÓDULO 1: ACESSIBILIDADE (ALTO CONTRASTE E LEITURA DE VOZ)
+   MÓDULO 1: PAINEL DE ACESSIBILIDADE FLUTUANTE (CORRIGIDO)
    ========================================================================== */
 function inicializarAcessibilidade() {
+    const btnAcessibilidade = document.getElementById("btn-abrir-acessibilidade");
+    const menuAcessibilidade = document.getElementById("menu-acessibilidade");
     const btnContraste = document.getElementById("btn-contraste");
     const btnVoz = document.getElementById("btn-voz");
 
+    // Abrir e fechar o menu suspenso nativo
+    if (btnAcessibilidade && menuAcessibilidade) {
+        btnAcessibilidade.addEventListener("click", function (e) {
+            e.stopPropagation();
+            menuAcessibilidade.classList.toggle("acessibilidade-escondido");
+            const visivel = !menuAcessibilidade.classList.contains("acessibilidade-escondido");
+            btnAcessibilidade.setAttribute("aria-expanded", visivel);
+        });
+
+        // Fechar se clicar fora do box
+        document.addEventListener("click", function () {
+            menuAcessibilidade.classList.add("acessibilidade-escondido");
+            btnAcessibilidade.setAttribute("aria-expanded", false);
+        });
+
+        menuAcessibilidade.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Correção do Alto Contraste alinhado com a classe CSS
     if (btnContraste) {
         btnContraste.addEventListener("click", function () {
-            document.body.classList.toggle("alto-contrast");
-            const ativo = document.body.classList.contains("alto-contrast");
+            document.body.classList.toggle("alto-contraste");
+            const ativo = document.body.classList.contains("alto-contraste");
             btnContraste.setAttribute("aria-pressed", ativo);
         });
     }
 
+    // Leitura automática do conteúdo textual do site
     if (btnVoz) {
         let escutando = false;
         btnVoz.addEventListener("click", function () {
@@ -40,12 +63,12 @@ function inicializarAcessibilidade() {
                 escutando = true;
                 
                 fala.onend = function() {
-                    btnVoz.innerText = "🔊 Ouvir Site";
+                    btnVoz.innerText = "🔊 Ouvir Texto do Site";
                     escutando = false;
                 };
             } else {
                 window.speechSynthesis.cancel();
-                btnVoz.innerText = "🔊 Ouvir Site";
+                btnVoz.innerText = "🔊 Ouvir Texto do Site";
                 escutando = false;
             }
         });
@@ -53,10 +76,9 @@ function inicializarAcessibilidade() {
 }
 
 /* ==========================================================================
-   MÓDULO 2: GRÁFICOS DINÂMICOS E CONTADORES NATIVOS
+   MÓDULO 2: ANIMAÇÕES E INTERSECTION OBSERVER
    ========================================================================== */
 function inicializarGraficosEDados() {
-    // Configuração de IntersectionObserver para disparo de animações sob scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -92,7 +114,7 @@ function animarNumero(elemento) {
 }
 
 /* ==========================================================================
-   MÓDULO 3: CALCULADORA ECOLÓGICA
+   MÓDULO 3: CALCULADORA DE IMPACTO HÍDRICO
    ========================================================================== */
 function inicializarCalculadora() {
     const btnCalcular = document.getElementById("btn-calcular-ecologia");
@@ -105,8 +127,6 @@ function inicializarCalculadora() {
 
             if (hectaresInput && boxResultado) {
                 const hectares = parseFloat(hectaresInput.value) || 0;
-                
-                // Algoritmos empíricos sustentáveis baseados em dados médios
                 const litrosPoupados = hectares * 12500; 
                 const reducaoDeriva = Math.floor(hectares * 1.5) + 2;
 
@@ -120,7 +140,7 @@ function inicializarCalculadora() {
 }
 
 /* ==========================================================================
-   MÓDULO 4: QUIZ TÉCNICO PEDAGÓGICO
+   MÓDULO 4: QUIZ TÉCNICO INTERATIVO
    ========================================================================== */
 const bancoQuestoes = [
     {
@@ -181,7 +201,6 @@ function renderizarQuestao() {
         optA.innerText = bancoQuestoes[indiceQuiz].opcoes[0];
         optB.innerText = bancoQuestoes[indiceQuiz].opcoes[1];
         
-        // Remove listeners antigos redefinindo os clones dos nós
         optA.onclick = () => analisarEscolha(0);
         optB.onclick = () => analisarEscolha(1);
     }
@@ -221,7 +240,6 @@ function aplicarLogicaClimatica(velocidadeVento, proximidadeChuva) {
     const luzIrrigacao = document.getElementById("luz-irrigacao");
     const textoIrrigacao = document.getElementById("texto-irrigacao");
 
-    // Lógica para Pulverização baseada em Ventos (Zonas Críticas)
     if (velocidadeVento > 20) {
         luzPulverizacao.className = "status-luz vermelha";
         textoPulverizacao.innerText = `⚠️ Proibido pulverizar (Vento forte: ${velocidadeVento} km/h). Risco extremo de deriva química externa.`;
@@ -230,7 +248,6 @@ function aplicarLogicaClimatica(velocidadeVento, proximidadeChuva) {
         textoPulverizacao.innerText = `✅ Condições ótimas para a pulverização (${velocidadeVento} km/h). Insumo fixado de forma segura.`;
     }
 
-    // Lógica para Irrigação baseada em Nuvem e frentes de Precipitação
     if (proximidadeChuva > 70) {
         luzIrrigacao.className = "status-luz vermelha";
         textoIrrigacao.innerText = `⚠️ Irrigação pausada. Probabilidade de chuva em ${proximidadeChuva}%. Economizando recursos hídricos e energia.`;

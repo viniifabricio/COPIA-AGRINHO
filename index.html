@@ -26,11 +26,6 @@
                 <a href="#painel">Decisão</a>
                 <a href="#conclusao">Conclusão</a>
             </div>
-            
-            <div class="acessibilidade-botoes">
-                <button id="btn-contraste" class="nav-btn-acessivel" title="Ativar o modo de alto contraste para acessibilidade visual">Contraste</button>
-                <button id="btn-voz" class="nav-btn-acessivel" title="Ativar a leitura automática de voz do site">🔊 Ouvir Site</button>
-            </div>
         </nav>
     </header>
 
@@ -47,7 +42,7 @@
         
         <section id="intro" class="site-section" tabindex="0">
             <h2>Sobre o Projeto</h2>
-            <p>O <strong>EcoRadar Agro</strong> é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O sistema une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.</p>
+            <p>O <strong>EcoRadar Agro</strong> é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O system une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.</p>
             
             <div class="creditos-bloco">
                 <div class="creditos-titulo">🪪 Identificação do Projeto</div>
@@ -74,7 +69,7 @@
 
                 <div class="desenvolvimento-card">
                     <h3>🌱 Aprendizados Consolidados</h3>
-                    <p>Mais do que construir um system funcional, o processo solidificou conhecimentos avançados em acessibilidade web (regras semânticas e navegação assistida por teclado), manipulação do DOM e otimização de performance para dispositivos móveis de baixa especificação técnica.</p>
+                    <p>Mais do que construir um sistema funcional, o processo solidificou conhecimentos avançados em acessibilidade web (regras semânticas e navegação assistida por teclado), manipulação do DOM e otimização de performance para dispositivos móveis de baixa especificação técnica.</p>
                 </div>
             </article>
         </section>
@@ -126,7 +121,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Embrapa Territorial</h3>
-                            <p>Segundo a Embrapa, a vegetação nativa preservada pelos produtores rurais dentro das propriedades privadas represents cerca de 33% do território brasileiro. A tecnologia ajuda o produtor a manter essas áreas intactas ao aumentar a produtividade sem abrir novas áreas de mata.</p>
+                            <p>Segundo a Embrapa, a vegetação nativa preservada pelos produtores rurais dentro das propriedades privadas representa cerca de 33% do território brasileiro. A tecnologia ajuda o produtor a manter essas áreas intactas ao aumentar a produtividade sem abrir novas áreas de mata.</p>
                         </div>
                     </div>
                 </div>
@@ -140,7 +135,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço del campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerais sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
+                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço do campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerações sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
                         </div>
                     </div>
                 </div>
@@ -267,7 +262,7 @@
 
         <section id="quiz" class="site-section">
             <h2>🧠 Quiz Técnico: Sustentabilidade e Tecnologia</h2>
-            <p class="sub-painel">Teste seus conhecimentos sobre o funcionamento inteligente do nosso system!</p>
+            <p class="sub-painel">Teste seus conhecimentos sobre o funcionamento inteligente do nosso sistema!</p>
             
             <div class="quiz-container" role="region" aria-label="Quiz interativo sobre sustentabilidade do campo">
                 <h3 id="status-pergunta">Pergunta 1 de 4</h3>
@@ -337,7 +332,7 @@
 
                 <div class="conclusao-bloco final-highlight">
                     <h3>CONCLUSÃO</h3>
-                    <p>O tema “Agro Forte, Futuro Sustentável” mostra que o desenvolvimento do agronegócio precisa caminhar junto com a preservação do meio ambiente e o uso consciente da tecnologia. A agricultura sustentável representa um caminho importante para garantir alimentos de qualidade, preservar os recursos naturais e melhorar a vida das futuras gerais. Com inovação, educação ambiental e responsabilidade social, é possível construir um campo mais produtivo, moderno e sustentável.</p>
+                    <p>O tema “Agro Forte, Futuro Sustentável” mostra que o desenvolvimento do agronegócio precisa caminhar junto com a preservação do meio ambiente e o uso consciente da tecnologia. A agricultura sustentável representa um caminho importante para garantir alimentos de qualidade, preservar os recursos naturais e melhorar a vida das futuras gerações. Com inovação, educação ambiental e responsabilidade social, é possível construir um campo mais produtivo, moderno e sustentável.</p>
                 </div>
             </div>
         </section>
@@ -353,6 +348,18 @@
         </section>
 
     </main>
+
+    <div class="painel-acessibilidade-container">
+        <button id="btn-abrir-acessibilidade" class="btn-flutuante-acessivel" aria-label="Abrir opções de acessibilidade" aria-expanded="false">
+            ♿
+        </button>
+        <div id="menu-acessibilidade" class="menu-acessibilidade-box acessibilidade-escondido">
+            <h3>Opções de Acessibilidade</h3>
+            <hr>
+            <button id="btn-contraste" class="op-btn-acessivel">🌗 Alternar Alto Contraste</button>
+            <button id="btn-voz" class="op-btn-acessivel">🔊 Ouvir Texto do Site</button>
+        </div>
+    </div>
 
     <footer>
         <p>© 2026 EcoRadar Agro — Desenvolvido para o Concurso Agrinho 2026</p>
