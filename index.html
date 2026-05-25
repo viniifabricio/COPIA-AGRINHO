@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoRadar Agro - Agrinho 2026</title>
-    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <a href="#conteudo-principal" class="saltar-conteudo">Ir para o conteúdo principal</a>
+
     <header class="navbar">
         <div class="logo" aria-label="EcoRadar Agro">🌱 EcoRadar Agro</div>
-        <nav role="navigation" aria-label="Menu Principal">
+        <nav role="navigation" aria-label="Menu Principal de Navegação">
             <div class="nav-links">
                 <a href="#intro">Sobre</a>
+                <a href="#desenvolvimento-tecnico">Desenvolvimento</a>
                 <a href="#radar-secao">Radar</a>
                 <a href="#informativo">Informativo</a>
                 <a href="#diagnostico-avancado">Gráficos e Estudos</a>
@@ -27,13 +28,13 @@
             </div>
             
             <div class="acessibilidade-botoes">
-                <button id="btn-contraste" onclick="toggleContraste()" class="nav-btn-acessivel" title="Ativar alto contraste">Contraste</button>
-                <button id="btn-voz" onclick="toggleLeituraVoz()" class="nav-btn-acessivel" title="Ouvir Site">🔊 Ouvir Site</button>
+                <button id="btn-contraste" class="nav-btn-acessivel" title="Ativar o modo de alto contraste para acessibilidade visual">Contraste</button>
+                <button id="btn-voz" class="nav-btn-acessivel" title="Ativar a leitura automática de voz do site">🔊 Ouvir Site</button>
             </div>
         </nav>
     </header>
 
-    <section class="hero-section" role="img" aria-label="Banner principal com imagem de plantações verdes e tecnologia sustentável">
+    <section class="hero-section" role="img" aria-label="Banner principal com imagem de plantações agrícolas sustentáveis sob monitoramento tecnológico">
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>🌱 EcoRadar Agro</h1>
@@ -42,7 +43,7 @@
         </div>
     </section>
 
-    <main class="container">
+    <main id="conteudo-principal" class="container">
         
         <section id="intro" class="site-section" tabindex="0">
             <h2>Sobre o Projeto</h2>
@@ -56,12 +57,34 @@
             </div>
         </section>
 
+        <section id="desenvolvimento-tecnico" class="site-section" tabindex="0">
+            <h2>💻 Sobre o Desenvolvimento do Projeto</h2>
+            <p class="sub-painel">Bastidores técnicos, desafios superados e a arquitetura pura aplicada no código da plataforma.</p>
+            
+            <article class="desenvolvimento-grid">
+                <div class="desenvolvimento-card">
+                    <h3>💡 O Propósito e a Ideia</h3>
+                    <p>O desenvolvimento desta plataforma nasceu da necessidade de conectar a teoria pedagógica do Concurso Agrinho com os desafios cotidianos enfrentados pelos agricultores do Paraná. O objetivo foi criar uma interface capaz de traduzir dados meteorológicos complexos em respostas práticas de manejo sustentável.</p>
+                </div>
+                
+                <div class="desenvolvimento-card">
+                    <h3>🛠️ Engenharia de Código e Desafios</h3>
+                    <p>Para cumprir rigorosamente os critérios técnicos mais estritos do regulamento, o projeto rejeitou o uso de frameworks pré-moldados (como Bootstrap ou Tailwind) ou bibliotecas prontas de terceiros. Toda a responsividade, a lógica de funcionamento do quiz, as animações e os cálculos do simulador foram codificados em <strong>JavaScript Vanilla (Puro)</strong> e <strong>CSS3 Moderno</strong>, garantindo um carregamento instantâneo, leveza estrutural e total controle do fluxo de dados.</p>
+                </div>
+
+                <div class="desenvolvimento-card">
+                    <h3>🌱 Aprendizados Consolidados</h3>
+                    <p>Mais do que construir um system funcional, o processo solidificou conhecimentos avançados em acessibilidade web (regras semânticas e navegação assistida por teclado), manipulação do DOM e otimização de performance para dispositivos móveis de baixa especificação técnica.</p>
+                </div>
+            </article>
+        </section>
+
         <section id="radar-secao" class="radar-section" tabindex="0">
             <h2>📍 Radar Meteorológico em Tempo Real</h2>
             <p class="sub-painel">Monitore o avanço das nuvens de chuva e planeje suas ações no campo com precisão.</p>
             
             <div class="radar-container">
-                <iframe src="https://embed.windy.com/embed2.html?lat=-23.050&lon=-50.230&zoom=7&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=true" class="radar-frame" frameborder="0" title="Radar Meteorológico interativo Windy"></iframe>
+                <iframe src="https://embed.windy.com/embed2.html?lat=-23.050&lon=-50.230&zoom=7&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=true" class="radar-frame" frameborder="0" title="Radar Meteorológico interativo Windy integrado para análise regional de precipitação"></iframe>
             </div>
             
             <div class="radar-legendas">
@@ -117,7 +140,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço del campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerações sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
+                            <p>O tema do Agrinho destaca a urgência de alinhar o avanço del campo à conservação ambiental. Com o uso de plataformas de Front-End interativas, podemos educar novas gerais sobre como a tecnologia aplicada previne desastres ecológicos e impulsiona a economia rural verde.</p>
                         </div>
                     </div>
                 </div>
@@ -129,36 +152,32 @@
             <h2>📈 Diagnóstico Científico e Gráficos Comparativos</h2>
             <p class="sub-painel">Evidências estatísticas e soluções tecnológicas sobre a eficiência sustentável na agricultura nacional.</p>
             
-            <div class="diagnostico-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; text-align: left;">
+            <div class="diagnostico-container">
                 
-                <div class="texto-profundo-box" style="background: rgba(255, 255, 255, 0.04); padding: 25px; border-radius: 12px; border-left: 5px solid var(--cor-principal, #2e7d32); box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                    <h3 style="color: var(--cor-principal, #2e7d32); margin-bottom: 12px; font-size: 1.2rem;">⚡ Inovação e Tecnologias Verdes no Campo</h3>
-                    <p style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; text-align: justify;">
-                        A consolidação de um ecossistema rural produtivo e equilibrado depende diretamente da aplicação de metodologias validadas pela ciência agropecuária. De acordo com notas técnicas da <strong>Embrapa</strong>, a expansão do <strong>Sistema de Plantio Direto (SPD)</strong> desempenha um papel fundamental na conservação do solo. Ao manter a palhada e os resíduos orgânicos da cultura anterior sobre a camada superficial, o produtor cria uma barreira natural protetora. Esse processo atenua o impacto direto das chuvas, reduz o escoamento superficial em até <strong>60%</strong> e potencializa a retenção de umidade interna.
-                    </p>
-                    <p style="font-size: 0.95rem; line-height: 1.6; text-align: justify;">
-                        Simultaneamente, a implementação da <strong>Fixação Biológica de Nitrogênio (FBN)</strong> atua como um pilar de sustentabilidade econômica e ambiental no Brasil. Ao utilizar microrganismos simbólicos capazes de absorver o nitrogênio presente na atmosfera e disponibilizá-lo para a planta, reduz-se radicalmente a dependência de fertilizantes químicos industriais baseados em fontes fósseis. Essa tecnologia verde diminui expressivamente a pegada de carbono da produção de grãos e mitiga a lixiviação de componentes sintéticos para os lençóis freáticos.
-                    </p>
+                <div class="texto-profundo-box">
+                    <h3>⚡ Inovação e Tecnologias Verdes no Campo</h3>
+                    <p>A consolidação de um ecossistema rural produtivo e equilibrado depende diretamente da aplicação de metodologias validadas pela ciência agropecuária. De acordo com notas técnicas da <strong>Embrapa</strong>, a expansão do <strong>Sistema de Plantio Direto (SPD)</strong> desempenha um papel fundamental na conservação do solo. Ao manter a palhada e os resíduos orgânicos da cultura anterior sobre a camada superficial, o produtor cria uma barreira natural protetora. Esse processo atenua o impacto direto das chuvas, reduz o escoamento superficial em até <strong>60%</strong> e potencializa a recuperação e retenção de umidade interna.</p>
+                    <p>Simultaneamente, a implementação da <strong>Fixação Biológica de Nitrogênio (FBN)</strong> atua como um pilar de sustentabilidade econômica e ambiental no Brasil. Ao utilizar microrganismos simbólicos capazes de absorver o nitrogênio presente na atmosfera e disponibilizá-lo para a planta, reduz-se radicalmente a dependência de fertilizantes químicos industriais baseados em fontes fósseis. Essa tecnologia verde diminui expressivamente a pegada de carbono da produção de grãos e mitiga a lixiviação de componentes sintéticos para os lençóis freáticos.</p>
                 </div>
 
-                <div class="graficos-box" style="background: rgba(255, 255, 255, 0.04); padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: center;">
-                    <h3 style="margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: bold;">📊 Redução de Desperdício de Insumos e Recursos</h3>
+                <div class="graficos-box">
+                    <h3>📊 Redução de Desperdício de Insumos e Recursos</h3>
                     
-                    <div class="grafico-barra-item" style="margin-bottom: 20px;">
-                        <span style="font-size: 0.85rem; display: block; margin-bottom: 6px; font-weight: 500;">🚫 Manejo Sem Ferramentas Digitais (Aplicação Convencional)</span>
-                        <div style="background: rgba(0,0,0,0.2); border-radius: 20px; height: 24px; width: 100%; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-                            <div class="barra-perigo" style="background: linear-gradient(90deg, #b71c1c, #d32f2f); width: 85%; height: 100%; text-align: right; padding-right: 12px; color: white; font-size: 0.8rem; line-height: 24px; font-weight: bold; transition: width 1s ease-in-out;">85% Margem de Desperdício</div>
+                    <div class="grafico-barra-item">
+                        <span>🚫 Manejo Sem Ferramentas Digitais (Aplicação Convencional)</span>
+                        <div class="barra-container-padrao">
+                            <div class="barra-dados barra-perigo animate-bar" data-width="85%">85% Margem de Desperdício</div>
                         </div>
                     </div>
 
-                    <div class="grafico-barra-item" style="margin-bottom: 20px;">
-                        <span style="font-size: 0.85rem; display: block; margin-bottom: 6px; font-weight: 500;">🌱 Manejo Com Monitoramento Climático Inteligente (EcoRadar Agro)</span>
-                        <div style="background: rgba(0,0,0,0.2); border-radius: 20px; height: 24px; width: 100%; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-                            <div class="barra-sucesso" style="background: linear-gradient(90deg, #1b5e20, #2e7d32); width: 30%; height: 100%; text-align: right; padding-right: 12px; color: white; font-size: 0.8rem; line-height: 24px; font-weight: bold; transition: width 1s ease-in-out;">30% Consumo Otimizado</div>
+                    <div class="grafico-barra-item">
+                        <span>🌱 Manejo Com Monitoramento Climático Inteligente (EcoRadar Agro)</span>
+                        <div class="barra-container-padrao">
+                            <div class="barra-dados barra-sucesso animate-bar" data-width="30%">30% Consumo Otimizado</div>
                         </div>
                     </div>
 
-                    <blockquote style="font-size: 0.85rem; font-style: italic; opacity: 0.8; border-left: 3px solid var(--cor-principal, #2e7d32); padding-left: 12px; margin-top: 15px; line-height: 1.5;">
+                    <blockquote class="citacao-dados">
                         "A integração de alertas em tempo real e sensores de velocidade de vento elimina o fenômeno da deriva aérea, garantindo que o insumo atinja o alvo biológico com precisão e evitando contaminações periféricas." — Indicadores de Eficiência em Agricultura de Precisão.
                     </blockquote>
                 </div>
@@ -174,19 +193,19 @@
                 <div class="calc-inputs">
                     <label for="input-hectares">Tamanho da Plantação (em Hectares):</label>
                     <input type="number" id="input-hectares" value="10" min="1" max="1000">
-                    <button onclick="calcularImpactoEcologico()" class="btn-calculadora">📊 Calcular Impacto Sustentável</button>
+                    <button id="btn-calcular-ecologia" class="btn-calculadora">📊 Calcular Impacto Sustentável</button>
                 </div>
                 
-                <div id="resultado-calculadora" class="calc-resultado" style="display: none;">
+                <div id="resultado-calculadora" class="calc-resultado resultado-oculto">
                     <div class="metric-box">
-                        <span class="metric-icon">💧</span>
+                        <span class="metric-icon" role="img" aria-label="Gota de água">💧</span>
                         <div class="metric-data">
                             <h4 id="calc-agua">0 Litros</h4>
                             <p>De água doce poupados por mês</p>
                         </div>
                     </div>
                     <div class="metric-box">
-                        <span class="metric-icon">🐝</span>
+                        <span class="metric-icon" role="img" aria-label="Abelha">🐝</span>
                         <div class="metric-data">
                             <h4 id="calc-deriva">0 Vezes</h4>
                             <p>Menos exposição a derivas químicas nocivas</p>
@@ -200,13 +219,13 @@
             <h2>4. Impactos Positivos do Agro Digital</h2>
             <p class="sub-painel">Como a tecnologia integrada à ecologia transforma positivamente a sociedade.</p>
             
-            <div style="overflow-x: auto; width: 100%; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                <table class="tabela-impactos" style="min-width: 650px; width: 100%; border-collapse: collapse;">
+            <div class="tabela-responsiva-wrapper">
+                <table class="tabela-impactos">
                     <thead>
                         <tr>
-                            <th>Para o Produtor</th>
-                            <th>Para as Cidades</th>
-                            <th>Para o Meio Ambiente</th>
+                            <th scope="col">Para o Produtor</th>
+                            <th scope="col">Para as Cidades</th>
+                            <th scope="col">Para o Meio Ambiente</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -230,14 +249,14 @@
             <p class="sub-painel">Dados e percentuais oficiais emitidos por órgãos governamentais do Brasil.</p>
             <div class="indicadores-container">
                 <div class="indicador-linha">
-                    <div class="indicador-numero">33%</div>
+                    <div class="indicador-numero counter animate-number" data-target="33">0%</div>
                     <div class="indicador-texto">
                         <strong>Preservação Privada Brasileira:</strong> Área total do território nacional monitorada e protegida exclusivamente pelos próprios agricultores em vegetação nativa interna.
                         <br><span class="fonte-dado">Fonte oficial: Embrapa Territorial</span>
                     </div>
                 </div>
                 <div class="indicador-linha">
-                    <div class="indicador-numero">72%</div>
+                    <div class="indicador-numero counter animate-number" data-target="72">0%</div>
                     <div class="indicador-texto">
                         <strong>Uso Consuntivo de Água Doce:</strong> Volume captado e destinado para a irrigação regulada no Brasil. Destaca o papel crítico de ferramentas de controle inteligente.
                         <br><span class="fonte-dado">Fonte oficial: ANA (Agência Nacional de Águas)</span>
@@ -252,15 +271,15 @@
             
             <div class="quiz-container" role="region" aria-label="Quiz interativo sobre sustentabilidade do campo">
                 <h3 id="status-pergunta">Pergunta 1 de 4</h3>
-                <p id="pergunta-quiz" style="font-size: 1.1rem; font-weight: bold; margin: 15px 0; color: var(--cor-principal);"></p>
+                <p id="pergunta-quiz" class="texto-questao"></p>
                 
-                <div class="botoes-quiz" style="display: flex; flex-direction: column; gap: 10px; max-width: 600px; margin: 0 auto;">
-                    <button id="btn-opcao-a" onclick="verificarResposta(0)"></button>
-                    <button id="btn-opcao-b" onclick="verificarResposta(1)"></button>
+                <div class="botoes-quiz">
+                    <button id="btn-opcao-a" class="btn-resposta-quiz"></button>
+                    <button id="btn-opcao-b" class="btn-resposta-quiz"></button>
                 </div>
                 
-                <p id="resultado-quiz" style="margin-top: 15px; font-weight: bold; min-height: 24px; padding: 0 10px;" aria-live="polite"></p>
-                <button id="btn-proxima" onclick="proximaPergunta()" style="display: none; background-color: var(--cor-secundaria); margin-top: 10px;">Avançar Próxima Pergunta ➡️</button>
+                <p id="resultado-quiz" class="feedback-quiz" aria-live="polite"></p>
+                <button id="btn-proxima" class="btn-avancar-quiz avancar-oculto">Avançar Próxima Pergunta ➡️</button>
             </div>
         </section>
 
@@ -297,10 +316,11 @@
             <div class="simulador-controle" tabindex="0">
                 <h3>🧪 Painel de Testes para a Banca Avaliadora</h3>
                 <p>Altere as condições do tempo abaixo para ver como o Front-End do site reage em tempo real com as regras de sustentabilidade:</p>
+                
                 <div class="botoes-simulador">
-                    <button onclick="simularClima(25, 85)">Simular Vento Forte e Chuva Próxima</button>
-                    <button onclick="simularClima(8, 10)">Simular Clima Seco e Sem Vento</button>
-                    <button onclick="simularClima(14, 45)">Simular Tempo Instável</button>
+                    <button id="btn-simular-forte">Simular Vento Forte e Chuva Próxima</button>
+                    <button id="btn-simular-seco">Simular Clima Seco e Sem Vento</button>
+                    <button id="btn-simular-instavel">Simular Tempo Instável</button>
                 </div>
             </div>
         </section>
@@ -322,12 +342,10 @@
             </div>
         </section>
 
-        <section id="referencias-cientificas" class="site-section" style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 35px; text-align: left;" tabindex="0">
-            <h3 style="font-size: 1.2rem; color: var(--cor-principal, #2e7d32); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">📚 Fontes Bibliográficas e Referências Oficiais</h3>
-            <p style="font-size: 0.88rem; opacity: 0.75; margin-bottom: 18px; line-height: 1.6;">
-                Em conformidade com os critérios de validação e rigor metodológico do Concurso Agrinho 2026, todos os dados numéricos, percentuais estruturais e parâmetros de sustentabilidade exibidos nesta plataforma baseiam-se em relatórios técnicos emitidos pelas seguintes entidades oficiais:
-            </p>
-            <ul style="font-size: 0.85rem; opacity: 0.85; line-height: 1.9; list-style-type: square; padding-left: 22px;">
+        <section id="referencias-cientificas" class="site-section" tabindex="0">
+            <h3>📚 Fontes Bibliográficas e Referências Oficiais</h3>
+            <p>Em conformidade com os critérios de validação e rigor metodológico do Concurso Agrinho 2026, todos os dados numéricos, percentuais estruturais e parâmetros de sustentabilidade exibidos nesta plataforma baseiam-se em relatórios técnicos emitidos pelas seguintes entidades oficiais:</p>
+            <ul class="lista-referencias-oficiais">
                 <li><strong>EMBRAPA (Empresa Brasileira de Pesquisa Agropecuária):</strong> Dados estatísticos de monitoramento via satélite do macroestudo de vegetação preservada pelo Cadastro Ambiental Rural (CAR) e dados de eficiência do Sistema de Plantio Direto (SPD) e FBN.</li>
                 <li><strong>ANA (Agência Nacional de Águas e Saneamento Básico):</strong> Dados consolidados sobre o Balanço Hídrico Nacional e o Relatório de Conjuntura dos Recursos Hídricos do Brasil relativos ao volume captado para irrigação.</li>
                 <li><strong>IBGE (Instituto Brasileiro de Geografia e Estatística):</strong> Indicadores de infraestrutura produtiva e tecnológica obtidos através do Censo Agropecuário nacional.</li>
@@ -338,8 +356,8 @@
 
     <footer>
         <p>© 2026 EcoRadar Agro — Desenvolvido para o Concurso Agrinho 2026</p>
-        <p style="margin-top: 5px; font-weight: bold; color: var(--cor-secundaria); font-size: 1rem;">🚀 Parceria: @agrinho | #Agrinho2026</p>
-        <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.8;">Tema: "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</p>
+        <p class="footer-hashtag">🚀 Parceria: @agrinho | #Agrinho2026</p>
+        <p class="footer-tema">Tema: "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</p>
     </footer>
 
     <div vw class="enabled">
@@ -349,16 +367,13 @@
         </div>
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    
     <script>
         window.addEventListener('load', function() {
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-            if (typeof inicializarQuizEPainel === "function") {
-                inicializarQuizEPainel();
+            if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                new window.VLibras.Widget('https://vlibras.gov.br/app');
             }
         });
     </script>
-
-    <script src="./main.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

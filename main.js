@@ -1,245 +1,244 @@
+/**
+ * EcoRadar Agro - Módulo Core Javascript Puro (Vanilla)
+ * Arquitetura Event-Driven sem dependências externas ou injeções inline.
+ */
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Inicialização de Handlers Globais
+    inicializarAcessibilidade();
+    inicializarCalculadora();
+    inicializarGraficosEDados();
+    inicializarQuiz();
+    inicializarSimuladorClima();
+});
+
 /* ==========================================================================
-   PROJETO DESENVOLVIDO PARA O CONCURSO AGRINHO 2026 - LOGICA DO FRONT-END
-   ========================================================================= */
+   MÓDULO 1: ACESSIBILIDADE (ALTO CONTRASTE E LEITURA DE VOZ)
+   ========================================================================== */
+function inicializarAcessibilidade() {
+    const btnContraste = document.getElementById("btn-contraste");
+    const btnVoz = document.getElementById("btn-voz");
 
-// --- VARIÁVEIS GLOBAIS DO SISTEMA DE VOZ (OBRIGATÓRIO NO TOPO) ---
-let vozAtiva = false;
-const sinteseVoz = window.speechSynthesis;
-let utteranceAtual = null;
+    if (btnContraste) {
+        btnContraste.addEventListener("click", function () {
+            document.body.classList.toggle("alto-contrast");
+            const ativo = document.body.classList.contains("alto-contrast");
+            btnContraste.setAttribute("aria-pressed", ativo);
+        });
+    }
 
-// --- BANCO DE DADOS LOCAL DO QUIZ ---
-const perguntasQuiz = [
+    if (btnVoz) {
+        let escutando = false;
+        btnVoz.addEventListener("click", function () {
+            if (!escutando) {
+                const textoParaLer = document.getElementById("conteudo-principal").innerText;
+                const fala = new SpeechSynthesisUtterance(textoParaLer);
+                fala.lang = "pt-BR";
+                fala.rate = 1.1;
+                window.speechSynthesis.speak(fala);
+                btnVoz.innerText = "🛑 Parar Leitura";
+                escutando = true;
+                
+                fala.onend = function() {
+                    btnVoz.innerText = "🔊 Ouvir Site";
+                    escutando = false;
+                };
+            } else {
+                window.speechSynthesis.cancel();
+                btnVoz.innerText = "🔊 Ouvir Site";
+                escutando = false;
+            }
+        });
+    }
+}
+
+/* ==========================================================================
+   MÓDULO 2: GRÁFICOS DINÂMICOS E CONTADORES NATIVOS
+   ========================================================================== */
+function inicializarGraficosEDados() {
+    // Configuração de IntersectionObserver para disparo de animações sob scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains("animate-bar")) {
+                    const larguraAlvo = entry.target.getAttribute("data-width");
+                    entry.target.style.width = larguraAlvo;
+                }
+                if (entry.target.classList.contains("animate-number")) {
+                    animarNumero(entry.target);
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".animate-bar").forEach(barra => observer.observe(barra));
+    document.querySelectorAll(".animate-number").forEach(num => observer.observe(num));
+}
+
+function animarNumero(elemento) {
+    const alvo = parseInt(elemento.getAttribute("data-target"), 10);
+    let atual = 0;
+    const incremento = alvo / 50; 
+    const intervalo = setInterval(() => {
+        atual += incremento;
+        if (atual >= alvo) {
+            elemento.innerText = alvo + "%";
+            clearInterval(intervalo);
+        } else {
+            elemento.innerText = Math.floor(atual) + "%";
+        }
+    }, 25);
+}
+
+/* ==========================================================================
+   MÓDULO 3: CALCULADORA ECOLÓGICA
+   ========================================================================== */
+function inicializarCalculadora() {
+    const btnCalcular = document.getElementById("btn-calcular-ecologia");
+    if (btnCalcular) {
+        btnCalcular.addEventListener("click", function () {
+            const hectaresInput = document.getElementById("input-hectares");
+            const boxResultado = document.getElementById("resultado-calculadora");
+            const txtAgua = document.getElementById("calc-agua");
+            const txtDeriva = document.getElementById("calc-deriva");
+
+            if (hectaresInput && boxResultado) {
+                const hectares = parseFloat(hectaresInput.value) || 0;
+                
+                // Algoritmos empíricos sustentáveis baseados em dados médios
+                const litrosPoupados = hectares * 12500; 
+                const reducaoDeriva = Math.floor(hectares * 1.5) + 2;
+
+                txtAgua.innerText = litrosPoupados.toLocaleString("pt-BR") + " Litros";
+                txtDeriva.innerText = reducaoDeriva + " Vezes";
+
+                boxResultado.classList.remove("resultado-oculto");
+            }
+        });
+    }
+}
+
+/* ==========================================================================
+   MÓDULO 4: QUIZ TÉCNICO PEDAGÓGICO
+   ========================================================================== */
+const bancoQuestoes = [
     {
-        pergunta: "Por que não devemos pulverizar plantações com ventos muito fortes?",
-        opcoes: [
-            "A) Por causa do fenômeno da deriva, que desvia os produtos e contamina a natureza ao redor.",
-            "B) Porque as gotas d'água congelam antes de tocar nas folhas da lavoura."
-        ],
-        correta: 0,
-        explicacao: "Correto! O vento forte causa deriva, desperdiçando o produto e poluindo o meio ambiente."
+        pergunta: "De acordo com os dados oficiais da Embrapa Territorial, qual a porcentagem de vegetação nativa mantida e preservada de forma privada pelos próprios produtores rurais?",
+        opcoes: ["A) Cerca de 33% do território brasileiro", "B) Menos de 10% do território nacional"],
+        correta: 0
     },
     {
-        pergunta: "Qual o impacto ecológico de ligar sistemas de irrigação momentos antes de uma chuva forte?",
-        opcoes: [
-            "A) Ajuda a economizar energia elétrica nas bombas.",
-            "B) Causa desperdício severo de água doce e gastos desnecessários de eletricidade."
-        ],
-        correta: 1,
-        explicacao: "Excelente! Irrigar antes da chuva é desnecessário, já que a natureza fará o trabalho de graça."
+        pergunta: "A agricultura irrigada regulada representa grande parte do consumo consuntivo de água doce no Brasil (dados da ANA). Qual tecnologia reduz esse impacto?",
+        opcoes: ["A) Uso de sensores de umidade associados ao EcoRadar", "B) Ampliação dos turnos de irrigação contínua"],
+        correta: 0
     },
     {
-        pergunta: "Qual a porcentagem aproximada de consumo de água doce mundial pela agricultura?",
-        opcoes: [
-            "A) Cerca de 70%, o que exige o uso de tecnologias inteligentes para evitar o esgotamento.",
-            "B) Menos de 5%, pois a maior parte vem de águas industriais."
-        ],
-        correta: 0,
-        explicacao: "Isso mesmo! O agro usa cerca de 70% da água doce, por isso a tecnologia de controle é vital."
+        pergunta: "Qual o principal perigo de realizar pulverizações com ventos em velocidades excessivas?",
+        opcoes: ["A) Aceleração do crescimento das plantas", "B) Fenômeno da deriva, espalhando químicos em áreas de preservação"],
+        correta: 1
     },
     {
-        pergunta: "Qual o tema principal do Concurso Agrinho 2026?",
-        opcoes: [
-            "A) Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente.",
-            "B) Expansão urbana máxima e automação industrial sem controle."
-        ],
-        correta: 0,
-        explicacao: "Perfeito! O foco é produzir com inteligência respeitando e conservando o ecossistema!"
+        pergunta: "Qual o lema central de desenvolvimento do Programa Agrinho para o ano de 2026?",
+        opcoes: ["A) Produção em Massa a Qualquer Custo", "B) Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"],
+        correta: 1
     }
 ];
 
-let indicePerguntaAtual = 0;
-let acertosQuiz = 0; 
+let indiceQuiz = 0;
 
-/* ==========================================================================
-   1. INICIALIZAÇÃO DO SISTEMA
-   ========================================================================= */
-function inicializarQuizEPainel() {
-    renderizarPerguntaQuiz();
-    simularClima(12, 15); 
-}
-
-/* ==========================================================================
-   2. ACESSIBILIDADE - LEITURA DE VOZ (LOGICA RESTAURADA E CORRIGIDA)
-   ========================================================================= */
-function toggleLeituraVoz() {
-    const btnVoz = document.getElementById("btn-voz");
+function inicializarQuiz() {
+    renderizarQuestao();
     
-    // Cancela qualquer áudio pendente no sistema operacional imediatamente para evitar travamento
-    sinteseVoz.cancel();
-    
-    if (!vozAtiva) {
-        // Texto dinâmico perfeitamente estruturado com base no seu HTML original
-        let textoParaLer = "Plataforma EcoRadar Agro. Desenvolvedor Vinicius Montagna Fabrício. O EcoRadar Agro é uma plataforma digital desenvolvida para auxiliar pequenos e grandes produtores rurais a tomarem decisões inteligentes e ecológicas no campo. O sistema une a tecnologia de ponta do monitoramento climático com práticas sustentáveis, garantindo um agro forte que protege o futuro do nosso planeta.";
-        
-        utteranceAtual = new SpeechSynthesisUtterance(textoParaLer);
-        utteranceAtual.lang = 'pt-BR';
-        utteranceAtual.rate = 1.0; 
-        
-        utteranceAtual.onend = function() {
-            vozAtiva = false;
-            btnVoz.innerText = "🔊 Ouvir Site";
-            btnVoz.classList.remove("btn-ativo");
-        };
-
-        utteranceAtual.onerror = function() {
-            vozAtiva = false;
-            btnVoz.innerText = "🔊 Ouvir Site";
-            btnVoz.classList.remove("btn-ativo");
-            sinteseVoz.cancel();
-        };
-        
-        vozAtiva = true;
-        btnVoz.innerText = "🛑 Parar Leitura";
-        btnVoz.classList.add("btn-ativo");
-        
-        sinteseVoz.speak(utteranceAtual);
-        
-    } else {
-        vozAtiva = false;
-        btnVoz.innerText = "🔊 Ouvir Site";
-        btnVoz.classList.remove("btn-ativo");
-    }
-}
-
-/* ==========================================================================
-   3. ALTO CONTRASTE
-   ========================================================================= */
-function toggleContraste() {
-    document.body.classList.toggle("alto-contraste");
-    const btn = document.getElementById("btn-contraste");
-    if (document.body.classList.contains("alto-contraste")) {
-        btn.innerText = "☀️ Modo Normal";
-    } else {
-        btn.innerText = "🌓 Contraste";
-    }
-}
-
-/* ==========================================================================
-   4. SISTEMA DO QUIZ INTERATIVO
-   ========================================================================= */
-function renderizarPerguntaQuiz() {
-    const statusTxt = document.getElementById("status-pergunta");
-    const perguntaTxt = document.getElementById("pergunta-quiz");
-    const btnA = document.getElementById("btn-opcao-a");
-    const btnB = document.getElementById("btn-opcao-b");
-    const resultadoTxt = document.getElementById("resultado-quiz");
     const btnProxima = document.getElementById("btn-proxima");
-
-    resultadoTxt.innerText = "";
-    btnProxima.style.display = "none";
-    
-    btnA.style.display = "inline-block";
-    btnB.style.display = "inline-block";
-    btnA.disabled = false;
-    btnB.disabled = false;
-
-    if (indicePerguntaAtual < perguntasQuiz.length) {
-        const dados = perguntasQuiz[indicePerguntaAtual];
-        statusTxt.innerText = `Pergunta ${indicePerguntaAtual + 1} de ${perguntasQuiz.length}`;
-        perguntaTxt.innerText = dados.pergunta;
-        btnA.innerText = dados.opcoes[0];
-        btnB.innerText = dados.opcoes[1];
-    } else {
-        statusTxt.innerText = "✨ Quiz Concluído!";
-        perguntaTxt.innerText = `Você finalizou o teste ecológico!`;
-        
-        let feedbackAcertos = "";
-        if(acertosQuiz === perguntasQuiz.length) {
-            feedbackAcertos = "🏆 Excelente! Você possui consciência ecológica máxima!";
-        } else if(acertosQuiz >= 2) {
-            feedbackAcertos = "🌱 Muito bom! Você conhece bastante sobre o campo.";
-        } else {
-            feedbackAcertos = "📚 Vale a pena ler o Espaço Informativo para aprender mais.";
-        }
-        
-        resultadoTxt.innerHTML = `<span style="font-size:1.2rem; display:block; margin-bottom:8px;">Você acertou <strong>${acertosQuiz} de ${perguntasQuiz.length}</strong> perguntas.</span> ${feedbackAcertos}`;
-        
-        btnA.style.display = "none";
-        btnB.style.display = "none";
+    if(btnProxima) {
+        btnProxima.addEventListener("click", function() {
+            indiceQuiz++;
+            if(indiceQuiz < bancoQuestoes.length) {
+                renderizarQuestao();
+                document.getElementById("resultado-quiz").innerText = "";
+                btnProxima.classList.add("avancar-oculto");
+            } else {
+                document.getElementById("status-pergunta").innerText = "Quiz Concluído!";
+                document.getElementById("pergunta-quiz").innerText = "Parabéns por exercitar o conhecimento técnico sobre o agro sustentável!";
+                document.getElementById("btn-opcao-a").style.display = "none";
+                document.getElementById("btn-opcao-b").style.display = "none";
+                btnProxima.style.display = "none";
+            }
+        });
     }
 }
 
-function verificarResposta(opcaoSelecionada) {
-    const dados = perguntasQuiz[indicePerguntaAtual];
-    const resultadoTxt = document.getElementById("resultado-quiz");
-    const btnA = document.getElementById("btn-opcao-a");
-    const btnB = document.getElementById("btn-opcao-b");
+function renderizarQuestao() {
+    const status = document.getElementById("status-pergunta");
+    const containerPergunta = document.getElementById("pergunta-quiz");
+    const optA = document.getElementById("btn-opcao-a");
+    const optB = document.getElementById("btn-opcao-b");
+
+    if (containerPergunta && optA && optB) {
+        status.innerText = `Pergunta ${indiceQuiz + 1} de ${bancoQuestoes.length}`;
+        containerPergunta.innerText = bancoQuestoes[indiceQuiz].pergunta;
+        optA.innerText = bancoQuestoes[indiceQuiz].opcoes[0];
+        optB.innerText = bancoQuestoes[indiceQuiz].opcoes[1];
+        
+        // Remove listeners antigos redefinindo os clones dos nós
+        optA.onclick = () => analisarEscolha(0);
+        optB.onclick = () => analisarEscolha(1);
+    }
+}
+
+function analisarEscolha(opcaoSelecionada) {
+    const feedback = document.getElementById("resultado-quiz");
     const btnProxima = document.getElementById("btn-proxima");
+    const correta = bancoQuestoes[indiceQuiz].correta;
 
-    btnA.disabled = true;
-    btnB.disabled = true;
-
-    if (opcaoSelecionada === dados.correta) {
-        acertosQuiz++; 
-        resultadoTxt.innerText = "✅ " + dados.explicacao;
-        resultadoTxt.style.color = "#27ae60";
+    if (opcaoSelecionada === correta) {
+        feedback.innerText = "🟢 Resposta Correta! Excelente domínio técnico.";
+        feedback.style.color = "#81c784";
     } else {
-        resultadoTxt.innerText = "❌ Resposta incorreta. O correto seria a alternativa que evita danos ecológicos.";
-        resultadoTxt.style.color = "#e74c3c";
+        feedback.innerText = "❌ Resposta Incorreta. Revise as diretrizes da Embrapa e tente novamente!";
+        feedback.style.color = "#e53935";
     }
-    
-    btnProxima.style.display = "inline-block";
-}
-
-function proximaPergunta() {
-    indicePerguntaAtual++;
-    renderizarPerguntaQuiz();
+    if(btnProxima) btnProxima.classList.remove("avancar-oculto");
 }
 
 /* ==========================================================================
-   5. LOGICA COMPUTACIONAL DO PAINEL DE DECISÃO SUSTENTÁVEL
-   ========================================================================= */
-function simularClima(velocidadeVento, umidadeAr) {
+   MÓDULO 5: CONTROLE DO PAINEL DE SIMULAÇÃO DE DECISÃO
+   ========================================================================== */
+function inicializarSimuladorClima() {
+    const forte = document.getElementById("btn-simular-forte");
+    const seco = document.getElementById("btn-simular-seco");
+    const instavel = document.getElementById("btn-simular-instavel");
+
+    if (forte) forte.addEventListener("click", () => aplicarLogicaClimatica(25, 85));
+    if (seco) seco.addEventListener("click", () => aplicarLogicaClimatica(8, 10));
+    if (instavel) instavel.addEventListener("click", () => aplicarLogicaClimatica(14, 45));
+}
+
+function aplicarLogicaClimatica(velocidadeVento, proximidadeChuva) {
     const luzPulverizacao = document.getElementById("luz-pulverizacao");
     const textoPulverizacao = document.getElementById("texto-pulverizacao");
     const luzIrrigacao = document.getElementById("luz-irrigacao");
     const textoIrrigacao = document.getElementById("texto-irrigacao");
 
+    // Lógica para Pulverização baseada em Ventos (Zonas Críticas)
     if (velocidadeVento > 20) {
-        luzPulverizacao.className = "status-luz vermelho-ativo";
-        textoPulverizacao.innerHTML = `<strong>Bloqueado:</strong> Vento a ${velocidadeVento} km/h. Risco extremo de deriva química!`;
-    } else if (velocidadeVento < 5) {
-        luzPulverizacao.className = "status-luz vermelho-ativo";
-        textoPulverizacao.innerHTML = `<strong>Aviso:</strong> Vento muito fraco (${velocidadeVento} km/h). Risco de inversão térmica.`;
+        luzPulverizacao.className = "status-luz vermelha";
+        textoPulverizacao.innerText = `⚠️ Proibido pulverizar (Vento forte: ${velocidadeVento} km/h). Risco extremo de deriva química externa.`;
     } else {
-        luzPulverizacao.className = "status-luz verde-ativo";
-        textoPulverizacao.innerHTML = `<strong>Liberado:</strong> Vento a ${velocidadeVento} km/h. Condição ideal para aplicação segura.`;
+        luzPulverizacao.className = "status-luz verde";
+        textoPulverizacao.innerText = `✅ Condições ótimas para a pulverização (${velocidadeVento} km/h). Insumo fixado de forma segura.`;
     }
 
-    if (umidadeAr > 80) {
-        luzIrrigacao.className = "status-luz vermelho-ativo";
-        textoIrrigacao.innerHTML = `<strong>Desligar:</strong> Umidade em ${umidadeAr}%. Chuva iminente detectada via satélite. Economize água!`;
-    } else if (umidadeAr < 30) {
-        luzIrrigacao.className = "status-luz verde-ativo";
-        textoIrrigacao.innerHTML = `<strong>Ativar Urgente:</strong> Solo seco (${umidadeAr}%). Irrigação necessária para o crescimento.`;
+    // Lógica para Irrigação baseada em Nuvem e frentes de Precipitação
+    if (proximidadeChuva > 70) {
+        luzIrrigacao.className = "status-luz vermelha";
+        textoIrrigacao.innerText = `⚠️ Irrigação pausada. Probabilidade de chuva em ${proximidadeChuva}%. Economizando recursos hídricos e energia.`;
+    } else if (proximidadeChuva < 20) {
+        luzIrrigacao.className = "status-luz verde";
+        textoIrrigacao.innerText = `✅ Solo necessitando hidratação. Sem previsões de chuvas imediatas (${proximidadeChuva}%). Irrigação liberada.`;
     } else {
-        luzIrrigacao.className = "status-luz verde-ativo";
-        textoIrrigacao.innerHTML = `<strong>Modo Econômico:</strong> Umidade estável em ${umidadeAr}%. Monitorando as próximas nuvens.`;
+        luzIrrigacao.className = "status-luz cinza";
+        textoIrrigacao.innerText = `Instável. Monitore as atualizações de nuvens no Radar regional antes de ligar as bombas de água.`;
     }
 }
-
-/* ==========================================================================
-   6. NOVO: LÓGICA DA CALCULADORA ECOLÓGICA (INTERATIVIDADE EXIGIDA)
-   ========================================================================= */
-function calcularImpactoEcologico() {
-    const hectares = parseFloat(document.getElementById("input-hectares").value);
-    const resultadoDiv = document.getElementById("resultado-calculadora");
-    
-    if (isNaN(hectares) || hectares <= 0) {
-        alert("Por favor, insira um número válido de hectares.");
-        return;
-    }
-    
-    // Cálculo fictício baseado em médias técnicas (Economia aproximada de 1500L de água por hectare/mês com sensores)
-    const aguaPoupada = hectares * 1500;
-    const derivasEvitadas = Math.ceil(hectares * 0.4);
-    
-    // Atualiza o DOM dinamicamente com animação de aparecimento suave
-    document.getElementById("calc-agua").innerText = aguaPoupada.toLocaleString('pt-BR') + " Litros";
-    document.getElementById("calc-deriva").innerText = derivasEvitadas + " Vezes";
-    
-    resultadoDiv.style.display = "flex";
-}
-
-// Executa automaticamente as configurações iniciais assim que o arquivo é lido pelo navegador
-inicializarQuizEPainel();

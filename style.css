@@ -1,18 +1,45 @@
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   VARIÁVEIS DE DESIGN E CORES PADRÃO
    ========================================================================== */
 :root {
-    --cor-principal: #1b4332;   
-    --cor-secundaria: #52b788;  
-    --cor-background: #f4f9f4;  
-    --cor-textos: #2d3748;      
-    --cor-cards: #ffffff;       
+    --bg-global: #0d1b12;
+    --bg-container: #14281c;
+    --cor-principal: #4caf50;
+    --cor-principal-hover: #388e3c;
+    --cor-secundaria: #81c784;
+    --texto-claro: #f5f5f5;
+    --texto-escuro: #1b1b1b;
+    --texto-mutado: #a5d6a7;
+    --borda-suave: rgba(76, 175, 80, 0.2);
+    --sombra-card: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --transicao-suave: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --fonte-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Modo de Alto Contraste Nativo */
+body.alto-contraste {
+    --bg-global: #000000;
+    --bg-container: #000000;
+    --cor-principal: #ffff00;
+    --cor-principal-hover: #ffff00;
+    --cor-secundaria: #ffff00;
+    --texto-claro: #ffffff;
+    --texto-mutado: #ffffff;
+    --borda-suave: #ffffff;
+    border: 2px solid #ffff00;
+}
+
+body.alto-contraste .barra-container-padrao {
+    border: 1px solid #fff;
+}
+
+/* ==========================================================================
+   ESTILOS GERAIS E RESPONSIVIDADE
+   ========================================================================== */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -20,215 +47,180 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--cor-background);
-    color: var(--cor-textos);
+    background-color: var(--bg-global);
+    color: var(--texto-claro);
+    font-family: var(--fonte-base);
     line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+    transition: var(--transicao-suave);
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* Link de Salto para Acessibilidade Teclado */
+.saltar-conteudo {
+    position: absolute;
+    top: -100px;
+    left: 10px;
+    background: var(--cor-principal);
+    color: var(--texto-claro);
+    padding: 10px;
+    z-index: 9999;
+    transition: top 0.2s;
+}
+.saltar-conteudo:focus {
+    top: 10px;
+}
+
 /* ==========================================================================
-   2. NAVBAR RESPONSIVA (COM TRANSIÇÕES SUAVES)
+   NAVBAR & HERO
    ========================================================================== */
 .navbar {
-    background-color: var(--cor-principal);
-    color: white;
+    background-color: var(--bg-container);
+    border-bottom: 2px solid var(--borda-suave);
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 3%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    flex-wrap: nowrap; 
 }
 
-.navbar .logo {
-    font-size: 1.3rem;
+.logo {
+    font-size: 1.4rem;
     font-weight: bold;
-    white-space: nowrap;
-    margin-right: 15px;
-}
-
-.navbar nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-}
-
-.nav-links {
-    display: flex;
-    gap: 12px;
-}
-
-.navbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-}
-
-.navbar nav a:hover {
     color: var(--cor-secundaria);
+}
+
+.nav-links a {
+    color: var(--texto-claro);
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 0.95rem;
+    transition: var(--transicao-suave);
+}
+
+.nav-links a:hover, .nav-links a:focus {
+    color: var(--cor-principal);
+    outline: none;
 }
 
 .acessibilidade-botoes {
     display: flex;
-    gap: 6px;
-    margin-left: 15px;
+    gap: 10px;
 }
 
 .nav-btn-acessivel {
-    background-color: transparent;
-    color: white;
-    border: 1.5px solid white;
-    padding: 5px 10px;
+    background: transparent;
+    border: 1px solid var(--cor-principal);
+    color: var(--texto-claro);
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+    font-size: 0.85rem;
+    transition: var(--transicao-suave);
 }
 
-.nav-btn-acessivel:hover {
-    background-color: white;
-    color: var(--cor-principal);
-    transform: scale(1.05);
+.nav-btn-acessivel:hover, .nav-btn-acessivel:focus {
+    background: var(--cor-principal);
+    color: var(--texto-escuro);
 }
 
-.btn-ativo {
-    background-color: #f1c40f !important;
-    color: #000 !important;
-    border-color: #f1c40f !important;
-}
-
-/* ==========================================================================
-   3. HERO SECTION
-   ========================================================================== */
 .hero-section {
     position: relative;
-    background: url('Agrinho.png') no-repeat center center/cover;
-    height: 380px;
+    background-color: #1e3526;
+    height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
+    padding: 20px;
 }
 
 .overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.45);
-    z-index: 1;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    padding: 0 20px;
+    z-index: 1;
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-}
-
-.hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    font-weight: 300;
+    color: var(--cor-secundaria);
 }
 
 .badge {
-    background-color: var(--cor-secundaria);
-    padding: 6px 15px;
+    display: inline-block;
+    background: var(--cor-principal);
+    color: var(--texto-escuro);
+    padding: 5px 15px;
     border-radius: 20px;
-    font-size: 0.9rem;
     font-weight: bold;
+    margin-top: 15px;
+    font-size: 0.85rem;
 }
 
 /* ==========================================================================
-   4. SEÇÕES COM ANIMAÇÕES MODERNAS E SOMBRAS CONTEXTUAIS
+   SEÇÕES DO SITE / CARDS / FLASHCARDS
    ========================================================================== */
 .site-section, .radar-section, .informativo-section, .ferramentas-section, .conclusao-section {
-    background: var(--cor-cards);
-    padding: 30px;
+    background-color: var(--bg-container);
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    margin-top: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.site-section:hover, .radar-section:hover, .ferramentas-section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(27, 67, 50, 0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--borda-suave);
 }
 
 h2 {
     color: var(--cor-principal);
-    border-bottom: 3px solid var(--cor-secundaria);
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
 }
 
 .sub-painel {
-    color: #718096;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
+    color: var(--texto-mutado);
+    margin-bottom: 25px;
+    font-size: 1rem;
 }
 
 .creditos-bloco {
+    background: rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 6px;
     margin-top: 20px;
-    padding: 16px;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid var(--cor-principal);
-    border-radius: 8px;
+    border-left: 4px solid var(--cor-principal);
 }
 
 .creditos-titulo {
     font-weight: bold;
-    color: var(--cor-principal);
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     margin-bottom: 8px;
-}
-
-.creditos-item {
-    font-size: 0.92rem;
-    margin-bottom: 4px;
-    color: var(--cor-textos);
+    color: var(--cor-secundaria);
 }
 
 .creditos-item span {
     font-weight: 600;
+    color: var(--texto-mutado);
 }
 
+/* Radar */
 .radar-container {
     position: relative;
     width: 100%;
     height: 450px;
     border-radius: 8px;
     overflow: hidden;
-    border: 2px solid #e2e8f0;
+    border: 2px solid var(--borda-suave);
 }
 
 .radar-frame {
@@ -238,49 +230,45 @@ h2 {
 
 .radar-legendas {
     margin-top: 20px;
-    background: #f8fafc;
-    padding: 15px;
-    border-radius: 8px;
 }
 
 .legenda-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .legenda-item {
-    display: flex;
-    align-items: center;
+    background: rgba(0,0,0,0.15);
+    padding: 12px;
+    border-radius: 6px;
     font-size: 0.9rem;
 }
 
 .cor-bloco {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    margin-right: 10px;
-    flex-shrink: 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
 }
+.c-verde { background: #4caf50; }
+.c-amarelo { background: #ffeb3b; }
+.c-vermelho { background: #f44336; }
 
-.c-verde { background-color: #27ae60; }
-.c-amarelo { background-color: #f1c40f; }
-.c-vermelho { background-color: #e74c3c; }
-
-/* ==========================================================================
-   5. FLASH CARDS ANIMADOS
-   ========================================================================== */
+/* Flashcards Interativos */
 .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
-    perspective: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
 .flash-card {
-    background-color: transparent;
-    height: 320px;
+    background: transparent;
+    perspective: 1000px;
+    height: 200px;
     cursor: pointer;
 }
 
@@ -295,245 +283,176 @@ h2 {
 
 .flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner {
     transform: rotateY(180deg);
+    outline: none;
 }
 
 .flash-card-front, .flash-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 8px;
-    padding: 25px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--borda-suave);
 }
 
 .flash-card-front {
-    background-color: #f8fafc;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-}
-
-.flash-card-front h3 {
-    color: var(--cor-principal);
-    font-size: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .flash-card-back {
-    background-color: var(--cor-principal);
-    color: white;
+    background-color: #1b3526;
     transform: rotateY(180deg);
-    justify-content: center;
-}
-
-.flash-card-back h3 {
-    color: var(--cor-secundaria);
-    margin-bottom: 12px;
 }
 
 .info-tag {
-    display: inline-block;
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: var(--cor-principal);
+    color: var(--texto-escuro);
+    padding: 3px 10px;
     font-size: 0.75rem;
     font-weight: bold;
-    padding: 4px 10px;
     border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 .instrucao-virar {
-    font-size: 0.85rem;
-    color: #718096;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 15px;
 }
 
 /* ==========================================================================
-   6. DESIGN DA CALCULADORA ECOLÓGICA
+   DIAGNÓSTICO CIENTÍFICO E GRÁFICOS EM CSS
    ========================================================================== */
-.calc-container {
-    background: #f8fafc;
+.diagnostico-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.texto-profundo-box {
+    background: rgba(255, 255, 255, 0.03);
     padding: 25px;
     border-radius: 8px;
     border-left: 5px solid var(--cor-principal);
 }
 
-.calc-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
+.texto-profundo-box h3 {
+    margin-bottom: 15px;
 }
 
-.calc-inputs label {
-    font-weight: 600;
-    color: var(--cor-principal);
+.texto-profundo-box p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    text-align: justify;
 }
 
-.calc-inputs input {
-    padding: 10px;
-    border: 2px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-.calc-inputs input:focus {
-    border-color: var(--cor-secundaria);
-}
-
-.btn-calculadora {
-    background-color: var(--cor-principal);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.btn-calculadora:hover {
-    background-color: #2d6a4f;
-    transform: translateY(-2px);
-}
-
-.calc-resultado {
-    margin-top: 25px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    animation: fadeInUp 0.5s ease-in-out;
-}
-
-.metric-box {
-    background: white;
-    border: 1px solid #e2e8f0;
-    padding: 15px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    min-width: 250px;
-    flex: 1;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-}
-
-.metric-icon {
-    font-size: 2.2rem;
-}
-
-.metric-data h4 {
-    font-size: 1.4rem;
-    color: var(--cor-principal);
-}
-
-.metric-data p {
-    font-size: 0.85rem;
-    color: #718096;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ==========================================================================
-   7. TABELA E QUIZ (BOTÕES INTERATIVOS E ACESSIBILIDADE)
-   ========================================================================== */
-.tabela-impactos {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.tabela-impactos th, .tabela-impactos td {
-    border: 1px solid #e2e8f0;
-    padding: 12px;
-    text-align: left;
-}
-
-.tabela-impactos th {
-    background-color: var(--cor-principal);
-    color: white;
-}
-
-.tabela-impactos tr:nth-child(even) {
-    background-color: #f8fafc;
-}
-
-.quiz-container {
-    background-color: #f8fafc;
+.graficos-box {
+    background: rgba(255, 255, 255, 0.03);
     padding: 25px;
     border-radius: 8px;
-    border-left: 5px solid var(--cor-secundaria);
+}
+
+.graficos-box h3 {
+    margin-bottom: 20px;
     text-align: center;
 }
 
-.botoes-quiz button {
-    background-color: var(--cor-principal);
-    color: white;
-    border: none;
-    padding: 14px 20px;
-    border-radius: 8px;
-    cursor: pointer;
+.grafico-barra-item {
+    margin-bottom: 20px;
+}
+
+.grafico-barra-item span {
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.barra-container-padrao {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    height: 24px;
     width: 100%;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-align: left;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
 }
 
-.botoes-quiz button:hover:not(:disabled) {
-    background-color: #2d6a4f;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(45, 106, 79, 0.2);
-}
-
-.botoes-quiz button:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-}
-
-#btn-proxima {
+.barra-dados {
+    width: 0; /* Controlado via JS puro de forma nativa */
+    height: 100%;
+    text-align: right;
+    padding-right: 12px;
     color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 6px;
+    font-size: 0.8rem;
+    line-height: 24px;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#btn-proxima:hover {
-    filter: brightness(1.1);
+.barra-perigo { background: linear-gradient(90deg, #b71c1c, #d32f2f); }
+.barra-sucesso { background: linear-gradient(90deg, #1b5e20, #2e7d32); }
+
+.citacao-dados {
+    font-size: 0.85rem;
+    font-style: italic;
+    opacity: 0.8;
+    border-left: 3px solid var(--cor-principal);
+    padding-left: 12px;
+    margin-top: 20px;
 }
 
 /* ==========================================================================
-   7.1 DESIGN DA SEÇÃO DE INDICADORES OFICIAIS DO CAMPO
+   DESENVOLVIMENTO TÉCNICO & INDICADORES
    ========================================================================== */
+.desenvolvimento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.desenvolvimento-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.desenvolvimento-card h3 {
+    font-size: 1.1rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 10px;
+}
+
+.desenvolvimento-card p {
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+/* Indicadores Animados */
 .indicadores-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 15px;
+    gap: 20px;
 }
 
 .indicador-linha {
     display: flex;
     align-items: center;
-    background-color: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid var(--cor-secundaria);
-    padding: 18px;
+    background: rgba(0,0,0,0.15);
+    padding: 20px;
     border-radius: 8px;
     gap: 20px;
 }
 
 .indicador-numero {
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-size: 2.5rem;
+    font-weight: bold;
     color: var(--cor-principal);
     min-width: 100px;
     text-align: center;
@@ -541,42 +460,159 @@ h2 {
 
 .indicador-texto {
     font-size: 0.95rem;
-    color: var(--cor-textos);
 }
 
 .fonte-dado {
     font-size: 0.8rem;
-    font-weight: bold;
-    color: #718096;
-    display: inline-block;
-    margin-top: 5px;
+    opacity: 0.6;
 }
 
 /* ==========================================================================
-   8. PAINEL DE TOMADA DE DECISÃO
+   TABELAS E CALCULADORA
    ========================================================================== */
+.tabela-responsiva-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+}
+
+.tabela-impactos {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.tabela-impactos th, .tabela-impactos td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--borda-suave);
+}
+
+.tabela-impactos th {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--cor-secundaria);
+}
+
+/* Calculadora */
+.calc-container {
+    background: rgba(0,0,0,0.15);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.calc-inputs input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--borda-suave);
+    padding: 10px;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.btn-calculadora, .btn-resposta-quiz, .btn-avancar-quiz, .botoes-simulador button {
+    background-color: var(--cor-principal);
+    color: var(--texto-escuro);
+    border: none;
+    padding: 12px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transicao-suave);
+}
+
+.btn-calculadora:hover, .botoes-simulador button:hover {
+    background-color: var(--cor-principal-hover);
+}
+
+.calc-resultado {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.resultado-oculto {
+    display: none;
+}
+
+.metric-box {
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--borda-suave);
+}
+
+.metric-icon {
+    font-size: 2rem;
+}
+
+/* ==========================================================================
+   QUIZ E PAINEL DE TOMADA DE DECISÃO
+   ========================================================================== */
+.quiz-container {
+    background: rgba(0,0,0,0.2);
+    padding: 25px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.botoes-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.btn-resposta-quiz {
+    background: rgba(255,255,255,0.05);
+    color: var(--texto-claro);
+    border: 1px solid var(--borda-suave);
+    text-align: left;
+}
+
+.btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
+    background: rgba(76, 175, 80, 0.2);
+    outline: none;
+}
+
+.feedback-quiz {
+    margin: 15px 0;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+.avancar-oculto { display: none; }
+
+/* Cards do Painel */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    margin-bottom: 25px;
 }
 
 .card {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borda-suave);
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    overflow: hidden;
 }
 
 .card-image-sim {
-    background: #e2e8f0;
+    background: rgba(0,0,0,0.2);
     font-size: 3rem;
     padding: 20px;
     text-align: center;
@@ -584,251 +620,121 @@ h2 {
 
 .card-body {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
 }
 
-.card-body p {
-    margin-bottom: 15px;
+.card-body h3 {
+    margin-bottom: 10px;
+    color: var(--cor-secundaria);
 }
 
 .status-box {
     display: flex;
     align-items: center;
-    background: white;
+    gap: 10px;
+    margin-top: 15px;
+    background: rgba(0,0,0,0.3);
     padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #edf2f7;
+    border-radius: 4px;
 }
 
 .status-luz {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    margin-right: 10px;
-    flex-shrink: 0;
 }
-
-.cinza { background-color: #a0aec0; }
-.verde-ativo { background-color: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
-.vermelho-ativo { background-color: #e74c3c; box-shadow: 0 0 8px #e74c3c; }
-
-.status-texto {
-    font-size: 0.9rem;
-}
+.status-luz.cinza { background: #757575; }
+.status-luz.vermelha { background: #e53935; box-shadow: 0 0 10px #e53935; }
+.status-luz.verde { background: #43a047; box-shadow: 0 0 10px #43a047; }
 
 .simulador-controle {
-    margin-top: 25px;
-    background: #edf2f7;
+    background: rgba(0,0,0,0.3);
     padding: 20px;
     border-radius: 8px;
-}
-
-.simulador-controle h3 {
-    margin-bottom: 8px;
-    color: var(--cor-principal);
-}
-
-.simulador-controle p {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
 }
 
 .botoes-simulador {
     display: flex;
-    gap: 10px;
     flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-.botoes-simulador button {
-    background: var(--cor-principal);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-.botoes-simulador button:hover {
-    background-color: #2d6a4f;
-    transform: scale(1.03);
-}
-
+/* ==========================================================================
+   CONCLUSÃO, REFERÊNCIAS E FOOTER
+   ========================================================================== */
 .conclusao-conteudo {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
-.final-highlight {
-    background-color: #e8f5e9;
+.conclusao-bloco {
+    background: rgba(255,255,255,0.02);
     padding: 20px;
-    border-radius: 8px;
-    border-left: 5px solid var(--cor-principal);
+    border-radius: 6px;
+}
+
+.final-highlight {
+    border: 1px solid var(--cor-principal);
+    background: rgba(76,175,80,0.05);
+}
+
+.lista-referencias-oficiais {
+    list-style-type: square;
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.lista-referencias-oficiais li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
 }
 
 footer {
-    background-color: var(--cor-principal);
-    color: white;
+    background: #060c08;
+    border-top: 2px solid var(--borda-suave);
+    padding: 30px;
     text-align: center;
-    padding: 25px;
-    margin-top: 40px;
+    font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   9. CLASSE DE ALTO CONTRASTE REFORMULADA (CORREÇÃO DE LEGIBILIDADE GERAL)
-   ========================================================================== */
-body.alto-contraste {
-    background-color: #000000 !important;
-    color: #ffffff !important;
+.footer-hashtag {
+    font-weight: bold;
+    color: var(--cor-secundaria);
+    margin: 5px 0;
 }
 
-body.alto-contraste .navbar,
-body.alto-contraste footer,
-body.alto-contraste .botoes-quiz button,
-body.alto-contraste .botoes-simulador button,
-body.alto-contraste .btn-calculadora,
-body.alto-contraste #btn-proxima {
-    background-color: #000000 !important;
-    color: #ffff00 !important;
-    border: 2px solid #ffff00 !important;
+.footer-tema {
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste strong,
-body.alto-contraste #pergunta-quiz,
-body.alto-contraste .creditos-titulo,
-body.alto-contraste .indicador-numero {
-    color: #ffff00 !important;
+/* Animações Nativas */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-body.alto-contraste p,
-body.alto-contraste .sub-painel,
-body.alto-contraste .instrucao-virar,
-body.alto-contraste .calc-inputs label {
-    color: #ffffff !important;
-}
-
-body.alto-contraste .site-section,
-body.alto-contraste .radar-section,
-body.alto-contraste .informativo-section,
-body.alto-contraste .ferramentas-section,
-body.alto-contraste .conclusao-section,
-body.alto-contraste .card,
-body.alto-contraste .radar-legendas,
-body.alto-contraste .quiz-container,
-body.alto-contraste .simulador-controle,
-body.alto-contraste .flash-card-front,
-body.alto-contraste .status-box,
-body.alto-contraste .calc-container {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border: 2px solid #ffffff !important;
-}
-
-/* --- FORÇANDO TEXTO PRETO EM BLOCOS DE DESTAQUE CLAROS --- */
-
-/* 1. Bloco de Identificação, Cards da Calculadora e Seção de Indicadores */
-body.alto-contraste .creditos-bloco,
-body.alto-contraste .metric-box,
-body.alto-contraste .indicador-linha {
-    background-color: #ffffff !important;
-    border: 2px solid #ffff00 !important;
-}
-
-/* Garante que os números e descrições fiquem pretos para contraste perfeito */
-body.alto-contraste .creditos-item,
-body.alto-contraste .creditos-item span,
-body.alto-contraste .metric-data h4,
-body.alto-contraste .metric-data p,
-body.alto-contraste .indicador-texto,
-body.alto-contraste .indicador-numero,
-body.alto-contraste .fonte-dado {
-    color: #000000 !important;
-}
-
-/* 2. Bloco de Destaque da Conclusão Final */
-body.alto-contraste .final-highlight {
-    background-color: #ffffff !important; 
-    border: 2px solid #ffff00 !important;
-    border-left: 5px solid #ffff00 !important;
-}
-
-body.alto-contraste .final-highlight h3,
-body.alto-contraste .final-highlight p {
-    color: #000000 !important;
-}
-
-/* 3. Verso dos Flash Cards */
-body.alto-contraste .flash-card-back {
-    background-color: #ffff00 !important;
-    color: #000000 !important;
-}
-
-body.alto-contraste .flash-card-back h3,
-body.alto-contraste .flash-card-back p {
-    color: #000000 !important;
-}
-
-/* 4. Tabelas */
-body.alto-contraste .tabela-impactos th {
-    background-color: #ffff00 !important;
-    color: #000000 !important;
-}
-
-body.alto-contraste .tabela-impactos td {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-
-/* ==========================================================================
-   10. MEDIA QUERIES (MELHORIA EXTREMA DE RESPONSIVIDADE)
-   ========================================================================== */
+/* Media Query de Ajustes Mobile */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
         text-align: center;
-        padding: 15px;
-    }
-    .navbar nav {
-        flex-direction: column;
-        gap: 12px;
     }
     .nav-links {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
     }
-    .acessibilidade-botoes {
-        margin-left: 0;
-        margin-top: 5px;
-    }
-    .hero-section {
-        height: 280px;
+    .nav-links a {
+        margin: 0 5px;
     }
     .hero-content h1 {
         font-size: 2rem;
     }
-    .hero-content p {
-        font-size: 1rem;
-    }
-    .tabela-impactos {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-    .calc-resultado {
-        flex-direction: column;
-    }
-    .indicador-linha {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .site-section {
+        padding: 20px;
     }
 }
