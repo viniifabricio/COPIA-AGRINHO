@@ -43,17 +43,15 @@ function configurarSistemaAcessibilidade() {
         });
     }
 
-    // 1. RECURSO RETORNADO: Ouvir Site (Sintetizador de Voz Nativo Web Speech API)
+    // 1. RECURSO: Ouvir Site (Sintetizador de Voz Nativo Web Speech API)
     let sintetizando = false;
     if (btnOuvir) {
         btnOuvir.addEventListener("click", function () {
             if (!sintetizando) {
-                // Captura todo o texto relevante do container principal
                 const textoParaLer = document.getElementById("conteudo-principal").innerText;
-                const ruidoclean = textoParaLer.replace(/\$/g, ""); // limpa sintaxe LaTeX para leitura limpa
+                window.speechSynthesis.cancel(); 
                 
-                window.speechSynthesis.cancel(); // Reseta instâncias anteriores
-                const fala = new SpeechSynthesisUtterance(ruidoclean);
+                const fala = new SpeechSynthesisUtterance(textoParaLer);
                 fala.lang = "pt-BR";
                 fala.rate = 1.0;
                 
@@ -126,7 +124,7 @@ function configurarSistemaAcessibilidade() {
         });
     }
 
-    // 6. Ajuste de Saturação (Monocromático Corrigido)
+    // 6. Ajuste de Saturação (Modo Monocromático Corrigido)
     if (btnSaturacao) {
         btnSaturacao.addEventListener("click", function () {
             document.body.classList.toggle("modo-monocromatico");
@@ -189,7 +187,7 @@ function configurarSimuladorCampo() {
 }
 
 /* ==========================================================================
-   MÓDULO 3: RETORNADO - CÁLCULOS DA CALCULADORA DE CARBONO FLORESTAL
+   MÓDULO 3: CALCULADORA DE CARBONO FLORESTAL (CORRIGIDA)
    ========================================================================== */
 function configurarCalculadoraCarbono() {
     const btnCalcular = document.getElementById("btn-calcular-carbono");
@@ -204,20 +202,27 @@ function configurarCalculadoraCarbono() {
                 return;
             }
 
-            let fatorSequestro = 0;
-            if (bioma === "mata-atlantica") fatorSequestro = 8.5;
-            else if (bioma === "cerrado") fatorSequestro = 4.2;
-            else if (bioma === "floresta-tropical") fatorSequestro = 12.0;
+            let falarSequestro = 0;
+            if (bioma === "mata-atlantica") {
+                falarSequestro = 8.5;
+            } else if (bioma === "cerrado") {
+                falarSequestro = 4.2;
+            } else if (bioma === "floresta-tropical") {
+                falarSequestro = 12.0;
+            }
 
-            // Equações Matemáticas Ecológicas
-            const toneladasCO2 = hectares * FatorSequestro;
-            const creditosGerados = toneladasCO2; // 1 Crédito = 1 tonelada de CO2 evitada
-            const valorFinanceiro = creditosGerados * 75.50; // Estimativa de preço médio de mercado por crédito em Reais
+            // Execução correta dos cálculos matemáticos
+            const toneladasCO2 = hectares * falarSequestro;
+            const creditosGerados = toneladasCO2; 
+            const valorFinanceiro = creditosGerados * 75.50; 
 
-            // Atualização no DOM
+            // Exibição formatada dos resultados
             document.getElementById("res-toneladas").innerText = toneladasCO2.toFixed(2);
             document.getElementById("res-creditos").innerText = creditosGerados.toFixed(2);
-            document.getElementById("res-financeiro").innerText = valorFinanceiro.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById("res-financeiro").innerText = valorFinanceiro.toLocaleString('pt-BR', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
         });
     }
 }

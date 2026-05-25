@@ -46,7 +46,7 @@ body.fonte-dislexia {
     --fonte-padrao: "Comic Sans MS", "Chalkboard SE", "Arial Rounded MT Bold", sans-serif !important;
 }
 
-/* CORREÇÃO DO BUG: Aplicar o filtro apenas nos elementos visuais, ignorando o painel de acessibilidade flutuante */
+/* Filtro Monocromático Isolado para não sumir com o Painel de Acessibilidade */
 body.modo-monocromatico main, 
 body.modo-monocromatico header, 
 body.modo-monocromatico footer, 
@@ -95,16 +95,19 @@ body {
 }
 .saltar-conteudo:focus { top: 15px; }
 
-/* NAVBAR DE ESTRUTURA LIMPA */
+/* NAVBAR RESPONSIVA CORRIGIDA */
 .navbar {
     background-color: var(--bg-container);
     border-bottom: 2px solid var(--borda-suave);
-    padding: 18px 40px;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; top: 0; z-index: 1000;
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    gap: 20px;
 }
 
 .logo {
@@ -112,18 +115,30 @@ body {
     font-weight: 800;
     color: var(--cor-secundaria);
     letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 15px;
 }
 
 .nav-links a {
     color: var(--texto-claro);
     text-decoration: none;
-    margin-left: 24px;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: var(--transicao-suave);
+    white-space: nowrap;
+    padding: 6px 10px;
+    border-radius: 4px;
 }
 .nav-links a:hover, .nav-links a:focus { 
     color: var(--cor-principal); 
+    background: rgba(76, 175, 80, 0.08);
     outline: none;
 }
 
@@ -156,9 +171,7 @@ body {
 h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-weight: 700; }
 .sub-painel { color: var(--texto-mutado); margin-bottom: 30px; font-size: 1.05rem; }
 
-/* ==========================================================================
-   1. CAIXA DE INTRODUÇÃO DE IMPACTO
-   ========================================================================== */
+/* 1. CAIXA DE INTRODUÇÃO DE IMPACTO */
 .impacto-box {
     border-left: 5px solid var(--cor-principal);
     padding-left: 25px;
@@ -181,13 +194,9 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     margin: 15px 0 20px 0;
     line-height: 1.5;
 }
-.texto-profundo p {
-    margin-bottom: 15px;
-}
+.texto-profundo p { margin-bottom: 15px; }
 
-/* ==========================================================================
-   2. LINHA DO TEMPO (DIÁRIO DE BORDO DO REGULAMENTO)
-   ========================================================================== */
+/* 2. LINHA DO TEMPO (DIÁRIO DE BORDO) */
 .timeline {
     position: relative;
     max-width: 850px;
@@ -195,12 +204,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     padding-left: 40px;
     border-left: 3px solid var(--borda-suave);
 }
-
-.timeline-item {
-    position: relative;
-    margin-bottom: 35px;
-}
-
+.timeline-item { position: relative; margin-bottom: 35px; }
 .timeline-dot {
     position: absolute;
     left: -48px; top: 6px;
@@ -209,7 +213,6 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     background: var(--cor-principal);
     box-shadow: 0 0 8px var(--cor-principal);
 }
-
 .timeline-content {
     background: rgba(255, 255, 255, 0.02);
     padding: 25px;
@@ -217,16 +220,8 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
-.timeline-content h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-    color: var(--texto-claro);
-}
-.timeline-content p {
-    color: var(--texto-mutado);
-    font-size: 0.95rem;
-}
-
+.timeline-content h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--texto-claro); }
+.timeline-content p { color: var(--texto-mutado); font-size: 0.95rem; }
 .timeline-date {
     font-size: 0.8rem;
     color: var(--cor-secundaria);
@@ -236,16 +231,13 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     letter-spacing: 0.5px;
 }
 
-/* ==========================================================================
-   3. PAINEL DO PRODUTOR (GRID INTERATIVO AVANÇADO)
-   ========================================================================== */
+/* 3. PAINEL DO PRODUTOR */
 .painel-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     margin-top: 30px;
 }
-
 .medidor-card {
     background: rgba(0, 0, 0, 0.25);
     border: 1px solid var(--borda-suave);
@@ -256,7 +248,6 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 }
 .medidor-card:focus-within { border-color: var(--cor-secundaria); }
 .medidor-card h3 { font-size: 1.15rem; color: var(--texto-claro); font-weight: 600; }
-
 .valor-display {
     font-size: 3.5rem;
     font-weight: 800;
@@ -264,7 +255,6 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     margin: 20px 0;
     font-variant-numeric: tabular-nums;
 }
-
 .status-alerta {
     background: #2e7d32;
     padding: 12px;
@@ -277,9 +267,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 }
 .status-alerta.alerta-ativo { background: #d32f2f !important; }
 .msg-card-status { font-size: 0.95rem; color: var(--texto-mutado); }
-
 .botoes-simulador { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 25px; }
-
 .btn-sim {
     background-color: var(--cor-principal);
     color: var(--texto-escuro);
@@ -298,30 +286,16 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     outline: none;
 }
 
-/* ==========================================================================
-   4. SEÇÃO DA CALCULADORA DE CARBONO
-   ========================================================================== */
+/* 4. CALCULADORA DE CARBONO */
 .calc-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 30px;
     margin-top: 20px;
 }
-.calc-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-.input-group label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--texto-mutado);
-}
+.calc-form { display: flex; flex-direction: column; gap: 20px; }
+.input-group { display: flex; flex-direction: column; gap: 8px; }
+.input-group label { font-weight: 600; font-size: 0.95rem; color: var(--texto-mutado); }
 .input-group input, .input-group select {
     background: rgba(0,0,0,0.3);
     border: 1px solid var(--borda-suave);
@@ -331,48 +305,21 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     font-family: inherit;
     font-size: 1rem;
 }
-.input-group input:focus, .input-group select:focus {
-    border-color: var(--cor-secundaria);
-    outline: none;
-}
+.input-group input:focus, .input-group select:focus { border-color: var(--cor-secundaria); outline: none; }
 .calc-resultado {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--borda-suave);
     border-radius: 8px;
     padding: 25px;
 }
-.calc-resultado h3 {
-    font-size: 1.2rem;
-    color: var(--cor-secundaria);
-    margin-bottom: 10px;
-}
-.calc-resultado hr {
-    border: 0; border-top: 1px solid var(--borda-suave);
-    margin-bottom: 15px;
-}
-.calc-resultado p {
-    margin-bottom: 12px;
-    font-size: 1rem;
-}
-.calc-resultado span {
-    font-weight: bold;
-    color: var(--cor-principal);
-}
-.nota-cientifica {
-    font-size: 0.78rem !important;
-    opacity: 0.6;
-    margin-top: 15px;
-    font-style: italic;
-}
+.calc-resultado h3 { font-size: 1.2rem; color: var(--cor-secundaria); margin-bottom: 10px; }
+.calc-resultado hr { border: 0; border-top: 1px solid var(--borda-suave); margin-bottom: 15px; }
+.calc-resultado p { margin-bottom: 12px; font-size: 1rem; }
+.calc-resultado span { font-weight: bold; color: var(--cor-principal); }
+.nota-cientifica { font-size: 0.78rem !important; opacity: 0.6; margin-top: 15px; font-style: italic; }
 
-/* ==========================================================================
-   ESTABILIZAÇÃO DOS FLASHCARDS EXPANDIDOS
-   ========================================================================== */
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-}
+/* 5. FLASHCARDS INFORMATIVOS */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .flash-card { background: transparent; perspective: 1000px; height: 320px; cursor: pointer; }
 .flash-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
 .flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner { transform: rotateY(180deg); outline: none; }
@@ -385,11 +332,11 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .info-tag { background: var(--cor-principal); color: var(--texto-escuro); padding: 4px 10px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; margin-bottom: 15px; letter-spacing: 0.5px; }
 .instrucao-virar { font-size: 0.8rem; opacity: 0.6; margin-top: 15px; }
 
-/* MAPA RADAR METEOROLÓGICO */
+/* 6. MAPA RADAR METEOROLÓGICO */
 .radar-container { width: 100%; height: 450px; border-radius: 10px; overflow: hidden; border: 1px solid var(--borda-suave); }
 .radar-frame { width: 100%; height: 100%; }
 
-/* QUIZ TÉCNICO INTERATIVO */
+/* 7. QUIZ TÉCNICO INTERATIVO */
 .quiz-container { background: rgba(0, 0, 0, 0.25); padding: 35px; border-radius: 10px; border: 1px solid var(--borda-suave); text-align: center; max-width: 700px; margin: 0 auto; }
 .texto-questao { font-size: 1.15rem; font-weight: 600; margin-bottom: 25px; line-height: 1.5; }
 .botoes-quiz { display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 20px auto; }
@@ -400,17 +347,10 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .btn-avancar-quiz:hover { background-color: var(--cor-principal-hover); color: white; }
 .avancar-oculto { display: none; }
 
-/* ==========================================================================
-   PAINEL FLUTUANTE DE RECURSOS DE ACESSIBILIDADE
-   ========================================================================== */
-.painel-acessibilidade-container {
-    position: fixed;
-    bottom: 30px; left: 30px;
-    z-index: 9999;
-}
+/* RECURSOS FLUTUANTES DE ACESSIBILIDADE */
+.painel-acessibilidade-container { position: fixed; bottom: 30px; left: 30px; z-index: 9999; }
 .btn-flutuante-acessivel {
-    background-color: var(--cor-principal);
-    color: var(--texto-escuro);
+    background-color: var(--cor-principal); color: var(--texto-escuro);
     border: none; width: 56px; height: 56px; border-radius: 50%;
     font-size: 1.6rem; cursor: pointer;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
@@ -418,11 +358,9 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     transition: var(--transicao-suave);
 }
 .btn-flutuante-acessivel:hover, .btn-flutuante-acessivel:focus { transform: scale(1.1); outline: none; }
-
 .menu-acessibilidade-box {
     position: absolute; bottom: 70px; left: 0;
-    background-color: var(--bg-container);
-    border: 2px solid var(--cor-principal);
+    background-color: var(--bg-container); border: 2px solid var(--cor-principal);
     border-radius: 10px; padding: 20px; width: 280px;
     box-shadow: 0 6px 25px rgba(0,0,0,0.55);
 }
@@ -438,48 +376,22 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .op-btn-acessivel:hover, .op-btn-acessivel:focus { background: var(--cor-principal); color: var(--texto-escuro); outline: none; }
 .acessibilidade-escondido { display: none; }
 
-/* ==========================================================================
-   RODAPÉ OFICIAL MANDATÓRIO
-   ========================================================================== */
-.rodape-oficial {
-    background-color: #050d09;
-    border-top: 3px solid var(--borda-suave);
-    padding: 50px 30px 30px 30px;
-    margin-top: 50px;
-}
-.rodape-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 35px;
-}
-.rodape-bloco h4 {
-    color: var(--cor-principal);
-    margin-bottom: 18px;
-    font-size: 1.15rem;
-    border-bottom: 1px solid var(--borda-suave);
-    padding-bottom: 6px;
-    font-weight: 700;
-}
+/* RODAPÉ OFICIAL MANDATÓRIO */
+.rodape-oficial { background-color: #050d09; border-top: 3px solid var(--borda-suave); padding: 50px 30px 30px 30px; margin-top: 50px; }
+.rodape-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; }
+.rodape-bloco h4 { color: var(--cor-principal); margin-bottom: 18px; font-size: 1.15rem; border-bottom: 1px solid var(--borda-suave); padding-bottom: 6px; font-weight: 700; }
 .rodape-bloco p { font-size: 0.9rem; margin-bottom: 10px; color: var(--texto-mutado); line-height: 1.5; }
-.Destaque-Senar {
-    font-weight: bold; color: #ffffff !important; background: #1b5e20;
-    display: inline-block; padding: 3px 10px; border-radius: 4px;
-    margin-top: 6px; font-size: 0.85rem;
-}
+.Destaque-Senar { font-weight: bold; color: #ffffff !important; background: #1b5e20; display: inline-block; padding: 3px 10px; border-radius: 4px; margin-top: 6px; font-size: 0.85rem; }
 .hashtag-rodape { font-weight: 700; color: var(--cor-secundaria) !important; margin-top: 6px; display: block; }
-.rodape-copyright {
-    max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.06); text-align: center;
-    font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.5;
-}
+.rodape-copyright { max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
 
-/* RESPONSIVIDADE COMPLETA */
+/* MEDIA QUERIES GERAIS RESPONSIVAS */
+@media (max-width: 992px) {
+    .navbar { flex-direction: column; text-align: center; padding: 15px; }
+    .nav-links { justify-content: center; width: 100%; }
+}
 @media (max-width: 768px) {
-    .navbar { flex-direction: column; gap: 12px; padding: 15px 20px; }
-    .nav-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .nav-links a { margin-left: 0; padding: 5px 10px; font-size: 0.9rem; }
+    .nav-links a { padding: 5px 8px; font-size: 0.85rem; }
     .hero-content h1 { font-size: 2rem; }
     .hero-content p { font-size: 1rem; }
     .site-section, .radar-section, .informativo-section { padding: 25px 20px; }

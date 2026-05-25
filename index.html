@@ -139,7 +139,7 @@
 
         <section id="calculadora-secao" class="site-section">
             <h2>🧮 Calculadora de Créditos de Carbono Florestal</h2>
-            <p class="sub-painel">Calcule uma estimativa do potencial de sequestro de $CO_2$ e geração de ativos sustentáveis com base na área de reflorestamento ou reserva legal preservada.</p>
+            <p class="sub-painel">Calcule uma estimativa do potencial de sequestro de CO<sub>2</sub> e geração de ativos sustentáveis com base na área de reflorestamento ou reserva legal preservada.</p>
             
             <div class="calc-container">
                 <div class="calc-form">
@@ -150,9 +150,9 @@
                     <div class="input-group">
                         <label for="calc-bioma">Tipo de Bioma Predominante:</label>
                         <select id="calc-bioma">
-                            <option value="mata-atlantica">Mata Atlântica (Média de 8.5 t de CO₂/ano por ha)</option>
-                            <option value="cerrado">Cerrado (Média de 4.2 t de CO₂/ano por ha)</option>
-                            <option value="floresta-tropical">Reflorestamento Comercial / Eucalipto (Média de 12 t de CO₂/ano por ha)</option>
+                            <option value="mata-atlantica">Mata Atlântica (Média de 8.5 t de CO<sub>2</sub>/ano por ha)</option>
+                            <option value="cerrado">Cerrado (Média de 4.2 t de CO<sub>2</sub>/ano por ha)</option>
+                            <option value="floresta-tropical">Reflorestamento Comercial / Eucalipto (Média de 12 t de CO<sub>2</sub>/ano por ha)</option>
                         </select>
                     </div>
                     <button id="btn-calcular-carbono" class="btn-sim">Calcular Ativos Ecológicos 🌿</button>
@@ -161,7 +161,7 @@
                 <div class="calc-resultado" id="box-resultado-calc" aria-live="polite">
                     <h3>Relatório de Sustentabilidade Estimado</h3>
                     <hr>
-                    <p><strong>Sequestro Anual de Carbono:</strong> <span id="res-toneladas">0.00</span> toneladas de $CO_2$.</p>
+                    <p><strong>Sequestro Anual de Carbono:</strong> <span id="res-toneladas">0.00</span> toneladas de CO<sub>2</sub>.</p>
                     <p><strong>Créditos de Carbono Gerados (CBIOs/UCCs):</strong> <span id="res-creditos">0.00</span> créditos.</p>
                     <p><strong>Retorno Financeiro Estimado no Mercado Livre:</strong> R$ <span id="res-financeiro">0.00</span></p>
                     <p class="nota-cientifica">*Cálculo baseado nas equações volumétricas padrão de biomassa florestal da Embrapa.</p>
@@ -191,7 +191,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Preservação Tecnológica</h3>
-                            <p>Dados oficiais emitidos pela Agência Nacional de Águas (ANA) expõem que a activity de irrigação consome uma fatia massiva da água doce captada no país. Sistemas baseados em telemetria e análise de umidade do solo, como o EcoRadar, conseguem diminuir esse impacto ambiental em até 30%.</p>
+                            <p>Dados oficiais emitidos pela Agência Nacional de Águas (ANA) expõem que a atividade de irrigação consome uma fatia massiva da água doce captada no país. Sistemas baseados em telemetria e análise de umidade do solo, como o EcoRadar, conseguem diminuir esse impacto ambiental em até 30%.</p>
                         </div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O foco estratégico estabelecido para este ano letivo está centrado no papel catalisador das tecnologias limhas no ambiente do campo. O agronegócio paranaense atua como motor econômico, necessitando de novas gerações de desenvolvedores capazes de erguer sistemas que combatam a emissão desnecessária de poluentes e a degradação do bioma.</p>
+                            <p>O foco estratégico estabelecido para este ano letivo está centrado no papel catalisador das tecnologias limpas no ambiente do campo. O agronegócio paranaense atua como motor econômico, necessitando de novas gerações de desenvolvedores capazes de erguer sistemas que combatam a emissão desnecessária de poluentes e a degradação do bioma.</p>
                         </div>
                     </div>
                 </div>
@@ -268,7 +268,7 @@
                 <p><strong>NRE:</strong> Núcleo Regional de Educação de Jacarezinho</p>
             </div>
             <div class="rodape-bloco">
-                <h4>👥 Autoria Técnica e Pedagógica</h4>
+                <h4>👥 Autoria Técnico e Pedagógica</h4>
                 <p><strong>Aluno Desenvolvedor:</strong> Vinicius Montagna Fabricio</p>
                 <p><strong>Professor Orientador:</strong> [Preencher com o Nome Completo do Professor]</p>
             </div>
@@ -294,11 +294,9 @@
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        // Inicialização robusta e forçada do Widget do VLibras
         try {
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         } catch (e) {
-            console.log("Aguardando carregamento completo do script de libras...");
             window.addEventListener('load', function() {
                 if(window.VLibras) {
                     new window.VLibras.Widget('https://vlibras.gov.br/app');
