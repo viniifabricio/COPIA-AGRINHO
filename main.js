@@ -50,13 +50,13 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
         return;
     }
 
-    let fatorCO2 = 8.5; // Mata Atlântica padrão
+    let fatorCO2 = 8.5; 
     if (bioma === 'cerrado') fatorCO2 = 4.2;
     if (bioma === 'floresta-tropical') fatorCO2 = 12.0;
 
     const toneladasAnuais = hectares * fatorCO2;
-    const creditosGerados = toneladasAnuais; // 1 tonelada = 1 crédito
-    const valorFinanceiro = creditosGerados * 75.00; // Média estimada em R$
+    const creditosGerados = toneladasAnuais; 
+    const valorFinanceiro = creditosGerados * 75.00; 
 
     document.getElementById('res-toneladas').innerText = toneladasAnuais.toFixed(2);
     document.getElementById('res-creditos').innerText = creditosGerados.toFixed(2);
@@ -64,29 +64,43 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ DE CONHECIMENTOS
+// 3. LÓGICA DO QUIZ DE CONHECIMENTOS REFORMULADO (5 PERGUNTAS)
 // ==========================================================================
 const questoes = [
     {
         pergunta: "De acordo com a Agência Nacional de Águas (ANA), qual atividade gasta mais água doce no Brasil?",
-        a: "Uso doméstico nas cidades",
-        b: "Irrigação de plantações na agricultura",
+        a: "Uso doméstico nas grandes cidades",
+        b: "Irrigação de plantações na atividade agrícola",
         resposta: "b",
-        explicacao: "Correto! A irrigação usa bastante água doce. Por isso, sistemas como o EcoRadar ajudam a economizar esse recurso."
+        explicacao: "Correto! A irrigação usa a maior parte da água doce captada. Por isso, controlar o tempo de rega com o EcoRadar ajuda a economizar muito!"
     },
     {
-        pergunta: "Por que não devemos passar defensivos agrícolas com ventos acima de 28 km/h?",
-        a: "Porque o vento forte causa a 'deriva', levando o produto para fora da lavoura",
-        b: "Porque o produto perde o efeito na hora com o calor do vento",
+        pergunta: "Por que não devemos aplicar defensivos agrícolas quando os ventos estão acima de 28 km/h?",
+        a: "Porque o vento forte arrasta o produto para fora da plantação (chamado de deriva)",
+        b: "Porque o produto seca muito rápido e perde a força por causa do calor do vento",
         resposta: "a",
-        explicacao: "Muito bem! O vento forte espalha o produto para longe, poluindo o ambiente e gerando desperdício."
+        explicacao: "Muito bem! O vento forte joga o produto químico para longe, poluindo matas vizinhas e desperdiçando dinheiro."
     },
     {
-        pergunta: "Segundo dados da Embrapa, qual a porcentagem aproximada do território brasileiro protegida por produtores dentro de suas terras?",
-        a: "Cerca de 10%",
-        b: "Cerca de 33%",
+        pergunta: "Segundo pesquisas da Embrapa, qual a porcentagem de território nacional que os produtores preservam dentro de suas próprias terras?",
+        a: "Cerca de 10% de todo o território brasileiro",
+        b: "Cerca de 33% (um terço) de todo o território brasileiro",
         resposta: "b",
-        explicacao: "Exato! Cerca de um terço do Brasil é preservado de forma voluntária pelos produtores rurais."
+        explicacao: "Exato! Os produtores rurais brasileiros mantêm e protegem florestas nativas voluntariamente em cerca de um terço do país."
+    },
+    {
+        pergunta: "O que são os Créditos de Carbono que calculamos no site?",
+        a: "Dinheiro dado pelo governo para quem usa tratores elétricos na lavoura",
+        b: "Certificados gerados por árvores que tiram poluição (CO2) do ar, que podem ser vendidos no mercado",
+        resposta: "b",
+        explicacao: "Perfeito! Cada tonelada de gás poluente que as árvores da sua fazenda guardam pode virar um crédito valioso no mercado verde."
+    },
+    {
+        pergunta: "Qual é o principal objetivo de usar um sensor de umidade do solo integrado ao monitoramento do tempo?",
+        a: "Saber o momento exato de colher as frutas e vegetais sem estragar",
+        b: "Ligar a irrigação somente quando a terra realmente precisa, evitando gastar água e energia à toa",
+        resposta: "b",
+        explicacao: "Isso mesmo! Olhando o solo e a previsão do tempo juntos, o produtor não joga água na terra se já for chover ou se o solo já estiver úmido."
     }
 ];
 
@@ -141,7 +155,6 @@ btnProx.addEventListener('click', () => {
     carregarQuestao();
 });
 
-// Inicializa o primeiro card do quiz
 carregarQuestao();
 
 // ==========================================================================
@@ -155,11 +168,9 @@ btnAbrirMenu.addEventListener('click', () => {
     btnAbrirMenu.setAttribute('aria-expanded', !expandido);
 });
 
-// Função genérica para ligar/desligar classes e salvar no navegador
 function gerenciarAcessibilidade(idBotao, classeCSS, chaveStorage) {
     const botao = document.getElementById(idBotao);
     
-    // Verifica se a opção já estava ativa na última visita
     if (localStorage.getItem(chaveStorage) === 'true') {
         document.body.classList.add(classeCSS);
         botao.setAttribute('aria-pressed', 'true');
@@ -178,7 +189,6 @@ gerenciarAcessibilidade('btn-espacamento', 'espacado', 'cfgEspaço');
 gerenciarAcessibilidade('btn-dislexia', 'fonte-dislexia', 'cfgDislexia');
 gerenciarAcessibilidade('btn-saturacao', 'preto-branco', 'cfgSaturacao');
 
-// Leitor de tela nativo simplificado (Texto para Voz)
 let lendoConteudo = null;
 document.getElementById('btn-ouvir-site').addEventListener('click', () => {
     if ('speechSynthesis' in window) {
@@ -195,7 +205,6 @@ document.getElementById('btn-ouvir-site').addEventListener('click', () => {
     }
 });
 
-// Inicialização segura do VLibras
 if (typeof window.VW === 'object') {
     new window.VW({
         path: 'https://vlibras.gov.br/app',
