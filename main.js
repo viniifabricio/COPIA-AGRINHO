@@ -8,10 +8,31 @@ document.addEventListener("DOMContentLoaded", function () {
     configurarSimuladorCampo();
     configurarCalculadoraCarbono();
     configurarModuloQuiz();
+    inicializarWidgetVLibras(); // Inicialização externa corrigida e movida para cá
 });
 
 /* ==========================================================================
-   MÓDULO 1: ACESSIBILIDADE COMPLETA (OUVIR SITE / AUDIO E CONTROLE COGNITIVO)
+   INICIALIZADOR DO PLUGIN DE ACESSIBILIDADE GOVERNAMENTAL VLIBRAS
+   ========================================================================== */
+function inicializarWidgetVLibras() {
+    try {
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            // Tenta carregar novamente em caso de atraso na resposta do servidor federal
+            window.addEventListener('load', function() {
+                if (window.VLibras) {
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    } catch (erro) {
+        console.warn("Aviso de Acessibilidade: Ocorreu um atraso na conexão com o servidor do VLibras.", erro);
+    }
+}
+
+/* ==========================================================================
+   MÓDULO 1: ACESSIBILIDADE COMPLETA (PERSISTÊNCIA LOCALSTORAGE CORRIGIDA)
    ========================================================================== */
 function configurarSistemaAcessibilidade() {
     const btnFlutuante = document.getElementById("btn-abrir-acessibilidade");
@@ -23,6 +44,28 @@ function configurarSistemaAcessibilidade() {
     const btnEspacamento = document.getElementById("btn-espacamento");
     const btnDislexia = document.getElementById("btn-dislexia");
     const btnSaturacao = document.getElementById("btn-saturacao");
+
+    // CARREGAR E REAPLICAR ESTADOS PREVIOS SALVOS NO NAVEGADOR (LOCALSTORAGE)
+    if (localStorage.getItem("pref-alto-contraste") === "ativo") {
+        document.body.classList.add("alto-contraste");
+        if (btnContraste) btnContraste.setAttribute("aria-pressed", "true");
+    }
+
+    if (localStorage.getItem("pref-fonte-dislexia") === "ativo") {
+        document.body.classList.add("fonte-dislexia");
+        if (btnDislexia) btnDislexia.innerText = "📖 Fonte: Dislexia Ativa";
+    }
+
+    if (localStorage.getItem("pref-modo-monocromatico") === "ativo") {
+        document.body.classList.add("modo-monocromatico");
+        if (btnSaturacao) btnSaturacao.innerText = "🎨 Modo Saturação: P&B";
+    }
+
+    let estagioFonte = parseInt(localStorage.getItem("pref-estagio-fonte") || "0");
+    aplicarEstagioFonte(estagioFonte, btnFonte);
+
+    let espacamentoAtivo = localStorage.getItem("pref-espacamento-ativo") === "true";
+    aplicarEspacamentoAdaptativo(espacamentoAtivo, btnEspacamento);
 
     // Gerenciador do Menu Toggle Flutuante
     if (btnFlutuante && menuBox) {
@@ -43,12 +86,17 @@ function configurarSistemaAcessibilidade() {
         });
     }
 
-    // 1. RECURSO: Ouvir Site (Sintetizador de Voz Nativo Web Speech API)
+    // 1. RECURSO: Ouvir Site (Sintetizador de Voz Nativo com Verificação de Erro)
     let sintetizando = false;
     if (btnOuvir) {
         btnOuvir.addEventListener("click", function () {
+            if (!("speechSynthesis" in window)) {
+                alert("O seu navegador atual não oferece suporte para a ferramenta de leitura de tela em áudio.");
+                return;
+            }
+
             if (!sintetizando) {
-                const textoParaLer = document.getElementById("conteudo-principal").innerText;
+                const textoParaLer = document.getElementById("conteudo-principal").textContent;
                 window.speechSynthesis.cancel(); 
                 
                 const fala = new SpeechSynthesisUtterance(textoParaLer);
@@ -57,85 +105,99 @@ function configurarSistemaAcessibilidade() {
                 
                 fala.onend = function () {
                     sintetizando = false;
-                    btnOuvir.innerText = "🔊 Ouvir Site (Texto-Voz)";
+                    btnOuvir.textContent = "🔊 Ouvir Site (Texto-Voz)";
                 };
 
                 window.speechSynthesis.speak(fala);
                 sintetizando = true;
-                btnOuvir.innerText = "🛑 Parar Leitura de Áudio";
+                btnOuvir.textContent = "🛑 Parar Leitura de Áudio";
             } else {
                 window.speechSynthesis.cancel();
                 sintetizando = false;
-                btnOuvir.innerText = "🔊 Ouvir Site (Texto-Voz)";
+                btnOuvir.textContent = "🔊 Ouvir Site (Texto-Voz)";
             }
         });
     }
 
-    // 2. Alternador de Alto Contraste
+    // 2. Alternador de Alto Contraste (Com Salvamento)
     if (btnContraste) {
         btnContraste.addEventListener("click", function () {
             document.body.classList.toggle("alto-contraste");
             const ativo = document.body.classList.contains("alto-contraste");
             btnContraste.setAttribute("aria-pressed", ativo);
+            localStorage.setItem("pref-alto-contraste", ativo ? "ativo" : "inativo");
         });
     }
 
-    // 3. Tamanho de Fonte Incremental
-    let estagioFonte = 0;
+    // 3. Tamanho de Fonte Incremental (Com Salvamento)
     if (btnFonte) {
         btnFonte.addEventListener("click", function () {
             estagioFonte = (estagioFonte + 1) % 3;
-            if (estagioFonte === 0) {
-                document.documentElement.style.setProperty('--tamanho-fonte-base', '16px');
-                btnFonte.innerText = "🔎 Ampliar Texto do Site";
-            } else if (estagioFonte === 1) {
-                document.documentElement.style.setProperty('--tamanho-fonte-base', '19px');
-                btnFonte.innerText = "🔎 Letra: [Tamanho Grande]";
-            } else {
-                document.documentElement.style.setProperty('--tamanho-fonte-base', '22px');
-                btnFonte.innerText = "🔎 Letra: [Tamanho Máximo]";
-            }
+            localStorage.setItem("pref-estagio-fonte", estagioFonte.toString());
+            aplicarEstagioFonte(estagioFonte, btnFonte);
         });
     }
 
-    // 4. Controle de Espaçamento e Altura de Linhas
-    let espacamentoAtivo = false;
+    // 4. Controle de Espaçamento e Altura de Linhas (Com Salvamento)
     if (btnEspacamento) {
         btnEspacamento.addEventListener("click", function () {
             espacamentoAtivo = !espacamentoAtivo;
-            if (espacamentoAtivo) {
-                document.documentElement.style.setProperty('--espacamento-texto-base', '2px');
-                document.documentElement.style.setProperty('--altura-linha-base', '2.0');
-                btnEspacamento.innerText = "↔️ Espaçamento: Ampliado";
-            } else {
-                document.documentElement.style.setProperty('--espacamento-texto-base', 'normal');
-                document.documentElement.style.setProperty('--altura-linha-base', '1.6');
-                btnEspacamento.innerText = "↔️ Espaçamento Adaptativo";
-            }
+            localStorage.setItem("pref-espacamento-ativo", espacamentoAtivo.toString());
+            aplicarEspacamentoAdaptativo(espacamentoAtivo, btnEspacamento);
         });
     }
 
-    // 5. Tipografia Adaptada para Dislexia
+    // 5. Tipografia Adaptada para Dislexia (Com Salvamento)
     if (btnDislexia) {
         btnDislexia.addEventListener("click", function () {
             document.body.classList.toggle("fonte-dislexia");
             const ativo = document.body.classList.contains("fonte-dislexia");
-            btnDislexia.innerText = ativo ? "📖 Fonte: Dislexia Ativa" : "📖 Fonte Amigável Dislexia";
+            btnDislexia.textContent = ativo ? "📖 Fonte: Dislexia Ativa" : "📖 Fonte Amigável Dislexia";
+            localStorage.setItem("pref-fonte-dislexia", ativo ? "ativo" : "inativo");
         });
     }
 
-    // 6. Ajuste de Saturação (Modo Monocromático Corrigido)
+    // 6. Ajuste de Saturação (Com Salvamento)
     if (btnSaturacao) {
         btnSaturacao.addEventListener("click", function () {
             document.body.classList.toggle("modo-monocromatico");
             const ativo = document.body.classList.contains("modo-monocromatico");
-            btnSaturacao.innerText = ativo ? "🎨 Modo Saturação: P&B" : "🎨 Remover Saturação (P&B)";
+            btnSaturacao.textContent = ativo ? "🎨 Modo Saturação: P&B" : "🎨 Remover Saturação (P&B)";
+            localStorage.setItem("pref-modo-monocromatico", ativo ? "ativo" : "inativo");
         });
     }
 }
 
+// Funções de Apoio de Escopo Global para Reaplicação do localStorage
+function aplicarEstagioFonte(estagio, botaoElemento) {
+    if (!botaoElemento) return;
+    if (estagio === 0) {
+        document.documentElement.style.setProperty('--tamanho-fonte-base', '16px');
+        botaoElemento.textContent = "🔎 Ampliar Texto do Site";
+    } else if (estagio === 1) {
+        document.documentElement.style.setProperty('--tamanho-fonte-base', '19px');
+        botaoElemento.textContent = "🔎 Letra: [Tamanho Grande]";
+    } else {
+        document.documentElement.style.setProperty('--tamanho-fonte-base', '22px');
+        botaoElemento.textContent = "🔎 Letra: [Tamanho Máximo]";
+    }
+}
+
+function aplicarEspacamentoAdaptativo(ativo, botaoElemento) {
+    if (!botaoElemento) return;
+    if (ativo) {
+        document.documentElement.style.setProperty('--espacamento-texto-base', '2px');
+        document.documentElement.style.setProperty('--altura-linha-base', '2.0');
+        botaoElemento.textContent = "↔️ Espaçamento: Ampliado";
+    } else {
+        document.documentElement.style.setProperty('--espacamento-texto-base', 'normal');
+        document.documentElement.style.setProperty('--altura-linha-base', '1.6');
+        botaoElemento.textContent = "↔️ Espaçamento Adaptativo";
+    }
+}
+
 /* ==========================================================================
-   MÓDULO 2: CONTROLADORES INTERATIVOS - SIMULADOR DO PRODUTOR
+   MÓDULO 2: CONTROLADORES INTERATIVOS - SIMULADOR DO PRODUTOR (TEXTO HUMANIZADO)
    ========================================================================== */
 function configurarSimuladorCampo() {
     const disparadorSol = document.getElementById("simular-sol");
@@ -153,41 +215,41 @@ function configurarSimuladorCampo() {
     if (!disparadorSol) return;
 
     disparadorSol.addEventListener("click", function () {
-        campoUmidade.innerText = "17%";
-        campoVento.innerText = "6 km/h";
-        campoStatus.innerText = "SISTEMA DE IRRIGAÇÃO LIBERADO";
+        campoUmidade.textContent = "17%";
+        campoVento.textContent = "6 km/h";
+        campoStatus.textContent = "SISTEMA DE IRRIGAÇÃO LIBERADO";
         campoStatus.className = "status-alerta";
         
-        feedbackUmidade.innerText = "Status: Solo em estado de estresse hídrico agudo.";
-        feedbackVento.innerText = "Status: Ventos estáveis sob níveis seguros.";
-        feedbackRecomendacao.innerText = "Recomendação Técnica: Acionar os microaspersores ou pivôs centrais imediatamente. A evapotranspiração está alta e o solo requer reposição volumétrica urgente para evitar a perda da plantação.";
+        feedbackUmidade.textContent = "Status: O solo está muito seco e precisa de água.";
+        feedbackVento.textContent = "Status: Ventos fracos e em velocidade segura.";
+        feedbackRecomendacao.textContent = "Orientação: Ligar os sistemas de irrigação o quanto antes. O calor está alto e as plantas precisam de água para não prejudicar a lavoura.";
     });
 
     disparadorChuva.addEventListener("click", function () {
-        campoUmidade.innerText = "94%";
-        campoVento.innerText = "16 km/h";
-        campoStatus.innerText = "BLOQUEIO PREVENTIVO DE IRRIGAÇÃO";
+        campoUmidade.textContent = "94%";
+        campoVento.textContent = "16 km/h";
+        campoStatus.textContent = "DESLIGAMENTO PREVENTIVO DA IRRIGAÇÃO";
         campoStatus.className = "status-alerta alerta-ativo";
         
-        feedbackUmidade.innerText = "Status: Solo saturado por precipitação pluviométrica.";
-        feedbackVento.innerText = "Status: Correntes de ar úmidas detectadas.";
-        feedbackRecomendacao.innerText = "Recomendação Técnica: Sensores automáticos integrados preveem tempestade severa nas coordenadas próximas. Sistemas de irrigação bloqueados para poupar água doce, gastos elétricos e evitar a lixiviação (lavagem) de nutrientes.";
+        feedbackUmidade.textContent = "Status: Solo completamente molhado pela chuva.";
+        feedbackVento.textContent = "Status: Ventos úmidos na propriedade.";
+        feedbackRecomendacao.textContent = "Orientação: O sistema identificou chuva forte chegando. Os irrigadores foram desligados automaticamente para economizar água, poupar energia elétrica e evitar que os nutrientes da terra sejam lavados.";
     });
 
     disparadorVento.addEventListener("click", function () {
-        campoUmidade.innerText = "42%";
-        campoVento.innerText = "34 km/h";
-        campoStatus.innerText = "RISCO CRÍTICO: ALERTA DE DERIVA";
+        campoUmidade.textContent = "42%";
+        campoVento.textContent = "34 km/h";
+        campoStatus.textContent = "RISCO CRÍTICO: ALERTA DE VENTO FORTE";
         campoStatus.className = "status-alerta alerta-ativo";
         
-        feedbackUmidade.innerText = "Status: Níveis hídricos de solo moderados.";
-        feedbackVento.innerText = "Status: Rajadas contínuas de vento de alta velocidade.";
-        feedbackRecomendacao.innerText = "Recomendação Técnica: Suspensão obrigatória imediata de pulverizações de defensivos agrícolas ou insumos biológicos. Ventos acima de 20 km/h dispersam o produto para fora da lavoura alvo, contaminando rios locais e destruindo abelhas polinizadoras.";
+        feedbackUmidade.textContent = "Status: Solo com umidade moderada.";
+        feedbackVento.textContent = "Status: Rajadas fortes de vento na plantação.";
+        feedbackRecomendacao.textContent = "Orientação: Não aplicar nenhum tipo de produto na lavoura agora. O vento forte vai arrastar o produto para fora do alvo, desperdiçando dinheiro, poluindo rios próximos e prejudicando insetos polinizadores importantes, como as abelhas.";
     });
 }
 
 /* ==========================================================================
-   MÓDULO 3: CALCULADORA DE CARBONO FLORESTAL (CORRIGIDA)
+   MÓDULO 3: CÁLCULOS DA CALCULADORA DE CARBONO FLORESTAL
    ========================================================================== */
 function configurarCalculadoraCarbono() {
     const btnCalcular = document.getElementById("btn-calcular-carbono");
@@ -211,15 +273,13 @@ function configurarCalculadoraCarbono() {
                 falarSequestro = 12.0;
             }
 
-            // Execução correta dos cálculos matemáticos
             const toneladasCO2 = hectares * falarSequestro;
             const creditosGerados = toneladasCO2; 
             const valorFinanceiro = creditosGerados * 75.50; 
 
-            // Exibição formatada dos resultados
-            document.getElementById("res-toneladas").innerText = toneladasCO2.toFixed(2);
-            document.getElementById("res-creditos").innerText = creditosGerados.toFixed(2);
-            document.getElementById("res-financeiro").innerText = valorFinanceiro.toLocaleString('pt-BR', { 
+            document.getElementById("res-toneladas").textContent = toneladasCO2.toFixed(2);
+            document.getElementById("res-creditos").textContent = creditosGerados.toFixed(2);
+            document.getElementById("res-financeiro").textContent = valorFinanceiro.toLocaleString('pt-BR', { 
                 minimumFractionDigits: 2, 
                 maximumFractionDigits: 2 
             });
@@ -228,7 +288,7 @@ function configurarCalculadoraCarbono() {
 }
 
 /* ==========================================================================
-   MÓDULO 4: QUIZ DE VALIDAÇÃO CIENTÍFICA DO AGRINHO
+   MÓDULO 4: QUIZ DE VALIDAÇÃO CIENTÍFICA DO AGRINHO (PADRONIZADO)
    ========================================================================== */
 const bancoQuestoes = [
     {
@@ -238,11 +298,11 @@ const bancoQuestoes = [
     },
     {
         pergunta: "O que ocorre se um produtor rural realizar pulverizações com velocidades de vento superiores a 20 km/h?",
-        opcoes: ["A) O defensivo é fixado com maior aderência nas folhas", "B) Ocorre a deriva ecológica, espalhando defensivos em áreas vizinhas e matas"],
+        opcoes: ["A) O defensivo é fixado com maior aderência nas folhas", "B) Ocorre o desperdício do produto, que é arrastado para fora do alvo pelo vento"],
         correta: 1
     },
     {
-        pergunta: "Qual o impacto real do uso de dados de telemetria meteorológica nos sistemas de irrigação modernos?",
+        pergunta: "Qual o impacto real do uso de dados de monitoramento do clima nos sistemas de irrigação modernos?",
         opcoes: ["A) Reduz em até 30% o desperdício de água doce ao evitar irrigações desnecessárias", "B) Causa a aceleração artificial do ciclo biológico natural das plantas"],
         correta: 0
     }
@@ -259,11 +319,11 @@ function configurarModuloQuiz() {
             indiceQuestaoAtual++;
             if (indiceQuestaoAtual < bancoQuestoes.length) {
                 exibirQuestaoAtual();
-                document.getElementById("resultado-quiz").innerText = "";
+                document.getElementById("resultado-quiz").textContent = "";
                 btnProxima.classList.add("avancar-oculto");
             } else {
-                document.getElementById("status-pergunta").innerText = "Simulação Técnica Concluída!";
-                document.getElementById("pergunta-quiz").innerText = "Parabéns! Você concluiu a validação científica de dados exigida pelas diretrizes do Concurso Agrinho 2026.";
+                document.getElementById("status-pergunta").textContent = "Simulação Técnica Concluída!";
+                document.getElementById("pergunta-quiz").textContent = "Parabéns! Você concluiu a validação científica de dados exigida pelas diretrizes do Concurso Agrinho 2026.";
                 document.getElementById("btn-opcao-a").style.display = "none";
                 document.getElementById("btn-opcao-b").style.display = "none";
                 btnProxima.style.display = "none";
@@ -279,13 +339,20 @@ function exibirQuestaoAtual() {
     const botaoB = document.getElementById("btn-opcao-b");
 
     if (perguntaTxt && botaoA) {
-        statusTxt.innerText = `Pergunta ${indiceQuestaoAtual + 1} de ${bancoQuestoes.length}`;
-        perguntaTxt.innerText = bancoQuestoes[indiceQuestaoAtual].pergunta;
-        botaoA.innerText = bancoQuestoes[indiceQuestaoAtual].opcoes[0];
-        botaoB.innerText = bancoQuestoes[indiceQuestaoAtual].opcoes[1];
+        statusTxt.textContent = `Pergunta ${indiceQuestaoAtual + 1} de ${bancoQuestoes.length}`;
+        perguntaTxt.textContent = bancoQuestoes[indiceQuestaoAtual].pergunta;
+        botaoA.textContent = bancoQuestoes[indiceQuestaoAtual].opcoes[0];
+        botaoB.textContent = bancoQuestoes[indiceQuestaoAtual].opcoes[1];
 
-        botaoA.onclick = () => verificarRespostaSelecionada(0);
-        botaoB.onclick = () => verificarRespostaSelecionada(1);
+        // PADRONIZAÇÃO DE ESCUTA DE EVENTOS COM ADDEVENTLISTENER PARA EVITAR CONFLITOS DE CLIQUE
+        botaoA.replaceWith(botaoA.cloneNode(true));
+        botaoB.replaceWith(botaoB.cloneNode(true));
+
+        const novoBotaoA = document.getElementById("btn-opcao-a");
+        const novoBotaoB = document.getElementById("btn-opcao-b");
+
+        novoBotaoA.addEventListener("click", () => verificarRespostaSelecionada(0));
+        novoBotaoB.addEventListener("click", () => verificarRespostaSelecionada(1));
     }
 }
 
@@ -294,10 +361,10 @@ function verificarRespostaSelecionada(respostaUsuario) {
     const btnAvancar = document.getElementById("btn-proxima");
     
     if (respostaUsuario === bancoQuestoes[indiceQuestaoAtual].correta) {
-        feedbackCampo.innerText = "🟢 Resposta Correta! Validação técnica e empírica confirmada.";
+        feedbackCampo.textContent = "🟢 Resposta Correta! Validação técnica e prática confirmada.";
         feedbackCampo.style.color = "#81c784";
     } else {
-        feedbackCampo.innerText = "❌ Alternativa Incorreta. Os relatórios oficiais contradizem essa opção.";
+        feedbackCampo.textContent = "❌ Alternativa Incorreta. Os relatórios oficiais do setor dizem o contrário.";
         feedbackCampo.style.color = "#e53935";
     }
     

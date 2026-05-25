@@ -80,6 +80,12 @@ body {
     padding: 25px 20px;
 }
 
+/* FOCO VISUAL PERSONALIZADO CORRIGIDO PARA NAVEGAÇÃO POR TECLADO (WCAG) */
+a:focus, button:focus, input:focus, select:focus, [tabindex="0"]:focus {
+    outline: 2px solid var(--cor-principal) !important;
+    outline-offset: 3px;
+}
+
 /* Atalho para leitores de tela */
 .saltar-conteudo {
     position: absolute;
@@ -139,7 +145,6 @@ body {
 .nav-links a:hover, .nav-links a:focus { 
     color: var(--cor-principal); 
     background: rgba(76, 175, 80, 0.08);
-    outline: none;
 }
 
 /* HERO DA PÁGINA HOME */
@@ -246,7 +251,6 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     text-align: center;
     transition: var(--transicao-suave);
 }
-.medidor-card:focus-within { border-color: var(--cor-secundaria); }
 .medidor-card h3 { font-size: 1.15rem; color: var(--texto-claro); font-weight: 600; }
 .valor-display {
     font-size: 3.5rem;
@@ -280,10 +284,9 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     transition: var(--transicao-suave);
 }
-.btn-sim:hover, .btn-sim:focus { 
+.btn-sim:hover { 
     background-color: var(--cor-principal-hover);
     color: var(--texto-claro);
-    outline: none;
 }
 
 /* 4. CALCULADORA DE CARBONO */
@@ -305,7 +308,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     font-family: inherit;
     font-size: 1rem;
 }
-.input-group input:focus, .input-group select:focus { border-color: var(--cor-secundaria); outline: none; }
+.input-group input:focus, .input-group select:focus { border-color: var(--cor-secundaria); }
 .calc-resultado {
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--borda-suave);
@@ -322,7 +325,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
 .flash-card { background: transparent; perspective: 1000px; height: 320px; cursor: pointer; }
 .flash-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
-.flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner { transform: rotateY(180deg); outline: none; }
+.flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner { transform: rotateY(180deg); }
 .flash-card-front, .flash-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 10px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--borda-suave); }
 .flash-card-front { background-color: rgba(255, 255, 255, 0.02); }
 .flash-card-front h3 { font-size: 1.4rem; }
@@ -341,7 +344,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .texto-questao { font-size: 1.15rem; font-weight: 600; margin-bottom: 25px; line-height: 1.5; }
 .botoes-quiz { display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 20px auto; }
 .btn-resposta-quiz { background: rgba(255, 255, 255, 0.03); color: white; border: 1px solid var(--borda-suave); padding: 15px 20px; border-radius: 6px; cursor: pointer; text-align: left; font-size: 0.95rem; font-weight: 500; transition: var(--transicao-suave); }
-.btn-resposta-quiz:hover, .btn-resposta-quiz:focus { background: rgba(76, 175, 80, 0.15); border-color: var(--cor-principal); outline: none; }
+.btn-resposta-quiz:hover, .btn-resposta-quiz:focus { background: rgba(76, 175, 80, 0.15); border-color: var(--cor-principal); }
 .feedback-quiz { margin-top: 18px; font-weight: 700; font-size: 1.05rem; }
 .btn-avancar-quiz { background: var(--cor-principal); color: var(--texto-escuro); border: none; padding: 12px 25px; font-weight: bold; margin-top: 20px; cursor: pointer; border-radius: 6px; font-size: 0.95rem; transition: var(--transicao-suave); }
 .btn-avancar-quiz:hover { background-color: var(--cor-principal-hover); color: white; }
@@ -357,7 +360,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     display: flex; align-items: center; justify-content: center;
     transition: var(--transicao-suave);
 }
-.btn-flutuante-acessivel:hover, .btn-flutuante-acessivel:focus { transform: scale(1.1); outline: none; }
+.btn-flutuante-acessivel:hover, .btn-flutuante-acessivel:focus { transform: scale(1.1); }
 .menu-acessibilidade-box {
     position: absolute; bottom: 70px; left: 0;
     background-color: var(--bg-container); border: 2px solid var(--cor-principal);
@@ -373,7 +376,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     cursor: pointer; text-align: left; font-size: 0.9rem;
     font-weight: 500; transition: var(--transicao-suave);
 }
-.op-btn-acessivel:hover, .op-btn-acessivel:focus { background: var(--cor-principal); color: var(--texto-escuro); outline: none; }
+.op-btn-acessivel:hover, .op-btn-acessivel:focus { background: var(--cor-principal); color: var(--texto-escuro); }
 .acessibilidade-escondido { display: none; }
 
 /* RODAPÉ OFICIAL MANDATÓRIO */
