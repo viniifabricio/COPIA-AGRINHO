@@ -36,7 +36,8 @@ body.alto-contraste {
 body.alto-contraste .flash-card-front, 
 body.alto-contraste .flash-card-back,
 body.alto-contraste .medidor-card,
-body.alto-contraste .timeline-content {
+body.alto-contraste .timeline-content,
+body.alto-contraste .calc-resultado {
     background: #000000;
     border: 2px solid #ffffff;
 }
@@ -45,8 +46,12 @@ body.fonte-dislexia {
     --fonte-padrao: "Comic Sans MS", "Chalkboard SE", "Arial Rounded MT Bold", sans-serif !important;
 }
 
-body.modo-monocromatico {
-    filter: grayscale(100%) contrast(125%) !important;
+/* CORREÇÃO DO BUG: Aplicar o filtro apenas nos elementos visuais, ignorando o painel de acessibilidade flutuante */
+body.modo-monocromatico main, 
+body.modo-monocromatico header, 
+body.modo-monocromatico footer, 
+body.modo-monocromatico .hero-section {
+    filter: grayscale(100%) contrast(120%) !important;
 }
 
 /* ==========================================================================
@@ -181,85 +186,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 }
 
 /* ==========================================================================
-   2. PAINEL DO PRODUTOR (GRID INTERATIVO AVANÇADO)
-   ========================================================================== */
-.painel-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-.medidor-card {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid var(--borda-suave);
-    padding: 30px 25px;
-    border-radius: 10px;
-    text-align: center;
-    transition: var(--transicao-suave);
-}
-.medidor-card:focus-within {
-    border-color: var(--cor-secundaria);
-}
-.medidor-card h3 {
-    font-size: 1.15rem;
-    color: var(--texto-claro);
-    font-weight: 600;
-}
-
-.valor-display {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--cor-secundaria);
-    margin: 20px 0;
-    font-variant-numeric: tabular-nums;
-}
-
-.status-alerta {
-    background: #2e7d32;
-    padding: 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    margin: 18px 0;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    transition: var(--transicao-suave);
-}
-.status-alerta.alerta-ativo {
-    background: #d32f2f !important;
-}
-.msg-card-status {
-    font-size: 0.95rem;
-    color: var(--texto-mutado);
-}
-
-.botoes-simulador {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-}
-
-.btn-sim {
-    background-color: var(--cor-principal);
-    color: var(--texto-escuro);
-    border: none;
-    padding: 14px 22px;
-    font-weight: 700;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: var(--transicao-suave);
-}
-.btn-sim:hover, .btn-sim:focus { 
-    background-color: var(--cor-principal-hover);
-    color: var(--texto-claro);
-    outline: none;
-}
-
-/* ==========================================================================
-   3. LINHA DO TEMPO (DIÁRIO DE BORDO DO REGULAMENTO)
+   2. LINHA DO TEMPO (DIÁRIO DE BORDO DO REGULAMENTO)
    ========================================================================== */
 .timeline {
     position: relative;
@@ -310,65 +237,151 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 }
 
 /* ==========================================================================
-   ESTABILIZAÇÃO COMPLETA DOS FLASHCARDS EXPANDIDOS (SEM VAZAMENTOS)
+   3. PAINEL DO PRODUTOR (GRID INTERATIVO AVANÇADO)
+   ========================================================================== */
+.painel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.medidor-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--borda-suave);
+    padding: 30px 25px;
+    border-radius: 10px;
+    text-align: center;
+    transition: var(--transicao-suave);
+}
+.medidor-card:focus-within { border-color: var(--cor-secundaria); }
+.medidor-card h3 { font-size: 1.15rem; color: var(--texto-claro); font-weight: 600; }
+
+.valor-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--cor-secundaria);
+    margin: 20px 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.status-alerta {
+    background: #2e7d32;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin: 18px 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    transition: var(--transicao-suave);
+}
+.status-alerta.alerta-ativo { background: #d32f2f !important; }
+.msg-card-status { font-size: 0.95rem; color: var(--texto-mutado); }
+
+.botoes-simulador { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 25px; }
+
+.btn-sim {
+    background-color: var(--cor-principal);
+    color: var(--texto-escuro);
+    border: none;
+    padding: 14px 22px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: var(--transicao-suave);
+}
+.btn-sim:hover, .btn-sim:focus { 
+    background-color: var(--cor-principal-hover);
+    color: var(--texto-claro);
+    outline: none;
+}
+
+/* ==========================================================================
+   4. SEÇÃO DA CALCULADORA DE CARBONO
+   ========================================================================== */
+.calc-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+.calc-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.input-group label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--texto-mutado);
+}
+.input-group input, .input-group select {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--borda-suave);
+    padding: 12px;
+    color: white;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+.input-group input:focus, .input-group select:focus {
+    border-color: var(--cor-secundaria);
+    outline: none;
+}
+.calc-resultado {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--borda-suave);
+    border-radius: 8px;
+    padding: 25px;
+}
+.calc-resultado h3 {
+    font-size: 1.2rem;
+    color: var(--cor-secundaria);
+    margin-bottom: 10px;
+}
+.calc-resultado hr {
+    border: 0; border-top: 1px solid var(--borda-suave);
+    margin-bottom: 15px;
+}
+.calc-resultado p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+.calc-resultado span {
+    font-weight: bold;
+    color: var(--cor-principal);
+}
+.nota-cientifica {
+    font-size: 0.78rem !important;
+    opacity: 0.6;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   ESTABILIZAÇÃO DOS FLASHCARDS EXPANDIDOS
    ========================================================================== */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
 }
-.flash-card { 
-    background: transparent; 
-    perspective: 1000px; 
-    height: 320px; 
-    cursor: pointer; 
-}
-.flash-card-inner { 
-    position: relative; 
-    width: 100%; 
-    height: 100%; 
-    text-align: center; 
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
-    transform-style: preserve-3d; 
-}
-.flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner { 
-    transform: rotateY(180deg); 
-    outline: none; 
-}
-.flash-card-front, .flash-card-back { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden; 
-    border-radius: 10px; 
-    padding: 30px; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    border: 1px solid var(--borda-suave); 
-}
-.flash-card-front { 
-    background-color: rgba(255, 255, 255, 0.02); 
-}
-.flash-card-front h3 {
-    font-size: 1.4rem;
-}
-.flash-card-back { 
-    background-color: #15311e; 
-    transform: rotateY(180deg); 
-}
-.flash-card-back h3 {
-    font-size: 1.2rem;
-    color: var(--cor-secundaria);
-    margin-bottom: 10px;
-}
-.flash-card-back p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    text-align: justify;
-}
+.flash-card { background: transparent; perspective: 1000px; height: 320px; cursor: pointer; }
+.flash-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+.flash-card:hover .flash-card-inner, .flash-card:focus .flash-card-inner { transform: rotateY(180deg); outline: none; }
+.flash-card-front, .flash-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 10px; padding: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--borda-suave); }
+.flash-card-front { background-color: rgba(255, 255, 255, 0.02); }
+.flash-card-front h3 { font-size: 1.4rem; }
+.flash-card-back { background-color: #15311e; transform: rotateY(180deg); }
+.flash-card-back h3 { font-size: 1.2rem; color: var(--cor-secundaria); margin-bottom: 10px; }
+.flash-card-back p { font-size: 0.9rem; line-height: 1.5; text-align: justify; }
 .info-tag { background: var(--cor-principal); color: var(--texto-escuro); padding: 4px 10px; font-size: 0.75rem; font-weight: bold; border-radius: 4px; margin-bottom: 15px; letter-spacing: 0.5px; }
 .instrucao-virar { font-size: 0.8rem; opacity: 0.6; margin-top: 15px; }
 
@@ -388,7 +401,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .avancar-oculto { display: none; }
 
 /* ==========================================================================
-   4. PAINEL FLUTUANTE DE RECURSOS DE ACESSIBILIDADE
+   PAINEL FLUTUANTE DE RECURSOS DE ACESSIBILIDADE
    ========================================================================== */
 .painel-acessibilidade-container {
     position: fixed;
@@ -426,7 +439,7 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
 .acessibilidade-escondido { display: none; }
 
 /* ==========================================================================
-   5. BLINDAGEM DO RODAPÉ OFICIAL MANDATÓRIO
+   RODAPÉ OFICIAL MANDATÓRIO
    ========================================================================== */
 .rodape-oficial {
     background-color: #050d09;
@@ -449,37 +462,17 @@ h2 { color: var(--cor-principal); margin-bottom: 12px; font-size: 1.9rem; font-w
     padding-bottom: 6px;
     font-weight: 700;
 }
-.rodape-bloco p {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    color: var(--texto-mutado);
-    line-height: 1.5;
-}
+.rodape-bloco p { font-size: 0.9rem; margin-bottom: 10px; color: var(--texto-mutado); line-height: 1.5; }
 .Destaque-Senar {
-    font-weight: bold;
-    color: #ffffff !important;
-    background: #1b5e20;
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 4px;
-    margin-top: 6px;
-    font-size: 0.85rem;
+    font-weight: bold; color: #ffffff !important; background: #1b5e20;
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    margin-top: 6px; font-size: 0.85rem;
 }
-.hashtag-rodape {
-    font-weight: 700;
-    color: var(--cor-secundaria) !important;
-    margin-top: 6px;
-    display: block;
-}
+.hashtag-rodape { font-weight: 700; color: var(--cor-secundaria) !important; margin-top: 6px; display: block; }
 .rodape-copyright {
-    max-width: 1200px;
-    margin: 40px auto 0 auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    text-align: center;
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.35);
-    line-height: 1.5;
+    max-width: 1200px; margin: 40px auto 0 auto; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06); text-align: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.35); line-height: 1.5;
 }
 
 /* RESPONSIVIDADE COMPLETA */

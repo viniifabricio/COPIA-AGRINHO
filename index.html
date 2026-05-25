@@ -18,6 +18,7 @@
                 <a href="#intro">Propósito</a>
                 <a href="#diario-bordo">Diário de Bordo</a>
                 <a href="#painel-produtor">Área do Produtor</a>
+                <a href="#calculadora-secao">Calculadora Carbono</a>
                 <a href="#radar-secao">Radar Regional</a>
                 <a href="#informativo">Evidências Científicas</a>
                 <a href="#quiz">Quiz Técnico</a>
@@ -136,6 +137,38 @@
             </div>
         </section>
 
+        <section id="calculadora-secao" class="site-section">
+            <h2>🧮 Calculadora de Créditos de Carbono Florestal</h2>
+            <p class="sub-painel">Calcule uma estimativa do potencial de sequestro de $CO_2$ e geração de ativos sustentáveis com base na área de reflorestamento ou reserva legal preservada.</p>
+            
+            <div class="calc-container">
+                <div class="calc-form">
+                    <div class="input-group">
+                        <label for="calc-hectares">Área Preservada ou Reflorestada (em Hectares):</label>
+                        <input type="number" id="calc-hectares" min="0" placeholder="Ex: 15" aria-required="true">
+                    </div>
+                    <div class="input-group">
+                        <label for="calc-bioma">Tipo de Bioma Predominante:</label>
+                        <select id="calc-bioma">
+                            <option value="mata-atlantica">Mata Atlântica (Média de 8.5 t de CO₂/ano por ha)</option>
+                            <option value="cerrado">Cerrado (Média de 4.2 t de CO₂/ano por ha)</option>
+                            <option value="floresta-tropical">Reflorestamento Comercial / Eucalipto (Média de 12 t de CO₂/ano por ha)</option>
+                        </select>
+                    </div>
+                    <button id="btn-calcular-carbono" class="btn-sim">Calcular Ativos Ecológicos 🌿</button>
+                </div>
+
+                <div class="calc-resultado" id="box-resultado-calc" aria-live="polite">
+                    <h3>Relatório de Sustentabilidade Estimado</h3>
+                    <hr>
+                    <p><strong>Sequestro Anual de Carbono:</strong> <span id="res-toneladas">0.00</span> toneladas de $CO_2$.</p>
+                    <p><strong>Créditos de Carbono Gerados (CBIOs/UCCs):</strong> <span id="res-creditos">0.00</span> créditos.</p>
+                    <p><strong>Retorno Financeiro Estimado no Mercado Livre:</strong> R$ <span id="res-financeiro">0.00</span></p>
+                    <p class="nota-cientifica">*Cálculo baseado nas equações volumétricas padrão de biomassa florestal da Embrapa.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="radar-secao" class="radar-section" tabindex="0">
             <h2>📍 Radar Meteorológico Georreferenciado</h2>
             <p class="sub-painel">Previsão e rastreamento de precipitação, correntes de vento e pressões atmosféricas na região de Andirá - Paraná.</p>
@@ -158,7 +191,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Preservação Tecnológica</h3>
-                            <p>Dados oficiais emitidos pela Agência Nacional de Águas (ANA) expõem que a atividade de irrigação consome uma fatia massiva da água doce captada no país. Sistemas baseados em telemetria e análise de umidade do solo, como o EcoRadar, conseguem diminuir esse impacto ambiental em até 30%.</p>
+                            <p>Dados oficiais emitidos pela Agência Nacional de Águas (ANA) expõem que a activity de irrigação consome uma fatia massiva da água doce captada no país. Sistemas baseados em telemetria e análise de umidade do solo, como o EcoRadar, conseguem diminuir esse impacto ambiental em até 30%.</p>
                         </div>
                     </div>
                 </div>
@@ -186,7 +219,7 @@
                         </div>
                         <div class="flash-card-back">
                             <h3>Agro Forte, Futuro Sustentável</h3>
-                            <p>O foco estratégico estabelecido para este ano letivo está centrado no papel catalisador das tecnologias limpas no ambiente do campo. O agronegócio paranaense atua como motor econômico, necessitando de novas gerações de desenvolvedores capazes de erguer sistemas que combatam a emissão desnecessária de poluentes e a degradação do bioma.</p>
+                            <p>O foco estratégico estabelecido para este ano letivo está centrado no papel catalisador das tecnologias limhas no ambiente do campo. O agronegócio paranaense atua como motor econômico, necessitando de novas gerações de desenvolvedores capazes de erguer sistemas que combatam a emissão desnecessária de poluentes e a degradação do bioma.</p>
                         </div>
                     </div>
                 </div>
@@ -217,6 +250,7 @@
         <div id="menu-acessibilidade" class="menu-acessibilidade-box acessibilidade-escondido">
             <h3>Recursos de Acessibilidade</h3>
             <hr>
+            <button id="btn-ouvir-site" class="op-btn-acessivel">🔊 Ouvir Site (Texto-Voz)</button>
             <button id="btn-contraste" class="op-btn-acessivel" aria-pressed="false">🌗 Alternar Alto Contraste</button>
             <button id="btn-fonte" class="op-btn-acessivel" aria-pressed="false">🔎 Ampliar Texto do Site</button>
             <button id="btn-espacamento" class="op-btn-acessivel" aria-pressed="false">↔️ Espaçamento Adaptativo</button>
@@ -247,7 +281,7 @@
         </div>
         <div class="rodape-copyright">
             <p>
-                © 2026 EcoRadar Agro. Desenvolvido com foco em engenharia reversa de acessibilidade digital. Interface construída em estrita conformidade com as diretrizes internacionais WCAG 2.1 e eMAG (Modelo de Acessibilidade em Governo Eletrônico).
+                © 2026 EcoRadar Agro. Interface construída em estrita conformidade com as diretrizes internacionais WCAG 2.1 e eMAG (Modelo de Acessibilidade em Governo Eletrônico).
             </p>
         </div>
     </footer>
@@ -260,11 +294,17 @@
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        window.addEventListener('load', function() {
-            if (window.VLibras && typeof window.VLibras.Widget === 'function') {
-                new window.VLibras.Widget('https://vlibras.gov.br/app');
-            }
-        });
+        // Inicialização robusta e forçada do Widget do VLibras
+        try {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } catch (e) {
+            console.log("Aguardando carregamento completo do script de libras...");
+            window.addEventListener('load', function() {
+                if(window.VLibras) {
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
     </script>
     <script src="main.js"></script>
 </body>
