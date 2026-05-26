@@ -599,7 +599,7 @@ body {
 /* ==========================================================================
    BLINDAGEM DO ALTO CONTRASTE
    ========================================================================== */
-body.alto-contrast,
+body.alto-contraste,
 body.alto-contraste * {
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -635,19 +635,34 @@ body.alto-contraste a:hover {
 }
 
 /* ==========================================================================
-   REMANEJO DA ESCALA DE CINZA GLOBAL (NUNCA OCULTA OU DIZIMA O BOTÃO FLUTUANTE)
+   SOLUÇÃO DEFINITIVA PARA A SATURAÇÃO (PRETO E BRANCO)
    ========================================================================== */
-body.preto-branco {
+
+/* Em vez de aplicar o filtro no body, aplicamos em seletores específicos 
+   da estrutura para deixar o painel flutuante totalmente livre! */
+body.preto-branco .navbar,
+body.preto-branco .hero-section,
+body.preto-branco .container,
+body.preto-branco .rodape-oficial,
+body.preto-branco iframe {
     filter: grayscale(100%) !important;
 }
 
-/* ISOLAMENTO COMPLETO: Garante que o menu do botão e suas opções não sumam nem distorçam */
-body.preto-branco .painel-acessibilidade-container,
-body.preto-branco .painel-acessibilidade-container * {
-    filter: none !important; 
+/* Garante que o painel de acessibilidade fique intacto, visível e colorido */
+.painel-acessibilidade-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999 !important;
 }
 
-/* Estabiliza a rotação 3D dos cards quando o filtro global de cinza está ligado */
+/* Força o botão e o menu a nunca receberem o efeito de sumir */
+body.preto-branco .painel-acessibilidade-container {
+    filter: none !important;
+    isolation: isolate; /* Cria uma camada isolada no navegador para o botão não sumir */
+}
+
+/* Estabiliza a rotação 3D dos cards quando o modo preto e branco está ativo */
 body.preto-branco .flash-card-inner {
     transform-style: flat !important;
 }
