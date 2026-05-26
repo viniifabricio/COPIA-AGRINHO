@@ -1,5 +1,5 @@
 // ==========================================================================
-// CONFIGURAÇÕES E MEMÓRIA DE ACESSIBILIDADE (localStorage)
+// CONFIGURAÇÕES E MEMÓRIA DE ACESSIBILIDADE
 // ==========================================================================
 const configuracoesAcessibilidade = [
     { idBotao: 'btn-contraste', classeCSS: 'alto-contraste' },
@@ -17,7 +17,7 @@ configuracoesAcessibilidade.forEach(item => {
 });
 
 // ==========================================================================
-// 1. LÓGICA DO SIMULADOR CLIMÁTICO DO PRODUTOR
+// 1. LÓGICA DO SIMULADOR DO CLIMA
 // ==========================================================================
 const valUmidade = document.getElementById('val-umidade');
 const valVento = document.getElementById('val-vento');
@@ -29,42 +29,42 @@ const msgRecomendacao = document.getElementById('msg-recomendacao');
 document.getElementById('simular-sol').addEventListener('click', () => {
     valUmidade.innerText = '22%';
     valVento.innerText = '8 km/h';
-    valStatus.innerText = 'ALERTA: IRRIGAÇÃO REQUERIDA';
+    valStatus.innerText = 'ALERTA: PRECISANDO LIGAR A IRRIGAÇÃO';
     valStatus.style.color = '#e63946';
-    msgUmidade.innerText = 'Status: Estresse hídrico severo detectado no perfil do solo.';
-    msgVento.innerText = 'Status: Velocidade de vento propícia para aspersão.';
-    msgRecomendacao.innerText = 'Recomendação: Ativar sistemas de irrigação para reposição imediata da demanda hídrica.';
+    msgUmidade.innerText = 'Status: A terra está muito seca.';
+    msgVento.innerText = 'Status: O vento está calmo, bom para irrigar.';
+    msgRecomendacao.innerText = 'Recomendação: Ligue os pivôs de irrigação para dar água para as plantas.';
 });
 
 document.getElementById('simular-chuva').addEventListener('click', () => {
     valUmidade.innerText = '85%';
     valVento.innerText = '15 km/h';
-    valStatus.innerText = 'SISTEMA SUSPENSO POR PRECIPITAÇÃO';
+    valStatus.innerText = 'SISTEMA DESLIGADO - JÁ ESTÁ CHOVENDO';
     valStatus.style.color = '#2a9d8f';
-    msgUmidade.innerText = 'Status: Capacidade de campo saturada por precipitação natural.';
-    msgVento.innerText = 'Status: Deslocamento de massas de ar em níveis médios.';
-    msgRecomendacao.innerText = 'Recomendação: Desativação automatizada dos pivôs, maximizando a eficiência hidroenergética.';
+    msgUmidade.innerText = 'Status: A terra já recebeu bastante água da chuva.';
+    msgVento.innerText = 'Status: Vento moderado.';
+    msgRecomendacao.innerText = 'Recomendação: O sistema desliga a irrigação sozinho para economizar água e energia.';
 });
 
 document.getElementById('simular-vento').addEventListener('click', () => {
     valUmidade.innerText = '40%';
     valVento.innerText = '32 km/h';
-    valStatus.innerText = 'ALERTA: RISCO CRÍTICO DE DERIVA';
+    valStatus.innerText = 'ALERTA: VENTO MUITO FORTE';
     valStatus.style.color = '#d90429';
-    msgUmidade.innerText = 'Status: Umidade do substrato estável.';
-    msgVento.innerText = 'Status: Rajadas de vento excedem os limites técnicos operacionais.';
-    msgRecomendacao.innerText = 'Recomendação: Interromper a aplicação de defensivos agrícolas para evitar dispersão exógena.';
+    msgUmidade.innerText = 'Status: A umidade da terra está normal.';
+    msgVento.innerText = 'Status: Rajadas de vento muito acima do limite seguro.';
+    msgRecomendacao.innerText = 'Recomendação: Não jogue produtos na lavoura agora. O vento forte pode levar o produto para o lugar errado.';
 });
 
 // ==========================================================================
-// 2. LÓGICA DA CALCULADORA DE CRÉDITOS DE CARBONO
+// 2. LÓGICA DA CALCULADORA DE CARBONO
 // ==========================================================================
 document.getElementById('btn-calcular-carbono').addEventListener('click', () => {
     const hectares = parseFloat(document.getElementById('calc-hectares').value);
     const bioma = document.getElementById('calc-bioma').value;
     
     if (isNaN(hectares) || hectares <= 0) {
-        alert('Por favor, insira uma extensão territorial válida (valor maior que zero).');
+        alert('Por favor, digite um tamanho de área válido (maior que zero).');
         return;
     }
 
@@ -82,43 +82,43 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ TÉCNICO E FORMAL (5 PERGUNTAS DE NÍVEL AVANÇADO)
+// 3. LÓGICA DO QUIZ COM LINGUAGEM ACESSÍVEL E SIMPLES
 // ==========================================================================
 const questoes = [
     {
-        pergunta: "Conforme os relatórios consolidados da Agência Nacional de Águas (ANA), qual setor econômico apresenta a maior taxa de consumo de água doce no território brasileiro?",
-        a: "O abastecimento urbano e o consumo residencial/doméstico de água.",
-        b: "Os sistemas de irrigação e manejo hídrico voltados à produção agrícola.",
+        pergunta: "Segundo os dados oficiais do Brasil, qual é o setor que mais gasta água doce no nosso país?",
+        a: "O uso nas casas e o abastecimento das grandes cidades.",
+        b: "A irrigação de lavouras e plantações na agricultura.",
         resposta: "b",
-        explicacao: "Parabéns! A irrigação agrícola responde pelo maior volume de captação. Ferramentas de automação mitigam essa demanda em até 30%."
+        explicacao: "Isso mesmo! A irrigação gasta bastante água. Por isso, usar tecnologia para monitorar ajuda a economizar até 30% desse consumo."
     },
     {
-        pergunta: "Sob a perspectiva do manejo fitossanitário seguro, por que é tecnicamente contraindicada a pulverização de lavouras sob ventos superiores a 28 km/h?",
-        a: "Em razão do fenômeno da deriva, que arrasta as microgotas e causa a dispersão involuntária de defensivos fora do alvo delimitado.",
-        b: "Devido ao aumento da taxa de evaporação cinemática instantânea gerada pela fricção do ar.",
+        pergunta: "Por que não é recomendado passar produtos na lavoura quando o vento está muito forte (acima de 28 km/h)?",
+        a: "Porque o vento forte espalha o produto para fora da lavoura, contaminando a vizinhança e desperdiçando dinheiro.",
+        b: "Porque o produto evapora no ar antes de tocar as folhas por causa do calor do vento.",
         resposta: "a",
-        explicacao: "Excelente resposta! O vento excessivo desvia os insumos químicos, gerando contaminação ambiental exógena e severo prejuízo financeiro."
+        explicacao: "Perfeito! Esse problema se chama deriva. O vento leva o produto para onde não devia, prejudicando a natureza e o bolso do produtor."
     },
     {
-        pergunta: "De acordo com os dados oficiais de monitoramento territorial espacial da Embrapa, qual parcela do território nacional é mantida sob conservação ambiental nativa por iniciativa direta e custeio dos produtores rurais?",
-        a: "Apenas uma fração residual estimada em aproximadamente 10% do território nacional.",
-        b: "Uma extensão robusta que representa cerca de 33% de todo o território brasileiro mapeado.",
+        pergunta: "De acordo com as pesquisas da Embrapa, quanto do território do Brasil é preservado de forma voluntária pelos próprios produtores rurais?",
+        a: "Apenas uma parte bem pequena, perto de 10% do país.",
+        b: "Uma grande parte, correspondente a cerca de 33% (um terço) do país.",
         resposta: "b",
-        explicacao: "Resposta correta! Os proprietários rurais desempenham papel estratégico na conservação biológica, custeando um terço das florestas nativas do país."
+        explicacao: "Você acertou! Os produtores rurais cuidam de um terço das florestas nativas do Brasil dentro de suas propriedades."
     },
     {
-        pergunta: "Qual pilar conceitual justifica a integração de sensores de umidade de solo a sistemas de telemetria meteorológica automatizados?",
-        a: "O princípio da racionalização ambiental, evitando a exaustão de corpos hídricos superficiais e subterrâneos.",
-        b: "O controle indutivo de microclimas locais para aceleração do ciclo pluviométrico regional.",
+        pergunta: "Qual é a maior vantagem de usar sensores que medem a umidade da terra direto no celular?",
+        a: "Saber a hora exata de irrigar, evitando gastar água e energia elétrica à toa.",
+        b: "Mudar o clima da região para fazer chover mais vezes no mês.",
         resposta: "a",
-        explicacao: "Perfeito! A irrigação de precisão protege a integridade dos corpos de água locais e reduz significativamente os custos com energia elétrica pública."
+        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduz o valor da conta de energia."
     },
     {
-        pergunta: "Considerando as regras do mercado de ativos ecológicos, qual tipologia florestal apresenta o maior potencial médio anual de sequestro de carbono por hectare?",
-        a: "A vegetação nativa rasteira e arbustiva característica do bioma Cerrado stricto sensu.",
-        b: "Florestas comerciais e áreas em estágio de silvicultura ativa e crescimento biomassa acelerado.",
-        resposta: "b",
-        explicacao: "Exato! Plantas em pleno desenvolvimento fisiológico e expansão de biomassa realizam maior conversão fotossintética, estocando $CO_2$ na estrutura lenhosa."
+        pergunta: "Pensando no mercado de créditos de carbono, que tipo de floresta consegue limpar o ar mais rápido?",
+        a: "Florestas comerciais novas que estão crescendo rápido (como plantações de eucalipto).",
+        b: "Vegetações rasteiras e pequenas como as árvores baixas do Cerrado.",
+        resposta: "a",
+        explicacao: "Correto! Árvores que estão crescendo rápido fazem mais fotossíntese e conseguem puxar e guardar mais gás carbono na sua madeira."
     }
 ];
 
@@ -143,13 +143,13 @@ function carregarQuestao() {
     btnB.disabled = false;
 
     if (perguntaAtual < questoes.length) {
-        statusPerg.innerText = `Questão ${perguntaAtual + 1} de ${questoes.length}`;
+        statusPerg.innerText = `Pergunta ${perguntaAtual + 1} de ${questoes.length}`;
         txtPergunta.innerText = questoes[perguntaAtual].pergunta;
         btnA.innerText = "A) " + questoes[perguntaAtual].a;
         btnB.innerText = "B) " + questoes[perguntaAtual].b;
     } else {
-        statusPerg.innerText = "Avaliação Concluída! 🎉";
-        txtPergunta.innerText = `Simulado técnico finalizado com sucesso. Desempenho obtido: ${pontuacao} acertos de um total de ${questoes.length} proposições apresentadas.`;
+        statusPerg.innerText = "Quiz Concluído! 🎉";
+        txtPergunta.innerText = `Você terminou o teste técnico! Você acertou ${pontuacao} de um total de ${questoes.length} perguntas.`;
         blocoOpcoes.style.display = 'none'; 
         btnProx.classList.add('avancar-oculto');
         btnReiniciar.classList.remove('avancar-oculto'); 
@@ -161,13 +161,12 @@ function avaliarResposta(alternativa) {
     btnB.disabled = true;
     const questao = questoes[perguntaAtual];
 
-    // Se estiver em alto contraste, a cor de feedback deve ser ajustável pelo CSS, limpamos estilos inline pesados
     if (alternativa === questao.resposta) {
         pontuacao++;
         resQuiz.innerText = "🌟 " + questao.explicacao;
         resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffff00' : '#2d6a4f';
     } else {
-        resQuiz.innerText = "❌ Incorreto. Parâmetro técnico: " + questao.explicacao;
+        resQuiz.innerText = "❌ Resposta incorreta. Dica: " + questao.explicacao;
         resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffffff' : '#d90429';
     }
     btnProx.classList.remove('avancar-oculto');
@@ -190,7 +189,7 @@ btnReiniciar.addEventListener('click', () => {
 carregarQuestao();
 
 // ==========================================================================
-// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE
+// 4. CENTRAL DO MENU DE ACESSIBILIDADE FLUTUANTE
 // ==========================================================================
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
@@ -234,9 +233,9 @@ document.getElementById('btn-ouvir-site').addEventListener('click', () => {
             document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
         };
 
-        document.getElementById('btn-ouvir-site').innerText = "🛑 Interromper Leitura";
+        document.getElementById('btn-ouvir-site').innerText = "🛑 Parar Leitura";
         window.speechSynthesis.speak(lendoConteudo);
     } else {
-        alert('O navegador utilizado não possui suporte para a API nativa de síntese de voz.');
+        alert('Este navegador não aceita a função de leitura de texto.');
     }
 });
