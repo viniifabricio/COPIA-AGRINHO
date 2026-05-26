@@ -9,7 +9,6 @@ const configuracoesAcessibilidade = [
     { idBotao: 'btn-saturacao', classeCSS: 'preto-branco' }
 ];
 
-// Garante a aplicação do histórico salvo do usuário sem redefinir o ambiente do zero
 configuracoesAcessibilidade.forEach(item => {
     const estadoSalvo = localStorage.getItem(item.classeCSS) === 'true';
     if (estadoSalvo) {
@@ -83,33 +82,48 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ DE CONHECIMENTOS (MELHORADO COM FUNÇÃO REINICIAR)
+// 3. LÓGICA DO QUIZ AMPLIADO (AGORA COM 5 QUESTÕES E REINÍCIO TOTAL)
 // ==========================================================================
 const questoes = [
     {
-        pergunta: "De acordo com a Agência Nacional de Águas (ANA), qual atividade gasta mais água doce no Brasil?",
-        a: "Uso doméstico nas cidades",
-        b: "Irrigação de plantações na agricultura",
+        pergunta: "De acordo com a Agência Nacional de Águas (ANA), qual atividade consome mais água doce no Brasil?",
+        a: "O abastecimento urbano e o uso doméstico nas cidades.",
+        b: "A irrigação de lavouras e plantações na agricultura.",
         resposta: "b",
-        explicacao: "Correto! A irrigação usa bastante água doce. Por isso, sistemas como o EcoRadar ajudam a economizar esse recurso."
+        explicacao: "Correto! A irrigação usa a maior parte da água consumida. Tecnologias como o EcoRadar reduzem esse desperdício em até 30%."
     },
     {
-        pergunta: "Por que não devemos passar defensivos agrícolas com ventos acima de 28 km/h?",
-        a: "Porque o vento forte causa a 'deriva', levando o produto para fora da lavoura",
-        b: "Porque o produto perde o efeito na hora com o calor do vento",
+        pergunta: "Por que não se deve realizar a aplicação de defensivos agrícolas com ventos acima de 28 km/h?",
+        a: "Porque a força do vento gera a deriva, arrastando o produto para fora da área alvo.",
+        b: "Porque o produto evapora instantaneamente devido ao atrito do vento.",
         resposta: "a",
-        explicacao: "Muito bem! O vento forte espalha o produto para longe, poluindo o ambiente e gerando desperdício."
+        explicacao: "Excelente! O vento forte causa o desvio do produto (deriva), contaminando outras áreas e gerando prejuízo financeiro."
     },
     {
-        pergunta: "Segundo dados da Embrapa, qual a porcentagem aproximada do território brasileiro protegida por produtores dentro de suas terras?",
-        a: "Cerca de 10%",
-        b: "Cerca de 33%",
+        pergunta: "Segundo dados consolidados da Embrapa, qual a porcentagem de território nacional mantida preservada pelos produtores dentro de suas propriedades?",
+        a: "Apenas cerca de 10% do território nacional.",
+        b: "Cerca de 33% de todo o território brasileiro mapeado.",
         resposta: "b",
-        explicacao: "Exato! Cerca de um terço do Brasil é preservado de forma voluntária pelos produtores rurais."
+        explicacao: "Exato! Os próprios produtores rurais são responsáveis por preservar voluntariamente um terço do território brasileiro."
+    },
+    {
+        pergunta: "Qual é a principal vantagem ambiental do monitoramento inteligente na aplicação de recursos hídricos?",
+        a: "Evitar a retirada desnecessária de água de rios e lençóis freáticos.",
+        b: "Acelerar artificialmente o ciclo natural de chuvas da região.",
+        resposta: "a",
+        explicacao: "Muito bem! Irrigar somente quando o solo precisa protege os mananciais locais e economiza energia elétrica."
+    },
+    {
+        pergunta: "O mercado de créditos de carbono permite que áreas preservadas gerem ativos econômicos. Qual bioma tem maior fator médio estimado de absorção de CO2/ano por hectare plantado?",
+        a: "Vegetação nativa típica de Cerrado aberto.",
+        b: "Florestas e áreas de árvores plantadas em pleno crescimento.",
+        resposta: "b",
+        explicacao: "Perfeito! Árvores em fase de crescimento ativo absorvem muito mais gás carbônico da atmosfera para formar sua madeira."
     }
 ];
 
 let perguntaAtual = 0;
+let pontuacao = 0;
 
 const txtPergunta = document.getElementById('pergunta-quiz');
 const statusPerg = document.getElementById('status-pergunta');
@@ -135,7 +149,7 @@ function carregarQuestao() {
         btnB.innerText = "B) " + questoes[perguntaAtual].b;
     } else {
         statusPerg.innerText = "Quiz Concluído! 🎉";
-        txtPergunta.innerText = "Parabéns por testar os seus conhecimentos sobre sustentabilidade!";
+        txtPergunta.innerText = `Você finalizou o simulador técnico! Pontuação: Você acertou ${pontuacao} de ${questoes.length} perguntas.`;
         blocoOpcoes.style.display = 'none'; 
         btnProx.classList.add('avancar-oculto');
         btnReiniciar.classList.remove('avancar-oculto'); 
@@ -148,11 +162,12 @@ function avaliarResposta(alternativa) {
     const questao = questoes[perguntaAtual];
 
     if (alternativa === questao.resposta) {
-        resQuiz.innerText = questao.explicacao;
-        resQuiz.style.color = '#2a9d8f';
+        pontuacao++;
+        resQuiz.innerText = "🌟 " + questao.explicacao;
+        resQuiz.style.color = '#2d6a4f';
     } else {
-        resQuiz.innerText = "Ops! Resposta incorreta. Dica: " + questao.explicacao;
-        resQuiz.style.color = '#e63946';
+        resQuiz.innerText = "❌ Resposta incorreta. Lembre-se: " + questao.explicacao;
+        resQuiz.style.color = '#d90429';
     }
     btnProx.classList.remove('avancar-oculto');
 }
@@ -167,13 +182,14 @@ btnProx.addEventListener('click', () => {
 
 btnReiniciar.addEventListener('click', () => {
     perguntaAtual = 0;
+    pontuacao = 0;
     carregarQuestao();
 });
 
 carregarQuestao();
 
 // ==========================================================================
-// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE COM VISUAL REATIVO E LOCALSTORAGE
+// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE
 // ==========================================================================
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
@@ -186,26 +202,14 @@ btnAbrirMenu.addEventListener('click', () => {
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
     
-    // Se o recurso já iniciou ativado na carga da página, estiliza o botão como ativo
     if (document.body.classList.contains(classeCSS)) {
         botao.setAttribute('aria-pressed', 'true');
-        botao.style.backgroundColor = "#52b788";
-        botao.style.color = "#081c15";
     }
 
     botao.addEventListener('click', () => {
         const ativo = document.body.classList.toggle(classeCSS);
         botao.setAttribute('aria-pressed', ativo);
         localStorage.setItem(classeCSS, ativo);
-
-        // Feedback de cor dinâmico (Verde se ativado, Padrão se desativado)
-        if (ativo) {
-            botao.style.backgroundColor = "#52b788";
-            botao.style.color = "#081c15";
-        } else {
-            botao.style.backgroundColor = "#f4f6f4";
-            botao.style.color = "var(--cor-texto)";
-        }
     });
 }
 

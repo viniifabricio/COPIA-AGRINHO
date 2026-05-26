@@ -460,7 +460,7 @@ body {
 }
 
 /* ==========================================================================
-   QUIZ DE CONHECIMENTOS
+   QUIZ DE CONHECIMENTOS - BOTÕES DE RESPOSTA AMPLIADOS E MAIORES
    ========================================================================== */
 .quiz-container {
     background: #f8f9fa;
@@ -471,48 +471,54 @@ body {
 }
 
 .texto-questao {
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Texto da pergunta maior */
     font-weight: bold;
     margin: 15px 0;
+    color: var(--cor-escura);
 }
 
 .botoes-quiz {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px; /* Mais espaçamento entre as opções */
 }
 
 .btn-resposta-quiz {
     background: white;
     border: 2px solid #ccc;
-    padding: 12px;
+    padding: 18px 25px; /* Botões bem maiores e fáceis de clicar */
     text-align: left;
-    font-size: 1rem;
-    border-radius: 5px;
+    font-size: 1.1rem; /* Texto da alternativa maior */
+    font-weight: 500;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
     background: #e8f5e9;
     border-color: var(--cor-secundaria);
-    outline: none;
+    transform: translateY(-2px); /* Pequena animação ao passar o mouse */
 }
 
 .feedback-quiz {
-    margin-top: 15px;
+    margin-top: 20px;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .btn-avancar-quiz {
     background-color: var(--cor-secundaria);
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin-top: 15px;
+    padding: 15px 30px;
+    margin-top: 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.05rem;
     font-weight: bold;
 }
 
@@ -520,10 +526,11 @@ body {
     background-color: var(--cor-texto);
     color: white;
     border: none;
-    padding: 10px 20px;
-    margin-top: 15px;
+    padding: 15px 30px;
+    margin-top: 20px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1.05rem;
     font-weight: bold;
     transition: background 0.2s;
 }
@@ -542,7 +549,7 @@ body {
 }
 
 /* ==========================================================================
-   PAINEL DE ACESSIBILIDADE FLUTUANTE & PROTEÇÃO DO FILTRO P&B
+   PAINEL DE ACESSIBILIDADE FLUTUANTE
    ========================================================================== */
 .painel-acessibilidade-container {
     position: fixed;
@@ -590,24 +597,34 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-weight: 500;
-    transition: all 0.2s;
 }
 
-/* CLASSES DE MODIFICAÇÃO CONTROLADAS */
+/* CONFIGURAÇÃO ORIGINAL DO SEU ALTO CONTRASTE - SEM QUEBRAS VISUAIS */
 body.alto-contraste {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
-body.alto-contraste .site-section, body.alto-contraste .medidor-card, body.alto-contraste .tabela-impacto-container {
-    background-color: #111111 !important;
+body.alto-contraste .site-section, 
+body.alto-contraste .medidor-card, 
+body.alto-contraste .quiz-container,
+body.alto-contraste .tabela-impacto-container,
+body.alto-contraste .flash-card-front,
+body.alto-contraste .flash-card-back {
+    background-color: #000000 !important;
     color: #ffffff !important;
-    border: 2px solid white !important;
+    border: 2px solid #ffffff !important;
 }
+body.alto-contraste .btn-resposta-quiz {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
 body.fonte-grande { --tamanho-base: 20px; }
 body.espacado { --espacamento-base: 2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', sans-serif !important; }
 
-/* FIX EXCLUSIVO: Aplica o filtro P&B em tudo, MENOS nas classes da central flutuante */
+/* FIX EXCLUSIVO: Impede que o menu de acessibilidade e seus botões fiquem invisíveis no modo P&B */
 body.preto-branco *:not(.painel-acessibilidade-container):not(.btn-flutuante-acessivel):not(.menu-acessibilidade-box):not(.op-btn-acessivel) { 
     filter: grayscale(100%); 
 }
