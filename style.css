@@ -289,6 +289,10 @@ body {
     border-radius: 6px;
 }
 
+.calc-resultado h3, .calc-resultado p {
+    color: var(--cor-escura);
+}
+
 .calc-resultado hr {
     margin: 10px 0;
     border: 0;
@@ -297,7 +301,7 @@ body {
 
 .nota-cientifica {
     font-size: 0.8rem;
-    color: #666;
+    color: #555;
     margin-top: 15px;
 }
 
@@ -441,11 +445,12 @@ body {
     border: 1px solid #dddddd;
     font-size: 0.95rem;
     vertical-align: top;
+    color: var(--cor-texto); /* Força cor do texto padrão */
 }
 
 .tabela-eco th {
     background-color: var(--cor-principal);
-    color: white;
+    color: white !important;
     font-weight: bold;
 }
 
@@ -460,7 +465,7 @@ body {
 }
 
 /* ==========================================================================
-   QUIZ DE CONHECIMENTOS - BOTÕES DE RESPOSTA AMPLIADOS E MAIORES
+   QUIZ DE CONHECIMENTOS - BOTÕES E TEXTOS EXPANDIDOS
    ========================================================================== */
 .quiz-container {
     background: #f8f9fa;
@@ -471,7 +476,7 @@ body {
 }
 
 .texto-questao {
-    font-size: 1.3rem; /* Texto da pergunta maior */
+    font-size: 1.35rem; /* Ampliado para melhor legibilidade */
     font-weight: bold;
     margin: 15px 0;
     color: var(--cor-escura);
@@ -480,16 +485,17 @@ body {
 .botoes-quiz {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Mais espaçamento entre as opções */
+    gap: 15px;
 }
 
 .btn-resposta-quiz {
     background: white;
     border: 2px solid #ccc;
-    padding: 18px 25px; /* Botões bem maiores e fáceis de clicar */
+    padding: 20px 25px; /* Botões maiores e confortáveis */
     text-align: left;
-    font-size: 1.1rem; /* Texto da alternativa maior */
+    font-size: 1.15rem; /* Tamanho da fonte expandido */
     font-weight: 500;
+    color: var(--cor-texto);
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
@@ -499,15 +505,14 @@ body {
 .btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
     background: #e8f5e9;
     border-color: var(--cor-secundaria);
-    transform: translateY(-2px); /* Pequena animação ao passar o mouse */
+    transform: translateY(-2px);
 }
 
 .feedback-quiz {
     margin-top: 20px;
     font-weight: bold;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     padding: 10px;
-    border-radius: 4px;
 }
 
 .btn-avancar-quiz {
@@ -597,34 +602,67 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-weight: 500;
+    color: var(--cor-texto) !important;
 }
 
-/* CONFIGURAÇÃO ORIGINAL DO SEU ALTO CONTRASTE - SEM QUEBRAS VISUAIS */
+/* ==========================================================================
+   BLINDAGEM EXCLUSIVA DO ALTO CONTRASTE (CORREÇÃO DE TEXTOS INVISÍVEIS)
+   ========================================================================== */
 body.alto-contraste {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
+
+/* Força o fundo preto e bordas brancas em todas as caixas estruturais */
 body.alto-contraste .site-section, 
 body.alto-contraste .medidor-card, 
 body.alto-contraste .quiz-container,
 body.alto-contraste .tabela-impacto-container,
+body.alto-contraste .calc-resultado,
 body.alto-contraste .flash-card-front,
 body.alto-contraste .flash-card-back {
     background-color: #000000 !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
 }
+
+/* SOLUÇÃO DOS PRINTS: Força visibilidade absoluta de textos, inputs e células na tabela */
+body.alto-contraste p,
+body.alto-contraste td,
+body.alto-contraste th,
+body.alto-contraste strong,
+body.alto-contraste label,
+body.alto-contraste span,
+body.alto-contraste div.texto-questao,
+body.alto-contraste .calc-resultado p,
+body.alto-contraste .calc-resultado h3 {
+    color: #ffffff !important;
+}
+
+/* Altera destaques específicos para Amarelo (padrão universal de acessibilidade sobre o preto) */
+body.alto-contraste .valor-display,
+body.alto-contraste .status-alerta,
+body.alto-contraste td strong,
+body.alto-contraste h3 {
+    color: #ffff00 !important;
+}
+
+/* Corrige os botões de resposta do quiz no Alto Contraste */
 body.alto-contraste .btn-resposta-quiz {
     background-color: #000000 !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
 }
+body.alto-contraste .btn-resposta-quiz:hover {
+    background-color: #333333 !important;
+    border-color: #ffff00 !important;
+}
 
+/* Demais recursos de acessibilidade */
 body.fonte-grande { --tamanho-base: 20px; }
 body.espacado { --espacamento-base: 2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', sans-serif !important; }
 
-/* FIX EXCLUSIVO: Impede que o menu de acessibilidade e seus botões fiquem invisíveis no modo P&B */
 body.preto-branco *:not(.painel-acessibilidade-container):not(.btn-flutuante-acessivel):not(.menu-acessibilidade-box):not(.op-btn-acessivel) { 
     filter: grayscale(100%); 
 }

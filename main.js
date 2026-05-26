@@ -29,31 +29,31 @@ const msgRecomendacao = document.getElementById('msg-recomendacao');
 document.getElementById('simular-sol').addEventListener('click', () => {
     valUmidade.innerText = '22%';
     valVento.innerText = '8 km/h';
-    valStatus.innerText = 'ALERTA: IRRIGAÇÃO NECESSÁRIA';
+    valStatus.innerText = 'ALERTA: IRRIGAÇÃO REQUERIDA';
     valStatus.style.color = '#e63946';
-    msgUmidade.innerText = 'Status: Solo muito seco. Risco para a plantação.';
-    msgVento.innerText = 'Status: Vento calmo. Condições ideais para irrigar.';
-    msgRecomendacao.innerText = 'Recomendação: Ligue os pivôs de irrigação agora para repor a água do solo.';
+    msgUmidade.innerText = 'Status: Estresse hídrico severo detectado no perfil do solo.';
+    msgVento.innerText = 'Status: Velocidade de vento propícia para aspersão.';
+    msgRecomendacao.innerText = 'Recomendação: Ativar sistemas de irrigação para reposição imediata da demanda hídrica.';
 });
 
 document.getElementById('simular-chuva').addEventListener('click', () => {
     valUmidade.innerText = '85%';
     valVento.innerText = '15 km/h';
-    valStatus.innerText = 'SISTEMA DESLIGADO ECONOMICAMENTE';
+    valStatus.innerText = 'SISTEMA SUSPENSO POR PRECIPITAÇÃO';
     valStatus.style.color = '#2a9d8f';
-    msgUmidade.innerText = 'Status: Solo completamente úmido devido à chuva.';
-    msgVento.innerText = 'Status: Vento moderado.';
-    msgRecomendacao.innerText = 'Recomendação: Irrigação desligada de forma automática para economizar água e energia.';
+    msgUmidade.innerText = 'Status: Capacidade de campo saturada por precipitação natural.';
+    msgVento.innerText = 'Status: Deslocamento de massas de ar em níveis médios.';
+    msgRecomendacao.innerText = 'Recomendação: Desativação automatizada dos pivôs, maximizando a eficiência hidroenergética.';
 });
 
 document.getElementById('simular-vento').addEventListener('click', () => {
     valUmidade.innerText = '40%';
     valVento.innerText = '32 km/h';
-    valStatus.innerText = 'ALERTA: RISCO DE DISPERSÃO (DERIVA)';
+    valStatus.innerText = 'ALERTA: RISCO CRÍTICO DE DERIVA';
     valStatus.style.color = '#d90429';
-    msgUmidade.innerText = 'Status: Solo com umidade aceitável.';
-    msgVento.innerText = 'Status: Rajadas de vento severas detectadas.';
-    msgRecomendacao.innerText = 'Recomendação: Não aplique defensivos agora! O vento forte vai arrastar o produto para fora.';
+    msgUmidade.innerText = 'Status: Umidade do substrato estável.';
+    msgVento.innerText = 'Status: Rajadas de vento excedem os limites técnicos operacionais.';
+    msgRecomendacao.innerText = 'Recomendação: Interromper a aplicação de defensivos agrícolas para evitar dispersão exógena.';
 });
 
 // ==========================================================================
@@ -64,7 +64,7 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
     const bioma = document.getElementById('calc-bioma').value;
     
     if (isNaN(hectares) || hectares <= 0) {
-        alert('Por favor, digite uma quantidade de hectares válida.');
+        alert('Por favor, insira uma extensão territorial válida (valor maior que zero).');
         return;
     }
 
@@ -82,43 +82,43 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ AMPLIADO (AGORA COM 5 QUESTÕES E REINÍCIO TOTAL)
+// 3. LÓGICA DO QUIZ TÉCNICO E FORMAL (5 PERGUNTAS DE NÍVEL AVANÇADO)
 // ==========================================================================
 const questoes = [
     {
-        pergunta: "De acordo com a Agência Nacional de Águas (ANA), qual atividade consome mais água doce no Brasil?",
-        a: "O abastecimento urbano e o uso doméstico nas cidades.",
-        b: "A irrigação de lavouras e plantações na agricultura.",
+        pergunta: "Conforme os relatórios consolidados da Agência Nacional de Águas (ANA), qual setor econômico apresenta a maior taxa de consumo de água doce no território brasileiro?",
+        a: "O abastecimento urbano e o consumo residencial/doméstico de água.",
+        b: "Os sistemas de irrigação e manejo hídrico voltados à produção agrícola.",
         resposta: "b",
-        explicacao: "Correto! A irrigação usa a maior parte da água consumida. Tecnologias como o EcoRadar reduzem esse desperdício em até 30%."
+        explicacao: "Parabéns! A irrigação agrícola responde pelo maior volume de captação. Ferramentas de automação mitigam essa demanda em até 30%."
     },
     {
-        pergunta: "Por que não se deve realizar a aplicação de defensivos agrícolas com ventos acima de 28 km/h?",
-        a: "Porque a força do vento gera a deriva, arrastando o produto para fora da área alvo.",
-        b: "Porque o produto evapora instantaneamente devido ao atrito do vento.",
+        pergunta: "Sob a perspectiva do manejo fitossanitário seguro, por que é tecnicamente contraindicada a pulverização de lavouras sob ventos superiores a 28 km/h?",
+        a: "Em razão do fenômeno da deriva, que arrasta as microgotas e causa a dispersão involuntária de defensivos fora do alvo delimitado.",
+        b: "Devido ao aumento da taxa de evaporação cinemática instantânea gerada pela fricção do ar.",
         resposta: "a",
-        explicacao: "Excelente! O vento forte causa o desvio do produto (deriva), contaminando outras áreas e gerando prejuízo financeiro."
+        explicacao: "Excelente resposta! O vento excessivo desvia os insumos químicos, gerando contaminação ambiental exógena e severo prejuízo financeiro."
     },
     {
-        pergunta: "Segundo dados consolidados da Embrapa, qual a porcentagem de território nacional mantida preservada pelos produtores dentro de suas propriedades?",
-        a: "Apenas cerca de 10% do território nacional.",
-        b: "Cerca de 33% de todo o território brasileiro mapeado.",
+        pergunta: "De acordo com os dados oficiais de monitoramento territorial espacial da Embrapa, qual parcela do território nacional é mantida sob conservação ambiental nativa por iniciativa direta e custeio dos produtores rurais?",
+        a: "Apenas uma fração residual estimada em aproximadamente 10% do território nacional.",
+        b: "Uma extensão robusta que representa cerca de 33% de todo o território brasileiro mapeado.",
         resposta: "b",
-        explicacao: "Exato! Os próprios produtores rurais são responsáveis por preservar voluntariamente um terço do território brasileiro."
+        explicacao: "Resposta correta! Os proprietários rurais desempenham papel estratégico na conservação biológica, custeando um terço das florestas nativas do país."
     },
     {
-        pergunta: "Qual é a principal vantagem ambiental do monitoramento inteligente na aplicação de recursos hídricos?",
-        a: "Evitar a retirada desnecessária de água de rios e lençóis freáticos.",
-        b: "Acelerar artificialmente o ciclo natural de chuvas da região.",
+        pergunta: "Qual pilar conceitual justifica a integração de sensores de umidade de solo a sistemas de telemetria meteorológica automatizados?",
+        a: "O princípio da racionalização ambiental, evitando a exaustão de corpos hídricos superficiais e subterrâneos.",
+        b: "O controle indutivo de microclimas locais para aceleração do ciclo pluviométrico regional.",
         resposta: "a",
-        explicacao: "Muito bem! Irrigar somente quando o solo precisa protege os mananciais locais e economiza energia elétrica."
+        explicacao: "Perfeito! A irrigação de precisão protege a integridade dos corpos de água locais e reduz significativamente os custos com energia elétrica pública."
     },
     {
-        pergunta: "O mercado de créditos de carbono permite que áreas preservadas gerem ativos econômicos. Qual bioma tem maior fator médio estimado de absorção de CO2/ano por hectare plantado?",
-        a: "Vegetação nativa típica de Cerrado aberto.",
-        b: "Florestas e áreas de árvores plantadas em pleno crescimento.",
+        pergunta: "Considerando as regras do mercado de ativos ecológicos, qual tipologia florestal apresenta o maior potencial médio anual de sequestro de carbono por hectare?",
+        a: "A vegetação nativa rasteira e arbustiva característica do bioma Cerrado stricto sensu.",
+        b: "Florestas comerciais e áreas em estágio de silvicultura ativa e crescimento biomassa acelerado.",
         resposta: "b",
-        explicacao: "Perfeito! Árvores em fase de crescimento ativo absorvem muito mais gás carbônico da atmosfera para formar sua madeira."
+        explicacao: "Exato! Plantas em pleno desenvolvimento fisiológico e expansão de biomassa realizam maior conversão fotossintética, estocando $CO_2$ na estrutura lenhosa."
     }
 ];
 
@@ -143,13 +143,13 @@ function carregarQuestao() {
     btnB.disabled = false;
 
     if (perguntaAtual < questoes.length) {
-        statusPerg.innerText = `Pergunta ${perguntaAtual + 1} de ${questoes.length}`;
+        statusPerg.innerText = `Questão ${perguntaAtual + 1} de ${questoes.length}`;
         txtPergunta.innerText = questoes[perguntaAtual].pergunta;
         btnA.innerText = "A) " + questoes[perguntaAtual].a;
         btnB.innerText = "B) " + questoes[perguntaAtual].b;
     } else {
-        statusPerg.innerText = "Quiz Concluído! 🎉";
-        txtPergunta.innerText = `Você finalizou o simulador técnico! Pontuação: Você acertou ${pontuacao} de ${questoes.length} perguntas.`;
+        statusPerg.innerText = "Avaliação Concluída! 🎉";
+        txtPergunta.innerText = `Simulado técnico finalizado com sucesso. Desempenho obtido: ${pontuacao} acertos de um total de ${questoes.length} proposições apresentadas.`;
         blocoOpcoes.style.display = 'none'; 
         btnProx.classList.add('avancar-oculto');
         btnReiniciar.classList.remove('avancar-oculto'); 
@@ -161,13 +161,14 @@ function avaliarResposta(alternativa) {
     btnB.disabled = true;
     const questao = questoes[perguntaAtual];
 
+    // Se estiver em alto contraste, a cor de feedback deve ser ajustável pelo CSS, limpamos estilos inline pesados
     if (alternativa === questao.resposta) {
         pontuacao++;
         resQuiz.innerText = "🌟 " + questao.explicacao;
-        resQuiz.style.color = '#2d6a4f';
+        resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffff00' : '#2d6a4f';
     } else {
-        resQuiz.innerText = "❌ Resposta incorreta. Lembre-se: " + questao.explicacao;
-        resQuiz.style.color = '#d90429';
+        resQuiz.innerText = "❌ Incorreto. Parâmetro técnico: " + questao.explicacao;
+        resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffffff' : '#d90429';
     }
     btnProx.classList.remove('avancar-oculto');
 }
@@ -222,7 +223,7 @@ document.getElementById('btn-ouvir-site').addEventListener('click', () => {
     if ('speechSynthesis' in window) {
         if (window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
-            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Site (Texto-Voz)";
+            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
             return;
         }
         const textoParaLer = document.getElementById('conteudo-principal').innerText;
@@ -230,12 +231,12 @@ document.getElementById('btn-ouvir-site').addEventListener('click', () => {
         lendoConteudo.lang = 'pt-BR';
         
         lendoConteudo.onend = () => {
-            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Site (Texto-Voz)";
+            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
         };
 
-        document.getElementById('btn-ouvir-site').innerText = "🛑 Parar Leitura";
+        document.getElementById('btn-ouvir-site').innerText = "🛑 Interromper Leitura";
         window.speechSynthesis.speak(lendoConteudo);
     } else {
-        alert('Desculpe, o seu navegador atual não suporta a leitura de tela por voz.');
+        alert('O navegador utilizado não possui suporte para a API nativa de síntese de voz.');
     }
 });
