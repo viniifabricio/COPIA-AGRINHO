@@ -173,7 +173,7 @@ btnReiniciar.addEventListener('click', () => {
 carregarQuestao();
 
 // ==========================================================================
-// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE COM LOCALSTORAGE
+// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE COM VISUAL REATIVO E LOCALSTORAGE
 // ==========================================================================
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
@@ -186,14 +186,26 @@ btnAbrirMenu.addEventListener('click', () => {
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
     
+    // Se o recurso já iniciou ativado na carga da página, estiliza o botão como ativo
     if (document.body.classList.contains(classeCSS)) {
         botao.setAttribute('aria-pressed', 'true');
+        botao.style.backgroundColor = "#52b788";
+        botao.style.color = "#081c15";
     }
 
     botao.addEventListener('click', () => {
         const ativo = document.body.classList.toggle(classeCSS);
         botao.setAttribute('aria-pressed', ativo);
         localStorage.setItem(classeCSS, ativo);
+
+        // Feedback de cor dinâmico (Verde se ativado, Padrão se desativado)
+        if (ativo) {
+            botao.style.backgroundColor = "#52b788";
+            botao.style.color = "#081c15";
+        } else {
+            botao.style.backgroundColor = "#f4f6f4";
+            botao.style.color = "var(--cor-texto)";
+        }
     });
 }
 

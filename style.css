@@ -408,7 +408,7 @@ body {
 }
 
 /* ==========================================================================
-   ESTILIZAÇÃO DA TABELA DE IMPACTO TRÍPLICE
+   ESTILIZAÇÃO DA NOVA TABELA DE IMPACTO
    ========================================================================== */
 .tabela-impacto-container {
     margin-top: 40px;
@@ -542,7 +542,7 @@ body {
 }
 
 /* ==========================================================================
-   PAINEL DE ACESSIBILIDADE FLUTUANTE
+   PAINEL DE ACESSIBILIDADE FLUTUANTE & PROTEÇÃO DO FILTRO P&B
    ========================================================================== */
 .painel-acessibilidade-container {
     position: fixed;
@@ -590,6 +590,7 @@ body {
     cursor: pointer;
     border-radius: 4px;
     font-weight: 500;
+    transition: all 0.2s;
 }
 
 /* CLASSES DE MODIFICAÇÃO CONTROLADAS */
@@ -597,7 +598,7 @@ body.alto-contraste {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
-body.alto-contraste .site-section {
+body.alto-contraste .site-section, body.alto-contraste .medidor-card, body.alto-contraste .tabela-impacto-container {
     background-color: #111111 !important;
     color: #ffffff !important;
     border: 2px solid white !important;
@@ -605,7 +606,11 @@ body.alto-contraste .site-section {
 body.fonte-grande { --tamanho-base: 20px; }
 body.espacado { --espacamento-base: 2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', sans-serif !important; }
-body.preto-branco { filter: grayscale(100%); }
+
+/* FIX EXCLUSIVO: Aplica o filtro P&B em tudo, MENOS nas classes da central flutuante */
+body.preto-branco *:not(.painel-acessibilidade-container):not(.btn-flutuante-acessivel):not(.menu-acessibilidade-box):not(.op-btn-acessivel) { 
+    filter: grayscale(100%); 
+}
 
 /* ==========================================================================
    RODAPÉ OFICIAL MANDATÓRIO
