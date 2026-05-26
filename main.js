@@ -1,6 +1,21 @@
-// FORÇAR LIMPEZA DE BUGS DE ACESSIBILIDADE ANTERIORES
-localStorage.clear();
-document.body.className = "";
+// ==========================================================================
+// CONFIGURAÇÕES E MEMÓRIA DE ACESSIBILIDADE (localStorage)
+// ==========================================================================
+const configuracoesAcessibilidade = [
+    { idBotao: 'btn-contraste', classeCSS: 'alto-contraste' },
+    { idBotao: 'btn-fonte', classeCSS: 'fonte-grande' },
+    { idBotao: 'btn-espacamento', classeCSS: 'espacado' },
+    { idBotao: 'btn-dislexia', classeCSS: 'fonte-dislexia' },
+    { idBotao: 'btn-saturacao', classeCSS: 'preto-branco' }
+];
+
+// Garante a aplicação do histórico salvo do usuário sem redefinir o ambiente do zero
+configuracoesAcessibilidade.forEach(item => {
+    const estadoSalvo = localStorage.getItem(item.classeCSS) === 'true';
+    if (estadoSalvo) {
+        document.body.classList.add(item.classeCSS);
+    }
+});
 
 // ==========================================================================
 // 1. LÓGICA DO SIMULADOR CLIMÁTICO DO PRODUTOR
@@ -68,7 +83,7 @@ document.getElementById('btn-calcular-carbono').addEventListener('click', () => 
 });
 
 // ==========================================================================
-// 3. LÓGICA DO QUIZ DE CONHECIMENTOS (3 QUESTÕES ORIGINAIS RESTAURADAS)
+// 3. LÓGICA DO QUIZ DE CONHECIMENTOS (MELHORADO COM FUNÇÃO REINICIAR)
 // ==========================================================================
 const questoes = [
     {
@@ -102,10 +117,14 @@ const btnA = document.getElementById('btn-opcao-a');
 const btnB = document.getElementById('btn-opcao-b');
 const resQuiz = document.getElementById('resultado-quiz');
 const btnProx = document.getElementById('btn-proxima');
+const btnReiniciar = document.getElementById('btn-reiniciar');
+const blocoOpcoes = document.getElementById('bloco-opcoes');
 
 function carregarQuestao() {
     resQuiz.innerText = '';
     btnProx.classList.add('avancar-oculto');
+    btnReiniciar.classList.add('avancar-oculto');
+    blocoOpcoes.style.display = 'flex'; 
     btnA.disabled = false;
     btnB.disabled = false;
 
@@ -117,9 +136,9 @@ function carregarQuestao() {
     } else {
         statusPerg.innerText = "Quiz Concluído! 🎉";
         txtPergunta.innerText = "Parabéns por testar os seus conhecimentos sobre sustentabilidade!";
-        btnA.style.display = 'none';
-        btnB.style.display = 'none';
-        btnProx.style.display = 'none';
+        blocoOpcoes.style.display = 'none'; 
+        btnProx.classList.add('avancar-oculto');
+        btnReiniciar.classList.remove('avancar-oculto'); 
     }
 }
 
@@ -140,15 +159,21 @@ function avaliarResposta(alternativa) {
 
 btnA.addEventListener('click', () => avaliarResposta('a'));
 btnB.addEventListener('click', () => avaliarResposta('b'));
+
 btnProx.addEventListener('click', () => {
     perguntaAtual++;
+    carregarQuestao();
+});
+
+btnReiniciar.addEventListener('click', () => {
+    perguntaAtual = 0;
     carregarQuestao();
 });
 
 carregarQuestao();
 
 // ==========================================================================
-// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE
+// 4. CENTRAL DE ACESSIBILIDADE FLUTUANTE COM LOCALSTORAGE
 // ==========================================================================
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
@@ -160,28 +185,39 @@ btnAbrirMenu.addEventListener('click', () => {
 
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
+    
+    if (document.body.classList.contains(classeCSS)) {
+        botao.setAttribute('aria-pressed', 'true');
+    }
+
     botao.addEventListener('click', () => {
         const ativo = document.body.classList.toggle(classeCSS);
         botao.setAttribute('aria-pressed', ativo);
+        localStorage.setItem(classeCSS, ativo);
     });
 }
 
-gerenciarAcessibilidade('btn-contraste', 'alto-contraste');
-gerenciarAcessibilidade('btn-fonte', 'fonte-grande');
-gerenciarAcessibilidade('btn-espacamento', 'espacado');
-gerenciarAcessibilidade('btn-dislexia', 'fonte-dislexia');
-gerenciarAcessibilidade('btn-saturacao', 'preto-branco');
+configuracoesAcessibilidade.forEach(item => {
+    gerenciarAcessibilidade(item.idBotao, item.classeCSS);
+});
 
 let lendoConteudo = null;
 document.getElementById('btn-ouvir-site').addEventListener('click', () => {
     if ('speechSynthesis' in window) {
         if (window.speechSynthesis.speaking) {
             window.speechSynthesis.cancel();
+            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Site (Texto-Voz)";
             return;
         }
         const textoParaLer = document.getElementById('conteudo-principal').innerText;
         lendoConteudo = new SpeechSynthesisUtterance(textoParaLer);
         lendoConteudo.lang = 'pt-BR';
+        
+        lendoConteudo.onend = () => {
+            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Site (Texto-Voz)";
+        };
+
+        document.getElementById('btn-ouvir-site').innerText = "🛑 Parar Leitura";
         window.speechSynthesis.speak(lendoConteudo);
     } else {
         alert('Desculpe, o seu navegador atual não suporta a leitura de tela por voz.');

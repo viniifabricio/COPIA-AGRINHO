@@ -408,6 +408,58 @@ body {
 }
 
 /* ==========================================================================
+   ESTILIZAÇÃO DA TABELA DE IMPACTO TRÍPLICE
+   ========================================================================== */
+.tabela-impacto-container {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e0e2e0;
+}
+
+.tabela-impacto-container h3 {
+    color: var(--cor-principal);
+    margin-bottom: 10px;
+}
+
+.tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.tabela-eco {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: white;
+}
+
+.tabela-eco th, .tabela-eco td {
+    padding: 15px;
+    border: 1px solid #dddddd;
+    font-size: 0.95rem;
+    vertical-align: top;
+}
+
+.tabela-eco th {
+    background-color: var(--cor-principal);
+    color: white;
+    font-weight: bold;
+}
+
+.tabela-eco tr:nth-child(even) {
+    background-color: #f1f8e9;
+}
+
+.tabela-eco td strong {
+    color: var(--cor-secundaria);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
    QUIZ DE CONHECIMENTOS
    ========================================================================== */
 .quiz-container {
@@ -462,6 +514,27 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.btn-reiniciar-quiz {
+    background-color: var(--cor-texto);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-reiniciar-quiz:hover {
+    background-color: var(--cor-escura);
+}
+
+.botoes-controle-quiz {
+    display: flex;
+    gap: 15px;
 }
 
 .avancar-oculto {
@@ -519,7 +592,7 @@ body {
     font-weight: 500;
 }
 
-/* CLASSES DE MODIFICAÇÃO CONTROLADAS (Sem quebrar o padrão caso ativem sem querer) */
+/* CLASSES DE MODIFICAÇÃO CONTROLADAS */
 body.alto-contraste {
     background-color: #000000 !important;
     color: #ffffff !important;
