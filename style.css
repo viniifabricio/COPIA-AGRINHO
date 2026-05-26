@@ -635,20 +635,47 @@ body.alto-contraste a:hover {
 }
 
 /* ==========================================================================
-   SOLUÇÃO DEFINITIVA PARA A SATURAÇÃO (PRETO E BRANCO)
+   SOLUÇÃO DEFINITIVA PARA A SATURAÇÃO (SEM QUEBRAR OS FLASHCARDS)
    ========================================================================== */
 
-/* Em vez de aplicar o filtro no body, aplicamos em seletores específicos 
-   da estrutura para deixar o painel flutuante totalmente livre! */
+/* Aplicamos a escala de cinza nas grandes seções, mas PULAMOS o bloco de informações dos cards */
 body.preto-branco .navbar,
 body.preto-branco .hero-section,
-body.preto-branco .container,
+body.preto-branco #intro,
+body.preto-branco #diario-bordo,
+body.preto-branco #painel-produtor,
+body.preto-branco #calculadora-secao,
+body.preto-branco #radar-secao,
+body.preto-branco .tabela-impacto-container,
+body.preto-branco #quiz,
 body.preto-branco .rodape-oficial,
 body.preto-branco iframe {
     filter: grayscale(100%) !important;
 }
 
-/* Garante que o painel de acessibilidade fique intacto, visível e colorido */
+/* Deixamos o container dos flashcards livre do filtro pesado para não quebrar o 3D */
+body.preto-branco .info-grid {
+    filter: none !important;
+}
+
+/* Em vez de quebrar o 3D, mudamos as cores dos cartões manualmente para cinza */
+body.preto-branco .flash-card-front {
+    background-color: #e0e0e0 !important;
+    border-color: #aaaaaa !important;
+    color: #333333 !important;
+}
+
+body.preto-branco .flash-card-back {
+    background-color: #555555 !important;
+    color: #ffffff !important;
+}
+
+body.preto-branco .info-tag {
+    background-color: #777777 !important;
+    color: #ffffff !important;
+}
+
+/* Mantém o painel flutuante de acessibilidade visível, intacto e colorido */
 .painel-acessibilidade-container {
     position: fixed;
     bottom: 20px;
@@ -656,15 +683,9 @@ body.preto-branco iframe {
     z-index: 999999 !important;
 }
 
-/* Força o botão e o menu a nunca receberem o efeito de sumir */
 body.preto-branco .painel-acessibilidade-container {
     filter: none !important;
-    isolation: isolate; /* Cria uma camada isolada no navegador para o botão não sumir */
-}
-
-/* Estabiliza a rotação 3D dos cards quando o modo preto e branco está ativo */
-body.preto-branco .flash-card-inner {
-    transform-style: flat !important;
+    isolation: isolate;
 }
 
 /* Modificadores extras */
