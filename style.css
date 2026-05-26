@@ -83,7 +83,7 @@ body {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    white-space: nowrap; /* IMPEDE QUE O TEXTO DO LINK QUEBRE EM DUAS LINHAS */
+    white-space: nowrap;
     transition: color 0.3s ease;
 }
 
@@ -338,7 +338,7 @@ body {
 }
 
 /* ==========================================================================
-   FLASHCARDS CORRIGIDOS (NUNCA VAZAM TEXTO PARA FORA)
+   FLASHCARDS (NUNCA VAZAM TEXTO PARA FORA)
    ========================================================================== */
 .info-grid {
     display: grid;
@@ -349,7 +349,7 @@ body {
 
 .flash-card {
     background-color: transparent;
-    height: 250px; /* Aumentado levemente para dar mais margem de segurança */
+    height: 250px;
     perspective: 1000px;
     cursor: pointer;
 }
@@ -380,7 +380,7 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow-y: auto; /* PERMITE ROLAGEM INTERNA SE A FONTE FOR GRANDE */
+    overflow-y: auto;
 }
 
 .flash-card-front {
@@ -539,13 +539,13 @@ body {
 .avancar-oculto { display: none; }
 
 /* ==========================================================================
-   SISTEMA DE ACESSIBILIDADE FLUTUANTE
+   PAINEL DE ACESSIBILIDADE FLUTUANTE (BLINDADO CONTRA DESAPARECIMENTO)
    ========================================================================== */
 .painel-acessibilidade-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 2000;
+    z-index: 99999 !important; /* Força ficar na frente absoluta de tudo */
 }
 
 .btn-flutuante-acessivel {
@@ -599,7 +599,7 @@ body {
 /* ==========================================================================
    BLINDAGEM DO ALTO CONTRASTE
    ========================================================================== */
-body.alto-contraste,
+body.alto-contrast,
 body.alto-contraste * {
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -635,16 +635,21 @@ body.alto-contraste a:hover {
 }
 
 /* ==========================================================================
-   CORREÇÃO DEFINITIVA: ESCALA DE CINZA NA TELA INTEIRA
+   REMANEJO DA ESCALA DE CINZA GLOBAL (NUNCA OCULTA OU DIZIMA O BOTÃO FLUTUANTE)
    ========================================================================== */
-/* Aplicamos o grayscale no corpo inteiro do site de forma direta */
 body.preto-branco {
     filter: grayscale(100%) !important;
 }
 
-/* Isolamos a matriz de rotação dos cards para que o filtro do body não cause o espelhamento */
+/* ISOLAMENTO COMPLETO: Garante que o menu do botão e suas opções não sumam nem distorçam */
+body.preto-branco .painel-acessibilidade-container,
+body.preto-branco .painel-acessibilidade-container * {
+    filter: none !important; 
+}
+
+/* Estabiliza a rotação 3D dos cards quando o filtro global de cinza está ligado */
 body.preto-branco .flash-card-inner {
-    transform-style: flat !important; /* Estabiliza o container durante o filtro */
+    transform-style: flat !important;
 }
 
 /* Modificadores extras */
