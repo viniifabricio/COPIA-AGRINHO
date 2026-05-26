@@ -50,7 +50,7 @@ body {
 }
 
 /* ==========================================================================
-   MENU SUPERIOR (NAVBAR)
+   MENU SUPERIOR (NAVBAR) - CORRIGIDO SEM QUEBRA DE LINHA
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
@@ -63,19 +63,28 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
 .logo {
     font-size: 1.4rem;
     font-weight: bold;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    margin-left: 20px;
     font-weight: 500;
-    transition: color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap; /* IMPEDE QUE O TEXTO DO LINK QUEBRE EM DUAS LINHAS */
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover, .nav-links a:focus {
@@ -329,7 +338,7 @@ body {
 }
 
 /* ==========================================================================
-   FLASHCARDS (EFEITO VIRAR CORRIGIDO E ATUALIZADO)
+   FLASHCARDS CORRIGIDOS (NUNCA VAZAM TEXTO PARA FORA)
    ========================================================================== */
 .info-grid {
     display: grid;
@@ -340,7 +349,7 @@ body {
 
 .flash-card {
     background-color: transparent;
-    height: 220px;
+    height: 250px; /* Aumentado levemente para dar mais margem de segurança */
     perspective: 1000px;
     cursor: pointer;
 }
@@ -365,12 +374,13 @@ body {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow-y: auto; /* PERMITE ROLAGEM INTERNA SE A FONTE FOR GRANDE */
 }
 
 .flash-card-front {
@@ -392,12 +402,14 @@ body {
     font-size: 0.8rem;
     border-radius: 10px;
     margin-bottom: 10px;
+    flex-shrink: 0;
 }
 
 .instrucao-virar {
     font-size: 0.8rem;
     color: #666;
     margin-top: 15px;
+    flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -585,7 +597,7 @@ body {
 }
 
 /* ==========================================================================
-   BLINDAGEM DO ALTO CONTRASTE (RESOLVE A FALHA DE TEXTO INVISÍVEL)
+   BLINDAGEM DO ALTO CONTRASTE
    ========================================================================== */
 body.alto-contraste,
 body.alto-contraste * {
@@ -595,7 +607,6 @@ body.alto-contraste * {
     box-shadow: none !important;
 }
 
-/* Elementos de Destaque no Alto Contraste viram Amarelo Vivo */
 body.alto-contraste h1,
 body.alto-contraste h2,
 body.alto-contraste h3,
@@ -624,30 +635,19 @@ body.alto-contraste a:hover {
 }
 
 /* ==========================================================================
-   PROTEÇÃO CONTRA ESPELHAMENTO NA SATURAÇÃO (RESOLVE ERRO DO FLASHCARD INVERTIDO)
+   CORREÇÃO DEFINITIVA: ESCALA DE CINZA NA TELA INTEIRA
    ========================================================================== */
-/* Em vez de quebrar a perspectiva 3D aplicando filtro no body inteiro, 
-   o filtro de escala de cinza só atua em mídias, banners e cores de fundos específicos */
-body.preto-branco img,
-body.preto-branco iframe,
-body.preto-branco .hero-section,
-body.preto-branco .navbar,
-body.preto-branco .rodape-oficial {
+/* Aplicamos o grayscale no corpo inteiro do site de forma direta */
+body.preto-branco {
     filter: grayscale(100%) !important;
 }
 
-body.preto-branco {
-    background-color: #e0e0e0 !important;
-}
-body.preto-branco .site-section,
-body.preto-branco .medidor-card,
-body.preto-branco .quiz-container,
-body.preto-branco .tabela-impacto-container {
-    background-color: #ffffff !important;
-    border-color: #999999 !important;
+/* Isolamos a matriz de rotação dos cards para que o filtro do body não cause o espelhamento */
+body.preto-branco .flash-card-inner {
+    transform-style: flat !important; /* Estabiliza o container durante o filtro */
 }
 
-/* Outros Modificadores */
+/* Modificadores extras */
 body.fonte-grande { --tamanho-base: 20px; }
 body.espacado { --espacamento-base: 2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', sans-serif !important; }
