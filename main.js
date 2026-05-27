@@ -31,67 +31,75 @@ const msgUmidade = document.getElementById('msg-umidade');
 const msgVento = document.getElementById('msg-vento');
 const msgRecomendacao = document.getElementById('msg-recomendacao');
 
-document.getElementById('simular-sol').addEventListener('click', () => {
-    valUmidade.innerText = '22%';
-    valVento.innerText = '8 km/h';
-    valStatus.innerText = 'ALERTA: PRECISANDO LIGAR A IRRIGAÇÃO';
-    valStatus.style.color = '#e63946';
-    msgUmidade.innerText = 'Status: A terra está muito seca.';
-    msgVento.innerText = 'Status: O vento está calmo, bom para irrigar.';
-    msgRecomendacao.innerText = 'Recomendação: Ligue os pivôs de irrigação para dar água para as plantas.';
-});
+if (document.getElementById('simular-sol')) {
+    document.getElementById('simular-sol').addEventListener('click', () => {
+        valUmidade.innerText = '22%';
+        valVento.innerText = '8 km/h';
+        valStatus.innerText = 'ALERTA: PRECISANDO LIGAR A IRRIGAÇÃO';
+        valStatus.style.color = '#e63946';
+        msgUmidade.innerText = 'Status: A terra está muito seca.';
+        msgVento.innerText = 'Status: O vento está calmo, bom para irrigar.';
+        msgRecomendacao.innerText = 'Recomendação: Ligue os pivôs de irrigação para dar água para as plantas.';
+    });
+}
 
-document.getElementById('simular-chuva').addEventListener('click', () => {
-    valUmidade.innerText = '85%';
-    valVento.innerText = '15 km/h';
-    valStatus.innerText = 'SISTEMA DESLIGADO - JÁ ESTÁ CHOVENDO';
-    valStatus.style.color = '#2a9d8f';
-    msgUmidade.innerText = 'Status: A terra já recebeu bastante água da chuva.';
-    msgVento.innerText = 'Status: Vento moderado.';
-    msgRecomendacao.innerText = 'Recomendação: O sistema desliga a irrigação sozinho para economizar água e energia.';
-});
+if (document.getElementById('simular-chuva')) {
+    document.getElementById('simular-chuva').addEventListener('click', () => {
+        valUmidade.innerText = '85%';
+        valVento.innerText = '15 km/h';
+        valStatus.innerText = 'SISTEMA DESLIGADO - JÁ ESTÁ CHOVENDO';
+        valStatus.style.color = '#2a9d8f';
+        msgUmidade.innerText = 'Status: A terra já recebeu bastante água da chuva.';
+        msgVento.innerText = 'Status: Vento moderado.';
+        msgRecomendacao.innerText = 'Recomendação: O sistema desliga a irrigação sozinho para economizar água e energia.';
+    });
+}
 
-document.getElementById('simular-vento').addEventListener('click', () => {
-    valUmidade.innerText = '40%';
-    valVento.innerText = '32 km/h';
-    valStatus.innerText = 'ALERTA: VENTO MUITO FORTE';
-    valStatus.style.color = '#d90429';
-    msgUmidade.innerText = 'Status: A umidade da terra está normal.';
-    msgVento.innerText = 'Status: Rajadas de vento muito acima do limite seguro.';
-    msgRecomendacao.innerText = 'Recomendação: Não jogue produtos na lavoura agora. O vento forte pode levar o produto para o lugar errado.';
-});
+if (document.getElementById('simular-vento')) {
+    document.getElementById('simular-vento').addEventListener('click', () => {
+        valUmidade.innerText = '40%';
+        valVento.innerText = '32 km/h';
+        valStatus.innerText = 'ALERTA: VENTO MUITO FORTE';
+        valStatus.style.color = '#d90429';
+        msgUmidade.innerText = 'Status: A umidade da terra está normal.';
+        msgVento.innerText = 'Status: Rajadas de vento muito acima do limite seguro.';
+        msgRecomendacao.innerText = 'Recomendação: Não jogue produtos na lavoura agora. O vento forte pode levar o produto para o lugar errado.';
+    });
+}
 
 // ==========================================================================
 // 2. LÓGICA DA CALCULADORA DE CARBONO
 // ==========================================================================
-document.getElementById('btn-calcular-carbono').addEventListener('click', () => {
-    const hectares = parseFloat(document.getElementById('calc-hectares').value);
-    const bioma = document.getElementById('calc-bioma').value;
-    
-    if (isNaN(hectares) || hectares <= 0) {
-        alert('Por favor, digite um tamanho de área válido (maior que zero).');
-        return;
-    }
+if (document.getElementById('btn-calcular-carbono')) {
+    document.getElementById('btn-calcular-carbono').addEventListener('click', () => {
+        const hectares = parseFloat(document.getElementById('calc-hectares').value);
+        const bioma = document.getElementById('calc-bioma').value;
+        
+        if (isNaN(hectares) || hectares <= 0) {
+            alert('Por favor, digite um tamanho de área válido (maior que zero).');
+            return;
+        }
 
-    let fatorCO2 = 8.5; 
-    if (bioma === 'cerrado') fatorCO2 = 4.2;
-    if (bioma === 'floresta-tropical') fatorCO2 = 12.0;
+        let fatorCO2 = 8.5; 
+        if (bioma === 'cerrado') fatorCO2 = 4.2;
+        if (bioma === 'floresta-tropical') fatorCO2 = 12.0;
 
-    const toneladasAnuais = hectares * fatorCO2;
-    const creditosGerados = toneladasAnuais; 
-    const valorFinanceiro = creditosGerados * 75.00; 
+        const toneladasAnuais = hectares * fatorCO2;
+        const creditosGerados = toneladasAnuais; 
+        const valorFinanceiro = creditosGerados * 75.00; 
 
-    document.getElementById('res-toneladas').innerText = toneladasAnuais.toFixed(2);
-    document.getElementById('res-creditos').innerText = creditosGerados.toFixed(2);
-    document.getElementById('res-financeiro').innerText = valorFinanceiro.toFixed(2);
-});
+        document.getElementById('res-toneladas').innerText = toneladasAnuais.toFixed(2);
+        document.getElementById('res-creditos').innerText = creditosGerados.toFixed(2);
+        document.getElementById('res-financeiro').innerText = valorFinanceiro.toFixed(2);
+    });
+}
 
 // ==========================================================================
 // 3. LÓGICA DO QUIZ COM LINGUAGEM ACESSÍVEL E SIMPLES
 // ==========================================================================
 const questoes = [
     {
-        pergunta: "Segundo os dados oficiais do Brasil, qual é o setor que mais gasta água doce no nosso país?",
+        pergunta: "Segundo os dados oficiais do Brasil, qual é o sector que mais gasta água doce no nosso país?",
         a: "O uso nas casas e o abastecimento das grandes cidades.",
         b: "A irrigação de lavouras e plantações na agricultura.",
         resposta: "b",
@@ -140,6 +148,8 @@ const btnReiniciar = document.getElementById('btn-reiniciar');
 const blocoOpcoes = document.getElementById('bloco-opcoes');
 
 function carregarQuestao() {
+    if (!txtPergunta) return; // Proteção para evitar travar se o elemento sumir
+
     resQuiz.innerText = '';
     btnProx.classList.add('avancar-oculto');
     btnReiniciar.classList.add('avancar-oculto');
@@ -177,21 +187,30 @@ function avaliarResposta(alternativa) {
     btnProx.classList.remove('avancar-oculto');
 }
 
-btnA.addEventListener('click', () => avaliarResposta('a'));
-btnB.addEventListener('click', () => avaliarResposta('b'));
+if (btnA && btnB) {
+    btnA.addEventListener('click', () => avaliarResposta('a'));
+    btnB.addEventListener('click', () => avaliarResposta('b'));
+}
 
-btnProx.addEventListener('click', () => {
-    perguntaAtual++;
+if (btnProx) {
+    btnProx.addEventListener('click', () => {
+        perguntaAtual++;
+        carregarQuestao();
+    });
+}
+
+if (btnReiniciar) {
+    btnReiniciar.addEventListener('click', () => {
+        perguntaAtual = 0;
+        pontuacao = 0;
+        carregarQuestao();
+    });
+}
+
+// Inicializa o quiz se ele existir na página atual
+if (txtPergunta) {
     carregarQuestao();
-});
-
-btnReiniciar.addEventListener('click', () => {
-    perguntaAtual = 0;
-    pontuacao = 0;
-    carregarQuestao();
-});
-
-carregarQuestao();
+}
 
 // ==========================================================================
 // 4. CENTRAL DO MENU DE ACESSIBILIDADE FLUTUANTE
@@ -199,22 +218,23 @@ carregarQuestao();
 const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
 const menuAcessivel = document.getElementById('menu-acessibilidade');
 
-btnAbrirMenu.addEventListener('click', () => {
-    const expandido = menuAcessivel.classList.toggle('acessibilidade-escondido');
-    btnAbrirMenu.setAttribute('aria-expanded', !expandido);
-});
+if (btnAbrirMenu && menuAcessivel) {
+    btnAbrirMenu.addEventListener('click', () => {
+        const expandido = menuAcessivel.classList.toggle('acessibilidade-escondido');
+        btnAbrirMenu.setAttribute('aria-expanded', !expandido);
+    });
+}
 
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
+    if (!botao) return; // Evita erros se o botão não estiver renderizado
     
-    // Verifica o estado atual para o ARIA de acordo com onde a classe é guardada
     const elementoAlvo = (classeCSS === 'preto-branco') ? document.documentElement : document.body;
     if (elementoAlvo.classList.contains(classeCSS)) {
         botao.setAttribute('aria-pressed', 'true');
     }
 
     botao.addEventListener('click', () => {
-        // Redireciona a classe para o local correto dependendo da acessibilidade escolhida
         let ativo;
         if (classeCSS === 'preto-branco') {
             ativo = document.documentElement.classList.toggle(classeCSS);
@@ -231,25 +251,29 @@ configuracoesAcessibilidade.forEach(item => {
     gerenciarAcessibilidade(item.idBotao, item.classeCSS);
 });
 
-let lendoConteudo = null;
-document.getElementById('btn-ouvir-site').addEventListener('click', () => {
-    if ('speechSynthesis' in window) {
-        if (window.speechSynthesis.speaking) {
-            window.speechSynthesis.cancel();
-            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
-            return;
-        }
-        const textoParaLer = document.getElementById('conteudo-principal').innerText;
-        lendoConteudo = new SpeechSynthesisUtterance(textoParaLer);
-        lendoConteudo.lang = 'pt-BR';
-        
-        lendoConteudo.onend = () => {
-            document.getElementById('btn-ouvir-site').innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
-        };
+const btnOuvir = document.getElementById('btn-ouvir-site');
+if (btnOuvir) {
+    let lendoConteudo = null;
+    btnOuvir.addEventListener('click', () => {
+        if ('speechSynthesis' in window) {
+            if (window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                btnOuvir.innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
+                return;
+            }
+            const conteudoPrincipal = document.getElementById('conteudo-principal');
+            const textoParaLer = conteudoPrincipal ? conteudoPrincipal.innerText : document.body.innerText;
+            lendoConteudo = new SpeechSynthesisUtterance(textoParaLer);
+            lendoConteudo.lang = 'pt-BR';
+            
+            lendoConteudo.onend = () => {
+                btnOuvir.innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
+            };
 
-        document.getElementById('btn-ouvir-site').innerText = "🛑 Parar Leitura";
-        window.speechSynthesis.speak(lendoConteudo);
-    } else {
-        alert('Este navegador não aceita a função de leitura de texto.');
-    }
-});
+            btnOuvir.innerText = "🛑 Parar Leitura";
+            window.speechSynthesis.speak(lendoConteudo);
+        } else {
+            alert('Este navegador não aceita a função de leitura de texto.');
+        }
+    });
+}
