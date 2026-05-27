@@ -438,13 +438,17 @@ body {
 }
 
 /* ==========================================================================
-   8. QUIZ DE CONHECIMENTOS (ESTILIZAÇÃO DAS OPÇÕES)
+   8. QUIZ DE CONHECIMENTOS (CORREÇÃO DE VISIBILIDADE DOS BOTÕES)
    ========================================================================== */
 .texto-questao {
     font-size: 1.35rem;
     font-weight: bold;
     margin: 15px 0;
-    color: #ffffff;
+    color: var(--cor-escura); /* Cor escura padrão para leitura */
+}
+
+.site-section.dark-panel .texto-questao {
+    color: #ffffff !important;
 }
 
 .botoes-quiz {
@@ -454,36 +458,36 @@ body {
     margin-top: 20px;
 }
 
+/* Força o botão a ter fundo cinza claro e texto escuro no modo normal */
 .btn-resposta-quiz {
-    background: transparent !important;
-    border: 2px solid #ffffff !important;
+    background-color: #f4f6f4 !important;
+    border: 2px solid var(--cor-secundaria) !important;
     padding: 20px 25px;
     text-align: left;
     font-size: 1.15rem;
     font-weight: 500;
-    color: #ffffff !important;
+    color: var(--cor-escura) !important; /* Texto escuro para destacar no fundo claro */
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
+/* Efeito ao passar o mouse no modo normal */
 .btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
-    background: rgba(255, 255, 255, 0.15) !important;
+    background-color: #e8f5e9 !important;
+    border-color: var(--cor-principal) !important;
 }
 
-.btn-avancar-quiz, .btn-reiniciar-quiz {
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    margin-top: 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.05rem;
-    font-weight: bold;
+/* SE O SITE ESTIVER NO MODO PRETO E BRANCO: Transforma o botão para garantir contraste */
+html.preto-branco .btn-resposta-quiz {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important; /* Texto branco no fundo preto */
 }
-.btn-avancar-quiz { background-color: var(--cor-secundaria); }
-.btn-reiniciar-quiz { background-color: #333; }
-.avancar-oculto { display: none; }
+
+html.preto-branco .btn-resposta-quiz:hover {
+    background-color: #222222 !important;
+}
 
 /* ==========================================================================
    9. PAINEL DE ACESSIBILIDADE FLUTUANTE
