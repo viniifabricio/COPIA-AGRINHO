@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VARIÁVEIS DE CORES E PADRÕES ORIGINAIS
+   1. VARIÁVEIS DE CORES E PADRÕES ORIGINAIS
    ========================================================================== */
 :root {
     --cor-principal: #1b4332;
@@ -50,7 +50,7 @@ body {
 }
 
 /* ==========================================================================
-   MENU SUPERIOR (NAVBAR) - ALINHADO E FLUIDO
+   2. NAVBAR & HERO (MENU SUPERIOR E BANNER)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
@@ -92,9 +92,6 @@ body {
     outline: 2px solid white;
 }
 
-/* ==========================================================================
-   BANNER PRINCIPAL (HERO)
-   ========================================================================== */
 .hero-section {
     position: relative;
     background-image: url('Agrinho.png');
@@ -143,7 +140,7 @@ body {
 }
 
 /* ==========================================================================
-   CAIXAS DE CONTEÚDO E ESTRUTURA E ESTILOS DE SEÇÃO
+   3. SEÇÕES DE CONTEÚDO PADRÃO E ESCURO
    ========================================================================== */
 .site-section {
     background: white;
@@ -154,7 +151,7 @@ body {
     border: 1px solid #e0e2e0;
 }
 
-/* Mantém o fundo escuro integrado conforme o print do Quiz e Tabelas */
+/* Mantém o painel do Quiz e Tabela escuros originais */
 .site-section.dark-panel {
     background-color: #000000 !important;
     color: #ffffff !important;
@@ -189,12 +186,8 @@ body {
     color: #ffff00 !important;
 }
 
-.texto-profundo p {
-    margin-bottom: 15px;
-}
-
 /* ==========================================================================
-   LINHA DO TEMPO (DIÁRIO DE BORDO) - VISUAL ORIGINAL RESTAURADO
+   4. LINHA DO TEMPO (DIÁRIO DE BORDO ORIGINAL RECONSTRUÍDO)
    ========================================================================== */
 .timeline {
     position: relative;
@@ -208,7 +201,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* Este bloco cria a bolinha verde idêntica à do print */
+/* Renderiza as bolinhas verdes perfeitamente alinhadas à linha */
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -229,7 +222,7 @@ body {
 }
 
 /* ==========================================================================
-   SIMULADORES DO CLIMA
+   5. COMPONENTES DOS SIMULADORES E CALCULADORA
    ========================================================================== */
 .botoes-simulador {
     display: flex;
@@ -247,13 +240,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease, outline 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-sim:hover, .btn-sim:focus {
     background-color: var(--cor-secundaria);
     transform: translateY(-2px);
-    outline: 3px solid var(--cor-escura);
 }
 
 .painel-grid {
@@ -285,9 +277,6 @@ body {
     margin: 15px 0;
 }
 
-/* ==========================================================================
-   CALCULADORA DE CARBONO
-   ========================================================================== */
 .calc-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -311,8 +300,6 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    background-color: white;
-    color: black;
 }
 
 .calc-resultado {
@@ -327,24 +314,6 @@ body {
     border-color: #52b788;
 }
 
-.nota-cientifica {
-    font-size: 0.8rem;
-    color: #555;
-    margin-top: 15px;
-}
-.site-section.dark-panel .nota-cientifica {
-    color: #aaa;
-}
-
-/* RADAR */
-.radar-section {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    margin: 30px 0;
-    border: 1px solid #e0e2e0;
-}
-
 .radar-container {
     position: relative;
     width: 100%;
@@ -352,16 +321,16 @@ body {
     margin-top: 20px;
     border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .radar-frame {
     width: 100%;
     height: 100%;
+    border: none;
 }
 
 /* ==========================================================================
-   FLASHCARDS (EFEITO 3D COMPLETO E PRESERVADO)
+   6. FLASHCARDS (ESTILO 3D PRESERVADO)
    ========================================================================== */
 .info-grid {
     display: grid;
@@ -403,7 +372,6 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow-y: auto;
 }
 
 .flash-card-front {
@@ -425,25 +393,11 @@ body {
     font-size: 0.8rem;
     border-radius: 12px;
     margin-bottom: 12px;
-    flex-shrink: 0;
-}
-
-.instrucao-virar {
-    font-size: 0.8rem;
-    color: #666;
-    margin-top: 15px;
-    flex-shrink: 0;
 }
 
 /* ==========================================================================
-   TABELA DE IMPACTO ORIGINAL (BONITA E CORRIGIDA)
+   7. TABELA DE IMPACTO ORIGINAL
    ========================================================================== */
-.tabela-impacto-container {
-    margin-top: 20px;
-    padding: 0;
-    background-color: transparent;
-}
-
 .tabela-responsiva {
     width: 100%;
     overflow-x: auto;
@@ -461,14 +415,12 @@ body {
     padding: 15px;
     border: 1px solid #dddddd;
     font-size: 0.95rem;
-    vertical-align: top;
     color: var(--cor-texto);
 }
 
 .tabela-eco th {
     background-color: #1b4332 !important;
     color: #ffffff !important;
-    font-weight: bold;
 }
 
 .tabela-eco tr:nth-child(even) {
@@ -481,23 +433,13 @@ body {
     margin-bottom: 5px;
 }
 
-/* Ajuste das cores da tabela dentro da seção escura (Modo Normal) */
-.site-section.dark-panel .tabela-eco {
-    background-color: #ffffff;
-}
 .site-section.dark-panel .tabela-eco td {
     color: #000000 !important;
 }
 
 /* ==========================================================================
-   QUIZ DE CONHECIMENTOS
+   8. QUIZ DE CONHECIMENTOS (ESTILIZAÇÃO DAS OPÇÕES)
    ========================================================================== */
-.quiz-container {
-    background: transparent;
-    padding: 10px 0;
-    margin-top: 20px;
-}
-
 .texto-questao {
     font-size: 1.35rem;
     font-weight: bold;
@@ -513,28 +455,20 @@ body {
 }
 
 .btn-resposta-quiz {
-    background: transparent;
-    border: 2px solid #ffffff;
+    background: transparent !important;
+    border: 2px solid #ffffff !important;
     padding: 20px 25px;
     text-align: left;
     font-size: 1.15rem;
     font-weight: 500;
-    color: #ffffff;
+    color: #ffffff !important;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #52b788;
-}
-
-.feedback-quiz {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 10px;
+    background: rgba(255, 255, 255, 0.15) !important;
 }
 
 .btn-avancar-quiz, .btn-reiniciar-quiz {
@@ -546,23 +480,19 @@ body {
     cursor: pointer;
     font-size: 1.05rem;
     font-weight: bold;
-    transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .btn-avancar-quiz { background-color: var(--cor-secundaria); }
 .btn-reiniciar-quiz { background-color: #333; }
-
-.botoes-controle-quiz { display: flex; gap: 15px; }
 .avancar-oculto { display: none; }
 
 /* ==========================================================================
-   PAINEL DE ACESSIBILIDADE FLUTUANTE (BLINDAGEM COMPLETA)
+   9. PAINEL DE ACESSIBILIDADE FLUTUANTE
    ========================================================================== */
 .painel-acessibilidade-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 999999 !important; /* Sempre no topo absoluto */
+    z-index: 999999 !important;
 }
 
 .btn-flutuante-acessivel {
@@ -575,10 +505,6 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.2s ease;
-}
-.btn-flutuante-acessivel:hover {
-    transform: scale(1.1);
 }
 
 .menu-acessibilidade-box {
@@ -599,7 +525,6 @@ body {
     color: var(--cor-escura) !important;
     font-size: 1.1rem;
     margin-bottom: 10px;
-    font-weight: bold;
 }
 
 .op-btn-acessivel {
@@ -612,18 +537,14 @@ body {
     text-align: left;
     cursor: pointer;
     border-radius: 4px;
-    font-weight: 500;
     color: var(--cor-texto) !important;
-    transition: background 0.2s ease;
-    font-size: 0.9rem;
-}
-.op-btn-acessivel:hover {
-    background: #e0e2e0;
 }
 
 /* ==========================================================================
-   REGRAS DE CONTRASTE ACESSÍVEL (MANTÉM O LAYOUT LIMPO)
+   10. MODIFICADORES E REGRAS DE ACESSIBILIDADE (ALTO CONTRASTE & SATURAÇÃO)
    ========================================================================== */
+
+/* ALTO CONTRASTE */
 body.alto-contraste,
 body.alto-contraste * {
     background-color: #000000 !important;
@@ -631,122 +552,43 @@ body.alto-contraste * {
     border-color: #ffffff !important;
     box-shadow: none !important;
 }
-
-body.alto-contraste h1,
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste th,
-body.alto-contraste td strong,
-body.alto-contraste .valor-display,
-body.alto-contraste .status-alerta,
-body.alto-contraste .tag-destaque,
+body.alto-contraste h1, body.alto-contraste h2, body.alto-contraste h3, 
+body.alto-contraste th, body.alto-contraste td strong, body.alto-contraste .valor-display,
+body.alto-contraste .status-alerta, body.alto-contraste .tag-destaque, 
 body.alto-contraste .subtitulo-impacto {
     color: #ffff00 !important;
 }
-
-body.alto-contraste button,
-body.alto-contraste a,
-body.alto-contraste input,
-body.alto-contraste select {
+body.alto-contraste button, body.alto-contraste a, body.alto-contraste input, body.alto-contraste select {
     background-color: #000000 !important;
     color: #ffffff !important;
     border: 2px solid #ffffff !important;
 }
-
-body.alto-contraste .tabela-eco,
-body.alto-contraste .tabela-eco tr,
-body.alto-contraste .tabela-eco td {
+body.alto-contraste .tabela-eco, body.alto-contraste .tabela-eco tr, body.alto-contraste .tabela-eco td {
     background-color: #000000 !important;
     color: #ffffff !important;
 }
 
-/* ==========================================================================
-   REGRAS DE CONTRASTE ACESSÍVEL (MANTÉM O LAYOUT LIMPO)
-   ========================================================================== */
-body.alto-contraste,
-body.alto-contraste * {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border-color: #ffffff !important;
-    box-shadow: none !important;
-}
-
-body.alto-contraste h1,
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste th,
-body.alto-contraste td strong,
-body.alto-contraste .valor-display,
-body.alto-contraste .status-alerta,
-body.alto-contraste .tag-destaque,
-body.alto-contraste .subtitulo-impacto {
-    color: #ffff00 !important;
-}
-
-body.alto-contraste button,
-body.alto-contraste a,
-body.alto-contraste input,
-body.alto-contraste select {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-    border: 2px solid #ffffff !important;
-}
-
-body.alto-contraste .tabela-eco,
-body.alto-contraste .tabela-eco tr,
-body.alto-contraste .tabela-eco td {
-    background-color: #000000 !important;
-    color: #ffffff !important;
-}
-
-/* ==========================================================================
-   SOLUÇÃO DE SATURAÇÃO INTEGRAL (PRETO E BRANCO GLOBAL)
-   ========================================================================== */
-
-/* Força TUDO no site a ficar em escala de cinza de verdade */
-body.preto-branco {
+/* SATURAÇÃO (PRETO E BRANCO GLOBAL VIA HTML) */
+html.preto-branco {
     filter: grayscale(100%) !important;
 }
 
-/* CORREÇÃO DO QUIZ NA SATURAÇÃO: Garante que os botões fiquem escuros e o texto legível */
-body.preto-branco .btn-resposta-quiz {
-    background-color: transparent !important;
+/* Correções específicas para o modo preto e branco funcionar liso e sem bugs */
+html.preto-branco .btn-resposta-quiz {
     border-color: #ffffff !important;
     color: #ffffff !important;
 }
-
-/* Quando passar o mouse ou focar no botão do quiz durante a saturação */
-body.preto-branco .btn-resposta-quiz:hover,
-body.preto-branco .btn-resposta-quiz:focus {
-    background-color: rgba(255, 255, 255, 0.15) !important;
-    border-color: #aaaaaa !important;
+html.preto-branco .flash-card-inner {
+    transform-style: preserve-3d !important;
 }
 
-/* CORREÇÃO DOS FLASHCARDS NA SATURAÇÃO: Impede que o filtro amasse o efeito 3D no Chrome/Edge */
-body.preto-branco .flash-card-inner {
-    transform-style: preserve-3d !important; /* Força o navegador a manter o espaço 3D */
-}
-
-/* BLINDAGEM DO PAINEL DE ACESSIBILIDADE: Garante que ele continue visível na tela */
-.painel-acessibilidade-container {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999999 !important;
-}
-
-body.preto-branco .painel-acessibilidade-container {
-    filter: none !important; /* Isola o botão do filtro do body */
-    isolation: isolate;
-}
-
-/* MODIFICADORES DE TEXTO ADAPTATIVO */
+/* MODIFICADORES DE TEXTO */
 body.fonte-grande { --tamanho-base: 19px; }
 body.espacado { --espacamento-base: 2.2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', cursive, sans-serif !important; }
 
 /* ==========================================================================
-   RODAPÉ
+   11. RODAPÉ ORIGINAL
    ========================================================================== */
 .rodape-oficial {
     background-color: var(--cor-escura);
