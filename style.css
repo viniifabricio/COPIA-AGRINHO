@@ -661,53 +661,82 @@ body.alto-contraste .tabela-eco td {
 }
 
 /* ==========================================================================
-   SOLUÇÃO EXCLUSIVA PARA A SATURAÇÃO SEM QUEBRAR O 3D OU O PAINEL
+   REGRAS DE CONTRASTE ACESSÍVEL (MANTÉM O LAYOUT LIMPO)
+   ========================================================================== */
+body.alto-contraste,
+body.alto-contraste * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste th,
+body.alto-contraste td strong,
+body.alto-contraste .valor-display,
+body.alto-contraste .status-alerta,
+body.alto-contraste .tag-destaque,
+body.alto-contraste .subtitulo-impacto {
+    color: #ffff00 !important;
+}
+
+body.alto-contraste button,
+body.alto-contraste a,
+body.alto-contraste input,
+body.alto-contraste select {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .tabela-eco,
+body.alto-contraste .tabela-eco tr,
+body.alto-contraste .tabela-eco td {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   SOLUÇÃO DE SATURAÇÃO INTEGRAL (PRETO E BRANCO GLOBAL)
    ========================================================================== */
 
-/* Em vez de aplicar o filtro no body (o que quebrava o 3D e sumia com o painel), 
-   aplicamos estritamente nos componentes gráficos de visualização e imagens */
-body.preto-branco .navbar,
-body.preto-branco .hero-section,
-body.preto-branco .radar-container,
-body.preto-branco iframe,
-body.preto-branco .medidor-card {
+/* Força TUDO no site a ficar em escala de cinza de verdade */
+body.preto-branco {
     filter: grayscale(100%) !important;
 }
 
-/* Mudamos as cores dos cartões via CSS puro para cinza, salvando a rotação 3D intacta! */
-body.preto-branco .flash-card-front {
-    background-color: #e2e2e2 !important;
-    border-color: #bababa !important;
-    color: #333333 !important;
-}
-
-body.preto-branco .flash-card-back {
-    background-color: #4a4a4a !important;
-    color: #ffffff !important;
-}
-
-body.preto-branco .info-tag {
-    background-color: #666666 !important;
-    color: #ffffff !important;
-}
-
-/* Converte as cores da tabela e botões da seção escura para cinza na Saturação */
-body.preto-branco .tabela-eco th {
-    background-color: #444444 !important;
-}
-body.preto-branco .tabela-eco tr:nth-child(even) {
-    background-color: #e6e6e6 !important;
-}
-body.preto-branco .tabela-eco td strong {
-    color: #555555 !important;
-}
+/* CORREÇÃO DO QUIZ NA SATURAÇÃO: Garante que os botões fiquem escuros e o texto legível */
 body.preto-branco .btn-resposta-quiz {
-    border-color: #888888 !important;
+    background-color: transparent !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
 }
 
-/* Mantém o painel de acessibilidade 100% colorido e isolado de erros de pilha */
+/* Quando passar o mouse ou focar no botão do quiz durante a saturação */
+body.preto-branco .btn-resposta-quiz:hover,
+body.preto-branco .btn-resposta-quiz:focus {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: #aaaaaa !important;
+}
+
+/* CORREÇÃO DOS FLASHCARDS NA SATURAÇÃO: Impede que o filtro amasse o efeito 3D no Chrome/Edge */
+body.preto-branco .flash-card-inner {
+    transform-style: preserve-3d !important; /* Força o navegador a manter o espaço 3D */
+}
+
+/* BLINDAGEM DO PAINEL DE ACESSIBILIDADE: Garante que ele continue visível na tela */
+.painel-acessibilidade-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999 !important;
+}
+
 body.preto-branco .painel-acessibilidade-container {
-    filter: none !important;
+    filter: none !important; /* Isola o botão do filtro do body */
     isolation: isolate;
 }
 
