@@ -9,10 +9,15 @@ const configuracoesAcessibilidade = [
     { idBotao: 'btn-saturacao', classeCSS: 'preto-branco' }
 ];
 
+// Carrega as configurações salvas ao iniciar a página
 configuracoesAcessibilidade.forEach(item => {
     const estadoSalvo = localStorage.getItem(item.classeCSS) === 'true';
     if (estadoSalvo) {
-        document.body.classList.add(item.classeCSS);
+        if (item.classeCSS === 'preto-branco') {
+            document.documentElement.classList.add(item.classeCSS);
+        } else {
+            document.body.classList.add(item.classeCSS);
+        }
     }
 });
 
@@ -202,12 +207,21 @@ btnAbrirMenu.addEventListener('click', () => {
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
     
-    if (document.body.classList.contains(classeCSS)) {
+    // Verifica o estado atual para o ARIA de acordo com onde a classe é guardada
+    const elementoAlvo = (classeCSS === 'preto-branco') ? document.documentElement : document.body;
+    if (elementoAlvo.classList.contains(classeCSS)) {
         botao.setAttribute('aria-pressed', 'true');
     }
 
     botao.addEventListener('click', () => {
-        const ativo = document.body.classList.toggle(classeCSS);
+        // Redireciona a classe para o local correto dependendo da acessibilidade escolhida
+        let ativo;
+        if (classeCSS === 'preto-branco') {
+            ativo = document.documentElement.classList.toggle(classeCSS);
+        } else {
+            ativo = document.body.classList.toggle(classeCSS);
+        }
+        
         botao.setAttribute('aria-pressed', ativo);
         localStorage.setItem(classeCSS, ativo);
     });
