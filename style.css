@@ -193,7 +193,9 @@ body {
     margin-bottom: 15px;
 }
 
-/* LINHA DO TEMPO (TIMELINE - DIÁRIO DE BORDO) */
+/* ==========================================================================
+   LINHA DO TEMPO (DIÁRIO DE BORDO) - VISUAL ORIGINAL RESTAURADO
+   ========================================================================== */
 .timeline {
     position: relative;
     margin: 30px 0;
@@ -206,7 +208,9 @@ body {
     margin-bottom: 30px;
 }
 
-.timeline-dot {
+/* Este bloco cria a bolinha verde idêntica à do print */
+.timeline-item::before {
+    content: '';
     position: absolute;
     width: 16px;
     height: 16px;
@@ -220,6 +224,8 @@ body {
     font-size: 0.85rem;
     color: var(--cor-secundaria);
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* ==========================================================================
