@@ -51,12 +51,12 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR ALINHADO E ADAPTÁVEL)
+   2. NAVBAR (MENU SUPERIOR ALINHADO - SEM QUEBRA E SEM SUMIR DA TELA)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura, #081c15) !important;
     color: white !important;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
@@ -64,35 +64,43 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    width: 100%;
-    flex-wrap: nowrap !important; /* Força uma linha única no modo padrão */
-    gap: 15px;
+    width: 100% !important;
+    max-width: 100vw !important;
+    flex-wrap: nowrap !important; /* Proíbe terminantemente a quebra de linha por padrão */
+    box-sizing: border-box !important;
+    gap: 10px;
 }
 
 .logo {
     color: white !important;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     white-space: nowrap;
-    flex-shrink: 0;
+    flex-shrink: 0; /* A logo nunca esmaga */
 }
 
 .nav-links {
     display: flex !important;
-    flex-wrap: nowrap !important; /* Mantém os links alinhados lado a lado por padrão */
-    gap: 12px !important;
+    flex-wrap: nowrap !important; /* Proíbe a quebra dos links por padrão */
+    gap: 0.5vw !important; /* Espaçamento dinâmico baseado na largura da tela */
     justify-content: flex-end !important;
     list-style: none;
     align-items: center;
+    flex-grow: 1;
+    overflow: hidden; /* Garante segurança absoluta do container */
+}
+
+.nav-links li {
+    display: inline-flex !important;
 }
 
 .nav-links a {
     color: white !important;
     text-decoration: none !important;
     font-weight: 500;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    padding: 5px 8px;
+    font-size: clamp(0.7rem, 0.85vw, 0.9rem) !important; /* Diminui a fonte dinamicamente se a tela encolher */
+    white-space: nowrap !important; /* Impede o texto de quebrar internamente */
+    padding: 4px 6px;
     transition: color 0.3s ease;
 }
 
@@ -102,21 +110,26 @@ body {
     border-radius: 4px;
 }
 
-/* Comportamento quando os recursos de acessibilidade estão ATIVADOS */
+/* ==========================================================================
+   COMPORTAMENTO EXCLUSIVO QUANDO RECURSOS DE ACESSIBILIDADE ESTÃO ATIVOS
+   ========================================================================== */
+/* Só aqui o menu ganha a permissão de quebrar linhas para acomodar os textos gigantes */
 body.fonte-grande .navbar,
 body.espacado .navbar {
-    flex-wrap: wrap !important; /* Permite a barra expandir verticalmente se o texto crescer */
+    flex-wrap: wrap !important; 
 }
 
 body.fonte-grande .nav-links,
 body.espacado .nav-links {
-    flex-wrap: wrap !important; /* Permite que os links quebrem linha para não estourarem a tela */
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
 }
 
 body.fonte-grande .nav-links a,
 body.espacado .nav-links a {
-    font-size: 1.05rem !important;
-    white-space: normal !important; /* Deixa o texto do link quebrar internamente de forma limpa */
+    font-size: 1.1rem !important;
+    white-space: normal !important; /* No modo acessível, pode quebrar o texto interno */
     text-align: center;
 }
 
