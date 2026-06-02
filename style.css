@@ -51,12 +51,12 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR ULTRA COMPACTO - CORREÇÃO DE SANGRA LATERAL)
+   2. NAVBAR (MENU SUPERIOR INTEGRADO COM GRID - 100% VISÍVEL)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
     color: white;
-    padding: 10px 15px; /* Reduzido o padding lateral da barra para ganhar espaço */
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,39 +64,39 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: nowrap; 
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 15px;
     width: 100%;
-    overflow: hidden; /* Corta qualquer vazamento para fora da tela */
 }
 
 .logo {
-    font-size: 1.15rem; /* Reduzido levemente o logo para empurrar o menu menos para a direita */
+    font-size: 1.25rem;
     font-weight: bold;
     white-space: nowrap;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Impede o logotipo de perder o tamanho */
 }
 
 .nav-links {
-    display: flex;
-    flex-wrap: nowrap; 
-    gap: 5px; /* Espaço ultra otimizado entre os links */
-    justify-content: flex-end;
+    display: grid;
+    /* Divide o espaço em 10 colunas iguais, adaptando o tamanho ao texto automaticamente */
+    grid-template-columns: repeat(10, auto); 
+    gap: 6px; /* Espaçamento ideal e fixo entre as colunas */
+    justify-content: end;
     align-items: center;
-    overflow: hidden; /* Garante que não crie barra interna */
-    max-width: calc(100% - 160px); /* Só usa o espaço que sobra depois do logotipo */
-    flex-shrink: 1;
+    width: 100%;
+    overflow: hidden; /* Garante que nenhuma barra apareça embaixo */
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.72rem; /* Tamanho exato para alinhar todas as 10 seções na tela */
-    white-space: nowrap; 
-    padding: 4px 5px; /* Redução do clique invisível lateral */
+    /* Usamos a unidade vw (viewport width) com fallback para a fonte se reajustar sozinha se a tela encolher */
+    font-size: clamp(0.7rem, 0.85vw, 0.85rem); 
+    white-space: nowrap;
+    padding: 4px 6px;
+    text-align: center;
     transition: color 0.3s ease;
-    flex-shrink: 0; /* Impede as letras de se esmagarem individualmente */
 }
 
 .nav-links a:hover, .nav-links a:focus {
@@ -104,7 +104,6 @@ body {
     outline: 1px solid white;
     border-radius: 4px;
 }
-
 /* ==========================================================================
    3. HERO SECTION & PROPRÓSITO (FRENTE DO SITE DO CONCURSO)
    ========================================================================== */
