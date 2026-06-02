@@ -51,7 +51,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR INTEGRADO E ALINHADO)
+   2. NAVBAR (MENU SUPERIOR COMPACTO - SEM QUEBRA E SEM SCROLL)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
@@ -64,46 +64,42 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: nowrap; /* Não deixa o menu quebrar de linha de jeito nenhum */
-    gap: 15px;
+    flex-wrap: nowrap; /* Impede terminantemente a quebra de linha */
+    gap: 10px;
     width: 100%;
 }
 
 .logo {
-    font-size: 1.3rem;
+    font-size: 1.25rem; /* Ajustado milimetricamente para dar mais área aos links */
     font-weight: bold;
     white-space: nowrap;
-    flex-shrink: 0; /* Impede o logo de sumir ou ser esmagado */
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 12px; /* Diminui o espaço entre os links para caberem todos lado a lado */
-    overflow-x: auto; /* Se a tela for pequena, cria uma rolagem lateral discreta */
-    scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
-    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap; /* Mantém tudo em uma linha única contínua */
+    gap: 8px; /* Espaçamento reduzido para encaixar todos os novos botões */
+    justify-content: flex-end;
     align-items: center;
-}
-
-.nav-links::-webkit-scrollbar {
-    display: none; /* Esconde a barra de rolagem no Chrome/Safari */
+    overflow: hidden; /* Elimina qualquer risco de aparecer barra de rolagem inferior */
+    width: 100%;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.85rem; /* Ajuste milimétrico para caber a grande quantidade de links */
-    white-space: nowrap;
-    padding: 6px 8px;
+    font-size: 0.78rem; /* Fonte compactada para permitir a exibição de todos os itens */
+    white-space: nowrap; /* Evita que nomes compostos se separem verticalmente */
+    padding: 4px 6px; /* Padding interno menor para economizar espaço horizontal */
     transition: color 0.3s ease;
-    flex-shrink: 0;
+    flex-shrink: 1; /* Permite uma adaptação segura ao tamanho dos monitores */
 }
 
 .nav-links a:hover, .nav-links a:focus {
     color: #52b788;
-    outline: 2px solid white;
+    outline: 1px solid white;
     border-radius: 4px;
 }
 
