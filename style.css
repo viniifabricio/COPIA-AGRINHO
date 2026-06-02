@@ -50,7 +50,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR & HERO (MENU SUPERIOR E BANNER)
+   2. NAVBAR & HERO (MENU SUPERIOR E BANNER) - REVISADO E AJUSTADO
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
@@ -63,8 +63,8 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-wrap: nowrap; /* Impede que o menu quebre em duas linhas principais */
+    gap: 20px;
 }
 
 .logo {
@@ -75,14 +75,16 @@ body {
 
 .nav-links {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-wrap: wrap; /* Permite ajuste interno fluido se a tela encolher muito */
+    justify-content: flex-end;
+    gap: 14px; /* Diminuído levemente de 20px para 14px para acomodar todos os novos links perfeitamente */
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem; /* Ajustado de 1rem para 0.9rem para o menu caber inteiro em telas de notebooks */
     white-space: nowrap;
     transition: color 0.3s ease;
 }
@@ -90,53 +92,6 @@ body {
 .nav-links a:hover, .nav-links a:focus {
     color: #52b788;
     outline: 2px solid white;
-}
-
-.hero-section {
-    position: relative;
-    background-image: url('Agrinho.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(8, 28, 21, 0.65);
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    color: white;
-    z-index: 2;
-    padding: 20px;
-}
-
-.hero-content h1 {
-    font-size: 3.2rem;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.badge {
-    display: inline-block;
-    background-color: #52b788;
-    color: var(--cor-escura);
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 0.95rem;
-    font-weight: bold;
-    margin-top: 20px;
 }
 
 /* ==========================================================================
