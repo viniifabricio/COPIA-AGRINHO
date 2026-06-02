@@ -65,7 +65,7 @@ body {
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     width: 100%;
-    flex-wrap: wrap !important; /* Permite que a barra aumente para baixo se os links quebrarem de linha */
+    flex-wrap: nowrap !important; /* Força uma linha única no modo padrão */
     gap: 15px;
 }
 
@@ -74,11 +74,12 @@ body {
     font-size: 1.3rem;
     font-weight: bold;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex !important;
-    flex-wrap: wrap !important; /* Links quebram de linha organizados em vez de vazar para o lado */
+    flex-wrap: nowrap !important; /* Mantém os links alinhados lado a lado por padrão */
     gap: 12px !important;
     justify-content: flex-end !important;
     list-style: none;
@@ -86,8 +87,8 @@ body {
 }
 
 .nav-links a {
-    color: white !important; /* Garante os links sempre brancos */
-    text-decoration: none !important; /* Tira qualquer sublinhado indesejado */
+    color: white !important;
+    text-decoration: none !important;
     font-weight: 500;
     font-size: 0.85rem;
     white-space: nowrap;
@@ -101,11 +102,21 @@ body {
     border-radius: 4px;
 }
 
-/* Ajuste dinâmico quando os recursos de acessibilidade aumentarem o texto */
+/* Comportamento quando os recursos de acessibilidade estão ATIVADOS */
+body.fonte-grande .navbar,
+body.espacado .navbar {
+    flex-wrap: wrap !important; /* Permite a barra expandir verticalmente se o texto crescer */
+}
+
+body.fonte-grande .nav-links,
+body.espacado .nav-links {
+    flex-wrap: wrap !important; /* Permite que os links quebrem linha para não estourarem a tela */
+}
+
 body.fonte-grande .nav-links a,
 body.espacado .nav-links a {
     font-size: 1.05rem !important;
-    white-space: normal !important; /* Deixa o texto do link quebrar por dentro se for grande demais */
+    white-space: normal !important; /* Deixa o texto do link quebrar internamente de forma limpa */
     text-align: center;
 }
 
@@ -383,7 +394,6 @@ body.espacado .nav-links a {
     transform: rotateY(180deg);
 }
 
-/* Correção crucial: display flex e overflow para scroll de cima para baixo */
 .flash-card-front, .flash-card-back {
     position: absolute;
     width: 100%;
@@ -393,10 +403,10 @@ body.espacado .nav-links a {
     padding: 20px !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: flex-start !important; /* Alinha no topo para a rolagem iniciar certa */
+    justify-content: flex-start !important;
     align-items: center !important;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    overflow-y: auto !important; /* Adiciona scroll interno se o texto crescer */
+    overflow-y: auto !important;
     box-sizing: border-box !important;
 }
 
@@ -412,7 +422,6 @@ body.espacado .nav-links a {
     transform: rotateY(180deg);
 }
 
-/* Blindagem para impedir que parágrafos passem da largura do card */
 .flash-card-front *, .flash-card-back * {
     max-width: 100% !important;
     word-wrap: break-word !important;
@@ -429,7 +438,6 @@ body.espacado .nav-links a {
     flex-shrink: 0;
 }
 
-/* Customização sutil da barra de rolagem dos cards */
 .flash-card-front::-webkit-scrollbar, 
 .flash-card-back::-webkit-scrollbar {
     width: 6px;
