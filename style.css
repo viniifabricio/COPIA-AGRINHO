@@ -49,40 +49,45 @@ body {
 .saltar-conteudo:focus {
     top: 0;
 }
+
 /* ==========================================================================
    2. NAVBAR (MENU SUPERIOR ALINHADO E ADAPTÁVEL)
    ========================================================================== */
 .navbar {
-    background-color: var(--cor-escura, #081c15);
-    color: white;
+    background-color: var(--cor-escura, #081c15) !important;
+    color: white !important;
     padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     width: 100%;
+    flex-wrap: wrap !important; /* Permite que a barra aumente para baixo se os links quebrarem de linha */
+    gap: 15px;
 }
 
 .logo {
+    color: white !important;
     font-size: 1.3rem;
     font-weight: bold;
     white-space: nowrap;
 }
 
 .nav-links {
-    display: flex;
-    flex-wrap: wrap; /* Permite a quebra de linha de forma organizada se faltar espaço */
-    gap: 12px;
-    justify-content: flex-end;
+    display: flex !important;
+    flex-wrap: wrap !important; /* Links quebram de linha organizados em vez de vazar para o lado */
+    gap: 12px !important;
+    justify-content: flex-end !important;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links a {
-    color: white;
-    text-decoration: none;
+    color: white !important; /* Garante os links sempre brancos */
+    text-decoration: none !important; /* Tira qualquer sublinhado indesejado */
     font-weight: 500;
     font-size: 0.85rem;
     white-space: nowrap;
@@ -91,7 +96,7 @@ body {
 }
 
 .nav-links a:hover, .nav-links a:focus {
-    color: #52b788;
+    color: #52b788 !important;
     outline: 1px solid white;
     border-radius: 4px;
 }
@@ -99,9 +104,11 @@ body {
 /* Ajuste dinâmico quando os recursos de acessibilidade aumentarem o texto */
 body.fonte-grande .nav-links a,
 body.espacado .nav-links a {
-    font-size: 1.1rem;
-    white-space: normal; /* Permite que o texto do link se adapte sem estourar */
+    font-size: 1.05rem !important;
+    white-space: normal !important; /* Deixa o texto do link quebrar por dentro se for grande demais */
+    text-align: center;
 }
+
 /* ==========================================================================
    3. HERO SECTION & PROPRÓSITO (FRENTE DO SITE DO CONCURSO)
    ========================================================================== */
@@ -111,7 +118,7 @@ body.espacado .nav-links a {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 320px; /* Garante tamanho mínimo sem esticar o conteúdo */
+    min-height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,7 +132,7 @@ body.espacado .nav-links a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(8, 28, 21, 0.7); /* Contraste ideal para leitura do h1 */
+    background-color: rgba(8, 28, 21, 0.7);
     z-index: 1;
 }
 
@@ -138,7 +145,7 @@ body.espacado .nav-links a {
 }
 
 .hero-content h1 {
-    font-size: 2.5rem; /* Diminuído para não quebrar feio em notebooks */
+    font-size: 2.5rem;
     margin-bottom: 12px;
     font-weight: bold;
     line-height: 1.2;
@@ -218,7 +225,6 @@ body.espacado .nav-links a {
     margin-bottom: 30px;
 }
 
-/* Renderiza as bolinhas verdes perfeitamente alinhadas à linha */
 .timeline-item::before {
     content: '';
     position: absolute;
@@ -347,7 +353,7 @@ body.espacado .nav-links a {
 }
 
 /* ==========================================================================
-   6. FLASHCARDS (ESTILO 3D PRESERVADO)
+   6. FLASHCARDS (ESTILO 3D PROTEGIDO CONTRA VAZAMENTO DE TEXTO)
    ========================================================================== */
 .info-grid {
     display: grid;
@@ -377,18 +383,21 @@ body.espacado .nav-links a {
     transform: rotateY(180deg);
 }
 
+/* Correção crucial: display flex e overflow para scroll de cima para baixo */
 .flash-card-front, .flash-card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* Alinha no topo para a rolagem iniciar certa */
+    align-items: center !important;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow-y: auto !important; /* Adiciona scroll interno se o texto crescer */
+    box-sizing: border-box !important;
 }
 
 .flash-card-front {
@@ -403,6 +412,13 @@ body.espacado .nav-links a {
     transform: rotateY(180deg);
 }
 
+/* Blindagem para impedir que parágrafos passem da largura do card */
+.flash-card-front *, .flash-card-back * {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
 .info-tag {
     background: var(--cor-secundaria);
     color: white;
@@ -410,34 +426,17 @@ body.espacado .nav-links a {
     font-size: 0.8rem;
     border-radius: 12px;
     margin-bottom: 12px;
-}
-/* ==========================================================================
-   ESTILIZAÇÃO DOS FLASHCARDS (BLINDAGEM E ROLAGEM VERTICAL)
-   ========================================================================== */
-/* Aplique esta propriedade na classe que representa o container de texto interno do card */
-.card-front, .card-back, .flashcard-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    
-    /* Configuração crucial para suportar textos grandes de acessibilidade */
-    overflow-y: auto; /* Adiciona scroll de cima para baixo se o texto crescer */
-    max-height: 100%; /* Limita o conteúdo ao tamanho máximo do card */
-    box-sizing: border-box;
+    flex-shrink: 0;
 }
 
-/* Melhora o visual da barra de rolagem interna do card se ela aparecer */
-.card-front::-webkit-scrollbar, 
-.card-back::-webkit-scrollbar {
+/* Customização sutil da barra de rolagem dos cards */
+.flash-card-front::-webkit-scrollbar, 
+.flash-card-back::-webkit-scrollbar {
     width: 6px;
 }
 
-.card-front::-webkit-scrollbar-thumb, 
-.card-back::-webkit-scrollbar-thumb {
+.flash-card-front::-webkit-scrollbar-thumb, 
+.flash-card-back::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
@@ -485,13 +484,13 @@ body.espacado .nav-links a {
 }
 
 /* ==========================================================================
-   8. QUIZ DE CONHECIMENTOS (CORREÇÃO DE VISIBILIDADE DOS BOTÕES)
+   8. QUIZ DE CONHECIMENTOS
    ========================================================================== */
 .texto-questao {
     font-size: 1.35rem;
     font-weight: bold;
     margin: 15px 0;
-    color: var(--cor-escura); /* Cor escura padrão para leitura */
+    color: var(--cor-escura);
 }
 
 .site-section.dark-panel .texto-questao {
@@ -505,7 +504,6 @@ body.espacado .nav-links a {
     margin-top: 20px;
 }
 
-/* Força o botão a ter fundo cinza claro e texto escuro no modo normal */
 .btn-resposta-quiz {
     background-color: #f4f6f4 !important;
     border: 2px solid var(--cor-secundaria) !important;
@@ -513,23 +511,21 @@ body.espacado .nav-links a {
     text-align: left;
     font-size: 1.15rem;
     font-weight: 500;
-    color: var(--cor-escura) !important; /* Texto escuro para destacar no fundo claro */
+    color: var(--cor-escura) !important;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-/* Efeito ao passar o mouse no modo normal */
 .btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
     background-color: #e8f5e9 !important;
     border-color: var(--cor-principal) !important;
 }
 
-/* SE O SITE ESTIVER NO MODO PRETO E BRANCO: Transforma o botão para garantir contraste */
 html.preto-branco .btn-resposta-quiz {
     background-color: #000000 !important;
     border: 2px solid #ffffff !important;
-    color: #ffffff !important; /* Texto branco no fundo preto */
+    color: #ffffff !important;
 }
 
 html.preto-branco .btn-resposta-quiz:hover {
@@ -592,10 +588,8 @@ html.preto-branco .btn-resposta-quiz:hover {
 }
 
 /* ==========================================================================
-   10. MODIFICADORES E REGRAS DE ACESSIBILIDADE (ALTO CONTRASTE & SATURAÇÃO)
+   10. MODIFICADORES E REGRAS DE ACESSIBILIDADE
    ========================================================================== */
-
-/* ALTO CONTRASTE */
 body.alto-contraste,
 body.alto-contraste * {
     background-color: #000000 !important;
@@ -619,12 +613,10 @@ body.alto-contraste .tabela-eco, body.alto-contraste .tabela-eco tr, body.alto-c
     color: #ffffff !important;
 }
 
-/* SATURAÇÃO (PRETO E BRANCO GLOBAL VIA HTML) */
 html.preto-branco {
     filter: grayscale(100%) !important;
 }
 
-/* Correções específicas para o modo preto e branco funcionar liso e sem bugs */
 html.preto-branco .btn-resposta-quiz {
     border-color: #ffffff !important;
     color: #ffffff !important;
@@ -633,7 +625,6 @@ html.preto-branco .flash-card-inner {
     transform-style: preserve-3d !important;
 }
 
-/* MODIFICADORES DE TEXTO */
 body.fonte-grande { --tamanho-base: 19px; }
 body.espacado { --espacamento-base: 2.2px; }
 body.fonte-dislexia { font-family: 'Comic Sans MS', cursive, sans-serif !important; }
@@ -689,7 +680,7 @@ body.fonte-dislexia { font-family: 'Comic Sans MS', cursive, sans-serif !importa
 }
 
 /* ==========================================================================
-   12. ADIÇÕES DE SUPORTE: SUSTENTABILIDADE E TECNOLOGIA (MANTENDO AS DIRETRIZES)
+   12. ADIÇÕES DE SUPORTE: SUSTENTABILIDADE E TECNOLOGIA
    ========================================================================== */
 .agro-cards-container {
     display: grid;
@@ -718,88 +709,9 @@ body.alto-contraste .agro-cards-container .medidor-card {
     border-top-color: #ffffff !important;
 }
 
-/* Correção de renderização para animações suaves em navegadores mobile */
 .texto-profundo p {
     margin-bottom: 15px;
 }
 .texto-profundo p:last-child {
     margin-bottom: 0;
-}
-/* ==========================================================================
-   CORREÇÃO COMPLEMENTAR PARA TEXTOS GRANDES NOS FLASHCARDS
-   ========================================================================== */
-/* Força as faces dos cards a conterem o texto e gerarem rolagem vertical */
-.card-front, 
-.card-back, 
-.flashcard-front, 
-.flashcard-back,
-[class*="card-"] {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important; /* Alinha o texto no topo para scroll limpo */
-    align-items: center !important;
-    padding: 15px !important;
-    overflow-y: auto !important; /* Ativa a rolagem vertical imediatamente */
-    box-sizing: border-box !important;
-}
-
-/* Impede que parágrafos e textos internos vazem para fora da área delimitada */
-.card-front p, 
-.card-back p,
-.flashcard-back p {
-    max-width: 100%;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Garante que o contêiner interno respeite o tamanho do texto quando a acessibilidade estiver ligada */
-body.fonte-grande .card-back,
-body.espacado .card-back {
-    display: block !important; /* Transforma em bloco para o overflow funcionar melhor */
-    overflow-y: auto !important;
-}
-/* ==========================================================================
-   CORREÇÃO DEFINITIVA DOS FLASHCARDS (ROLAGEM VERTICAL INTERNA)
-   ========================================================================= */
-
-/* Alvo na frente e no verso de cada card para aceitar textos grandes */
-.card-front, 
-.card-back, 
-.flashcard-front, 
-.flashcard-back,
-.face {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important; /* Joga o texto para o topo para começar o scroll do jeito certo */
-    align-items: center !important;
-    padding: 20px !important;
-    box-sizing: border-box !important;
-    
-    /* Ativa a rolagem vertical se o texto não couber no quadrado */
-    overflow-y: auto !important; 
-    max-height: 100% !important;
-}
-
-/* Evita que parágrafos e títulos estourem para os lados */
-.card-front *, 
-.card-back *, 
-.flashcard-front *, 
-.flashcard-back * {
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    overflow-wrap: break-word !important;
-}
-
-/* Deixa a barra de rolagem interna do card bem sutil e bonita */
-.card-front::-webkit-scrollbar, 
-.card-back::-webkit-scrollbar,
-.flashcard-back::-webkit-scrollbar {
-    width: 6px;
-}
-
-.card-front::-webkit-scrollbar-thumb, 
-.card-back::-webkit-scrollbar-thumb,
-.flashcard-back::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
 }
