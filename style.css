@@ -50,60 +50,7 @@ body {
     top: 0;
 }
 
-/* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR INTEGRADO COM GRID - 100% VISÍVEL)
-   ========================================================================== */
-.navbar {
-    background-color: var(--cor-escura);
-    color: white;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: nowrap;
-    gap: 15px;
-    width: 100%;
-}
 
-.logo {
-    font-size: 1.25rem;
-    font-weight: bold;
-    white-space: nowrap;
-    flex-shrink: 0; /* Impede o logotipo de perder o tamanho */
-}
-
-.nav-links {
-    display: grid;
-    /* Divide o espaço em 10 colunas iguais, adaptando o tamanho ao texto automaticamente */
-    grid-template-columns: repeat(10, auto); 
-    gap: 6px; /* Espaçamento ideal e fixo entre as colunas */
-    justify-content: end;
-    align-items: center;
-    width: 100%;
-    overflow: hidden; /* Garante que nenhuma barra apareça embaixo */
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    /* Usamos a unidade vw (viewport width) com fallback para a fonte se reajustar sozinha se a tela encolher */
-    font-size: clamp(0.7rem, 0.85vw, 0.85rem); 
-    white-space: nowrap;
-    padding: 4px 6px;
-    text-align: center;
-    transition: color 0.3s ease;
-}
-
-.nav-links a:hover, .nav-links a:focus {
-    color: #52b788;
-    outline: 1px solid white;
-    border-radius: 4px;
-}
 /* ==========================================================================
    3. HERO SECTION & PROPRÓSITO (FRENTE DO SITE DO CONCURSO)
    ========================================================================== */
@@ -412,6 +359,36 @@ body {
     font-size: 0.8rem;
     border-radius: 12px;
     margin-bottom: 12px;
+}
+/* ==========================================================================
+   ESTILIZAÇÃO DOS FLASHCARDS (BLINDAGEM E ROLAGEM VERTICAL)
+   ========================================================================== */
+/* Aplique esta propriedade na classe que representa o container de texto interno do card */
+.card-front, .card-back, .flashcard-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    
+    /* Configuração crucial para suportar textos grandes de acessibilidade */
+    overflow-y: auto; /* Adiciona scroll de cima para baixo se o texto crescer */
+    max-height: 100%; /* Limita o conteúdo ao tamanho máximo do card */
+    box-sizing: border-box;
+}
+
+/* Melhora o visual da barra de rolagem interna do card se ela aparecer */
+.card-front::-webkit-scrollbar, 
+.card-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-front::-webkit-scrollbar-thumb, 
+.card-back::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
 
 /* ==========================================================================
