@@ -50,7 +50,7 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR & HERO (MENU SUPERIOR E BANNER) - REVISADO E AJUSTADO
+   2. NAVBAR & HERO (MENU SUPERIOR E BANNER) - BLINDAGEM CONTRA QUEBRA
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
@@ -63,30 +63,41 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: nowrap; /* Impede que o menu quebre em duas linhas principais */
+    flex-wrap: nowrap; /* Bloqueia terminantemente a quebra para a segunda linha */
     gap: 20px;
+    overflow: hidden; /* Garante que nada saia da barra principal */
 }
 
 .logo {
     font-size: 1.4rem;
     font-weight: bold;
     white-space: nowrap;
+    flex-shrink: 0; /* Impede o logotipo de esmagar ou sumir */
 }
 
 .nav-links {
     display: flex;
-    flex-wrap: wrap; /* Permite ajuste interno fluido se a tela encolher muito */
-    justify-content: flex-end;
-    gap: 14px; /* Diminuído levemente de 20px para 14px para acomodar todos os novos links perfeitamente */
+    flex-wrap: nowrap; /* Força todos os links a ficarem na mesma linha */
+    gap: 18px;
+    overflow-x: auto; /* Se o menu não couber na tela, ele cria um scroll horizontal invisível/suave */
+    padding-bottom: 5px; /* Espaço de segurança para o scroll */
+    scrollbar-width: none; /* Oculta a barra de rolagem no Firefox */
+    -webkit-overflow-scrolling: touch; /* Rolagem ultra suave em celulares e tablets */
+}
+
+/* Oculta a barra de rolagem no Chrome, Safari e Edge para manter o visual limpo */
+.nav-links::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem; /* Ajustado de 1rem para 0.9rem para o menu caber inteiro em telas de notebooks */
-    white-space: nowrap;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Impede que links com duas palavras (ex: "Quiz da Terra") quebrem internamente */
     transition: color 0.3s ease;
+    flex-shrink: 0; /* Garante que os links mantenham seu tamanho original */
 }
 
 .nav-links a:hover, .nav-links a:focus {
