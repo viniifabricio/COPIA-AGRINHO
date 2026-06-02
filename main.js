@@ -124,7 +124,7 @@ const questoes = [
         a: "Saber a hora exata de irrigar, evitando gastar água e energia elétrica à toa.",
         b: "Mudar o clima da região para fazer chover mais vezes no mês.",
         resposta: "a",
-        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduz o valor da conta de energia."
+        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduces o valor da conta de energia."
     },
     {
         pergunta: "Pensando no mercado de créditos de carbono, que tipo de floresta consegue limpar o ar mais rápido?",
@@ -148,7 +148,7 @@ const btnReiniciar = document.getElementById('btn-reiniciar');
 const blocoOpcoes = document.getElementById('bloco-opcoes');
 
 function carregarQuestao() {
-    if (!txtPergunta) return; // Proteção para evitar travar se o elemento sumir
+    if (!txtPergunta) return; 
 
     resQuiz.innerText = '';
     btnProx.classList.add('avancar-oculto');
@@ -207,7 +207,6 @@ if (btnReiniciar) {
     });
 }
 
-// Inicializa o quiz se ele existir na página atual
 if (txtPergunta) {
     carregarQuestao();
 }
@@ -227,11 +226,15 @@ if (btnAbrirMenu && menuAcessivel) {
 
 function gerenciarAcessibilidade(idBotao, classeCSS) {
     const botao = document.getElementById(idBotao);
-    if (!botao) return; // Evita erros se o botão não estiver renderizado
+    if (!botao) return; 
     
     const elementoAlvo = (classeCSS === 'preto-branco') ? document.documentElement : document.body;
+    
+    // Sincroniza o estado inicial do botão com a classe presente no DOM
     if (elementoAlvo.classList.contains(classeCSS)) {
         botao.setAttribute('aria-pressed', 'true');
+    } else {
+        botao.setAttribute('aria-pressed', 'false');
     }
 
     botao.addEventListener('click', () => {
@@ -274,6 +277,13 @@ if (btnOuvir) {
             window.speechSynthesis.speak(lendoConteudo);
         } else {
             alert('Este navegador não aceita a função de leitura de texto.');
+        }
+    });
+
+    // Garante o encerramento do sintetizador se o usuário atualizar ou sair da página
+    window.addEventListener('beforeunload', () => {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
         }
     });
 }

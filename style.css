@@ -640,3 +640,41 @@ body.fonte-dislexia { font-family: 'Comic Sans MS', cursive, sans-serif !importa
     font-size: 0.85rem;
     color: #aaa;
 }
+
+/* ==========================================================================
+   12. ADIÇÕES DE SUPORTE: SUSTENTABILIDADE E TECNOLOGIA (MANTENDO AS DIRETRIZES)
+   ========================================================================== */
+.agro-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.agro-cards-container .medidor-card {
+    text-align: left;
+    border-top: 4px solid var(--cor-secundaria);
+    transition: transform 0.3s ease;
+}
+
+.agro-cards-container .medidor-card:hover {
+    transform: translateY(-5px);
+}
+
+.agro-cards-container .medidor-card h3 {
+    color: var(--cor-principal);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+body.alto-contraste .agro-cards-container .medidor-card {
+    border-top-color: #ffffff !important;
+}
+
+/* Correção de renderização para animações suaves em navegadores mobile */
+.texto-profundo p {
+    margin-bottom: 15px;
+}
+.texto-profundo p:last-child {
+    margin-bottom: 0;
+}
