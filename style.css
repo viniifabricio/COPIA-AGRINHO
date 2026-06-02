@@ -51,12 +51,12 @@ body {
 }
 
 /* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR COMPACTO - SEM QUEBRA E SEM SCROLL)
+   2. NAVBAR (MENU SUPERIOR ULTRA COMPACTO - CORREÇÃO DE SANGRA LATERAL)
    ========================================================================== */
 .navbar {
     background-color: var(--cor-escura);
     color: white;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Reduzido o padding lateral da barra para ganhar espaço */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,13 +64,14 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    flex-wrap: nowrap; /* Impede terminantemente a quebra de linha */
+    flex-wrap: nowrap; 
     gap: 10px;
     width: 100%;
+    overflow: hidden; /* Corta qualquer vazamento para fora da tela */
 }
 
 .logo {
-    font-size: 1.25rem; /* Ajustado milimetricamente para dar mais área aos links */
+    font-size: 1.15rem; /* Reduzido levemente o logo para empurrar o menu menos para a direita */
     font-weight: bold;
     white-space: nowrap;
     flex-shrink: 0;
@@ -78,23 +79,24 @@ body {
 
 .nav-links {
     display: flex;
-    flex-wrap: nowrap; /* Mantém tudo em uma linha única contínua */
-    gap: 8px; /* Espaçamento reduzido para encaixar todos os novos botões */
+    flex-wrap: nowrap; 
+    gap: 5px; /* Espaço ultra otimizado entre os links */
     justify-content: flex-end;
     align-items: center;
-    overflow: hidden; /* Elimina qualquer risco de aparecer barra de rolagem inferior */
-    width: 100%;
+    overflow: hidden; /* Garante que não crie barra interna */
+    max-width: calc(100% - 160px); /* Só usa o espaço que sobra depois do logotipo */
+    flex-shrink: 1;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.78rem; /* Fonte compactada para permitir a exibição de todos os itens */
-    white-space: nowrap; /* Evita que nomes compostos se separem verticalmente */
-    padding: 4px 6px; /* Padding interno menor para economizar espaço horizontal */
+    font-size: 0.72rem; /* Tamanho exato para alinhar todas as 10 seções na tela */
+    white-space: nowrap; 
+    padding: 4px 5px; /* Redução do clique invisível lateral */
     transition: color 0.3s ease;
-    flex-shrink: 1; /* Permite uma adaptação segura ao tamanho dos monitores */
+    flex-shrink: 0; /* Impede as letras de se esmagarem individualmente */
 }
 
 .nav-links a:hover, .nav-links a:focus {
