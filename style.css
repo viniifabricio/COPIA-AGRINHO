@@ -50,12 +50,12 @@ body {
     top: 0;
 }
 /* ==========================================================================
-   2. NAVBAR (MENU SUPERIOR INTEGRADO E ADAPTÁVEL)
+   2. NAVBAR (MENU SUPERIOR ALINHADO E ADAPTÁVEL)
    ========================================================================== */
 .navbar {
-    background-color: #081c15 !important; /* Força a cor escura padrão */
-    color: white !important;
-    padding: 12px 20px;
+    background-color: var(--cor-escura, #081c15);
+    color: white;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,60 +64,43 @@ body {
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     width: 100%;
-    flex-wrap: nowrap;
 }
 
 .logo {
-    color: white !important;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: bold;
     white-space: nowrap;
-    flex-shrink: 0;
 }
 
 .nav-links {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
+    flex-wrap: wrap; /* Permite a quebra de linha de forma organizada se faltar espaço */
+    gap: 12px;
     justify-content: flex-end;
-    align-items: center;
+    list-style: none;
 }
 
 .nav-links a {
-    color: white !important; /* Força os links a continuarem brancos */
-    text-decoration: none !important; /* Remove o sublinhado feio */
+    color: white;
+    text-decoration: none;
     font-weight: 500;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     white-space: nowrap;
-    padding: 6px 8px;
+    padding: 5px 8px;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover, .nav-links a:focus {
-    color: #52b788 !important;
+    color: #52b788;
     outline: 1px solid white;
     border-radius: 4px;
 }
 
-/* COMPORTAMENTO INTERNACIONAIS DE ACESSIBILIDADE (QUANDO ATIVADO) */
-body.fonte-grande .navbar,
-body.espacado .navbar {
-    flex-wrap: wrap !important; /* Permite quebrar linha se o texto expandir */
-    justify-content: center !important;
-    gap: 15px;
-}
-
-body.fonte-grande .nav-links,
-body.espacado .nav-links {
-    flex-wrap: wrap !important; /* Faz os links descerem organizados */
-    justify-content: center !important;
-}
-
+/* Ajuste dinâmico quando os recursos de acessibilidade aumentarem o texto */
 body.fonte-grande .nav-links a,
 body.espacado .nav-links a {
-    font-size: 1.1rem !important; /* Aumenta o texto do menu proporcionalmente */
-    white-space: normal !important; /* Permite quebra interna caso falte espaço */
-    text-align: center;
+    font-size: 1.1rem;
+    white-space: normal; /* Permite que o texto do link se adapte sem estourar */
 }
 /* ==========================================================================
    3. HERO SECTION & PROPRÓSITO (FRENTE DO SITE DO CONCURSO)
@@ -774,4 +757,49 @@ body.fonte-grande .card-back,
 body.espacado .card-back {
     display: block !important; /* Transforma em bloco para o overflow funcionar melhor */
     overflow-y: auto !important;
+}
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DOS FLASHCARDS (ROLAGEM VERTICAL INTERNA)
+   ========================================================================= */
+
+/* Alvo na frente e no verso de cada card para aceitar textos grandes */
+.card-front, 
+.card-back, 
+.flashcard-front, 
+.flashcard-back,
+.face {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; /* Joga o texto para o topo para começar o scroll do jeito certo */
+    align-items: center !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    
+    /* Ativa a rolagem vertical se o texto não couber no quadrado */
+    overflow-y: auto !important; 
+    max-height: 100% !important;
+}
+
+/* Evita que parágrafos e títulos estourem para os lados */
+.card-front *, 
+.card-back *, 
+.flashcard-front *, 
+.flashcard-back * {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Deixa a barra de rolagem interna do card bem sutil e bonita */
+.card-front::-webkit-scrollbar, 
+.card-back::-webkit-scrollbar,
+.flashcard-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-front::-webkit-scrollbar-thumb, 
+.card-back::-webkit-scrollbar-thumb,
+.flashcard-back::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
 }
