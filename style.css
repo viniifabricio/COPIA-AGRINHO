@@ -648,7 +648,11 @@ html.preto-branco .flash-card-inner {
 
 body.fonte-grande { --tamanho-base: 19px; }
 body.espacado { --espacamento-base: 2.2px; }
-body.fonte-dislexia { font-family: 'Comic Sans MS', cursive, sans-serif !important; }
+/* Força a aplicação da fonte amigável para dislexia em TODOS os textos do site */
+body.fonte-dislexia, 
+body.fonte-dislexia * { 
+    font-family: 'Comic Sans MS', 'Arial', cursive, sans-serif !important; 
+}
 
 /* ==========================================================================
    11. RODAPÉ ORIGINAL
