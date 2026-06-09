@@ -99,7 +99,7 @@ if (document.getElementById('btn-calcular-carbono')) {
 // ==========================================================================
 const questoes = [
     {
-        pergunta: "Segundo os dados oficiais do Brasil, qual é o sector que mais gasta água doce no nosso país?",
+        pergunta: "Segundo os dados oficiais do Brasil, qual é o setor que mais gasta água doce no nosso país?",
         a: "O uso nas casas e o abastecimento das grandes cidades.",
         b: "A irrigação de lavouras e plantações na agricultura.",
         resposta: "b",
@@ -124,7 +124,7 @@ const questoes = [
         a: "Saber a hora exata de irrigar, evitando gastar água e energia elétrica à toa.",
         b: "Mudar o clima da região para fazer chover mais vezes no mês.",
         resposta: "a",
-        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduces o valor da conta de energia."
+        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduz o valor da conta de energia."
     },
     {
         pergunta: "Pensando no mercado de créditos de carbono, que tipo de floresta consegue limpar o ar mais rápido?",
@@ -178,12 +178,13 @@ function avaliarResposta(alternativa) {
 
     if (alternativa === questao.resposta) {
         pontuacao++;
-        resQuiz.innerText = "🌟 " + questao.explicacao;
+        textFeedback = "🌟 " + questao.explicacao;
         resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffff00' : '#2d6a4f';
     } else {
-        resQuiz.innerText = "❌ Resposta incorreta. Dica: " + questao.explicacao;
+        textFeedback = "❌ Resposta incorreta. Dica: " + questao.explicacao;
         resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffffff' : '#d90429';
     }
+    resQuiz.innerText = textFeedback;
     btnProx.classList.remove('avancar-oculto');
 }
 
@@ -219,8 +220,8 @@ const menuAcessivel = document.getElementById('menu-acessibilidade');
 
 if (btnAbrirMenu && menuAcessivel) {
     btnAbrirMenu.addEventListener('click', () => {
-        const expandido = menuAcessivel.classList.toggle('acessibilidade-escondido');
-        btnAbrirMenu.setAttribute('aria-expanded', !expandido);
+        const escondido = menuAcessivel.classList.toggle('acessibilidade-escondido');
+        btnAbrirMenu.setAttribute('aria-expanded', !escondido);
     });
 }
 
@@ -280,10 +281,34 @@ if (btnOuvir) {
         }
     });
 
-    // Garante o encerramento do sintetizador se o usuário atualizar ou sair da página
     window.addEventListener('beforeunload', () => {
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
         }
     });
 }
+
+// ==========================================================================
+// 5. MOTOR DE ANIMAÇÃO DINÂMICA VIA SCROLL (INTERSECTION OBSERVER)
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const secoesParaAnimar = document.querySelectorAll(".animar-scroll");
+    
+    if ("IntersectionObserver" in window) {
+        const observadorScroll = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add("visivel");
+                    observadorScroll.unobserve(entrada.target); // Para de observar após animar uma vez
+                }
+            });
+        }, {
+            threshold: 0.15 // Dispara a animação quando 15% da seção surge na tela
+        });
+
+        secoesParaAnimar.forEach(secao => observadorScroll.observe(secao));
+    } else {
+        // Fallback: caso o navegador seja muito antigo, mostra tudo direto de forma segura
+        secoesParaAnimar.forEach(secao => secao.classList.add("visivel"));
+    }
+});

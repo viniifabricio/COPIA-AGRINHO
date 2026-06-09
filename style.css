@@ -110,10 +110,7 @@ body {
     border-radius: 4px;
 }
 
-/* ==========================================================================
-   COMPORTAMENTO EXCLUSIVO QUANDO RECURSOS DE ACESSIBILIDADE ESTÃO ATIVOS
-   ========================================================================== */
-/* Só aqui o menu ganha a permissão de quebrar linhas para acomodar os textos gigantes */
+/* COMPORTAMENTO EXCLUSIVO QUANDO RECURSOS DE ACESSIBILIDADE ESTÃO ATIVOS */
 body.fonte-grande .navbar,
 body.espacado .navbar {
     flex-wrap: wrap !important; 
@@ -134,7 +131,7 @@ body.espacado .nav-links a {
 }
 
 /* ==========================================================================
-   3. HERO SECTION & PROPRÓSITO (FRENTE DO SITE DO CONCURSO)
+   3. HERO SECTION & PROPÓSITO (FRENTE DO SITE DO CONCURSO)
    ========================================================================== */
 .hero-section {
     position: relative;
@@ -435,6 +432,12 @@ body.espacado .nav-links a {
     transform: rotateY(180deg);
 }
 
+/* Garante que o texto explicativo se adapte perfeitamente sem quebrar o card */
+.flash-card-back p {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem) !important;
+    line-height: 1.4 !important;
+}
+
 .flash-card-front *, .flash-card-back * {
     max-width: 100% !important;
     word-wrap: break-word !important;
@@ -648,6 +651,7 @@ html.preto-branco .flash-card-inner {
 
 body.fonte-grande { --tamanho-base: 19px; }
 body.espacado { --espacamento-base: 2.2px; }
+
 /* Força a aplicação da fonte amigável para dislexia em TODOS os textos do site */
 body.fonte-dislexia, 
 body.fonte-dislexia * { 
@@ -739,4 +743,75 @@ body.alto-contraste .agro-cards-container .medidor-card {
 }
 .texto-profundo p:last-child {
     margin-bottom: 0;
+}
+
+/* ==========================================================================
+   13. NOVO RECURSO: DINÂMICA DE SCROLL E GALERIA DE PRÁTICAS SUSTENTÁVEIS
+   ========================================================================== */
+
+/* Classes de controle da animação de scroll por Intersection Observer */
+.animar-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Ativado dinamicamente pelo arquivo main.js */
+.animar-scroll.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Layout de Grid Responsivo para a Galeria */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.galeria-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.galeria-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 4px solid #2a9d8f;
+}
+
+.galeria-info {
+    padding: 15px;
+}
+
+.galeria-info h4 {
+    color: #1b4332;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.galeria-info p {
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Ajustes automáticos da nova galeria no modo de Alto Contraste */
+body.alto-contraste .galeria-card {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .galeria-card img {
+    border-bottom: 4px solid #ffffff !important;
 }
