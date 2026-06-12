@@ -1,314 +1,270 @@
 // ==========================================================================
-// CONFIGURAÇÕES E MEMÓRIA DE ACESSIBILIDADE
+// SCROLL OBSERVABILITY MONITOR
 // ==========================================================================
-const configuracoesAcessibilidade = [
-    { idBotao: 'btn-contraste', classeCSS: 'alto-contraste' },
-    { idBotao: 'btn-fonte', classeCSS: 'fonte-grande' },
-    { idBotao: 'btn-espacamento', classeCSS: 'espacado' },
-    { idBotao: 'btn-dislexia', classeCSS: 'fonte-dislexia' },
-    { idBotao: 'btn-saturacao', classeCSS: 'preto-branco' }
-];
+const blocosScroll = document.querySelectorAll('.animar-scroll');
+const monitorScroll = new IntersectionObserver((elementos) => {
+    elementos.forEach(item => {
+        if (item.isIntersecting) item.target.classList.add('visivel');
+    });
+}, { threshold: 0.05 });
+blocosScroll.forEach(bloco => monitorScroll.observe(bloco));
 
-// Carrega as configurações salvas ao iniciar a página
-configuracoesAcessibilidade.forEach(item => {
-    const estadoSalvo = localStorage.getItem(item.classeCSS) === 'true';
-    if (estadoSalvo) {
-        if (item.classeCSS === 'preto-branco') {
-            document.documentElement.classList.add(item.classeCSS);
-        } else {
-            document.body.classList.add(item.classeCSS);
-        }
+// ==========================================================================
+// 1. CODIGO DO MAPA DE ANDIRÁ (PONTOS DE PRODUÇÃO)
+// ==========================================================================
+function clicarMapa(polo) {
+    const box = document.getElementById('info-mapa-clique');
+    const titulo = document.getElementById('mapa-titulo-polo');
+    const desc = document.getElementById('mapa-desc-polo');
+    box.style.display = 'block';
+
+    if(polo === 'norte') {
+        titulo.innerText = "🌾 Polo Norte - Culturas de Café Especial";
+        desc.innerText = "Localizado nas regiões de topografia acidentada de Andirá. Destaque para o manejo sustentável sombreado e agricultura de precisão familiar.";
+    } else if(polo === 'sul') {
+        titulo.innerText = "🚜 Polo Sul - Produção de Grãos (Soja/Milho)";
+        desc.innerText = "Áreas planas ideais para grandes safras. Uso consolidado de plantio direto na palha e monitoramento de pragas por drones termais.";
+    } else {
+        titulo.innerText = "🏡 Polo Leste - Cinturão Verde de Hortifrúti";
+        desc.innerText = "Abastecimento local focado em transição orgânica e técnicas avançadas de economia hídrica por gotejamento subterrâneo.";
+    }
+}
+
+// ==========================================================================
+// 6. SIMULADOR DE ECONOMIA DE ÁGUA
+// ==========================================================================
+document.getElementById('btn-calcular-agua').addEventListener('click', () => {
+    const hectares = parseFloat(document.getElementById('sim-agua-hectares').value) || 0;
+    const cultura = document.getElementById('sim-agua-cultura').value;
+    
+    let consumoBase = cultura === 'graos' ? 450000 : 600000;
+    let tradicional = hectares * consumoBase;
+    let eficiente = tradicional * 0.70; // 30% de economia real
+    let economia = tradicional - eficiente;
+
+    document.getElementById('res-agua-tradicional').innerText = tradicional.toLocaleString('pt-BR');
+    document.getElementById('res-agua-eficiente').innerText = eficiente.toLocaleString('pt-BR');
+    document.getElementById('res-agua-economia').innerText = economia.toLocaleString('pt-BR');
+    document.getElementById('res-sim-agua').style.display = 'block';
+});
+
+// ==========================================================================
+// 7. SIMULADOR DE PLANTIO (SOJA, MILHO, CAFÉ)
+// ==========================================================================
+function simularPlantio(cultura) {
+    const box = document.getElementById('res-sim-plantio');
+    box.style.display = 'block';
+
+    if(cultura === 'soja') {
+        document.getElementById('plantio-nome').innerText = "🌱 Cultura da Soja";
+        document.getElementById('plantio-epoca').innerText = "Outubro a Dezembro (Safra Principal)";
+        document.getElementById('plantio-agua').innerText = "450 a 700 mm por ciclo produtivo";
+        document.getElementById('plantio-beneficios').innerText = "Fixação biológica de nitrogênio atmosférico no solo através de bactérias simbióticas, poupando fertilizantes químicos.";
+    } else if(cultura === 'milho') {
+        document.getElementById('plantio-nome').innerText = "🌽 Cultura do Milho Safrinha";
+        document.getElementById('plantio-epoca').innerText = "Janeiro a Março (Após a colheita da soja)";
+        document.getElementById('plantio-agua').innerText = "500 a 600 mm bem distribuídos";
+        document.getElementById('plantio-beneficios').innerText = "Produção de palhada volumosa de alta qualidade para conservação mecânica e térmica do solo no sistema de plantio direto.";
+    } else if(cultura === 'cafe') {
+        document.getElementById('plantio-nome').innerText = "☕ Cultura do Café";
+        document.getElementById('plantio-epoca').innerText = "Perene (Plantio de mudas nos meses chuvosos)";
+        document.getElementById('plantio-agua').innerText = "1200 a 1400 mm anuais concentrados";
+        document.getElementById('plantio-beneficios').innerText = "Estabilização mecânica de encostas contra erosões hídricas intensas e fomento econômico de fixação humana no campo.";
+    }
+}
+
+// ==========================================================================
+// 8. CALCULADORA DE EMISSÕES DE CO2
+// ==========================================================================
+document.getElementById('btn-calcular-emissoes').addEventListener('click', () => {
+    const diesel = parseFloat(document.getElementById('calc-combustivel').value) || 0;
+    const area = parseFloat(document.getElementById('calc-area-cultivo').value) || 0;
+
+    // Fatores reais: 1L Diesel emite aprox 2.6kg CO2. Plantações absorvem.
+    let emitido = (diesel * 2.61) / 1000; 
+    let arvoresNecessarias = Math.ceil(emitido * 7);
+
+    document.getElementById('res-co2-emitido').innerText = emitido.toFixed(2);
+    document.getElementById('res-arvores-compensacao').innerText = arvoresNecessarias;
+    document.getElementById('res-calc-emissoes').style.display = 'block';
+});
+
+// ==========================================================================
+// 9. ASSISTENTE VIRTUAL AGRO PRE-PROGRAMADO
+// ==========================================================================
+function perguntarIA(id) {
+    const box = document.getElementById('res-ia');
+    const txt = document.getElementById('txt-res-ia');
+    box.style.display = 'block';
+
+    if(id === 1) {
+        txt.innerText = "Sustentabilidade no campo significa produzir alimentos saudáveis em volume suficiente para atender o mercado sem esgotar os recursos hídricos, sem degradar a microbiologia do solo e garantindo proteção às matas nativas.";
+    } else if(id === 2) {
+        txt.innerText = "Crédito de Carbono é uma moeda ambiental internacional. Cada tonelada de CO2 que deixa de ser emitida ou que é absorvida pelas matas da fazenda vira um título digital comercializável, gerando lucros extras ao produtor.";
+    } else {
+        txt.innerText = "Economiza-se água instalando sensores hídricos nas raízes das plantas, usando sistemas de microaspersão/gotejamento fechados e mantendo o solo coberto com palhada seca para evitar a evaporação direta provocada pelo sol.";
+    }
+}
+
+// ==========================================================================
+// 11. CONTADOR AMBIENTAL DINÂMICO CONTINUO
+// ==========================================================================
+let metrosCubicosAgua = 1250400;
+setInterval(() => {
+    metrosCubicosAgua += Math.floor(Math.random() * 8) + 3;
+    document.getElementById('contador-dinamico-litros').innerText = metrosCubicosAgua.toLocaleString('pt-BR') + " Litros";
+}, 1500);
+
+// ==========================================================================
+// 13. ANTES E DEPOIS INTERATIVO DO SOLO
+// ==========================================================================
+document.getElementById('slider-antes-depois').addEventListener('input', function(e) {
+    const valor = e.target.value;
+    const indicador = document.getElementById('status-solo-visual');
+
+    if(valor < 35) {
+        indicador.innerText = "🌵 Solo Degradado (Compactado, erodido e sem nutrientes)";
+        indicador.style.background = "#ffebee"; indicador.style.color = "#c62828";
+    } else if (valor >= 35 && valor < 75) {
+        indicador.innerText = "🌾 Solo em Recuperação (Adubação verde e plantio direto iniciados)";
+        indicador.style.background = "#fff3e0"; indicador.style.color = "#ef6c00";
+    } else {
+        indicador.innerText = "🌱 Solo Totalmente Recuperado (Rico em matéria orgânica e bio-retentivo!)";
+        indicador.style.background = "#e8f5e9"; indicador.style.color = "#2e7d32";
     }
 });
 
 // ==========================================================================
-// 1. LÓGICA DO SIMULADOR DO CLIMA
+// 14 & 15. FAZENDA ANIMADA & MISSÃO SUSTENTÁVEL DECISÓRIA
 // ==========================================================================
-const valUmidade = document.getElementById('val-umidade');
-const valVento = document.getElementById('val-vento');
-const valStatus = document.getElementById('val-status');
-const msgUmidade = document.getElementById('msg-umidade');
-const msgVento = document.getElementById('msg-vento');
-const msgRecomendacao = document.getElementById('msg-recomendacao');
+function atualizarMissao() {
+    const irr = document.getElementById('decisao-irrigacao').checked;
+    const sol = document.getElementById('decisao-solar').checked;
+    const mata = document.getElementById('decisao-mata').checked;
 
-if (document.getElementById('simular-sol')) {
-    document.getElementById('simular-sol').addEventListener('click', () => {
-        valUmidade.innerText = '22%';
-        valVento.innerText = '8 km/h';
-        valStatus.innerText = 'ALERTA: PRECISANDO LIGAR A IRRIGAÇÃO';
-        valStatus.style.color = '#e63946';
-        msgUmidade.innerText = 'Status: A terra está muito seca.';
-        msgVento.innerText = 'Status: O vento está calmo, bom para irrigar.';
-        msgRecomendacao.innerText = 'Recomendação: Ligue os pivôs de irrigação para dar água para as plantas.';
-    });
-}
+    const bSolar = document.getElementById('ani-solar');
+    const bDrone = document.getElementById('ani-drone');
+    const bIrr = document.getElementById('ani-irrigacao');
+    const bSens = document.getElementById('ani-sensores');
 
-if (document.getElementById('simular-chuva')) {
-    document.getElementById('simular-chuva').addEventListener('click', () => {
-        valUmidade.innerText = '85%';
-        valVento.innerText = '15 km/h';
-        valStatus.innerText = 'SISTEMA DESLIGADO - JÁ ESTÁ CHOVENDO';
-        valStatus.style.color = '#2a9d8f';
-        msgUmidade.innerText = 'Status: A terra já recebeu bastante água da chuva.';
-        msgVento.innerText = 'Status: Vento moderado.';
-        msgRecomendacao.innerText = 'Recomendação: O sistema desliga a irrigação sozinho para economizar água e energia.';
-    });
-}
+    let pontuacaoVerde = 0;
 
-if (document.getElementById('simular-vento')) {
-    document.getElementById('simular-vento').addEventListener('click', () => {
-        valUmidade.innerText = '40%';
-        valVento.innerText = '32 km/h';
-        valStatus.innerText = 'ALERTA: VENTO MUITO FORTE';
-        valStatus.style.color = '#d90429';
-        msgUmidade.innerText = 'Status: A umidade da terra está normal.';
-        msgVento.innerText = 'Status: Rajadas de vento muito acima do limite seguro.';
-        msgRecomendacao.innerText = 'Recomendação: Não jogue produtos na lavoura agora. O vento forte pode levar o produto para o lugar errado.';
-    });
+    // Atualiza estados e "animações" visuais simuladas
+    if(sol) { bSolar.style.background = "#fff59d"; bSolar.innerHTML = "☀️ Painel Solar <br><b>GERANDO ENERGIA</b>"; pontuacaoVerde++; } 
+    else { bSolar.style.background = "#eceff1"; bSolar.innerHTML = "☀️ Painel Solar <br><small>Aguardando</small>"; }
+
+    if(irr) { bIrr.style.background = "#90caf9"; bIrr.innerHTML = "💦 Irrigação <br><b>FLUXO INTELIGENTE</b>"; bSens.style.background = "#a5d6a7"; bSens.innerHTML = "📟 Sensores IoT <br><b>CONECTADOS</b>"; pontuacaoVerde += 2; } 
+    else { bIrr.style.background = "#eceff1"; bIrr.innerHTML = "💦 Irrigação <br><small>Desligada</small>"; bSens.style.background = "#eceff1"; bSens.innerHTML = "📟 Sensores IoT <br><small>Desconectados</small>"; }
+
+    if(mata) { bDrone.style.background = "#ce93d8"; bDrone.innerHTML = "🚁 Drones Ativos <br><b>MAPEANDO APP</b>"; pontuacaoVerde++; } 
+    else { bDrone.style.background = "#eceff1"; bDrone.innerHTML = "🚁 Drones Ativos <br><small>Pousado</small>"; }
+
+    // Determina as notas da missão
+    const nAmbiental = document.getElementById('nota-ambiental');
+    const nEconomica = document.getElementById('nota-economica');
+
+    if(pontuacaoVerde === 0) { nAmbiental.innerText = "F"; nAmbiental.style.color = "red"; nEconomica.innerText = "C"; nEconomica.style.color = "orange"; }
+    else if(pontuacaoVerde <= 2) { nAmbiental.innerText = "B"; nAmbiental.style.color = "blue"; nEconomica.innerText = "B"; nEconomica.style.color = "blue"; }
+    else { nAmbiental.innerText = "A+ EXCELENTE"; nAmbiental.style.color = "green"; nEconomica.innerText = "A+ ALTO LUCRO"; nEconomica.style.color = "green"; }
 }
 
 // ==========================================================================
-// 2. LÓGICA DA CALCULADORA DE CARBONO
+// 3 & 10. MOTOR DO QUIZ INTERATIVO E GANHO DE MEDALHAS
 // ==========================================================================
-if (document.getElementById('btn-calcular-carbono')) {
-    document.getElementById('btn-calcular-carbono').addEventListener('click', () => {
-        const hectares = parseFloat(document.getElementById('calc-hectares').value);
-        const bioma = document.getElementById('calc-bioma').value;
-        
-        if (isNaN(hectares) || hectares <= 0) {
-            alert('Por favor, digite um tamanho de área válido (maior que zero).');
-            return;
-        }
-
-        let fatorCO2 = 8.5; 
-        if (bioma === 'cerrado') fatorCO2 = 4.2;
-        if (bioma === 'floresta-tropical') fatorCO2 = 12.0;
-
-        const toneladasAnuais = hectares * fatorCO2;
-        const creditosGerados = toneladasAnuais; 
-        const valorFinanceiro = creditosGerados * 75.00; 
-
-        document.getElementById('res-toneladas').innerText = toneladasAnuais.toFixed(2);
-        document.getElementById('res-creditos').innerText = creditosGerados.toFixed(2);
-        document.getElementById('res-financeiro').innerText = valorFinanceiro.toFixed(2);
-    });
-}
-
-// ==========================================================================
-// 3. LÓGICA DO QUIZ COM LINGUAGEM ACESSÍVEL E SIMPLES
-// ==========================================================================
-const questoes = [
+const perguntasAgro = [
     {
-        pergunta: "Segundo os dados oficiais do Brasil, qual é o setor que mais gasta água doce no nosso país?",
-        a: "O uso nas casas e o abastecimento das grandes cidades.",
-        b: "A irrigação de lavouras e plantações na agricultura.",
-        resposta: "b",
-        explicacao: "Isso mesmo! A irrigação gasta bastante água. Por isso, usar tecnologia para monitorar ajuda a economizar até 30% desse consumo."
+        pergunta: "Quanto de água uma plantação economiza com irrigação inteligente?",
+        opcoes: ["Cerca de 10 a 30% devido aos sensores de solo", "Não causa impacto real", "Gasta mais água devido aos computadores"],
+        correta: 0
     },
     {
-        pergunta: "Por que não é recomendado passar produtos na lavoura quando o vento está muito forte (acima de 28 km/h)?",
-        a: "Porque o vento forte espalha o produto para fora da lavoura, contaminando a vizinhança e desperdiçando dinheiro.",
-        b: "Porque o produto evapora no ar antes de tocar as folhas por causa do calor do vento.",
-        resposta: "a",
-        explicacao: "Perfeito! Esse problema se chama deriva. O vento leva o produto para onde não devia, prejudicando a natureza e o bolso do produtor."
+        pergunta: "O que é agricultura sustentável?",
+        opcoes: ["Parar de produzir alimentos no país", "Produzir garantindo a saúde do solo, água e recursos futuros", "Utilizar maquinários antigos de tração braçal"],
+        correta: 1
     },
     {
-        pergunta: "De acordo com as pesquisas da Embrapa, quanto do território do Brasil é preservado de forma voluntária pelos próprios produtores rurais?",
-        a: "Apenas uma parte bem pequena, perto de 10% do país.",
-        b: "Uma grande parte, correspondente a cerca de 33% (um terço) do país.",
-        resposta: "b",
-        explicacao: "Você acertou! Os produtores rurais cuidam de um terço das florestas nativas do Brasil dentro de suas propriedades."
-    },
-    {
-        pergunta: "Qual é a maior vantagem de usar sensores que medem a umidade da terra direto no celular?",
-        a: "Saber a hora exata de irrigar, evitando gastar água e energia elétrica à toa.",
-        b: "Mudar o clima da região para fazer chover mais vezes no mês.",
-        resposta: "a",
-        explicacao: "Exatamente! Irrigar sabendo o quanto a terra precisa economiza muita água e reduz o valor da conta de energia."
-    },
-    {
-        pergunta: "Pensando no mercado de créditos de carbono, que tipo de floresta consegue limpar o ar mais rápido?",
-        a: "Florestas comerciais novas que estão crescendo rápido (como plantações de eucalipto).",
-        b: "Vegetações rasteiras e pequenas como as árvores baixas do Cerrado.",
-        resposta: "a",
-        explicacao: "Correto! Árvores que estão crescendo rápido fazem mais fotossíntese e conseguem puxar e guardar mais gás carbono na sua madeira."
+        pergunta: "Como funciona o crédito de carbono na propriedade rural?",
+        opcoes: ["Financiamento bancário convencional de tratores", "O produtor ganha títulos financeiros ao reter CO2 nas florestas e solo", "Um imposto extra cobrado sobre a colheita"],
+        correta: 1
     }
 ];
 
-let perguntaAtual = 0;
-let pontuacao = 0;
-
-const txtPergunta = document.getElementById('pergunta-quiz');
-const statusPerg = document.getElementById('status-pergunta');
-const btnA = document.getElementById('btn-opcao-a');
-const btnB = document.getElementById('btn-opcao-b');
-const resQuiz = document.getElementById('resultado-quiz');
-const btnProx = document.getElementById('btn-proxima');
-const btnReiniciar = document.getElementById('btn-reiniciar');
-const blocoOpcoes = document.getElementById('bloco-opcoes');
+let indexQuestao = 0;
+let acertosQuestao = 0;
 
 function carregarQuestao() {
-    if (!txtPergunta) return; 
+    document.getElementById('btn-proxima').style.display = 'none';
+    document.getElementById('resultado-quiz').innerText = "";
+    const containerOpcoes = document.getElementById('bloco-opcoes');
+    containerOpcoes.innerHTML = "";
 
-    resQuiz.innerText = '';
-    btnProx.classList.add('avancar-oculto');
-    btnReiniciar.classList.add('avancar-oculto');
-    blocoOpcoes.style.display = 'flex'; 
-    btnA.disabled = false;
-    btnB.disabled = false;
-
-    if (perguntaAtual < questoes.length) {
-        statusPerg.innerText = `Pergunta ${perguntaAtual + 1} de ${questoes.length}`;
-        txtPergunta.innerText = questoes[perguntaAtual].pergunta;
-        btnA.innerText = "A) " + questoes[perguntaAtual].a;
-        btnB.innerText = "B) " + questoes[perguntaAtual].b;
-    } else {
-        statusPerg.innerText = "Quiz Concluído! 🎉";
-        txtPergunta.innerText = `Você terminou o teste técnico! Você acertou ${pontuacao} de um total de ${questoes.length} perguntas.`;
-        blocoOpcoes.style.display = 'none'; 
-        btnProx.classList.add('avancar-oculto');
-        btnReiniciar.classList.remove('avancar-oculto'); 
+    if(indexQuestao >= perguntasAgro.length) {
+        exibirFinalQuiz();
+        return;
     }
-}
 
-function avaliarResposta(alternativa) {
-    btnA.disabled = true;
-    btnB.disabled = true;
-    const questao = questoes[perguntaAtual];
+    document.getElementById('status-pergunta').innerText = `Questão ${indexQuestao + 1} de ${perguntasAgro.length}`;
+    const atual = perguntasAgro[indexQuestao];
+    document.getElementById('pergunta-quiz').innerText = atual.pergunta;
 
-    if (alternativa === questao.resposta) {
-        pontuacao++;
-        textFeedback = "🌟 " + questao.explicacao;
-        resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffff00' : '#2d6a4f';
-    } else {
-        textFeedback = "❌ Resposta incorreta. Dica: " + questao.explicacao;
-        resQuiz.style.color = document.body.classList.contains('alto-contraste') ? '#ffffff' : '#d90429';
-    }
-    resQuiz.innerText = textFeedback;
-    btnProx.classList.remove('avancar-oculto');
-}
+    // Desbloqueia medalha básica ao começar
+    document.getElementById('medalha-1').style.opacity = "1";
 
-if (btnA && btnB) {
-    btnA.addEventListener('click', () => avaliarResposta('a'));
-    btnB.addEventListener('click', () => avaliarResposta('b'));
-}
-
-if (btnProx) {
-    btnProx.addEventListener('click', () => {
-        perguntaAtual++;
-        carregarQuestao();
+    atual.opcoes.forEach((op, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-resposta-quiz';
+        btn.innerText = op;
+        btn.onclick = () => avaliarQuestao(idx);
+        containerOpcoes.appendChild(btn);
     });
 }
 
-if (btnReiniciar) {
-    btnReiniciar.addEventListener('click', () => {
-        perguntaAtual = 0;
-        pontuacao = 0;
-        carregarQuestao();
-    });
+function avaliarQuestao(escolhida) {
+    const certa = perguntasAgro[indexQuestao].correta;
+    const btns = document.getElementById('bloco-opcoes').querySelectorAll('button');
+    btns.forEach(b => b.disabled = true);
+
+    const resultado = document.getElementById('resultado-quiz');
+    if(escolhida === certa) {
+        resultado.innerText = "🎯 Resposta Correta!"; resultado.style.color = "green";
+        acertosQuestao++;
+    } else {
+        resultado.innerText = "❌ Resposta Incorreta."; resultado.style.color = "red";
+    }
+
+    // Gerenciador dinâmico de medalhas por acertos
+    if(acertosQuestao >= 2) document.getElementById('medalha-2').style.opacity = "1";
+    if(acertosQuestao === perguntasAgro.length) document.getElementById('medalha-3').style.opacity = "1";
+
+    document.getElementById('btn-proxima').style.display = 'inline-block';
 }
 
-if (txtPergunta) {
-    carregarQuestao();
+function exibirFinalQuiz() {
+    document.getElementById('status-pergunta').innerText = "Quiz Encerrado!";
+    document.getElementById('pergunta-quiz').innerText = `Desempenho: Você acertou ${acertosQuestao} de ${perguntasAgro.length} formulações.`;
+    document.getElementById('bloco-opcoes').innerHTML = "";
+    document.getElementById('btn-proxima').style.display = 'none';
+    document.getElementById('btn-reiniciar').style.display = 'inline-block';
 }
+
+document.getElementById('btn-proxima').addEventListener('click', () => { indexQuestao++; carregarQuestao(); });
+document.getElementById('btn-reiniciar').addEventListener('click', () => { indexQuestao = 0; acertosQuestao = 0; document.getElementById('btn-reiniciar').style.display = 'none'; carregarQuestao(); });
+
+window.addEventListener('DOMContentLoaded', carregarQuestao);
 
 // ==========================================================================
-// 4. CENTRAL DO MENU DE ACESSIBILIDADE FLUTUANTE
+// CENTRAL CONTROLE DE ACESSIBILIDADE INTEGRADA
 // ==========================================================================
-const btnAbrirMenu = document.getElementById('btn-abrir-acessibilidade');
-const menuAcessivel = document.getElementById('menu-acessibilidade');
+const btnHubAcessivel = document.getElementById('btn-abrir-acessibilidade');
+const menuHubAcessivel = document.getElementById('menu-acessibilidade');
 
-if (btnAbrirMenu && menuAcessivel) {
-    btnAbrirMenu.addEventListener('click', () => {
-        const escondido = menuAcessivel.classList.toggle('acessibilidade-escondido');
-        btnAbrirMenu.setAttribute('aria-expanded', !escondido);
-    });
-}
-
-function gerenciarAcessibilidade(idBotao, classeCSS) {
-    const botao = document.getElementById(idBotao);
-    if (!botao) return; 
-    
-    const elementoAlvo = (classeCSS === 'preto-branco') ? document.documentElement : document.body;
-    
-    // Sincroniza o estado inicial do botão com a classe presente no DOM
-    if (elementoAlvo.classList.contains(classeCSS)) {
-        botao.setAttribute('aria-pressed', 'true');
-    } else {
-        botao.setAttribute('aria-pressed', 'false');
-    }
-
-    botao.addEventListener('click', () => {
-        let ativo;
-        if (classeCSS === 'preto-branco') {
-            ativo = document.documentElement.classList.toggle(classeCSS);
-        } else {
-            ativo = document.body.classList.toggle(classeCSS);
-        }
-        
-        botao.setAttribute('aria-pressed', ativo);
-        localStorage.setItem(classeCSS, ativo);
-    });
-}
-
-configuracoesAcessibilidade.forEach(item => {
-    gerenciarAcessibilidade(item.idBotao, item.classeCSS);
+btnHubAcessivel.addEventListener('click', () => {
+    const status = menuHubAcessivel.classList.toggle('acessibilidade-escondido');
+    btnHubAcessivel.setAttribute('aria-expanded', !status);
 });
 
-const btnOuvir = document.getElementById('btn-ouvir-site');
-if (btnOuvir) {
-    let lendoConteudo = null;
-    btnOuvir.addEventListener('click', () => {
-        if ('speechSynthesis' in window) {
-            if (window.speechSynthesis.speaking) {
-                window.speechSynthesis.cancel();
-                btnOuvir.innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
-                return;
-            }
-            const conteudoPrincipal = document.getElementById('conteudo-principal');
-            const textoParaLer = conteudoPrincipal ? conteudoPrincipal.innerText : document.body.innerText;
-            lendoConteudo = new SpeechSynthesisUtterance(textoParaLer);
-            lendoConteudo.lang = 'pt-BR';
-            
-            lendoConteudo.onend = () => {
-                btnOuvir.innerText = "🔊 Ouvir Conteúdo (Sintetizador)";
-            };
-
-            btnOuvir.innerText = "🛑 Parar Leitura";
-            window.speechSynthesis.speak(lendoConteudo);
-        } else {
-            alert('Este navegador não aceita a função de leitura de texto.');
-        }
-    });
-
-    window.addEventListener('beforeunload', () => {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-        }
-    });
-}
-
-// ==========================================================================
-// 5. MOTOR DE ANIMAÇÃO DINÂMICA VIA SCROLL (INTERSECTION OBSERVER)
-// ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const secoesParaAnimar = document.querySelectorAll(".animar-scroll");
-    
-    if ("IntersectionObserver" in window) {
-        const observadorScroll = new IntersectionObserver((entradas) => {
-            entradas.forEach(entrada => {
-                if (entrada.isIntersecting) {
-                    entrada.target.classList.add("visivel");
-                    observadorScroll.unobserve(entrada.target); // Para de observar após animar uma vez
-                }
-            });
-        }, {
-            threshold: 0.15 // Dispara a animação quando 15% da seção surge na tela
-        });
-
-        secoesParaAnimar.forEach(secao => observadorScroll.observe(secao));
-    } else {
-        // Fallback: caso o navegador seja muito antigo, mostra tudo direto de forma segura
-        secoesParaAnimar.forEach(secao => secao.classList.add("visivel"));
-    }
-});
+document.getElementById('btn-contraste').addEventListener('click', () => document.body.classList.toggle('alto-contraste'));
+document.getElementById('btn-fonte').addEventListener('click', () => document.body.classList.toggle('fonte-grande'));
+document.getElementById('btn-espacamento').addEventListener('click', () => document.body.classList.toggle('espacado'));
+document.getElementById('btn-dislexia').addEventListener('click', () => document.body.classList.toggle('fonte-dislexia'));
+document.getElementById('btn-saturacao').addEventListener('click', () => document.documentElement.classList.toggle('monocromatico'));
