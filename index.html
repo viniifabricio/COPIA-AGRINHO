@@ -3,308 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agrinho 2026: Tecnologia e Sustentabilidade no Campo</title>
+    <title>BioAgro Tech - Sustentabilidade e Inovação no Campo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <a href="#conteudo-principal" class="saltar-conteudo">Saltar para o conteúdo principal</a>
+    <div id="menu-acessibilidade" class="acessibilidade-container acessibilidade-escondido">
+        <button id="btn-contraste" class="btn-acessivel">🌓 Alto Contraste</button>
+        <button id="btn-fonte" class="btn-acessivel">🔎 Fonte Grande</button>
+        <button id="btn-espacamento" class="btn-acessivel">↔️ Espaçamento</button>
+        <button id="btn-dislexia" class="btn-acessivel">📖 Fonte Dislexia</button>
+        <button id="btn-saturacao" class="btn-acessivel">🔳 Preto e Branco</button>
+        <button id="btn-ouvir-site" class="btn-acessivel">🔊 Ouvir Conteúdo</button>
+    </div>
+    <button id="btn-abrir-acessibilidade" class="btn-flutuante" aria-expanded="false" aria-label="Abrir menu de acessibilidade">♿</button>
 
     <nav class="navbar">
-        <div class="logo">Agrinho Técnico 2026</div>
+        <div class="nav-logo">🌱 BioAgro Tech</div>
+        <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">☰</button>
         <ul class="nav-links">
-            <li><a href="#proposito">Propósito</a></li>
-            <li><a href="#simulador">Simulador</a></li>
-            <li><a href="#calculadora">Calculadora Carbono</a></li>
-            <li><a href="#noticias">Fontes & Notícias</a></li>
-            <li><a href="#quiz">Quiz da Terra</a></li>
-            <li><a href="#galeria">Práticas Sustentáveis</a></li>
+            <li><a href="#simulador">Clima</a></li>
+            <li><a href="#carbono">Carbono</a></li>
+            <li><a href="#impacto">Impacto Visual</a></li>
+            <li><a href="#sustentabilidade">Números</a></li>
+            <li><a href="#assistente">Assistente IA</a></li>
+            <li><a href="#conteudos">Conhecimento</a></li>
+            <li><a href="#quiz">Quiz</a></li>
         </ul>
     </nav>
 
-    <header class="hero-section">
-        <div class="overlay"></div>
-        <div class="hero-content">
-            <h1>Inovação Tecnológica e Preservação</h1>
-            <p>Descubra como a agricultura de precisão protege os recursos naturais, mitiga as mudanças climáticas e potencializa o futuro do planeta.</p>
-            <span class="badge">Concurso Agrinho 2026</span>
-        </div>
-    </header>
+    <main id="conteudo-principal" class="container">
+        
+        <header class="hero-section animar-scroll">
+            <h1>Tecnologia Humana e Sustentabilidade no Campo</h1>
+            <p>Descubra como a inovação digital impulsiona a agricultura de precisão, economiza recursos e preserva os biomas do nosso planeta.</p>
+        </header>
 
-    <main class="container" id="conteudo-principal">
-
-        <section id="proposito" class="site-section animar-scroll">
-            <span class="tag-destaque">Nosso Objetivo</span>
-            <h2 class="subtitulo-impacto">Sustentabilidade Aliada à Produtividade</h2>
-            <div class="texto-profundo">
-                <p>O grande desafio do campo no século XXI é produzir alimentos de qualidade reduzindo drasticamente o impacto ambiental. Através de sensores de solo, automação de dados e inteligência artificial, o produtor rural moderno consegue economizar recursos vitais como água doce e energia.</p>
-                <p>Este portal foi desenvolvido para demonstrar na prática que a tecnologia de ponta é a maior aliada da conservação ecológica, unindo a eficiência econômica à proteção da biodiversidade brasileira.</p>
-            </div>
-            <div class="impacto-box">
-                <p><strong>Impacto Real:</strong> Propriedades que utilizam gestão de precisão diminuem em até 30% o desperdício de insumos e otimizam o uso de recursos hídricos.</p>
-            </div>
-        </section>
-
-        <section id="simulador" class="site-section dark-panel animar-scroll">
-            <span class="tag-destaque">Área do Produtor</span>
-            <h2 class="subtitulo-impacto">Simulador de Decisão Agrícola</h2>
-            <p>Clique nos botões abaixo para simular diferentes condições meteorológicas e veja como o sistema reage automaticamente para proteger o ecossistema.</p>
+        <section id="simulador" class="site-section animar-scroll">
+            <h2>1. Simulador de Condições Climáticas</h2>
+            <p>Clique nos botões abaixo para simular cenários do clima e ver como o sistema inteligente reage para proteger a lavoura.</p>
             
             <div class="botoes-simulador">
-                <button class="btn-sim" id="simular-sol">Simular Dia de Sol Seco</button>
-                <button class="btn-sim" id="simular-chuva">Simular Chuva Forte</button>
-                <button class="btn-sim" id="simular-vento">Simular Rajadas de Vento</button>
+                <button id="simular-sol" class="btn-sim">☀️ Dia de Sol Forte</button>
+                <button id="simular-chuva" class="btn-sim">🌧️ Chuva Intensa</button>
+                <button id="simular-vento" class="btn-sim">💨 Ventania Crítica</button>
             </div>
 
-            <div class="painel-grid">
-                <div class="medidor-card">
-                    <h3>Umidade do Solo</h3>
-                    <div class="valor-display" id="val-umidade">--</div>
-                    <p id="msg-umidade">Aguardando comando...</p>
-                </div>
-                <div class="medidor-card">
-                    <h3>Velocidade do Vento</h3>
-                    <div class="valor-display" id="val-vento">--</div>
-                    <p id="msg-vento">Aguardando comando...</p>
-                </div>
-            </div>
-
-            <div class="calc-resultado" style="margin-top: 20px;">
-                <h3>Status do Sistema de Automação:</h3>
-                <div class="status-alerta" id="val-status">AGUARDANDO SIMULAÇÃO</div>
-                <p id="msg-recomendacao">Escolha um cenário climático acima para analisar a tomada de decisão da fazenda.</p>
-            </div>
-        </section>
-
-        <section id="calculadora" class="site-section animar-scroll">
-            <span class="tag-destaque">Efeito Estufa</span>
-            <h2 class="subtitulo-impacto">Calculadora de Sequestro de Carbono</h2>
-            <p>Descubra quantas toneladas de CO₂ a sua área de preservação nativa consegue retirar do ar anualmente e o valor estimado em créditos.</p>
-
-            <div class="calc-container">
-                <div class="sub-painel">
-                    <div class="input-group">
-                        <label for="calc-hectares">Quantidade de Hectares (ha):</label>
-                        <input type="number" id="calc-hectares" min="1" placeholder="Ex: 50">
+            <div class="painel-clima">
+                <div class="medidor-grid">
+                    <div class="medidor-card">
+                        <h3>Umidade do Solo</h3>
+                        <p id="val-umidade" class="medidor-valor">--</p>
+                        <p id="msg-umidade" class="medidor-status">Aguardando simulação...</p>
                     </div>
-                    <div class="input-group">
-                        <label for="calc-bioma">Bioma da Área Preservada:</label>
-                        <select id="calc-bioma">
-                            <option value="cerrado">Cerrado / Vegetação Baixa</option>
-                            <option value="mata-atlantica">Mata Atlântica</option>
-                            <option value="floresta-tropical">Floresta Tropical / Amazônica</option>
-                        </select>
+                    <div class="medidor-card">
+                        <h3>Velocidade do Vento</h3>
+                        <p id="val-vento" class="medidor-valor">--</p>
+                        <p id="msg-vento" class="medidor-status">Aguardando simulação...</p>
                     </div>
-                    <button class="btn-sim" id="btn-calcular-carbono" style="width: 100%;">Calcular Impacto Ambiental</button>
                 </div>
-
-                <div class="calc-resultado">
-                    <h3>Resultados da sua Preservação:</h3>
-                    <p><strong>CO₂ Retirado do Ar:</strong> <span id="res-toneladas">0.00</span> toneladas/ano</p>
-                    <p><strong>Créditos de Carbono Gerados:</strong> <span id="res-creditos">0.00</span> CBIOs</p>
-                    <p><strong>Valor Estimado de Mercado:</strong> R$ <span id="res-financeiro">0.00</span></p>
+                <div class="status-sistema">
+                    <h3>Status Geral do Sistema</h3>
+                    <p id="val-status" class="status-alerta">SELECIONE UM CENÁRIO</p>
+                    <p id="msg-recomendacao" class="recomendacao-texto">As recomendações automáticas vão aparecer aqui.</p>
                 </div>
             </div>
         </section>
 
-        <section id="noticias" class="site-section animar-scroll">
-            <span class="tag-destaque">Evidências Científicas</span>
-            <h2 class="subtitulo-impacto">Mundo Real: Notícias e Portais Oficiais</h2>
-            <p>Clique nos cards abaixo para acessar os portais oficiais, pesquisas e reportagens reais sobre sustentabilidade e tecnologia no campo:</p>
+        <section id="carbono" class="site-section animar-scroll">
+            <h2>2. Calculadora de Créditos de Carbono</h2>
+            <p>Descubra o potencial financeiro e ambiental da sua propriedade baseando-se no tamanho da área preservada e no bioma local.</p>
             
-            <div class="noticias-grid">
-                <a href="https://www.embrapa.br/tema-sustentabilidade" target="_blank" rel="noopener noreferrer" class="noticia-link-card">
-                    <div class="noticia-tag">Embrapa</div>
-                    <h3>Portal de Sustentabilidade da Embrapa</h3>
-                    <p>Acesse estudos científicos oficiais sobre tecnologias poupa-terra, mitigação de gases de efeito estufa e o desenvolvimento sustentável do agronegócio.</p>
-                    <span class="noticia-action">Visitar site oficial ↗</span>
-                </a>
-
-                <a href="https://agenciabrasil.ebc.com.br/geral/noticia/2023-07/tecnologia-no-campo-aliada-da-sustentabilidade-diz-pesquisadora" target="_blank" rel="noopener noreferrer" class="noticia-link-card">
-                    <div class="noticia-tag">Agência Brasil</div>
-                    <h3>Tecnologia no campo é aliada da sustentabilidade</h3>
-                    <p>Reportagem detalhando como as ferramentas digitais e o monitoramento climático ajudam os agricultores a reduzir custos e preservar os recursos naturais.</p>
-                    <span class="noticia-action">Ler reportagem completa ↗</span>
-                </a>
-
-                <a href="https://g1.globo.com/economia/agronegocios/" target="_blank" rel="noopener noreferrer" class="noticia-link-card">
-                    <div class="noticia-tag">G1 Agro</div>
-                    <h3>Painel Econômico e Tecnológico do Setor</h3>
-                    <p>Acompanhe em tempo real as notícias sobre inovação, adoção de bioinsumos, uso de drones e o panorama das práticas verdes no Brasil.</p>
-                    <span class="noticia-action">Acessar painel ↗</span>
-                </a>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Interatividade</span>
-            <h2 class="subtitulo-impacto">Curiosidades da Tecnologia Verde</h2>
-            <p>Passe o mouse ou clique nos cartões abaixo para descobrir dados sobre a sustentabilidade no campo.</p>
-
-            <div class="info-grid">
-                <div class="flash-card" tabindex="0">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <span class="info-tag">Água</span>
-                            <h3>Irrigação Inteligente</h3>
-                            <p class="instrucao-virar">Passe para virar ↻</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h3>Economia de 30%</h3>
-                            <p>Sensores enterrados no solo avisam se a terra precisa de água ou se já está úmida o suficiente, evitando o desperdício de mananciais hídricos.</p>
-                        </div>
-                    </div>
+            <div class="calc-box">
+                <div class="campo-grupo">
+                    <label for="calc-hectares">Tamanho da Área Preservada (em Hectares):</label>
+                    <input type="number" id="calc-hectares" min="1" placeholder="Ex: 50">
                 </div>
-                <div class="flash-card" tabindex="0">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <span class="info-tag">Drones</span>
-                            <h3>Imagens Aéreas</h3>
-                            <p class="instrucao-virar">Passe para virar ↻</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h3>Ataque Cirúrgico</h3>
-                            <p>Drones mapeiam falhas e pragas. O produtor aplica o defensivo apenas na planta doente, reduzindo o uso de insumos químicos em até 80%.</p>
-                        </div>
-                    </div>
+                
+                <div class="campo-grupo">
+                    <label for="calc-bioma">Bioma da Região:</label>
+                    <select id="calc-bioma">
+                        <option value="cerrado">Cerrado</option>
+                        <option value="mata-atlantica">Mata Atlântica / Outros</option>
+                        <option value="floresta-tropical">Floresta Tropical / Amazônia</option>
+                    </select>
                 </div>
-                <div class="flash-card" tabindex="0">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <span class="info-tag">Biodiversidade</span>
-                            <h3>Dados Brasileiros</h3>
-                            <p class="instrucao-virar">Passe para virar ↻</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h3>Preservação Real</h3>
-                            <p>Segundo dados do CAR compilados pela Embrapa, os produtores rurais preservam voluntariamente cerca de 33% de toda a vegetação nativa nacional.</p>
-                        </div>
+
+                <button id="btn-calcular-carbono" class="btn-principal">Calcular Impacto Ambiental</button>
+
+                <div class="resultados-calc">
+                    <div class="res-item">
+                        <span>CO₂ Retido por Ano:</span>
+                        <strong id="res-toneladas">0.00</strong> toneladas
+                    </div>
+                    <div class="res-item">
+                        <span>Créditos gerados:</span>
+                        <strong id="res-creditos">0.00</strong> créditos
+                    </div>
+                    <div class="res-item">
+                        <span>Retorno Estimado:</span>
+                        R$ <strong id="res-financeiro">0.00</strong>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="impacto" class="site-section animar-scroll">
+            <h2>📸 13. Impacto Visual: Restauração de Solos</h2>
+            <p>Arraste a barra central para os lados para comparar um solo degradado contra o mesmo solo recuperado por práticas sustentáveis.</p>
+            
+            <div class="slider-container">
+                <div class="slider-img img-antes">
+                    <div class="slider-label label-antes">🌵 Solo Degradado</div>
+                </div>
+                <div class="slider-img img-depois">
+                    <div class="slider-label label-depois">🌱 Solo Recuperado</div>
+                </div>
+                <input type="range" min="0" max="100" value="50" class="slider-barra" id="slider-foto" aria-label="Controle deslizante de antes e depois">
+            </div>
+        </section>
+
+        <section id="sustentabilidade" class="site-section animar-scroll">
+            <h2>🌎 Sustentabilidade e Ecossistemas</h2>
+            
+            <div class="contador-ambiental-box">
+                <h3>11. Contador Ambiental Coletivo</h3>
+                <p>Se todos os produtores do Paraná economizassem apenas <strong>10%</strong> de água, veríamos este volume de recursos poupado anualmente:</p>
+                <div class="valor-display" id="contador-agua">0 L</div>
+                <p class="tag-destaque">Litros salvos em tempo real (Simulação Acumulativa)</p>
+            </div>
+            
+            <br>
+
+            <h3>12. Comparador Prático Ambiental</h3>
+            <p>Veja os impactos gerados pela mudança de atitude no gerenciamento do solo e da lavoura:</p>
+            
+            <div class="comparador-grid">
+                <div class="card-comparador antes">
+                    <h4>Antes (Cenário de Desperdício)</h4>
+                    <ul>
+                        <li>❌ <strong>Desperdício Hídrico:</strong> Irrigação descontrolada causa poças e lava os nutrientes essenciais da terra.</li>
+                        <li>❌ <strong>Alta Emissão:</strong> Máquinas antigas sem rotas planejadas liberam excesso de CO₂ na atmosfera.</li>
+                    </ul>
+                </div>
+                <div class="card-comparador depois">
+                    <h4>Depois (Cenário de Economia)</h4>
+                    <ul>
+                        <li>✅ <strong>Economia Real:</strong> Redução de até 30% da água usando o monitoramento por sensores digitais.</li>
+                        <li>✅ <strong>Redução de Gases:</strong> O plantio direto e motores regulados sequestram gases e gastam menos combustível.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="assistente" class="site-section dark-panel animar-scroll">
+            <h2>🤖 9. Assistente Virtual Agro (Simulação Inteligente)</h2>
+            <p>Clique em uma das dúvidas rápidas abaixo para receber uma orientação automatizada do nosso robô instrutor:</p>
+            
+            <div class="assistente-container">
+                <div class="botoes-simulador">
+                    <button class="btn-sim" id="btn-pergunta-sustentabilidade">O que é sustentabilidade?</button>
+                    <button class="btn-sim" id="btn-pergunta-carbono">O que é crédito de carbono?</button>
+                    <button class="btn-sim" id="btn-pergunta-agua">Como economizar água?</button>
+                </div>
+                <div class="calc-resultado" style="margin-top: 15px; border-left: 4px solid var(--cor-secundaria); padding-left: 15px;">
+                    <p><strong>Resposta do Assistente:</strong></p>
+                    <p id="resposta-assistente" style="font-style: italic; color: #555;">Selecione uma pergunta acima para carregar a resposta explicativa...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conteudos" class="site-section animar-scroll">
+            <div class="painel-grid">
+                <div class="medidor-card" style="text-align: left;">
+                    <h3>💡 5. Curiosidades do Agronegócio</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px; line-height: 1.8;">
+                        <li>🌱 <strong>Maior produtor de soja:</strong> O Brasil ocupa o posto de líder global, alimentando cadeias globais.</li>
+                        <li>☕ <strong>Maior exportador de café:</strong> Os grãos colhidos em solo brasileiro lideram com folga as mesas do planeta.</li>
+                        <li>🚜 <strong>Inovação no Paraná:</strong> Nossos agricultores estaduais aplicam inteligência aérea via mapas de drones.</li>
+                    </ul>
+                </div>
+
+                <div class="medidor-card" style="text-align: left;">
+                    <h3>🔍 4. Mitos e Verdades</h3>
+                    <ul style="margin-left: 20px; margin-top: 10px; list-style-type: none; padding: 0;">
+                        <li style="margin-bottom: 12px;">❌ <em>"Toda tecnologia polui mais."</em><br><strong>Falso!</strong> Ferramentas modernas servem para reduzir desperdício de defensivos e otimizar solo.</li>
+                        <li style="margin-bottom: 12px;">❌ <em>"O agro depende apenas de máquinas."</em><br><strong>Falso!</strong> O sucesso do campo hoje vem da biotecnologia, dados do clima e capital humano.</li>
+                        <li style="margin-bottom: 12px;">❌ <em>"Sustentabilidade diminui a produção."</em><br><strong>Falso!</strong> Preservar os ecossistemas mantém o solo fértil e produtivo por gerações.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section class="site-section animar-scroll">
-            <span class="tag-destaque">Dados e Estatísticas</span>
-            <h2 class="subtitulo-impacto">Comparativo de Eficiência Tecnológica</h2>
-            <div class="tabela-responsiva">
-                <table class="tabela-eco">
-                    <thead>
-                        <tr>
-                            <th>Prática Agrícola</th>
-                            <th>Método Tradicional</th>
-                            <th>Com Tecnologia de Precisão</th>
-                            <th>Ganho Ecológico</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Manejo de Água</strong></td>
-                            <td>Aspersão ligada por tempo fixo diário.</td>
-                            <td>Gotejamento guiado por sensores de umidade.</td>
-                            <td>Até 30% de economia de água doce.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Aplicação de Insumos</strong></td>
-                            <td>Pulverização uniforme em toda a área.</td>
-                            <td>Aplicação direcionada via mapas de drones.</td>
-                            <td>Redução drástica de resíduos químicos no solo.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Uso de Máquinas</strong></td>
-                            <td>Rotas manuais e repetitivas.</td>
-                            <td>Piloto automático e GPS evitando sobreposições.</td>
-                            <td>Menor queima de combustível e redução de emissões.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2>⏳ 2. Linha do Tempo da Agricultura</h2>
+            <p>A evolução histórica do trabalho no campo e a introdução da ciência botânica.</p>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Agricultura Antigamente</span>
+                    <p>Produção braçal com ferramentas rústicas. Havia enorme dependência de fatores externos pela falta total de previsão climática ou monitoramento.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Agricultura Atual</span>
+                    <p>Maquinários robustos guiados via satélites de GPS, análise química molecular de folhas e monitoramento móvel via celulares.</p>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Agricultura do Futuro</span>
+                    <p>Uso em larga escala de inteligências artificiais autônomas de ponta, robótica regenerativa e emissão zero de gases poluentes.</p>
+                </div>
             </div>
         </section>
 
         <section id="quiz" class="site-section animar-scroll">
-            <span class="tag-destaque">Avaliação</span>
-            <h2 class="subtitulo-impacto">Quiz Técnico Ambiental</h2>
+            <h2>3. Quiz Técnico e Educacional</h2>
+            <p>Responda às questões abaixo testando seus conhecimentos em três níveis de dificuldade (Fácil, Médio e Difícil).</p>
             
-            <div class="quiz-container">
-                <div id="status-pergunta" style="font-weight: bold; color: var(--cor-secundaria);">Carregando questão...</div>
-                <div class="texto-questao" id="pergunta-quiz">Texto da pergunta aqui...</div>
+            <div class="quiz-box">
+                <div class="quiz-cabecalho">
+                    <span id="status-pergunta" class="tag-status">Carregando perguntas...</span>
+                </div>
                 
-                <div class="botoes-quiz" id="bloco-opcoes">
-                    <button class="btn-resposta-quiz" id="btn-opcao-a">Opção A</button>
-                    <button class="btn-resposta-quiz" id="btn-opcao-b">Opção B</button>
+                <h3 id="pergunta-quiz" class="pergunta-texto">A pergunta aparecerá aqui em instantes...</h3>
+                
+                <div id="bloco-opcoes" class="opcoes-container">
+                    <button id="btn-opcao-a" class="btn-opcao">Opção A</button>
+                    <button id="btn-opcao-b" class="btn-opcao">Opção B</button>
                 </div>
 
-                <div id="resultado-quiz" style="margin-top: 20px; font-weight: bold; font-size: 1.1rem;"></div>
-                <button class="btn-sim avancar-oculto" id="btn-proxima" style="margin-top: 20px;">Avançar Próxima Pergunta ➔</button>
-                <button class="btn-sim avancar-oculto" id="btn-reiniciar" style="margin-top: 20px; background-color: var(--cor-secundaria);">Refazer Quiz ↻</button>
+                <p id="resultado-quiz" class="feedback-quiz"></p>
+                
+                <button id="btn-proxima" class="btn-principal avancar-oculto">Avançar para Próxima Questão ➡️</button>
+                <button id="btn-reiniciar" class="btn-principal avancar-oculto">Refazer o Quiz 🔄</button>
             </div>
         </section>
 
-        <section id="galeria" class="site-section animar-scroll">
-            <span class="tag-destaque">Vitrine Verde</span>
-            <h2 class="subtitulo-impacto">Galeria de Práticas Sustentáveis</h2>
-            <p>Veja imagens de técnicas aplicadas que estão redesenhando o futuro do agronegócio ecológico do Paraná.</p>
-            
-            <div class="galeria-grid">
-                <div class="galeria-card">
-                    <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=500&q=80" alt="Plantio Direto sobre a palha protetora do solo">
-                    <div class="galeria-info">
-                        <h4>Plantio Direto</h4>
-                        <p>A semente é inserida sobre os restos da colheita anterior, protegendo a terra contra processos erosivos e mantendo a umidade.</p>
-                    </div>
-                </div>
-                <div class="galeria-card">
-                    <img src="https://images.unsplash.com/photo-1628352081506-83c43123ed6d?auto=format&fit=crop&w=500&q=80" alt="Drone de precisão sobrevoando lavoura">
-                    <div class="galeria-info">
-                        <h4>Drones de Análise</h4>
-                        <p>Varreduras aéreas térmicas identificam escassez hídrica e anomalias foliares antes do surgimento de danos visíveis.</p>
-                    </div>
-                </div>
-                <div class="galeria-card">
-                    <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=500&q=80" alt="Plantações consorciadas gerando integração">
-                    <div class="galeria-info">
-                        <h4>Integração Lavoura-Pecuária</h4>
-                        <p>Alternar pastagens e grãos na mesma área recupera organicamente o solo, reduzindo a necessidade de fertilizantes sintéticos.</p>
-                    </div>
-                </div>
-            </div>
+        <section class="site-section animar-scroll" style="border-top: 4px solid var(--cor-principal);">
+            <h3>🔗 Fontes Científicas e Portais de Pesquisa</h3>
+            <p>Explore as notícias e artigos originais que serviram de base teórica e comprovação para este portal:</p>
+            <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                <li><a href="https://www.embrapa.br/tema-sustentabilidade" target="_blank" rel="noopener noreferrer" style="color: var(--cor-secundaria); font-weight: bold; text-decoration: underline;">Embrapa Sustentabilidade: Pesquisas e Práticas de Conservação ↗</a></li>
+                <li><a href="https://www.embrapa.br/instrumentacao" target="_blank" rel="noopener noreferrer" style="color: var(--cor-secundaria); font-weight: bold; text-decoration: underline;">Embrapa Instrumentação: Automação e Uso Inteligente da Água ↗</a></li>
+                <li><a href="https://www.sistemafaep.org.br/" target="_blank" rel="noopener noreferrer" style="color: var(--cor-secundaria); font-weight: bold; text-decoration: underline;">Senar Paraná: Inovação e Capacitação Tecnológica no Campo ↗</a></li>
+            </ul>
         </section>
 
     </main>
 
-    <div class="painel-acessibilidade-container">
-        <button class="btn-flutuante-acessivel" id="btn-abrir-acessibilidade" aria-label="Abrir recursos de acessibilidade" aria-expanded="false">♿</button>
-        <div class="menu-acessibilidade-box acessibilidade-escondido" id="menu-acessibilidade">
-            <h3>Recursos de Acessibilidade</h3>
-            <button class="op-btn-acessivel" id="btn-contraste">🌓 Alternar Alto Contraste</button>
-            <button class="op-btn-acessivel" id="btn-fonte">🔎 Aumentar Letra do Site</button>
-            <button class="op-btn-acessivel" id="btn-espacamento">↔️ Expandir Espaçamento</button>
-            <button class="op-btn-acessivel" id="btn-dislexia">✏️ Fonte Amigável para Dislexia</button>
-            <button class="op-btn-acessivel" id="btn-saturacao">🏁 Remover Cores (Monocromático)</button>
-            <button class="op-btn-acessivel" id="btn-ouvir-site" style="background-color: var(--cor-principal); color: white !important; font-weight: bold;">🔊 Ouvir Conteúdo (Sintetizador)</button>
-        </div>
-    </div>
-
-    <footer class="rodape-oficial">
-        <div class="rodape-grid">
-            <div class="rodape-bloco">
-                <h4>Sobre o Projeto</h4>
-                <p>Website educacional desenvolvido para o Concurso Agrinho Paraná 2026, com foco na difusão da Agricultura Digital e seus impactos ecológicos.</p>
-            </div>
-            <div class="rodape-bloco">
-                <h4>Parcerias de Suporte</h4>
-                <p class="Destaque-Senar">Sistema FAEP / SENAR-PR</p>
-                <p>Secretaria de Estado da Educação do Paraná</p>
-            </div>
-            <div class="rodape-bloco">
-                <h4>Conectados</h4>
-                <p class="hashtag-rodape">#Agrinho2026</p>
-                <p class="hashtag-rodape">#AgriculturaSustentavel</p>
-            </div>
-        </div>
-        <div class="rodape-copyright">
-            &copy; 2026 Portal Agrinho Sustentável. Desenvolvido com foco nas diretrizes WCAG 2.1 e eMAG de Acessibilidade Digital.
-        </div>
+    <footer class="rodape">
+        <p>© 2026 BioAgro Tech — Projeto Desenvolvido para o Concurso Agrinho.</p>
     </footer>
 
     <script src="main.js"></script>
