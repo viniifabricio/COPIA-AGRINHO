@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE CORES E PADRÕES ORIGINAIS
+   ========================================================================== */
 :root {
     --cor-principal: #1b4332;
     --cor-secundaria: #2d6a4f;
@@ -29,8 +32,10 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    width: 100%;
 }
 
+/* LINK DE ATALHO PARA ACESSIBILIDADE */
 .saltar-conteudo {
     position: absolute;
     top: -100px;
@@ -39,132 +44,812 @@ body {
     color: white;
     padding: 10px;
     z-index: 9999;
+    transition: top 0.3s ease;
 }
-.saltar-conteudo:focus { top: 0; }
+.saltar-conteudo:focus {
+    top: 0;
+}
 
-/* NAVBAR */
+/* ==========================================================================
+   2. NAVBAR (MENU SUPERIOR ALINHADO - SEM QUEBRA E SEM SUMIR DA TELA)
+   ========================================================================== */
 .navbar {
-    background-color: var(--cor-escura);
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: var(--cor-escura, #081c15) !important;
+    color: white !important;
+    padding: 10px 20px;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 100% !important;
+    max-width: 100vw !important;
+    flex-wrap: nowrap !important; /* Proíbe terminantemente a quebra de linha por padrão */
+    box-sizing: border-box !important;
+    gap: 10px;
 }
+
+.logo {
+    color: white !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0; /* A logo nunca esmaga */
+}
+
 .nav-links {
-    display: flex;
-    gap: 15px;
+    display: flex !important;
+    flex-wrap: nowrap !important; /* Proíbe a quebra dos links por padrão */
+    gap: 0.5vw !important; /* Espaçamento dinâmico baseado na largura da tela */
+    justify-content: flex-end !important;
     list-style: none;
+    align-items: center;
+    flex-grow: 1;
+    overflow: hidden; /* Garante segurança absoluta do container */
 }
+
+.nav-links li {
+    display: inline-flex !important;
+}
+
 .nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 5px 8px;
-    transition: 0.3s;
-}
-.nav-links a:hover { color: #52b788; }
-
-@media (max-width: 768px) {
-    .navbar { flex-direction: column; gap: 10px; }
-    .nav-links { flex-wrap: wrap; justify-content: center; }
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: clamp(0.7rem, 0.85vw, 0.9rem) !important; /* Diminui a fonte dinamicamente se a tela encolher */
+    white-space: nowrap !important; /* Impede o texto de quebrar internamente */
+    padding: 4px 6px;
+    transition: color 0.3s ease;
 }
 
-/* HERO */
+.nav-links a:hover, .nav-links a:focus {
+    color: #52b788 !important;
+    outline: 1px solid white;
+    border-radius: 4px;
+}
+
+/* COMPORTAMENTO EXCLUSIVO QUANDO RECURSOS DE ACESSIBILIDADE ESTÃO ATIVOS */
+body.fonte-grande .navbar,
+body.espacado .navbar {
+    flex-wrap: wrap !important; 
+}
+
+body.fonte-grande .nav-links,
+body.espacado .nav-links {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+}
+
+body.fonte-grande .nav-links a,
+body.espacado .nav-links a {
+    font-size: 1.1rem !important;
+    white-space: normal !important; /* No modo acessível, pode quebrar o texto interno */
+    text-align: center;
+}
+
+/* ==========================================================================
+   3. HERO SECTION & PROPÓSITO (FRENTE DO SITE DO CONCURSO)
+   ========================================================================== */
 .hero-section {
     position: relative;
-    background-color: var(--cor-principal);
-    min-height: 250px;
+    background-image: url('Agrinho.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    width: 100%;
 }
+
 .overlay {
     position: absolute;
-    width: 100%; height: 100%;
-    background-color: rgba(8, 28, 21, 0.6);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 28, 21, 0.7);
+    z-index: 1;
 }
-.hero-content { position: relative; color: white; z-index: 2; padding: 20px; }
+
+.hero-content {
+    position: relative;
+    color: white;
+    z-index: 2;
+    padding: 30px 20px;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
 .badge {
+    display: inline-block;
     background-color: #52b788;
     color: var(--cor-escura);
-    padding: 5px 15px;
+    padding: 6px 18px;
     border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* SEÇÕES DE CONTEÚDO PADRÃO E ESCURO */
+.site-section {
+    background: white;
+    padding: 30px;
+    margin: 25px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e0e2e0;
+}
+
+.site-section.dark-panel {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #333;
+}
+
+.site-section.dark-panel h2, 
+.site-section.dark-panel h3, 
+.site-section.dark-panel p {
+    color: #ffffff !important;
+}
+
+.impacto-box {
+    border-left: 5px solid var(--cor-secundaria);
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.tag-destaque {
+    color: var(--cor-secundaria);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.subtitulo-impacto {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 10px 0 15px 0;
+    color: var(--cor-principal);
+    line-height: 1.3;
+}
+
+.site-section.dark-panel .subtitulo-impacto {
+    color: #ffff00 !important;
+}
+
+/* ==========================================================================
+   4. LINHA DO TEMPO (DIÁRIO DE BORDO ORIGINAL RECONSTRUÍDO)
+   ========================================================================== */
+.timeline {
+    position: relative;
+    margin: 30px 0;
+    padding-left: 30px;
+    border-left: 3px solid var(--cor-secundaria);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: var(--cor-secundaria);
+    border-radius: 50%;
+    left: -39px;
+    top: 5px;
+}
+
+.timeline-date {
     font-size: 0.85rem;
+    color: var(--cor-secundaria);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
+   5. COMPONENTES DOS SIMULADORES E CALCULADORA
+   ========================================================================== */
+.botoes-simulador {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.btn-sim {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-sim:hover, .btn-sim:focus {
+    background-color: var(--cor-secundaria);
+    transform: translateY(-2px);
+}
+
+.painel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.medidor-card {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.valor-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--cor-principal);
+    margin: 10px 0;
+}
+
+.status-alerta {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2a9d8f;
+    margin: 15px 0;
+}
+
+.calc-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
-/* CARDS E GRIDS */
-.site-section {
-    background: white;
-    padding: 35px 25px;
-    margin: 25px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    border: 1px solid #e0e2e0;
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
 }
-.dark-panel { background: #000; color: #fff; }
-.subtitulo-impacto { color: var(--cor-principal); margin: 10px 0; }
-.tag-destaque { color: var(--cor-secundaria); font-weight: bold; font-size: 0.85rem; text-transform: uppercase; }
-.impacto-box { border-left: 4px solid var(--cor-secundaria); padding-left: 15px; margin-top: 15px; }
 
-.painel-grid, .info-grid {
+.calc-resultado {
+    background: #e8f5e9;
+    border: 2px dashed var(--cor-secundaria);
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.site-section.dark-panel .calc-resultado {
+    background: #111 !important;
+    border-color: #52b788;
+}
+
+.radar-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    margin-top: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.radar-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ==========================================================================
+   6. FLASHCARDS (ESTILO 3D PROTEGIDO CONTRA VAZAMENTO DE TEXTO)
+   ========================================================================== */
+.info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
     margin-top: 25px;
 }
-.medidor-card { background: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 6px; }
-.valor-display { font-size: 2.2rem; font-weight: bold; color: var(--cor-principal); }
 
-.btn-sim {
-    background: var(--cor-principal); color: white; border: none;
-    padding: 10px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s;
+.flash-card {
+    background-color: transparent;
+    height: 250px;
+    perspective: 1000px;
+    cursor: pointer;
 }
-.btn-sim:hover { background: var(--cor-secundaria); }
-.botoes-simulador { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0; }
 
-/* LINHA DO TEMPO */
-.timeline { border-left: 3px solid var(--cor-secundaria); padding-left: 20px; margin: 20px 0; }
-.timeline-item { position: relative; margin-bottom: 25px; }
-.timeline-item::before {
-    content: ''; position: absolute; width: 12px; height: 12px;
-    background: var(--cor-secundaria); border-radius: 50%; left: -28px; top: 6px;
+.flash-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 }
-.timeline-date { font-weight: bold; color: var(--cor-secundaria); }
 
-/* FLASHCARDS 3D */
-.flash-card { height: 200px; perspective: 1000px; }
-.flash-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
-.flash-card:hover .flash-card-inner, .flash-card:focus-within .flash-card-inner { transform: rotateY(180deg); }
-.flash-card-front, .flash-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 6px; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.flash-card-front { background: #e8f5e9; border: 1px solid #c8e6c9; color: #1b4332; }
-.flash-card-back { background: var(--cor-principal); color: white; transform: rotateY(180deg); }
+.flash-card:hover .flash-card-inner, 
+.flash-card:focus .flash-card-inner,
+.flash-card:focus-within .flash-card-inner {
+    transform: rotateY(180deg);
+}
 
-/* QUIZ */
-.botoes-quiz { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; }
-.btn-resposta-quiz { background: #f4f6f4; border: 1px solid var(--cor-secundaria); padding: 12px; text-align: left; border-radius: 4px; cursor: pointer; }
-.btn-resposta-quiz:hover { background: #e8f5e9; }
+.flash-card-front, .flash-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow-y: auto !important;
+    box-sizing: border-box !important;
+}
 
-/* ACESSIBILIDADE ACCENTS */
-.painel-acessibilidade-container { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
-.btn-flutuante-acessivel { background: var(--cor-principal); color: white; border: none; width: 45px; height: 45px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; }
-.menu-acessibilidade-box { position: absolute; bottom: 55px; right: 0; background: white; border: 2px solid var(--cor-principal); padding: 12px; border-radius: 6px; width: 220px; }
+.flash-card-front {
+    background-color: #f1f8e9;
+    border: 2px solid #c5e1a5;
+    color: var(--cor-escura);
+}
+
+.flash-card-back {
+    background-color: var(--cor-principal);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flash-card-back p {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem) !important;
+    line-height: 1.4 !important;
+}
+
+.flash-card-front *, .flash-card-back * {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.info-tag {
+    background: var(--cor-secundaria);
+    color: white;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.flash-card-front::-webkit-scrollbar, 
+.flash-card-back::-webkit-scrollbar {
+    width: 6px;
+}
+
+.flash-card-front::-webkit-scrollbar-thumb, 
+.flash-card-back::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   7. TABELA DE IMPACTO ORIGINAL
+   ========================================================================== */
+.tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.tabela-eco {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: #ffffff;
+}
+
+.tabela-eco th, .tabela-eco td {
+    padding: 15px;
+    border: 1px solid #dddddd;
+    font-size: 0.95rem;
+    color: var(--cor-texto);
+}
+
+.tabela-eco th {
+    background-color: #1b4332 !important;
+    color: #ffffff !important;
+}
+
+.tabela-eco tr:nth-child(even) {
+    background-color: #f1f8e9;
+}
+
+.tabela-eco td strong {
+    color: #2d6a4f;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.site-section.dark-panel .tabela-eco td {
+    color: #000000 !important;
+}
+
+/* ==========================================================================
+   8. QUIZ DE CONHECIMENTOS
+   ========================================================================== */
+.texto-questao {
+    font-size: 1.35rem;
+    font-weight: bold;
+    margin: 15px 0;
+    color: var(--cor-escura);
+}
+
+.site-section.dark-panel .texto-questao {
+    color: #ffffff !important;
+}
+
+.botoes-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-resposta-quiz {
+    background-color: #f4f6f4 !important;
+    border: 2px solid var(--cor-secundaria) !important;
+    padding: 20px 25px;
+    text-align: left;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--cor-escura) !important;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-resposta-quiz:hover, .btn-resposta-quiz:focus {
+    background-color: #e8f5e9 !important;
+    border-color: var(--cor-principal) !important;
+}
+
+html.preto-branco .btn-resposta-quiz {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+html.preto-branco .btn-resposta-quiz:hover {
+    background-color: #222222 !important;
+}
+
+/* ==========================================================================
+   9. PAINEL DE ACESSIBILIDADE FLUTUANTE
+   ========================================================================== */
+.painel-acessibilidade-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999999 !important;
+}
+
+.btn-flutuante-acessivel {
+    background: var(--cor-principal);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.menu-acessibilidade-box {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    background: white;
+    border: 2px solid var(--cor-principal);
+    padding: 15px;
+    border-radius: 8px;
+    width: 260px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 .acessibilidade-escondido { display: none; }
-.op-btn-acessivel { display: block; width: 100%; padding: 6px; margin: 4px 0; text-align: left; cursor: pointer; }
 
-/* MODIFICADORES DE LAYOUT */
-body.alto-contraste, body.alto-contraste * { background: #000 !important; color: #fff !important; border-color: #fff !important; }
+.menu-acessibilidade-box h3 {
+    color: var(--cor-escura) !important;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.op-btn-acessivel {
+    display: block;
+    width: 100%;
+    background: #f4f6f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 8px 0;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--cor-texto) !important;
+}
+
+/* ==========================================================================
+   10. MODIFICADORES E REGRAS DE ACESSIBILIDADE
+   ========================================================================== */
+body.alto-contraste,
+body.alto-contraste * {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
+}
+body.alto-contraste h1, body.alto-contraste h2, body.alto-contraste h3, 
+body.alto-contraste th, body.alto-contraste td strong, body.alto-contraste .valor-display,
+body.alto-contraste .status-alerta, body.alto-contraste .tag-destaque, 
+body.alto-contraste .subtitulo-impacto {
+    color: #ffff00 !important;
+}
+body.alto-contraste button, body.alto-contraste a, body.alto-contraste input, body.alto-contraste select {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+}
+body.alto-contraste .tabela-eco, body.alto-contraste .tabela-eco tr, body.alto-contraste .tabela-eco td {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+html.preto-branco {
+    filter: grayscale(100%) !important;
+}
+
+html.preto-branco .btn-resposta-quiz {
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+html.preto-branco .flash-card-inner {
+    transform-style: preserve-3d !important;
+}
+
 body.fonte-grande { --tamanho-base: 19px; }
-body.espacado { --espacamento-base: 2px; }
-body.fonte-dislexia * { font-family: 'Comic Sans MS', sans-serif !important; }
-html.monocromatico { filter: grayscale(100%); }
+body.espacado { --espacamento-base: 2.2px; }
 
-/* ANIMATION ELEMENTS */
-.rodape-oficial { background: var(--cor-escura); color: white; padding: 25px 20px; margin-top: 40px; text-align: center; }
-.animar-scroll { opacity: 0; transform: translateY(15px); transition: 0.5s ease-out; }
-.animar-scroll.visivel { opacity: 1; transform: translateY(0); }
+body.fonte-dislexia, 
+body.fonte-dislexia * { 
+    font-family: 'Comic Sans MS', 'Arial', cursive, sans-serif !important; 
+}
+
+/* ==========================================================================
+   11. RODAPÉ ORIGINAL
+   ========================================================================== */
+.rodape-oficial {
+    background-color: var(--cor-escura);
+    color: white;
+    padding: 40px 20px 20px 20px;
+    margin-top: 50px;
+}
+
+.rodape-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rodape-bloco h4 {
+    color: #52b788;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.rodape-bloco p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #dddddd;
+}
+
+.Destaque-Senar {
+    font-weight: bold;
+    color: #fff !important;
+    margin-top: 10px;
+}
+
+.hashtag-rodape {
+    color: #52b788 !important;
+    font-weight: bold;
+}
+
+.rodape-copyright {
+    text-align: center;
+    border-top: 1px solid #2d6a4f;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+/* ==========================================================================
+   12. ADIÇÕES DE SUPORTE: SUSTENTABILIDADE E TECNOLOGIA
+   ========================================================================== */
+.agro-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.agro-cards-container .medidor-card {
+    text-align: left;
+    border-top: 4px solid var(--cor-secundaria);
+    transition: transform 0.3s ease;
+}
+
+.agro-cards-container .medidor-card:hover {
+    transform: translateY(-5px);
+}
+
+.agro-cards-container .medidor-card h3 {
+    color: var(--cor-principal);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+body.alto-contraste .agro-cards-container .medidor-card {
+    border-top-color: #ffffff !important;
+}
+
+.texto-profundo p {
+    margin-bottom: 15px;
+}
+.texto-profundo p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   13. NOVO RECURSO: DINÂMICA DE SCROLL E GALERIA DE PRÁTICAS SUSTENTÁVEIS
+   ========================================================================== */
+.animar-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animar-scroll.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.galeria-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.galeria-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 4px solid #2a9d8f;
+}
+
+.galeria-info {
+    padding: 15px;
+}
+
+.galeria-info h4 {
+    color: #1b4332;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.galeria-info p {
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+body.alto-contraste .galeria-card {
+    background-color: #000000 !important;
+    border: 2px solid #ffffff !important;
+}
+
+body.alto-contraste .galeria-card img {
+    border-bottom: 4px solid #ffffff !important;
+}
+
+/* ==========================================================================
+   SUPORTE COMPLEMENTAR PARA EXPANSOES PEDAGÓGICAS
+   ========================================================================== */
+.painel-medalhas {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.medalha-item {
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 160px;
+    opacity: 0.25;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s ease;
+}
+
+.medalha-item.desbloqueada {
+    opacity: 1 !important;
+    transform: scale(1.05);
+    border-color: #ffd700;
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+}
+
+.medalha-item span {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+body.alto-contraste .medalha-item {
+    background: #000 !important;
+    border: 1px solid #fff !important;
+}
+body.alto-contraste .medalha-item.desbloqueada {
+    border: 2px dashed #ffff00 !important;
+}
