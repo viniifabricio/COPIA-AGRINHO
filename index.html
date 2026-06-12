@@ -3,468 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agro Forte, Futuro Sustentável - Andirá/PR</title>
+    <title>EcoRadar Agro - Monitoramento Inteligente e Sustentabilidade</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <a href="#conteudo-principal" class="saltar-conteudo">Saltar para o conteúdo principal</a>
+    <a href="#conteudo-principal" class="saltar-conteudo">Ir direto para o conteúdo</a>
 
-    <nav class="navbar" role="navigation" aria-label="Menu Principal">
-        <div class="logo">🌱 Agrinho Andirá 2026</div>
-        <ul class="nav-links">
-            <li><a href="#mapa-andira">Mapa</a></li>
-            <li><a href="#linha-tempo">Histórico</a></li>
-            <li><a href="#simuladores">Simuladores</a></li>
-            <li><a href="#mitos-verdades">Mitos</a></li>
-            <li><a href="#biblioteca">Artigos</a></li>
-            <li><a href="#quiz-secao">Quiz & Conquistas</a></li>
-            <li><a href="#diario-bordo">Diário</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero-section">
-        <div class="overlay"></div>
-        <div class="hero-content animar-scroll">
-            <h1>Agro Forte, Futuro Sustentável</h1>
-            <p>Conectando a tradição agrícola de Andirá às tecnologias de preservação e créditos de carbono do futuro.</p>
-            <span class="badge">Projeto Concurso Agrinho 2026</span>
-        </div>
+    <header class="navbar">
+        <div class="logo" aria-label="EcoRadar Agro">🌱 EcoRadar Agro</div>
+        <nav role="navigation" aria-label="Menu de Navegação">
+            <div class="nav-links">
+                <a href="#intro">Nosso Propósito</a>
+                <a href="#diario-bordo">Diário de Bordo</a>
+                <a href="#galeria-secao">Galeria</a>
+                <a href="#sustentabilidade-agro">Sustentabilidade</a>
+                <a href="#tecnologia-producao">Tecnologia</a>
+                <a href="#painel-produtor">Área do Produtor</a>
+                <a href="#calculadora-secao">Calculadora</a>
+                <a href="#radar-secao">Radar do Tempo</a>
+                <a href="#informativo">Dados Reais</a>
+                <a href="#quiz">Quiz da Terra</a>
+            </div>
+        </nav>
     </header>
 
-    <main class="container" id="conteudo-principal">
+    <section class="hero-section" role="img" aria-label="Painel visual sobre tecnologia e sustentabilidade no campo">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>🌱 EcoRadar Agro</h1>
+            <p>Unindo tecnologia e cuidado com a natureza para ajudar o produtor rural</p>
+            <span class="badge">Categoria Programação Front-End - Concurso Agrinho 2026</span>
+        </div>
+    </section>
 
-        <section id="mapa-andira" class="site-section animar-scroll">
-            <span class="tag-destaque">Geotecnologia Local</span>
-            <h2 class="subtitulo-impacto">1. Monitoramento Espacial de Andirá/PR</h2>
-            <p>Selecione um dos polos produtivos do município para analisar a distribuição das culturas rurais e estratégias ecológicas aplicadas:</p>
-            
-            <div class="botoes-simulador">
-                <button class="btn-sim" onclick="clicarMapa('norte')">Polo Norte (Cafés Especiais)</button>
-                <button class="btn-sim" onclick="clicarMapa('sul')">Polo Sul (Grãos & Soja)</button>
-                <button class="btn-sim" onclick="clicarMapa('leste')">Polo Leste (Agricultura Familiar)</button>
-            </div>
-            
-            <div id="info-mapa-clique" class="impacto-box" style="display: none;">
-                <h4 id="mapa-titulo-polo" style="color: var(--cor-principal); font-weight: bold;">Polo</h4>
-                <p id="mapa-desc-polo">Detalhes...</p>
+    <main id="conteudo-principal" class="container">
+        
+        <section id="intro" class="site-section" tabindex="0">
+            <div class="impacto-box">
+                <span class="tag-destaque">NOSSO PROPÓSITO</span>
+                <h2>Tecnologia que ajuda a cuidar do campo</h2>
+                <p class="subtitulo-impacto">
+                    Este projeto foi criado pelo aluno Vinicius Montagna Fabricio, no Colégio Estadual Cívico-Militar Stella Maris. Nosso objetivo é ajudar a economizar água, evitar desperdícios e proteger o meio ambiente na nossa região.
+                </p>
+                <div class="texto-profundo">
+                    <p>
+                        O <strong>EcoRadar Agro</strong> nasceu para resolver problemas reais que os agricultores enfrentam no dia a dia do Norte Pioneiro do Paraná. Com as mudanças no clima, quem trabalha na terra precisa de informações rápidas e certeiras para tomar as melhores decisões.
+                    </p>
+                    <p>
+                        Mostrando o clima em tempo real e dando dicas de manejo, a plataforma ajuda a evitar que o vento leve o veneno da lavoura para o lugar errado (o que chamamos de deriva) e ensina a usar a água da irrigação na medida certa. Assim, mostramos que a tecnologia pode ser a maior aliada da produção de alimentos e da preservação da natureza.
+                    </p>
+                </div>
             </div>
         </section>
 
-        <section id="linha-tempo" class="site-section animar-scroll">
-            <span class="tag-destaque">Evolução do Campo</span>
-            <h2 class="subtitulo-impacto">2. Linha do Tempo: A Transformação Agrícola</h2>
+        <section id="diario-bordo" class="site-section" tabindex="0">
+            <h2>⏳ Nossa Caminhada Escolar (Diário de Bordo)</h2>
+            <p class="sub-painel">Veja como foi o envolvimento dos alunos e o desenvolvimento prático do projeto no Colégio Stella Maris.</p>
+            
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="timeline-date">Passado Primitivo</span>
-                    <h3>Manejo Braçal e Desgastante</h3>
-                    <p>Dependência severa de tração animal, queima desordenada de restolhos vegetais e ausência completa de previsibilidade meteorológica, degradando as camadas superficiais do solo.</p>
+                    <span class="timeline-date">Fase 1: Escolha do Tema e Debate Comunitário</span>
+                    <h3 class="subtitulo-impacto">Descobrindo Problemas Locais</h3>
+                    <p>Junto com meu professor orientador no Colégio Stella Maris, lemos as diretrizes do Concurso Agrinho 2026. Promovemos debates em sala de aula para listar as maiores dificuldades ambientais de Andirá, identificando o desperdício de água e o perigo da deriva na pulverização como pontos críticos da nossa comunidade.</p>
                 </div>
+
                 <div class="timeline-item">
-                    <span class="timeline-date">Presente Tecnológico</span>
-                    <h3>Agricultura de Precisão Ativa</h3>
-                    <p>Uso direcionado de coordenadas via GPS, monitoramento aéreo com drones, análise laboratorial localizada e aplicação em taxa variável de insumos protetivos.</p>
+                    <span class="timeline-date">Fase 2: Pesquisa de Campo e Dados Reais</span>
+                    <h3 class="subtitulo-impacto">Buscando Informações de Confiança</h3>
+                    <p>Estudamos pesquisas avançadas da Embrapa e relatórios meteorológicos locais. Conversamos com profissionais do setor para entender como a falta de monitoramento em tempo real prejudicava as pequenas propriedades do Paraná, fundamentando toda a base científica do EcoRadar.</p>
                 </div>
+
                 <div class="timeline-item">
-                    <span class="timeline-date">Futuro Sustentável</span>
-                    <h3>Sustentabilidade Inteligente e Autônoma</h3>
-                    <p>Robótica elétrica alimentada por matriz solar, sensoriamento em nível molecular do solo e auditoria automática de créditos de carbono gerados pela propriedade.</p>
+                    <span class="timeline-date">Fase 3: Engenharia e Código Nativo</span>
+                    <h3 class="subtitulo-impacto">Escrevendo a Solução do Zero</h3>
+                    <p>Desenvolvi e programei toda a estrutura do software nativamente. Utilizei HTML5 semântico para garantir acessibilidade universal, CSS3 para criar uma interface moderna e responsiva, e lógica avançada em JavaScript para dar vida aos simuladores ecológicos.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="timeline-date">Fase 4: Inclusão e Testes Coletivos</span>
+                    <h3 class="subtitulo-impacto">Calibrando Ferramentas para Todos</h3>
+                    <p>Apresentei o protótipo para colegas e professores. Validamos as regras do Quiz dinâmico e refinamos o robusto Painel Flutuante de Acessibilidade (incluindo correções de quebra de layout, suporte para dislexia e leitores de tela), alinhando o site com as diretrizes do WCAG 2.1.</p>
                 </div>
             </div>
         </section>
 
-        <section id="mitos-verdades" class="site-section animar-scroll">
-            <span class="tag-destaque">Esclarecimento Científico</span>
-            <h2 class="subtitulo-impacto">4. Mitos e Verdades sobre a Agricultura Moderna</h2>
+        <section id="galeria-secao" class="site-section">
+            <h2>📸 Galeria de Ações Práticas</h2>
+            <p>Registros da pesquisa, desenvolvimento e integração da nossa tecnologia com o ecossistema escolar.</p>
+            
+            <div class="galeria-grid">
+                <article class="galeria-card">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=400&q=80" alt="Pessoa utilizando um computador portátil para fazer pesquisas na barra de buscas do Google.">
+                    <div class="galeria-info">
+                        <h4>Fase de Pesquisa</h4>
+                        <p>Análise de dados da Embrapa e relatórios ecológicos locais em sala de aula.</p>
+                    </div>
+                </article>
+
+                <article class="galeria-card">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=400&q=80" alt="Ecrã de um computador portátil em ambiente escuro exibindo linhas de código estruturadas.">
+                    <div class="galeria-info">
+                        <h4>Programação Nativa</h4>
+                        <p>Construção de toda a lógica do painel de monitoramento e simuladores em JavaScript.</p>
+                    </div>
+                </article>
+
+                <article class="galeria-card">
+                    <img src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&w=400&q=80" alt="Grupo de pessoas reunidas ao redor de uma mesa de escritório trabalhando em equipa com computadores portáteis.">
+                    <div class="galeria-info">
+                        <h4>Validação em Equipe</h4>
+                        <p>Testes práticos dos recursos de acessibilidade e calibragem final do Quiz da Terra.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="sustentabilidade-agro" class="site-section" tabindex="0">
+            <h2>🌿 Sustentabilidade no Agro</h2>
+            <p class="sub-painel">Como ações conscientes constroem uma produção forte e ecologicamente correta.</p>
             <div class="agro-cards-container">
                 <div class="medidor-card">
-                    <h3 style="color: var(--cor-alerta);">Mito: "A tecnologia afasta o campo da natureza"</h3>
-                    <p><strong>Fato:</strong> Sensores modernos aproximam o produtor do equilíbrio ecológico ao indicar a dosagem cirúrgica de recursos e proteger microrganismos vivos do solo.</p>
+                    <h3>Preservação Ambiental</h3>
+                    <p>Cuidar das Matas Ciliares e das Reservas Legais ajuda a proteger a fauna local e mantém o solo protegido contra erosões provocadas pelas chuvas fortes.</p>
                 </div>
                 <div class="medidor-card">
-                    <h3 style="color: var(--cor-alerta);">Mito: "Práticas sustentáveis reduzem o lucro"</h3>
-                    <p><strong>Fato:</strong> Sistemas biológicos e o plantio direto retêm umidade, reduzem custos operacionais com maquinários e protegem contra perdas financeiras em secas extremas.</p>
+                    <h3>Uso Consciente da Água</h3>
+                    <p>A irrigação por gotejamento e o monitoramento em tempo real garantem que cada gota seja usada de forma inteligente, evitando o esgotamento dos rios locais.</p>
+                </div>
+                <div class="medidor-card">
+                    <h3>Energia Limpa</h3>
+                    <p>A instalação de painéis solares e o uso de biomassa geram energia limpa diretamente nas fazendas, diminuindo a poluição e os custos de produção.</p>
+                </div>
+                <div class="medidor-card">
+                    <h3>Reciclagem e Coleta</h3>
+                    <p>A destinação correta e a lavagem das embalagens de insumos evitam a contaminação dos lençóis freáticos e promovem a economia circular no campo.</p>
                 </div>
             </div>
         </section>
 
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Dados e Estatísticas</span>
-            <h2 class="subtitulo-impacto">5. Curiosidades Reais do Setor do Agronegócio</h2>
+        <section id="tecnologia-producao" class="site-section" tabindex="0">
+            <h2>🚀 Tecnologia e Produção de Alta Precisão</h2>
+            <p class="sub-painel">As ferramentas tecnológicas modernas que estão transformando a agricultura do Paraná.</p>
+            <div class="agro-cards-container">
+                <div class="medidor-card">
+                    <h3>Drones Agrícolas</h3>
+                    <p>Voam sobre as plantações tirando fotos detalhadas para identificar pragas, falhas no plantio e áreas que precisam de adubação sem desperdiçar insumos.</p>
+                </div>
+                <div class="medidor-card">
+                    <h3>Sensores de Solo</h3>
+                    <p>Aparelhos enterrados na lavoura medem a umidade e os nutrientes da terra 24 horas por dia, enviando as informações direto para o celular do produtor.</p>
+                </div>
+                <div class="medidor-card">
+                    <h3>Inteligência Artificial</h3>
+                    <p>Sistemas analisam dados do tempo de anos anteriores para prever as melhores datas de plantio e colheita, reduzindo riscos com geadas ou secas.</p>
+                </div>
+                <div class="medidor-card">
+                    <h3>Automação e Robótica</h3>
+                    <p>Tratores guiados por GPS realizam linhas perfeitas de plantio, trabalhando sozinhos dia e noite com economia extrema de combustível.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="painel-produtor" class="site-section">
+            <h2>📊 Painel Interativo do Produtor</h2>
+            <p class="sub-painel">Clique nos botões abaixo para simular diferentes situações do clima e ver o que o sistema recomenda fazer.</p>
+            
+            <div class="botoes-simulador">
+                <button id="simular-sol" class="btn-sim">☀️ Simular Tempo Muito Seco</button>
+                <button id="simular-chuva" class="btn-sim">🌧️ Simular Chuva Forte</button>
+                <button id="simular-vento" class="btn-sim">💨 Simular Vento Forte</button>
+            </div>
+
             <div class="painel-grid">
-                <div class="medidor-card">
-                    <h4>Segurança Alimentar</h4>
-                    <p>O agronegócio brasileiro alimenta mais de 800 milhões de pessoas ao redor do planeta através de alta tecnologia exportadora.</p>
+                <div class="medidor-card" tabindex="0">
+                    <h3>Umidade do Solo</h3>
+                    <div class="valor-display" id="val-umidade">45%</div>
+                    <p id="msg-umidade" class="msg-card-status">Status: A quantidade de água na terra está boa.</p>
                 </div>
-                <div class="medidor-card">
-                    <h4>Pioneirismo no Paraná</h4>
-                    <p>O Estado do Paraná é referência global no Sistema de Plantio Direto na Palha, técnica essencial que evita a erosão e conserva a umidade hídrica natural.</p>
+
+                <div class="medidor-card" tabindex="0">
+                    <h3>Velocidade do Vento</h3>
+                    <div class="valor-display" id="val-vento">12 km/h</div>
+                    <p id="msg-vento" class="msg-card-status">Status: O vento está calmo e seguro.</p>
+                </div>
+
+                <div class="medidor-card" tabindex="0">
+                    <h3>Recomendação do Sistema</h3>
+                    <div class="status-alerta" id="val-status">TUDO FUNCIONANDO NORMALMENTE</div>
+                    <p id="msg-recomendacao" class="msg-card-status">O clima está ótimo para o trabalho no campo.</p>
                 </div>
             </div>
         </section>
 
-        <section id="simuladores" class="site-section animar-scroll">
-            <span class="tag-destaque">Módulos Interativos Avançados</span>
-            <h2 class="subtitulo-impacto">6 & 7. Simulador Integrado de Economia Hídrica e Culturas</h2>
+        <section id="calculadora-secao" class="site-section">
+            <h2>🧮 Calculadora de Créditos de Carbono</h2>
+            <p class="sub-painel">Descubra uma estimativa de quanto a sua área preservada consegue ajudar a limpar o ar e gerar benefícios ambientais.</p>
             
             <div class="calc-container">
-                <div class="medidor-card" style="text-align: left;">
-                    <h4>Configuração de Campo</h4>
+                <div class="calc-form">
                     <div class="input-group">
-                        <label for="sim-agua-hectares">Extensão da Área (Hectares):</label>
-                        <input type="number" id="sim-agua-hectares" value="10" min="1">
+                        <label for="calc-hectares">Tamanho da Área Preservada (em Hectares):</label>
+                        <input type="number" id="calc-hectares" min="0" placeholder="Ex: 15" aria-required="true">
                     </div>
                     <div class="input-group">
-                        <label for="sim-agua-cultura">Cultura Desejada:</label>
-                        <select id="sim-agua-cultura" onchange="alterarInformacaoCultura()">
-                            <option value="soja">Soja (Grãos)</option>
-                            <option value="milho">Milho Safrinha</option>
-                            <option value="cafe">Café Especial</option>
+                        <label for="calc-bioma">Tipo de Vegetação da Área:</label>
+                        <select id="calc-bioma">
+                            <option value="mata-atlantica">Mata Atlântica (Média de 8.5 t de CO₂ por hectare ao ano)</option>
+                            <option value="cerrado">Cerrado (Média de 4.2 t de CO₂ por hectare ao ano)</option>
+                            <option value="floresta-tropical">Reflorestamento / Eucalipto (Média de 12 t de CO₂ por hectare ao ano)</option>
                         </select>
                     </div>
-                    <button class="btn-sim" style="width: 100%;" id="btn-calcular-agua">Simular Processamento</button>
+                    <button id="btn-calcular-carbono" class="btn-sim">Calcular Benefícios Ecológicos 🌿</button>
                 </div>
 
-                <div class="calc-resultado">
-                    <h4>Balanço Hidrológico Estimado</h4>
-                    <div id="res-sim-agua" style="margin-top: 10px;">
-                        <p>💧 Consumo Técnico Tradicional: <strong id="res-agua-tradicional">0</strong> Litros/Ciclo</p>
-                        <p>🌿 Irrigação Automatizada Inteligente: <strong id="res-agua-eficiente">0</strong> Litros/Ciclo</p>
-                        <h4 style="color: var(--cor-secundaria); margin-top: 10px;">Volume de Economia: <span id="res-agua-economia">0</span> Litros!</h4>
-                    </div>
-                    <hr style="margin: 15px 0; border: 0; border-top: 1px dashed var(--cor-secundaria);">
-                    <div id="dados-pedagogicos-cultura">
-                        <h4 id="plantio-nome" style="color: var(--cor-principal);">Cultura Selecionada</h4>
-                        <p>🗓️ Época Ideal: <span id="plantio-epoca">--</span></p>
-                        <p>🔬 Benefício Ecológico: <span id="plantio-beneficios">--</span></p>
-                    </div>
+                <div class="calc-resultado" id="box-resultado-calc" aria-live="polite">
+                    <h3>Relatório de Sustentabilidade Estimado</h3>
+                    <p><strong>Gás Carbono Retirado do Ar por Ano:</strong> <span id="res-toneladas">0.00</span> toneladas.</p>
+                    <p><strong>Créditos de Carbono Gerados:</strong> <span id="res-creditos">0.00</span> créditos.</p>
+                    <p><strong>Valor Financeiro Estimado no Mercado Livre:</strong> R$ <span id="res-financeiro">0.00</span></p>
+                    <p class="nota-cientifica">*Conta feita com base nas médias de peso e crescimento de plantas divulgadas pela Embrapa.</p>
                 </div>
             </div>
         </section>
 
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Pegada Ecológica</span>
-            <h2 class="subtitulo-impacto">8. Calculadora Analítica de Emissões de Carbono</h2>
-            <div class="calc-container">
-                <div class="medidor-card" style="text-align: left;">
-                    <div class="input-group">
-                        <label for="calc-combustivel">Consumo Anual de Combustível (Litros de Diesel):</label>
-                        <input type="number" id="calc-combustivel" value="1000">
-                    </div>
-                    <button class="btn-sim" style="width: 100%;" id="btn-calcular-emissoes">Avaliar Impacto Atmosférico</button>
-                </div>
-                <div class="calc-resultado" style="background: #fffdf0; border-color: #d4a373;">
-                    <h4>Resultado do Balanço de Carbono</h4>
-                    <p>💨 Dióxido de Carbono Emitido: <strong id="res-co2-emitido" style="color: var(--cor-alerta);">0.00</strong> Toneladas de CO₂</p>
-                    <p>🌳 Neutralização Espacial Requerida: Preservar aproximadamente <strong id="res-arvores-compensacao" style="color: var(--cor-secundaria);">0</strong> árvores nativas para atingir a neutralidade.</p>
-                </div>
+        <section id="radar-secao" class="site-section" tabindex="0">
+            <h2>📍 Radar do Tempo em Tempo Real</h2>
+            <p class="sub-painel">Acompanhe a chuva e os ventos ao vivo na região de Andirá - Paraná.</p>
+            <div class="radar-container">
+                <iframe src="https://embed.windy.com/embed2.html?lat=-23.050&lon=-50.230&zoom=7&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=true" class="radar-frame" frameborder="0" title="Radar do tempo integrado com o mapa do Windy"></iframe>
             </div>
         </section>
 
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Interatividade de IA</span>
-            <h2 class="subtitulo-impacto">9. Assistente Técnico Virtual Automatizado</h2>
-            <p>Selecione uma linha de consulta para receber esclarecimentos imediatos:</p>
-            <div class="botoes-simulador">
-                <button class="btn-sim" onclick="perguntarIA(1)">O que constitui a Sustentabilidade Agrícola?</button>
-                <button class="btn-sim" onclick="perguntarIA(2)">Como atuam os Créditos de Carbono no campo?</button>
-                <button class="btn-sim" onclick="perguntarIA(3)">Quais são os caminhos para economizar água?</button>
-            </div>
-            <div id="res-ia" class="impacto-box" style="display: none; background: #f1f8e9; padding: 15px; border-radius: 4px;">
-                <strong style="color: var(--cor-principal);">🤖 Retorno do Assistente Virtual:</strong>
-                <p id="txt-res-ia" style="margin-top: 5px; color: var(--cor-texto);"></p>
-            </div>
-        </section>
-
-        <section class="site-section dark-panel animar-scroll">
-            <span class="tag-destaque" style="color: #52b788;">11 & 12. Indicador Volumétrico Coletivo e Métricas Comparativas</span>
-            <h2 class="subtitulo-impacto">Monitoramento Estatístico em Tempo Real</h2>
-            <div class="painel-grid">
-                <div class="medidor-card" style="background: #111; border: 1px solid #222;">
-                    <h4 style="color: #fff;">11. Economia Projetada de Água no PR</h4>
-                    <div class="valor-display" id="contador-dinamico-litros" style="color: #ffff00;">1.250.400 Litros</div>
-                    <p style="color: #aaa !important;">Litros poupados coletivamente em tempo real por manejos controlados.</p>
-                </div>
-                <div class="medidor-card" style="background: #111; border: 1px solid #222; text-align: left;">
-                    <h4 style="color: #fff; margin-bottom: 10px;">12. Matriz Comparativa de Transição Tecnológica</h4>
-                    <p style="color: #ffb703 !important;">⚠️ <strong>Histórico ANTES:</strong> Desperdício severo por irrigação contínua de calhas e degradação mecânica do solo descoberto.</p>
-                    <p style="color: #52b788 !important;">✅ <strong>Resultados DEPOIS:</strong> Economia imediata de 30% hídrica e retenção microbiológica ativa de carbono subsuperficial.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Simulação de Recuperação Visual</span>
-            <h2 class="subtitulo-impacto">13. Evolução Regenerativa de Solo Degradado</h2>
-            <p>Ajuste o controle deslizante abaixo para verificar a transformação visual e física do solo conforme técnicas sustentáveis são introduzidas:</p>
-            <div style="margin: 20px 0; text-align: center;">
-                <input type="range" id="slider-antes-depois" min="1" max="100" value="1" style="width: 100%; accent-color: var(--cor-principal); cursor: pointer;">
-                <div id="status-solo-visual" style="font-size: 1.3rem; font-weight: bold; margin-top: 15px; padding: 15px; border-radius: 6px; background: #ffebee; color: #c62828; transition: 0.3s;">
-                    🌵 Estágio Atual: Solo Altamente Degradado (Compactado, erodido e sem vida)
-                </div>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Mecanismo de Decisão Gerencial</span>
-            <h2 class="subtitulo-impacto">14 & 15. Painel de Controle Operacional da Fazenda Inteligente</h2>
-            <div class="painel-grid" style="text-align: center; margin-bottom: 20px;">
-                <div class="medidor-card" id="ani-solar" style="background: #eceff1; font-weight: bold;">☀️ Módulo Fotovoltaico<br><span style="font-size: 0.8rem; color: #666; font-weight: normal;">Inativo</span></div>
-                <div class="medidor-card" id="ani-drone" style="background: #eceff1; font-weight: bold;">🚁 Monitoramento Drone<br><span style="font-size: 0.8rem; color: #666; font-weight: normal;">Estacionado</span></div>
-                <div class="medidor-card" id="ani-irrigacao" style="background: #eceff1; font-weight: bold;">💦 Malha Hidráulica<br><span style="font-size: 0.8rem; color: #666; font-weight: normal;">Bloqueada</span></div>
-                <div class="medidor-card" id="ani-sensores" style="background: #eceff1; font-weight: bold;">📟 Telemetria IoT<br><span style="font-size: 0.8rem; color: #666; font-weight: normal;">Desconectada</span></div>
-            </div>
-            <div class="medidor-card" style="text-align: left; background: #f1f8e9;">
-                <h4>15. Escolhas de Infraestrutura Agronômica</h4>
-                <p style="margin-bottom: 12px;">Defina os investimentos tecnológicos e ambientais da propriedade para verificar o balanço final de rendimento:</p>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label><input type="checkbox" id="decisao-irrigacao" onchange="atualizarMissao()"> Implementar Malha de Irrigação de Alta Precisão baseada em Sensores</label>
-                    <label><input type="checkbox" id="decisao-solar" onchange="atualizarMissao()"> Converter Matriz Energética para Captação Fotovoltaica Solar</label>
-                    <label><input type="checkbox" id="decisao-mata" onchange="atualizarMissao()"> Isolar e Recuperar Florestas Nativas e Matas Ciliares de Cabeceiras</label>
-                </div>
-                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ccc;">
-                <h5>Balanço de Desempenho Institucional:</h5>
-                <p>🌲 Classificação de Impacto Ambiental: <span id="nota-ambiental" style="font-weight: bold; color: red;">F (Crítico)</span></p>
-                <p>💰 Retorno de Rentabilidade Econômica: <span id="nota-economica" style="font-weight: bold; color: #ef6c00;">C (Instável)</span></p>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Indicadores Macroecômicos</span>
-            <h2 class="subtitulo-impacto">16. Painel Agro Local, Estadual e Nacional</h2>
-            <div class="painel-grid">
-                <div class="medidor-card">
-                    <h5>Safra Brasileira Estimada</h5>
-                    <div class="valor-display">315 M/t</div>
-                    <p>Previsão recorde de grãos colhidos.</p>
-                </div>
-                <div class="medidor-card">
-                    <h5>Áreas de Preservação Privada</h5>
-                    <div class="valor-display">33%</div>
-                    <p>Do território mantido por produtores rurais.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Informativos Recentes</span>
-            <h2 class="subtitulo-impacto">📰 Portal de Notícias do Campo Verde</h2>
-            <div class="galeria-grid">
-                <div class="galeria-card">
-                    <div class="galeria-info">
-                        <span class="info-tag">Tecnologia</span>
-                        <h4>Drones de Precisão Ganham Destaque em Lavouras do Paraná</h4>
-                        <p>Sensores termais acoplados a aeronaves não tripuladas ajudam a diagnosticar estresse hídrico precoce e reduzem defensivos químicos.</p>
-                    </div>
-                </div>
-                <div class="galeria-card">
-                    <div class="galeria-info">
-                        <span class="info-tag">Sustentabilidade</span>
-                        <h4>Propriedades Agrícolas Adotam Transição para Matriz Energética Solar</h4>
-                        <p>Instalação de arranjos fotovoltaicos nas centrais de bombeamento reduz custos operacionais fixos de pequenos produtores regionais.</p>
-                    </div>
-                </div>
-                <div class="galeria-card">
-                    <div class="galeria-info">
-                        <span class="info-tag">Conservação</span>
-                        <h4>Sistemas de Plantio Direto Eliminam Processos Erosivos em Andirá</h4>
-                        <p>A manutenção da palhada protetiva na superfície preserva a umidade orgânica essencial do solo em períodos de estiagem.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="biblioteca" class="site-section animar-scroll">
-            <span class="tag-destaque">Fundamentação Pedagógica</span>
-            <h2 class="subtitulo-impacto">📚 Biblioteca Educativa de Conteúdos Científicos</h2>
-            <div class="agro-cards-container">
-                <div class="medidor-card">
-                    <h3>Artigo 1: Agro Forte, Futuro Sustentável</h3>
-                    <p>Análise detalhada demonstrando a viabilidade técnica e financeira de expandir os volumes globais de produção de alimentos em perfeita harmonia com as leis ecológicas de preservação.</p>
-                </div>
-                <div class="medidor-card">
-                    <h3>Artigo 2: O Papel Transformador da Tecnologia Moderna</h3>
-                    <p>Investigação sistemática acerca do impacto prático da robótica autônoma, mapeamento por satélite e sensoriamento IoT na descarbonização do campo.</p>
-                </div>
-                <div class="medidor-card">
-                    <h3>Artigo 3: Vetores de Otimização Hídrica no Solo</h3>
-                    <p>Abordagem mecânica e prática sobre métodos de gotejamento subsuperficial, reuso estruturado de águas pluviais e conservação técnica de nascentes.</p>
-                </div>
-                <div class="medidor-card">
-                    <h3>Artigo 4: Diretrizes de Créditos de Carbono</h3>
-                    <p>Manual explicativo detalhando os trâmites regulatórios que transformam florestas nativas em ativos financeiros globais auditáveis.</p>
-                </div>
-                <div class="medidor-card">
-                    <h3>Artigo 5: A Força Motriz do Agro na Economia</h3>
-                    <p>Estudo abrangente sobre o papel do agronegócio na sustentação do PIB nacional, balança comercial e segurança alimentar do país.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Diálogos do Campo</span>
-            <h2 class="subtitulo-impacto">🎤 Entrevistas e Perspectivas de Especialistas</h2>
-            <div class="painel-grid">
-                <div class="medidor-card" style="text-align: left;">
-                    <h4>Depoimento de Produtor Rural Local</h4>
-                    <p style="font-style: italic; margin-bottom: 8px;">"O maior desafio moderno é enfrentar as janelas climáticas instáveis. O uso de sensores de solo eliminou o chute e me mostrou exatamente quando irrigar, cortando custos e gerando frutos uniformes."</p>
-                    <small>— Produtor de Andirá/PR</small>
-                </div>
-                <div class="medidor-card" style="text-align: left;">
-                    <h4>Parecer de Engenheiro Agrônomo Consultor</h4>
-                    <p style="font-style: italic; margin-bottom: 8px;">"Sustentabilidade deixou de ser apenas um conceito teórico e virou premissa comercial. Propriedades que se recusam a adotar adubação verde e conservação microbiológica perderão competitividade no mercado internacional."</p>
-                    <small>— Consultor em Agricultura de Precisão</small>
-                </div>
-            </div>
-        </section>
-
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Estudo Dinâmico</span>
-            <h2 class="subtitulo-impacto">📊 Flashcards Interativos de Memorização</h2>
-            <div class="info-grid">
-                <div class="flash-card" tabindex="0">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <span class="info-tag">Tecnologia</span>
-                            <h4>Eficiência de Drones</h4>
-                            <p style="margin-top: 10px; color: #666;">Qual a capacidade média operacional de varredura de um drone agrícola?</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h4>Capacidade Operacional</h4>
-                            <p style="margin-top: 15px;">Uma única unidade equipada com mapeamento multiespectral consegue avaliar centenas de hectares em poucas horas de voo automatizado via satélite.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flash-card" tabindex="0">
-                    <div class="flash-card-inner">
-                        <div class="flash-card-front">
-                            <span class="info-tag">Insumos</span>
-                            <h4>Agricultura de Precisão</h4>
-                            <p style="margin-top: 10px; color: #666;">Qual o índice médio de economia gerado pela aplicação em taxa variável?</p>
-                        </div>
-                        <div class="flash-card-back">
-                            <h4>Redução de Insumos</h4>
-                            <p style="margin-top: 15px;">Estudos práticos indicam reduções de até 25% no desperdício de sementes e corretivos químicos através de mapeamentos de solo localizados.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="quiz-secao" class="site-section animar-scroll">
-            <span class="tag-destaque">Mecanismo Pedagógico Gamificado</span>
-            <h2 class="subtitulo-impacto">3 & 10. Avaliação do Quiz Institucional e Desbloqueio de Medalhas</h2>
+        <section id="informativo" class="site-section">
+            <h2>📚 Informações Gerais e Dados Reais</h2>
+            <p class="sub-painel">Entenda alguns dados importantes sobre a preservação e a tecnologia no agronegócio.</p>
             
-            <div id="bloco-quiz">
-                <p id="status-pergunta" style="font-weight: bold; color: var(--cor-secundaria);"></p>
-                <h3 id="pergunta-quiz" class="texto-questao">Aguardando Inicialização...</h3>
-                <div id="bloco-opcoes" class="botoes-quiz"></div>
-                <div id="resultado-quiz" style="margin-top: 15px; font-weight: bold; font-size: 1.2rem;"></div>
-                <div class="botoes-simulador" style="margin-top: 15px;">
-                    <button id="btn-proxima" class="btn-sim" style="display: none;">Avançar Questão ➡️</button>
-                    <button id="btn-reiniciar" class="btn-sim" style="display: none;">Reiniciar Desafio 🔄</button>
+            <div class="info-grid">
+                <div class="flash-card" tabindex="0" aria-label="Informações sobre o uso da água.">
+                    <div class="flash-card-inner">
+                        <div class="flash-card-front">
+                            <div class="info-tag">Recursos Hídricos</div>
+                            <h3>Consumo de Água Doce</h3>
+                            <p class="instrucao-virar">✨ Passe o mouse ou dê foco para virar</p>
+                        </div>
+                        <div class="flash-card-back">
+                            <h3>Uso Inteligente de Água</h3>
+                            <p>Dados da Agência Nacional de Águas (ANA) mostram que a irrigação gasta bastante água doce. Usar sistemas inteligentes que olham o clima evita desperdícios e pode economizar até 30% de água nas plantações.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flash-card" tabindex="0" aria-label="Informações sobre a preservação ambiental.">
+                    <div class="flash-card-inner">
+                        <div class="flash-card-front">
+                            <div class="info-tag">Legislação Ambiental</div>
+                            <h3>Preservação nas Fazendas</h3>
+                            <p class="instrucao-virar">✨ Passe o mouse ou dê foco para virar</p>
+                        </div>
+                        <div class="flash-card-back">
+                            <h3>Dados da Embrapa</h3>
+                            <p>Pesquisas da Embrapa provam que cerca de 33% de todo o território brasileiro mapeado é preservado com florestas nativas guardadas e cuidadas pelos próprios produtores rurais dentro de suas propriedades.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flash-card" tabindex="0" aria-label="Informações sobre o Concurso Agrinho.">
+                    <div class="flash-card-inner">
+                        <div class="flash-card-front">
+                            <div class="info-tag">Agrinho 2026</div>
+                            <h3>Inovação nas Escolas</h3>
+                            <p class="instrucao-virar">✨ Passe o mouse ou dê foco para virar</p>
+                        </div>
+                        <div class="flash-card-back">
+                            <h3>Tecnologia no Campo</h3>
+                            <p>O tema deste ano incentiva a criação de softwares que ajudem a rotina no campo. O agronegócio do Paraná mostra que é totalmente possível produzir alimentos protegendo o meio ambiente.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="medidor-card" style="margin-top: 35px; border: 2px solid #ffd700; background: #fffdf2;">
-                <h3 style="color: #b8860b;">🏆 10. Vitrine de Medalhas de Mérito Ambiental</h3>
-                <p>Responda às questões do quiz interativo para validar seu conhecimento e liberar suas insígnias oficiais:</p>
-                <div class="painel-medalhas">
-                    <div class="medalha-item" id="medalha-1">
-                        <span>🥉</span>
-                        <strong>Aprendiz Rural</strong>
-                        <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">Iniciou o processo avaliativo do agro.</p>
-                    </div>
-                    <div class="medalha-item" id="medalha-2">
-                        <span>🥈</span>
-                        <strong>Produtor Consciente</strong>
-                        <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">Atingiu 2 acertos confirmados no quiz.</p>
-                    </div>
-                    <div class="medalha-item" id="medalha-3">
-                        <span>🥇</span>
-                        <strong>Embaixador Verde</strong>
-                        <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">Gabaritou todas as proposições técnicas.</p>
-                    </div>
+            <div class="tabela-impacto-container">
+                <br><br>
+                <h3>Vantagens Coletivas: O Impacto do EcoRadar Agro</h3>
+                <p class="sub-painel">Como a tecnologia aplicada traz benefícios para três pilares fundamentais da nossa região:</p>
+                <div class="tabela-responsiva">
+                    <table class="tabela-eco">
+                        <thead>
+                            <tr>
+                                <th>🏢 Para a Cidade / Sociedade</th>
+                                <th>🌱 Para o Meio Ambiente</th>
+                                <th>🚜 Para o Produtor Rural</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Segurança Alimentar:</strong> Garante alimentos saudáveis e de qualidade chegando na mesa das cidades sem faltar.</td>
+                                <td><strong>Preservação de Mananciais:</strong> Protege os rios e nascentes da nossa região contra gastos exagerados de água.</td>
+                                <td><strong>Corte de Custos:</strong> Ajuda a economizar na conta de luz e no uso de insumos, ligando os aparelhos só quando precisa.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Economia Forte:</strong> Cria empregos e movimenta o comércio das cidades locais que vivem perto do setor rural.</td>
+                                <td><strong>Combate à Deriva:</strong> Evita a contaminação do solo e de áreas vizinhas ao suspender aplicações com vento forte.</td>
+                                <td><strong>Decisões Assertivas:</strong> Dados precisos na tela do celular, trocando o "gosto do costume" por informações exatas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Educação e Consciência:</strong> Une as escolas e quem trabalha no campo nas metas globais de cuidado com o futuro do planeta.</td>
+                                <td><strong>Estímulo ao Mercado Verde:</strong> Incentiva a manter florestas em pé ao mostrar como as árvores ajudam a limpar o ar.</td>
+                                <td><strong>Selo Verde:</strong> Valoriza o produto da fazenda, abrindo portas para vender para mercados exigentes do Brasil e do mundo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <section class="site-section animar-scroll">
-            <span class="tag-destaque">Balanço Estatístico</span>
-            <h2 class="subtitulo-impacto">Métricas Comparativas Globais de Práticas Agrícolas</h2>
-            <div class="tabela-responsiva">
-                <table class="tabela-eco" summary="Tabela comparativa dos impactos de manejos convencionais e manejos sustentáveis modernos">
-                    <thead>
-                        <tr>
-                            <th scope="col">Indicador Avaliado</th>
-                            <th scope="col">Manejo Tradicional Convencional</th>
-                            <th scope="col">Manejo Sustentável com Tecnologia</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Recursos Hídricos</strong></td>
-                            <td>Irrigação contínua por aspersão sem monitoramento do solo, gerando altos índices de evapotranspiração superficial.</td>
-                            <td>Gotejamento de alta precisão automatizado via sensores IoT que monitoram a necessidade volumétrica real das raízes.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Estrutura do Solo</strong></td>
-                            <td>Aração pesada consecutiva com exposição direta das camadas orgânicas, favorecendo processos erosivos e lixiviação.</td>
-                            <td>Sistema de Plantio Direto mantendo a palhada residual protetiva, enriquecendo o bioma e a umidade natural do subsolo.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Crédito de Carbono</strong></td>
-                            <td>Emissões elevadas resultantes do tráfego desordenado de maquinários pesados movidos a combustíveis fósseis puros.</td>
-                            <td>Sequestro de carbono orgânico pelo solo manejado e conservação ativa de matas ciliares, gerando ativos financeiros comercializáveis.</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section id="impactos-positivos" class="site-section" tabindex="0">
+            <h2>📈 Impactos Positivos e Desenvolvimento Regional</h2>
+            <p class="sub-painel">Como nossa plataforma gera resultados reais transformando a comunidade e o mercado.</p>
+            <div class="impacto-box">
+                <div class="texto-profundo">
+                    <p>O uso planejado do <strong>EcoRadar Agro</strong> cria uma corrente de melhorias conectadas. Quando o produtor rural adota a tecnologia baseada em dados reais, o benefício atravessa as fronteiras da fazenda e chega diretamente no centro urbano das nossas cidades.</p>
+                    <p>Com menos desperdício de insumos nas lavouras, reduz-se drasticamente o risco de poluição ambiental dos rios que abastecem a população urbana de Andirá. Além disso, a estabilidade na produção protege os mercados locais contra surtos de inflação nos preços dos alimentos frescos, impulsionando um comércio regional forte, saudável e ecologicamente certificado.</p>
+                </div>
             </div>
         </section>
 
-        <section id="diario-bordo" class="site-section animar-scroll">
-            <span class="tag-destaque">Critério de Avaliação do Concurso</span>
-            <h2 class="subtitulo-impacto">📚 Diário de Bordo do Desenvolvimento do Projeto</h2>
-            <div class="texto-profundo" style="line-height: 1.8; text-align: left;">
-                <p><strong>Problema Central Identificado:</strong> A ausência de canais interativos digitais unificados que traduzam com precisão técnica termos agronômicos complexos, como balanço hídrico localizado e geração de créditos de carbono, tornando-os compreensíveis e atrativos para a comunidade escolar e produtores rurais de Andirá/PR.</p>
-                <p><strong>Processo de Pesquisa Conduzido:</strong> Levantamento de dados estruturais coletados a partir de notas públicas e manuais de sustentabilidade da Embrapa Soja, relatórios de balanço hídrico fornecidos pelo IDR-Paraná e materiais pedagógicos fornecidos pelas cartilhas oficiais do SENAR Paraná.</p>
-                <p><strong>Desenvolvimento do Ecossistema:</strong> Programação limpa estruturada nativamente em HTML5, CSS3 e JavaScript. Optou-se pela eliminação completa de frameworks ou dependências externas pesadas, mitigando gargalos de processamento e garantindo carregamento instantâneo em conexões de dados rurais restritas.</p>
-                <p><strong>Dificuldades Técnicas Superadas:</strong> Ajustar o encadeamento dinâmico do controle visual antes e depois (Transformação do Solo) sem gerar sobrecarga na árvore de renderização do DOM em dispositivos móveis antigos de estudantes locais.</p>
-                <p><strong>Soluções Aplicadas com Sucesso:</strong> Implementação de gatilhos acionados por eventos de escuta otimizados e injeção discreta de strings textuais no DOM, otimizando o tempo de processamento físico das interações.</p>
-                <p><strong>Resultado Alcançado:</strong> Um ecossistema digital estável, validado nos testes de validação lógica e em conformidade estrita com as diretrizes de acessibilidade e gamificação educacional do Concurso Agrinho 2026.</p>
+        <section id="quiz" class="site-section">
+            <h2>🧠 Quiz de Conhecimentos do Campo</h2>
+            <p class="sub-painel">Responda às questões e teste o que você aprendeu sobre sustentabilidade e tecnologia no campo.</p>
+            <div class="quiz-container">
+                <h3 id="status-pergunta">Pergunta 1 de 5</h3>
+                <p id="pergunta-quiz" class="texto-questao"></p>
+                <div class="botoes-quiz" id="bloco-opcoes">
+                    <button id="btn-opcao-a" class="btn-resposta-quiz"></button>
+                    <button id="btn-opcao-b" class="btn-resposta-quiz"></button>
+                </div>
+                <p id="resultado-quiz" class="feedback-quiz" aria-live="polite"></p>
+                <div class="botoes-controle-quiz">
+                    <button id="btn-proxima" class="btn-avancar-quiz avancar-oculto">Próxima Questão ➡️</button>
+                    <button id="btn-reiniciar" class="btn-reiniciar-quiz avancar-oculto">🔄 Começar de Novo</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusao" class="site-section" tabindex="0">
+            <div class="impacto-box" style="text-align: center; border-left: 4px solid var(--cor-principal, #2a9d8f);">
+                <span class="tag-destaque">CONGRESSO AGRINHO 2026</span>
+                <h2>Sustentabilidade: O Legado para as Próximas Gerações</h2>
+                <p class="subtitulo-impacto">
+                    "A agricultura digital não serve apenas para produzir mais, serve para produzir melhor. Unir a tecnologia à preservação da terra é a garantia de que as futuras gerações herdarão um planeta rico, fértil e cheio de vida."
+                </p>
             </div>
         </section>
 
     </main>
 
-    <div class="painel-acessibilidade-container" role="region" aria-label="Painel de Acessibilidade Flutuante">
-        <button id="btn-abrir-acessibilidade" class="btn-flutuante-acessivel" aria-expanded="false" aria-label="Abrir recursos auxiliares de acessibilidade">♿</button>
+    <div class="painel-acessibilidade-container">
+        <button id="btn-abrir-acessibilidade" class="btn-flutuante-acessivel" aria-label="Abrir opções de acessibilidade visual" aria-expanded="false">
+            ♿
+        </button>
         <div id="menu-acessibilidade" class="menu-acessibilidade-box acessibilidade-escondido">
             <h3>Recursos de Acessibilidade</h3>
-            <button id="btn-contraste" class="op-btn-acessivel">🌗 Alto Contraste Visual</button>
-            <button id="btn-fonte" class="op-btn-acessivel">🔎 Ampliar Fonte Textual</button>
-            <button id="btn-espacamento" class="op-btn-acessivel">↔️ Espaçamento de Caracteres</button>
-            <button id="btn-dislexia" class="op-btn-acessivel">📖 Fonte Amigável para Dislexia</button>
-            <button id="btn-saturacao" class="op-btn-acessivel">🔲 Modo Monocromático</button>
+            <hr>
+            <button id="btn-ouvir-site" class="op-btn-acessivel">🔊 Ouvir Conteúdo (Sintetizador)</button>
+            <button id="btn-contraste" class="op-btn-acessivel" aria-pressed="false">🌗 Alternar Alto Contraste</button>
+            <button id="btn-fonte" class="op-btn-acessivel" aria-pressed="false">🔎 Aumentar o Tamanho do Texto</button>
+            <button id="btn-espacamento" class="op-btn-acessivel" aria-pressed="false">↔️ Espaçamento entre Letras</button>
+            <button id="btn-dislexia" class="op-btn-acessivel" aria-pressed="false">📖 Letra para Dislexia (Comic)</button>
+            <button id="btn-saturacao" class="op-btn-acessivel" aria-pressed="false">🎨 Cores em Escala de Cinza</button>
         </div>
     </div>
 
     <footer class="rodape-oficial">
         <div class="rodape-grid">
             <div class="rodape-bloco">
-                <h4>Sobre a Iniciativa</h4>
-                <p>Plataforma interativa estruturada para representar o município de Andirá/PR nas avaliações do Concurso Agrinho 2026.</p>
-                <p class="Destaque-Senar">Parceria Tecnológica: Escola Pública de Andirá & SENAR Paraná.</p>
+                <h4>🏫 Escola</h4>
+                <p>Colégio Estadual Cívico-Militar Stella Maris</p>
+                <p><strong>Cidade:</strong> Andirá - PR</p>
+                <p><strong>NRE:</strong> Núcleo Regional de Jacarezinho</p>
             </div>
             <div class="rodape-bloco">
-                <h4>Metas Globais</h4>
-                <p class="hashtag-rodape">#AgrinhoParana2026 #AgroSustentavel</p>
+                <h4>👥 Autores do Projeto</h4>
+                <p><strong>Aluno Desenvolvedor:</strong> Vinicius Montagna Fabricio</p>
+                <p><strong>Professor Orientador:</strong> Francisco Biudes</p>
+            </div>
+            <div class="rodape-bloco">
+                <h4>🌱 Participação</h4>
+                <p>Projeto desenvolvido e enviado para o Concurso Agrinho 2026</p>
+                <p class="Destaque-Senar">Sistema FAEP / SENAR-PR</p>
+                <p class="hashtag-rodape">#AgroForteFuturoSustentavel</p>
             </div>
         </div>
         <div class="rodape-copyright">
-            &copy; 2026 - Agro Forte, Futuro Sustentável. Todos os direitos de propriedade intelectual reservados.
+            <p>
+                © 2026 EcoRadar Agro. Criado de forma individual seguindo as regras de acessibilidade da internet (WCAG 2.1 e eMAG).
+            </p>
         </div>
     </footer>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
     <script src="main.js"></script>
 </body>
