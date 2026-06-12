@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         { idBotao: 'btn-saturacao', classeCSS: 'escala-cinza' }
     ];
 
-    // Carrega as configurações salvas antes de carregar o visual completo
     configuracoesAcessibilidade.forEach(item => {
         const estadoSalvo = localStorage.getItem(item.classeCSS) === 'true';
         if (estadoSalvo) {
@@ -94,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // ==========================================================================
-    // 3. LÓGICA DO QUIZ INTERATIVO (LINGUAGEM ACESSÍVEL)
+    // 3. LÓGICA DO QUIZ INTERATIVO
     // ==========================================================================
     const questoes = [
         {
@@ -106,17 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             pergunta: "Por que não é recomendado passar produtos na lavoura quando o vento está muito forte (acima de 28 km/h)?",
-            a: "Because o vento forte espalha o produto para fora da lavoura, contaminando a vizinhança e desperdiçando dinheiro.",
-            b: "Porque o produto evapora no ar antes de tocar as folhas por causa do calor do vento.",
+            a: "Porque o vento forte espalha o produto para fora da lavoura, contaminando a vizinhança.",
+            b: "Porque o produto evapora no ar antes de tocar as folhas por causa do calor.",
             resposta: "a",
-            explicacao: "Perfeito! Esse problema se chama deriva. O vento leva o produto para onde não devia, prejudicando a natureza e o bolso do produtor."
+            explicacao: "Perfeito! Esse problema se chama deriva. O vento leva o produto para onde não devia, prejudicando a natureza e gerando desperdício."
         },
         {
             pergunta: "De acordo com as pesquisas da Embrapa, quanto do território do Brasil é preservado de forma voluntária pelos próprios produtores rurais?",
             a: "Apenas uma parte bem pequena, perto de 10% do país.",
             b: "Uma grande parte, correspondente a cerca de 33% (um terço) do país.",
             resposta: "b",
-            explicacao: "Você acertou! Os produtores rurais cuidam de um terço das florestas nativas do Brasil dentro de suas propriedades."
+            explicacao: "Você acertou! Os produtores rurais cuidam de um terço das florestas nativas do Brasil dentro de suas propriedades privadas."
         },
         {
             pergunta: "Qual é a maior vantagem de usar sensores que medem a umidade da terra direto no celular?",
@@ -127,10 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
             pergunta: "Pensando no mercado de créditos de carbono, que tipo de floresta consegue limpar o ar mais rápido?",
-            a: "Florestas comerciais novas que estão crescendo rápido (como plantações de eucalipto).",
+            a: "Florestas comerciais novas que estão crescendo rápido.",
             b: "Vegetações rasteiras e pequenas como as árvores baixas do Cerrado.",
             resposta: "a",
-            explicacao: "Correto! Árvores que estão crescendo rápido fazem mais fotossíntese e conseguem puxar e guardar mais gás carbono na sua madeira."
+            explicacao: "Correto! Árvores em fase ativa de crescimento realizam mais fotossíntese e fixam carbono na biomassa vegetal mais rapidamente."
         }
     ];
 
@@ -287,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ==========================================================================
-    // 5. MOTOR DE ANIMAÇÃO DE ROLAGEM (INTERSECTION OBSERVER)
+    // 5. ENGINE DE ANIMAÇÃO DE SCROLL (INTERSECTION OBSERVER)
     // ==========================================================================
     const secoesParaAnimar = document.querySelectorAll(".animar-scroll");
     
@@ -300,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }, {
-            threshold: 0.15
+            threshold: 0.12
         });
 
         secoesParaAnimar.forEach(secao => observadorScroll.observe(secao));
